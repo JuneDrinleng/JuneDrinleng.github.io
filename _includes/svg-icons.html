@@ -74,29 +74,38 @@
       <audio id="bgMusic" src="{{ site.baseurl }}/{{site.footer-links.play-music }}"></audio>
     </a>
   </li>
-  <style>
-    .play-music {
-      cursor: pointer;
-    }
-    .play-music.playing .play-path {
-      fill: #4CAF50;
-    }
-  </style>
   <script>
-    const audio = document.getElementById('bgMusic');
-    const musicBtn = document.querySelector('.play-music');
-    
-    function togglePlay(e) {
-      e.preventDefault();
-      if (audio.paused) {
-        audio.play();
-        musicBtn.classList.add('playing');
-      } else {
-        audio.pause();
-        musicBtn.classList.remove('playing');
-      }
+  // 使用localStorage保存播放状态
+  const audio = document.getElementById('bgMusic');
+  const musicBtn = document.querySelector('.play-music');
+  
+  // 页面加载时恢复播放状态
+  document.addEventListener('DOMContentLoaded', () => {
+    const isPlaying = localStorage.getItem('musicPlaying') === 'true';
+    if (isPlaying) {
+      audio.play();
+      musicBtn.classList.add('playing');
     }
-    </script>
+  });
+  
+  function togglePlay(e) {
+    e.preventDefault();
+    if (audio.paused) {
+      audio.play();
+      musicBtn.classList.add('playing');
+      localStorage.setItem('musicPlaying', 'true');
+    } else {
+      audio.pause();
+      musicBtn.classList.remove('playing');
+      localStorage.setItem('musicPlaying', 'false');
+    }
+  }
+  
+  // 处理页面卸载时保存状态
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('musicPlaying', !audio.paused);
+  });
+  </script>
   {% endif %}
 
 </ul>
