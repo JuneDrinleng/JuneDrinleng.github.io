@@ -63,8 +63,8 @@ disqus: # fromendworld
 
 # Gitalk
 gitalk:
-  clientID: bd65d5c0df878155b7fa
-  clientSecret: d0220762c05c2d6b6f6152a0f0e4b6b090de9729
+  clientID: Ov23liBV8LIk7mawtLQD
+  clientSecret: 4ad9a4358501122675d469f55e88dbece63a33f6
   repo: junedrinleng.github.io
   owner: junedrinleng
 
