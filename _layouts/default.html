@@ -4,27 +4,6 @@
   <body>
     {% include nav.html %}
 
-    <button id="play-music-button" style="position: fixed; bottom: 10px; left: 10px; z-index: 1000;">播放音乐</button>
-    <audio id="background-music" src="{{ site.baseurl }}/bgm/YMCA.mp3"></audio>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var audio = document.getElementById("background-music");
-        var button = document.getElementById("play-music-button");
-
-        button.addEventListener("click", function() {
-          if (audio.paused) {
-            audio.play();
-            button.textContent = "暂停音乐";
-          } else {
-            audio.pause();
-            button.textContent = "播放音乐";
-          }
-        });
-
-        audio.volume = 0.5; // 设置音量，范围是 0.0 到 1.0
-      });
-    </script>
-
     {% if page.toc==true %}
       <aside class="toc">
         {% include toc.html html=content %}

@@ -53,6 +53,7 @@ footer-links:
   tumblr: # https://<username>.tumblr.com
   #twitter: frommidworld
   youtube:
+  play-music: true
 
 # Text under the icons in footer
 footer-text: Copyright (c) 2024 June Drinleng
