@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "python中的面向对象编程"
-date:   2024-11-15
+date:   2023-12-28
 tags: [python]
 comments: true
 author: junedrinleng
