@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "pip env 使用指南"
-date:   2024-11-15
+date:   2024-01-08
 tags: [python]
 comments: true
 author: junedrinleng
