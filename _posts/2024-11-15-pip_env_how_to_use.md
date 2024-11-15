@@ -41,7 +41,7 @@ pip env主要是在你的项目下新建一个虚拟环境，但是会面临以�
 
 如果你的电脑安装python之后没有安装过pipenv，那么需要经过这步
 
-~~~cmd
+~~~
 pip install pipenv
 ~~~
 
@@ -51,13 +51,13 @@ pip install pipenv
 
 ### 2.2 创建虚拟环境
 
-~~~cmd
+~~~
 pipenv install
 ~~~
 
 ### 2.3 激活新创建的虚拟环境
 
-~~~cmd
+~~~
 pipenv shell
 ~~~
 
@@ -65,13 +65,13 @@ pipenv shell
 
 需要注意的是，这里的requirements和conda生成的是不一样的，不能混淆了
 
-~~~cmd
+~~~
 pipenv install -r requirements.txt
 ~~~
 
 注：如何生成requirements文件
 
-~~~cmd
+~~~
 pip freeze > requirements.txt
 ~~~
 
@@ -81,7 +81,7 @@ pip freeze > requirements.txt
 
 cd 到你的虚拟环境位置，例如venv文件夹是虚拟环境，那就cd到他的上一级
 
-~~~cmd
+~~~
 pipenv --rm
 ~~~
 

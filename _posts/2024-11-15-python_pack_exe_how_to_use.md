@@ -26,7 +26,7 @@ author: junedrinleng
 
 先激活你的环境，然后输入下列：
 
-~~~cmd
+~~~
 pip3 install pyinstaller
 ~~~
 
@@ -36,7 +36,7 @@ pip3 install pyinstaller
 
 输入（三选一，根据情况来）：
 
-~~~cmd
+~~~
 Pyinstaller -F py_word.py # 打包exe
 
 Pyinstaller -F -w py_word.py #不带控制台的打包
