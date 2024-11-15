@@ -26,4 +26,4 @@ permalink: /about/
 
 ## 版权声明
 
-博客文章是我原创文章，版权归我所有，转载请与我联系[my email is zhu-jl24@mails.tsinghua.edu.cn](zhu-jl24@mails.tsinghua.edu.cn)获得授权许可。
+博客文章是我原创文章，版权归我所有，转载请与我联系[my email is {{site.email}}]({{ site.email }})获得授权许可。

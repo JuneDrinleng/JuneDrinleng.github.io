@@ -5,7 +5,9 @@
 # Name of your site (displayed in the header)
 name: "June Drinleng's blog"
 # Short bio or description (displayed in the header)
-description: "个人技术博客，分享我的读博知识日常"
+description: >
+  个人技术博客，分享我的读博知识日常。
+  联系方式：{{ site.email }}
 
 #
 # Flags below are optional
