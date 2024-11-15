@@ -27,17 +27,17 @@ author: junedrinleng
 
 例如可以假设一个类叫做atm
 
-![20231228153119085.png](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/_posts%5C2024-11-15-Object_Oriented_Programming%5Cimage-20231228153119085.png)
+![1](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-15-Object_Oriented_Programming/image-20231228153119085.png)
 
 那么atme类里可以有很多的对象，比如atm1是招商银行南园支行的atm，而atm2是中国银行北园支行。这样使得数据的流动更加清晰
 
 **关注功能：**
 
-![image-20231228153314370](Object-Oriented Programming.assets/image-20231228153314370.png)
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-15-Object_Oriented_Programming/20241115181847.png)
 
 定义好洗衣机的功能之后，可以直接调用洗衣机的功能
 
-<img src="Object-Oriented Programming.assets/image-20231228153321877.png" alt="image-20231228153321877" style="zoom:150%;" />
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182037.png)
 
 除此之外面向对象还有封装继承多态等好处
 
@@ -45,13 +45,11 @@ author: junedrinleng
 
 继承则是由于可能不同的类有大量重复属性，比如小学生类和大学生类都是学生，都得考试和做作业，那么我们不妨定义一个大类“学生”，学生大类下有小学生，有大学生
 
-<img src="Object-Oriented Programming.assets/image-20231228153646961.png" alt="image-20231228153646961" style="zoom:150%;" />
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182100.png)
 
-![image-20231228153657051](Object-Oriented Programming.assets/image-20231228153657051.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182125.png)多态则是指同样的接口可能实现方法不同，比如定义学生类，都得写作业，但是对大学生写作业的方法和小学生写作业方法可能不同，也就是说，写作业这个功能有多个实现模式——小学生写作业模式、大学生写作业模式，我们在定义好后，只要确定我的学生是小学生还是大学生然后直接调用写作业就行了——此时由于学生所属的类不同就会自己调用不同的做作业方法
 
-多态则是指同样的接口可能实现方法不同，比如定义学生类，都得写作业，但是对大学生写作业的方法和小学生写作业方法可能不同，也就是说，写作业这个功能有多个实现模式——小学生写作业模式、大学生写作业模式，我们在定义好后，只要确定我的学生是小学生还是大学生然后直接调用写作业就行了——此时由于学生所属的类不同就会自己调用不同的做作业方法
-
-![image-20231228153940121](Object-Oriented Programming.assets/image-20231228153940121.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182151.png)
 
 ## 2 类的创建
 
@@ -142,7 +140,7 @@ cat1=CuteCat("小黑")
 
 在此基础上添加更多的参数也就很简单了，例如：
 
-![image-20231228160256867](Object-Oriented Programming.assets/image-20231228160256867.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182228.png)
 
 ## 5 定义对象的方法——也就是定义功能
 
@@ -175,11 +173,11 @@ cat1.speak()
 
 例如对于下面俩类，我们不难发现有不少重复
 
-![image-20231228162427088](Object-Oriented Programming.assets/image-20231228162427088.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182252.png)
 
 写代码应该尽可能的少重复，因此我们可以创建一个父类来描述共性
 
-![image-20231228162522568](Object-Oriented Programming.assets/image-20231228162522568.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182315.png)
 
 一般来说，子类有调用方法就优先调用自己的方法，如果没有则调用父类
 
@@ -189,7 +187,7 @@ cat1.speak()
 
 在子类下用super
 
-![image-20231228162934425](Object-Oriented Programming.assets/image-20231228162934425.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182348.png)
 
 利用super把父类的属性继承
 
@@ -197,7 +195,7 @@ cat1.speak()
 
 ### 7.1 类的定义
 
-![image-20231228161059897](Object-Oriented Programming.assets/image-20231228161059897.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182412.png)
 
 ~~~python
 class student:
@@ -218,7 +216,7 @@ xiaochen.set_grade("数学"，95)
 
 ### 7.2 类的继承
 
-![image-20231228163123600](Object-Oriented Programming.assets/image-20231228163123600.png)
+![](./2024-11-15-Object_Oriented_Programming.assets/20241115182435.png)
 
 ~~~python
 class HumanResourcesSystem:
