@@ -79,6 +79,13 @@
   const audio = document.getElementById('bgMusic');
   const musicBtn = document.querySelector('.play-music');
   
+  // 定期保存播放进度
+  setInterval(() => {
+    if (!audio.paused) {
+      localStorage.setItem('musicCurrentTime', audio.currentTime);
+    }
+  }, 1000);
+  
   // 页面加载时恢复播放状态
   document.addEventListener('DOMContentLoaded', () => {
     const isPlaying = localStorage.getItem('musicPlaying') === 'true';
