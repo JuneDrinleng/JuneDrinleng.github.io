@@ -4,7 +4,7 @@
   <body>
     {% include nav.html %}
 
-    <button id="play-music-button">播放音乐</button>
+    <button id="play-music-button" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">播放音乐</button>
     <audio id="background-music" src="{{ site.baseurl }}/bgm/YMCA.mp3"></audio>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
