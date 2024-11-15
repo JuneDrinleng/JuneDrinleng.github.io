@@ -5,6 +5,8 @@ date:   2024-11-15
 tags: [python]
 comments: true
 author: junedrinleng
+TOC: true
+
 ---
 
 该笔记主要介绍python程序打包成exe时的虚拟环境问题，之所以不用conda是因为conda环境生成exe体积很大且会打包很多不必要的包，因此选择pip env实现

@@ -5,6 +5,7 @@ date:   2024-11-15
 tags: [python]
 comments: true
 author: junedrinleng
+TOC: true
 ---
 
 该笔记主要介绍python程序打包成exe的过程问题，并列举了几个较为常见的例子
