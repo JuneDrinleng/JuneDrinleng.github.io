@@ -12,6 +12,8 @@
     - svg.html: 网站页脚的图标设置
 - _posts: 存放博客文章的文件夹，文件名格式为`yy-mm-dd-标题.md`,例如[2024-11-15-Hello-World.md]
 - img: 存放博客文章中的素材图片
+- about.md: 个人简介页面
+- _config.yml: 网站的配置文件,包括配置谷歌分析，网站首图，版权声明栏，社媒信息
 
 ## 博客文章的格式
 博客文章的格式为Markdown格式，可以使用Markdown编辑器来编辑，例如[Typora](https://typora.io/)
