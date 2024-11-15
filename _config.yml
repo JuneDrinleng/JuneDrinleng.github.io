@@ -64,9 +64,9 @@ disqus: # fromendworld
 # Gitalk
 gitalk:
   clientID: Ov23liBV8LIk7mawtLQD
-  clientSecret: 4ad9a4358501122675d469f55e88dbece63a33f6
+  clientSecret: a14fa3a0cc6e64de0801aeca055edf9e541cf56e
   repo: junedrinleng.github.io
-  owner: junedrinleng
+  owner: JuneDrinleng
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: G-XLNDGG8996
