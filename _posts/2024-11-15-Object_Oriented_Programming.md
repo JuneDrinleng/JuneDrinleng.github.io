@@ -58,38 +58,37 @@ author: junedrinleng
 ### 2.1 类的命名
 
 类不能含有下划线，格式为：
-
-~~~
+```
 class 类名:
 # 类名建议采用驼峰命名法，不带任何的下划线等特殊字符
-~~~
+```
 
 例如：
 
-~~~
+```
 class CuteCat:
 	#接下来是定义类的代码
-~~~
+```
 
 ### 2.2 类的创建
 
 对于类有一个特殊方法是构造函数，用于定义实例对象的属性，必须被命名为\__init__ ,形如：
 
-~~~python
+```python
 class CuteCat
 	def __init__(self)
     	#接下来是构造函数的代码
-~~~
+```
 
 对于\__init__,第一个参数必须是self——约定俗称的，表示第一个参数被占用，表示对象自身。self的作用就是把属性的值绑定在实例对象上
 
 例如
 
-~~~python
+```python
 class CuteCat
 	def __init__(self)
     	self.name="大黄"
-~~~
+```
 
 这表示猫猫的名字属性是大黄（也就是这只猫叫做大黄），那么通过 `self.name="大黄"`就把猫叫大黄的名字绑在这只猫上了。
 
@@ -101,25 +100,25 @@ class CuteCat
 
 首先我们复习创建类
 
-~~~python
+```python
 class CuteCat:
     def __init__(self):
         self.name="大黄"
-~~~
+```
 
 创建好类之后，我们开始创建对象
 
-~~~python
+```python
 cat1=CuteCat()
-~~~
+```
 
 此时就创建了一个叫做大黄的猫猫对象
 
 格式上就是：
 
-~~~python
+```python
 对象=类名（参数）
-~~~
+```
 
 这样init方法就会被调用，同时返回一个对象。self参数不需要手动传入，可以自动运行传入
 
@@ -127,19 +126,19 @@ cat1=CuteCat()
 
 上述创建的类里所有猫都叫大黄，这明显就不合适，所以我们可以把这个类进行一些修改和改进
 
-~~~python
+```python
 class CuteCat：
 	def __init__(self,cat_name):
         self.name=cat_name
-~~~
+```
 
 这样，我们创建对象时，就需要在括号里传入参数
 
 例如创建一个叫小黑的猫猫对象
 
-~~~python
+```python
 cat1=CuteCat("小黑")
-~~~
+```
 
 在此基础上添加更多的参数也就很简单了，例如：
 
@@ -151,24 +150,24 @@ cat1=CuteCat("小黑")
 
 对于对功能的定义，其实很简单，可以参考函数的定义，只不过需要写在class里，而且第一个参数被self占用
 
-~~~python
+```python
 class CuteCat：
 	def __init__(self,cat_name,cat_age):        
     	self.name=cat_name
         self.age=cat_age
 	def speak(self):
         print("喵"*self.age)
-~~~
+```
 
 类的功能包含self可以很方便的调用类的属性，比如上述调用的类的年龄属性
 
 那调用功能就很方便了：
 
-~~~python
+```python
 # 创建对象
 cat1=CuteCat('小红'，18)
 cat1.speak()
-~~~
+```
 
 
 
@@ -200,7 +199,7 @@ cat1.speak()
 
 ![image-20231228161059897](Object-Oriented Programming.assets/image-20231228161059897.png)
 
-~~~python
+```python
 class student:
     def __init__(self,name,id):
     	self.name=name
@@ -215,13 +214,13 @@ class student:
 # 创建对象
 xiaochen=student("小陈","12")
 xiaochen.set_grade("数学"，95)
-~~~
+```
 
 ### 7.2 类的继承
 
 ![image-20231228163123600](Object-Oriented Programming.assets/image-20231228163123600.png)
 
-~~~python
+```python
 class HumanResourcesSystem:
     def __init__(self,name,id):
     	self.name=name
@@ -244,7 +243,7 @@ class PartTimeEmployee(HumanResourcesSystem):
 	def calculate_monthly_pay(self):    
         #print("月薪",self.work_days*self.daily_salary)
         return self.work_days*self.daily_salary
-~~~
+```
 
 
 
