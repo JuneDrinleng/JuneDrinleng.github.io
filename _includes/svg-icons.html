@@ -85,10 +85,13 @@
       localStorage.setItem('musicCurrentTime', audio.currentTime);
     }
   }, 1000);
-  
+
   // 页面加载时恢复播放状态
   document.addEventListener('DOMContentLoaded', () => {
     const isPlaying = localStorage.getItem('musicPlaying') === 'true';
+    const savedTime = parseFloat(localStorage.getItem('musicCurrentTime')) || 0;
+
+    audio.currentTime = savedTime;
     if (isPlaying) {
       audio.play();
       musicBtn.classList.add('playing');
