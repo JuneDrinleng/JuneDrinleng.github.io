@@ -75,6 +75,27 @@
     </a>
     <audio id="footer-background-music" src="{{ site.baseurl }}/bgm/YMCA.mp3"></audio>
   </li>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById("footer-background-music");
+    var button = document.getElementById("footer-play-music-button");
+
+    if (button && audio) {
+      button.addEventListener("click", function(event) {
+        event.preventDefault(); // 阻止默认链接行为
+        if (audio.paused) {
+          audio.play();
+          button.title = "暂停音乐";
+        } else {
+          audio.pause();
+          button.title = "播放音乐";
+        }
+      });
+
+        audio.volume = 0.5; // 设置音量，范围是 0.0 到 1.0
+      }
+    });
+</script>
   {% endif %}
 
 </ul>
