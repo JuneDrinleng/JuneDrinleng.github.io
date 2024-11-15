@@ -4,6 +4,15 @@
   <body>
     {% include nav.html %}
 
+
+    <!-- 添加背景音乐 -->
+    <audio id="background-music" src="{{ site.baseurl }}bgm/YMCA.mp3" autoplay loop></audio>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var audio = document.getElementById("background-music");
+        audio.volume = 0.5; // 设置音量，范围是 0.0 到 1.0
+      });
+    </script>
     {% if page.toc==true %}
       <aside class="toc">
         {% include toc.html html=content %}
