@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 ## 关于我
-欢迎来到我的博客主页，我是华清带学化学系的一名博士生，现在是博士一年级。  
+欢迎来到我的博客主页，我是华清带学化学系的一名博士生，现在是博士{% assign current_date = "now" | date: "%Y%m" | plus: 0 %}{% assign start_date = 202409 %}{% assign months_diff = current_date | minus: start_date %}{% assign year = months_diff | divided_by: 12 | floor | plus: 1 %}{{ year }}年级。
 
 ### 我的教育经历：  
 - 2020-2024年 清华大学 致理书院 化学专业 学士学位

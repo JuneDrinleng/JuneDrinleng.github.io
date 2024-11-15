@@ -4,10 +4,7 @@
 
 # Name of your site (displayed in the header)
 name: "June Drinleng's blog"
-# Short bio or description (displayed in the header)
-description: >
-  个人技术博客，分享我的读博知识日常。
-  联系方式：{{ site.email }}
+
 
 #
 # Flags below are optional
@@ -56,6 +53,11 @@ footer-links:
   #twitter: frommidworld
   youtube:
   play-music: bgm/YMCA.mp3
+
+# Short bio or description (displayed in the header)
+description: >
+  个人技术博客，分享我的读博知识日常。
+  联系方式：{{ site.email }}
 
 # Text under the icons in footer
 footer-text: Copyright (c) 2024 June Drinleng
