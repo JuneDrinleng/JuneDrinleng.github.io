@@ -27,7 +27,7 @@ author: junedrinleng
 
 例如可以假设一个类叫做atm
 
-![image-20231228153119085](Object-Oriented Programming.assets/image-20231228153119085.png)
+![20231228153119085.png](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/_posts%5C2024-11-15-Object_Oriented_Programming%5Cimage-20231228153119085.png)
 
 那么atme类里可以有很多的对象，比如atm1是招商银行南园支行的atm，而atm2是中国银行北园支行。这样使得数据的流动更加清晰
 
