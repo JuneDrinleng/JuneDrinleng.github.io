@@ -26,9 +26,9 @@ author: junedrinleng
 
 先激活你的环境，然后输入下列：
 
-```cmd
+~~~cmd
 pip3 install pyinstaller
-```
+~~~
 
 安装好后，cd在源代码所在的文件夹，如果有logo的话也可以放在这个文件夹里
 
@@ -36,13 +36,13 @@ pip3 install pyinstaller
 
 输入（三选一，根据情况来）：
 
-```cmd
+~~~cmd
 Pyinstaller -F py_word.py # 打包exe
 
 Pyinstaller -F -w py_word.py #不带控制台的打包
 
 Pyinstaller -F -w -i chengzi.ico py_word.py #打包指定exe图标打包
-```
+~~~
 
 这里的-w是不保留命令行窗口，改成-c即可保留命令行窗口。
 
@@ -52,9 +52,9 @@ Pyinstaller -F -w -i chengzi.ico py_word.py #打包指定exe图标打包
 
 要命名生成的exe，请加-n 你的名字，例如我希望名字是exo，则可以输入
 
-```python
+~~~python
 Pyinstaller -F -c -i chengzi.ico py_word.py -n exo
-```
+~~~
 
 ## 4 形成压缩包
 
