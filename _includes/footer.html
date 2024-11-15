@@ -6,21 +6,18 @@
 
 <!-- 其他 footer 内容 -->
 {% if site.footer-links.play-music %}
-<button id="footer-play-music-button">播放音乐</button>
-<audio id="footer-background-music" src="{{ site.baseurl }}/bgm/YMCA.mp3"></audio>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     var audio = document.getElementById("footer-background-music");
     var button = document.getElementById("footer-play-music-button");
 
-    button.addEventListener("click", function() {
-        if (audio.paused) {
+    button.addEventListener("click", function(event) {
+      event.preventDefault(); // 阻止默认链接行为
+      if (audio.paused) {
         audio.play();
-        button.textContent = "暂停音乐";
-        } else {
+      } else {
         audio.pause();
-        button.textContent = "播放音乐";
-        }
+      }
     });
 
     audio.volume = 0.5; // 设置音量，范围是 0.0 到 1.0
