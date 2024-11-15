@@ -62,16 +62,12 @@ footer-text: Copyright (c) 2024 June Drinleng
 disqus: # fromendworld
 
 # Gitalk
-# gitalk:
-#   clientID: Ov23liBV8LIk7mawtLQD
-#   clientSecret: a14fa3a0cc6e64de0801aeca055edf9e541cf56e
-#   repo: junedrinleng.github.io
-#   owner: JuneDrinleng
 gitalk:
-  clientID: bd65d5c0df878155b7fa
-  clientSecret: d0220762c05c2d6b6f6152a0f0e4b6b090de9729
-  repo: lemonchann.github.io
-  owner: lemonchann
+  clientID: Ov23liBV8LIk7mawtLQD
+  clientSecret: a14fa3a0cc6e64de0801aeca055edf9e541cf56e
+  repo: junedrinleng.github.io
+  owner: JuneDrinleng
+
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: G-XLNDGG8996
