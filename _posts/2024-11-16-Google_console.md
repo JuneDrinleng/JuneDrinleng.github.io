@@ -42,7 +42,8 @@ site:https://junedrinleng.github.io
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141805.png)  
 点击view sitemap details，然后点击下载sitemap。  
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141855.png)
-下载 SITEMAP 文件sitemap.xml并将其上传到网站的根目录。  
+下载 SITEMAP 文件sitemap.xml并将其上传到网站的根目录。
+**注意一定要记得上传之后再在谷歌提交，不然谷歌找不到站点地图文件就会报错**  
 接下来就可以提交你的站点地图了。  
 回到刚刚的谷歌搜索控制台，点击站点地图，然后点击提交站点地图。  
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116142115.png)  
