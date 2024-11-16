@@ -30,4 +30,22 @@ site:https://junedrinleng.github.io
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116140928.png)  
 点击继续后弹出如下的窗口：  
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141027.png)  
-下载html文件，将其放到你的网站根目录下，然后点击验证。
+下载html文件，将其放到你的网站根目录下，然后点击验证。  
+如果验证成功，会弹出以下的窗口：  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141415.png)
+## 3. 提交网站地图
+站点地图(Site Map)是用来注明网站结构的文件，我们希望搜索引擎的爬虫了解我们的网站结构,以便于高效爬取内容，快速建立索引。  
+这里使用的是 XML-Sitemaps.com网站，我们可以点击[https://www.xml-sitemaps.com/](https://www.xml-sitemaps.com/)进入该网站。  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141706.png)  
+在上述页面中输入自己的网站域名，点击start。  
+搜索完成后呈现如下页面：  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141805.png)  
+点击view sitemap details，然后点击下载sitemap。  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116141855.png)
+下载 SITEMAP 文件sitemap.xml并将其上传到网站的根目录。  
+接下来就可以提交你的站点地图了。  
+回到刚刚的谷歌搜索控制台，点击站点地图，然后点击提交站点地图。  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116142115.png)  
+选择站点地图后填写地图位置：  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116142204.png)  
+之后点击提交

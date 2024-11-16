@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://junedrinleng.github.io/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/about/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/archive/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/tags/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/Google_console/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/PGM_1/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/pip_env_how_to_use/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/Object_Oriented_Programming/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.github.io/python_pack_exe_how_to_use/</loc>
+  <lastmod>2024-11-16T06:15:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
