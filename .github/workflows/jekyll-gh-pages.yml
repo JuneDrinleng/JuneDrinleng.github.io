@@ -37,6 +37,10 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+      - name: update google
+        uses: junedrinleng/mycurl_action@main
+        with:
+          args: https://www.google.com/ping?sitemap=https://junedrinleng.github.io/sitemap.xml
 
   # Deployment job
   deploy:
