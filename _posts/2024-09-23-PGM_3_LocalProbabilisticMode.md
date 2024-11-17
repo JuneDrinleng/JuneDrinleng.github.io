@@ -13,13 +13,8 @@ toc: true
 
 ## 3.1 review
 
-```mermaid
-graph TD;
-A((A))-->B((B))
-B-->C((C))
-A-->C
-D((D))-->B
-```
+![image-20241118005807602](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-09-23-PGM_3_LocalProbabilisticMode/image-20241118005807602.png)
+
 这里除了给定AD的情况下BC独立；还有一个其他独立性条件即A本身独立于D  
 ![image-20240923101014780](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-09-23-PGM_3_LocalProbabilisticMode/image-20240923101014780.png)  
 
@@ -63,11 +58,11 @@ $\rho1:<a^0,j^0;0.8>$，$\rho2:<a^0,j^1;0.2>$代表a=0时有j=0和j=1两个可�
 
 $$
 sigmoid(s)=\frac{e^s}{1+e^s}
-$$   
+$$
 Logistic CPD:  
 $$
 P(Y=y^1 | X_1,……,X_k)=sigmoid(w_0+\sum w_i X_i)
-$$  
+$$
 ![image-20240923105124313](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-09-23-PGM_3_LocalProbabilisticMode/image-20240923105124313.png)  
 
 y受影响的是后是由父节点的线性组合+套壳（高斯分布、泊松分布）来实现的  
@@ -97,7 +92,7 @@ subtypes define the patterns of expressions
 graph TD
 s((s))-->e((e))
 style e fill:#d3d3d3;
-```  
+```
 
 ![image-20240923112217301](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-09-23-PGM_3_LocalProbabilisticMode/image-20240923112217301.png)  
 
@@ -109,7 +104,7 @@ style e fill:#d3d3d3;
 此时就可以联合local CPD和bayesian network来写出complete 概率模型  
 $$
 p\left(s=k,e\right)=P\left(s=k\right)p\left(e\mid s=k\right)\\=\pi_k\times\frac{\exp\left(-\frac12\left(e-\mu_k\right)^T\Sigma_k^{-1}\left(e-\mu_k\right)\right)}{\sqrt{\left(2\pi\right)^k\left|\Sigma_k\right|}}
-$$  
+$$
 
 对于每个单元：  
 $$
