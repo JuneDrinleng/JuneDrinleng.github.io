@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "概率图模型3 贝叶斯网络Local Probabilistic Model"
-date:   2024-09-21
+date:   2024-09-23
 tags: [pgm]
 comments: true
 author: junedrinleng
