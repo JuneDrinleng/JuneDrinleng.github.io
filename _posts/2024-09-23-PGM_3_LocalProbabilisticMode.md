@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "概率图模型2 贝叶斯网络"
+title: "概率图模型3 贝叶斯网络Local Probabilistic Model"
 date:   2024-09-21
 tags: [pgm]
 comments: true
