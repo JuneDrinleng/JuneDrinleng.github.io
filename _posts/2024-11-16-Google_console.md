@@ -50,3 +50,10 @@ site:https://junedrinleng.github.io
 选择站点地图后填写地图位置：  
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241116142204.png)  
 之后点击提交
+提交之后看下面谷歌抓取的状态
+然后点击请求编入索引：
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241117205745.png)
+点击请求编入索引后看到谷歌已经收录  
+
+然后去google搜索框搜索你的网站，看看是否能搜索到你的网站  
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-16-Google/20241117205904.png)
