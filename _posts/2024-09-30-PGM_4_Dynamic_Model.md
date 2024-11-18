@@ -37,14 +37,14 @@ eg2. 人机交互，Y是视频资料；Z是声音信息
 
 ### 2.1 Calculations in HMMs
 
-- Problem 1: 𝑃(𝑿|𝜽) , given the model and the  
+- Problem 1:$ 𝑃(𝑿|𝜽)$ , given the model and the  
 
 observation sequence, infer the probability of  
 
 getting that observation sequence from the model  
 
-- Problem 2: argmax_𝑌 𝑷(𝑿, 𝒀|𝜽), given the model and the observation sequence, infer the hidden labels of the sequence  
-- _Problem 3: argmax_𝜃 𝑷(𝑿|𝜽), if parameters are unknown, learn them from the observation sequence  
+- Problem 2: $argmax_𝑌 𝑷(𝑿, 𝒀|𝜽)$, given the model and the observation sequence, infer the hidden labels of the sequence  
+- Problem 3: $argmax_𝜃 𝑷(𝑿|𝜽)$, if parameters are unknown, learn them from the observation sequence  
 
 ### 2.2 𝑃 (𝑿|𝜽）的计算
 
