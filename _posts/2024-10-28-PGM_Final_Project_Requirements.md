@@ -1,3 +1,16 @@
+---
+layout: post
+title: "概率图模型final project介绍"
+date:   2024-10-28
+tags: [pgm]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+该笔记主要回顾了前一段时间所学习的概率图模型表示部分，同时介绍了一些更加前沿的研究
+<!-- more -->
+
 数据：空间转录组，包括病理图像和基因-空间的表达矩阵
 任务：贝叶斯网络对表达矩阵聚类、马尔可夫随机场进行图像分割
 推荐使用LDA
