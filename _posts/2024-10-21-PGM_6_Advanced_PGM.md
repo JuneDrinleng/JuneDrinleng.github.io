@@ -11,6 +11,7 @@ toc: true
 该笔记主要回顾了前一段时间所学习的概率图模型表示部分，同时介绍了一些更加前沿的研究
 <!-- more -->
 ## 1 review
+
 ![image-20241021100617654](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-10-21-PGM_6_Advanced_PGM/image-20241021100617654.png)
 动态序列模型就是把有向图用于研究序列的问题  
 表示部分的举例：  
