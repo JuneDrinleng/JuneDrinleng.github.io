@@ -1,3 +1,16 @@
+---
+layout: post
+title: "概率图模型7 cluster graph与clique tree"
+date:   2024-11-04
+tags: [pgm]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+该笔记主要介绍了推断部分的graph cluster相关理论，以及使用clique tree进行准确推断
+<!-- more -->
+
 全新的章节：整个机器学习的核心就是inference
 inference：模型的所有参数都是已知的，需要根据模型做概率推断
 ![[image-20241104100148673.png]]

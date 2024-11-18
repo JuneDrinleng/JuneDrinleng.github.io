@@ -1,3 +1,16 @@
+---
+layout: post
+title: "概率图模型9 蒙特卡洛近似"
+date:   2024-11-18
+tags: [pgm]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+该笔记主要介绍了蒙特卡洛近似，包括likelihood weighting和importance sampling
+<!-- more -->
+
 ## 1 Two Strategies for Inference
 
 1. Inference as optimization

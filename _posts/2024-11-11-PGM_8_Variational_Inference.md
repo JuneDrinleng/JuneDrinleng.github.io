@@ -1,3 +1,16 @@
+---
+layout: post
+title: "概率图模型8 平均场近似"
+date:   2024-11-11
+tags: [pgm]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+该笔记介绍了变分推断以及平均场近似相关的内容
+<!-- more -->
+
 没办法构建clique tree做精确的分布计算，因此提出了变分推断来做近似推断
 变分法后面是有完备的理论体系的
 
@@ -76,9 +89,11 @@ x_1y+h_2x_2y+h_3x_3y}$$
 $$
 E_{q_1(X)}(h_1x_1y)=h_1\theta_1y 
 $$
+
 $$
 E_{q_2(X)}(h_2x_2y)=h_2\theta_1y 
 $$
+
 $$
 E_{q_3(X)}(h_3x_3y)=h_3\theta_1y 
 $$
