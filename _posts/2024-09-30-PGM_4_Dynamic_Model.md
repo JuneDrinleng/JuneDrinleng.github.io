@@ -37,16 +37,16 @@ eg2. 人机交互，Y是视频资料；Z是声音信息
 
 ### 2.1 Calculations in HMMs
 
-Problem 1: 𝑃 𝑿|𝜽 , given the model and the  
+- Problem 1: 𝑃(𝑿|𝜽) , given the model and the  
 
 observation sequence, infer the probability of  
 
 getting that observation sequence from the model  
 
-• Problem 2: argmax_𝑌 𝑷(𝑿, 𝒀|𝜽), given the model and the observation sequence, infer the hidden labels of the sequence  
-• Problem 3: argmax_𝜃 𝑷(𝑿|𝜽), if parameters are unknown, learn them from the observation sequence  
+- Problem 2: argmax_𝑌 𝑷(𝑿, 𝒀|𝜽), given the model and the observation sequence, infer the hidden labels of the sequence  
+- _Problem 3: argmax_𝜃 𝑷(𝑿|𝜽), if parameters are unknown, learn them from the observation sequence  
 
-### 2.2 𝑃 (𝑿|𝜽）的计算  
+### 2.2 𝑃 (𝑿|𝜽）的计算
 
 如果没有引入隐变量描述马尔可夫模型的话，所有观测变量将不独立的全连接，引入隐变量后就会增加独立性进而简化模型参数数量  
 ![image-20240930105944273](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-09-30-PGM_4_Dynamic_Model/image-20240930105944273.png)
