@@ -8,7 +8,7 @@ author: junedrinleng
 toc: true
 ---
 
-该笔记主要介绍概率图模型有向图中的的隐马尔可夫模型HMM
+该笔记主要介绍概率图模型有向图中的隐马尔可夫模型HMM
 <!-- more -->
 
 ## 1 review

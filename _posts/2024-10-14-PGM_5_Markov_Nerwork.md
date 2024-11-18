@@ -1,3 +1,16 @@
+---
+layout: post
+title: "概率图模型5 无向图：马尔可夫随机场"
+date:   2024-10-14
+tags: [pgm]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+该笔记主要介绍概率图模型的无向图，其更加常见的名字是马尔可夫随机场
+<!-- more -->
+
 ## 1 Intro
 
 ![image-20241014100722122](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-10-14-PGM_5_Markov_Nerwork/image-20241014100722122.png)
