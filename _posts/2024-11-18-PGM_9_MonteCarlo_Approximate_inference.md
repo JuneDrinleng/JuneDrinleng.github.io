@@ -26,7 +26,7 @@ $$
 
 下图展示的就是根据概率表进行采样的过程
 
-![image-20241118101150193](./9. MonteCarlo_Approximate_inference.assets/image-20241118101150193.png)
+![image-20241118101150193](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118101150193.png)
 
 先根据D的概率分布表来随机采样一个d，I也同理，再根据i和d的值以及G的概率分布表得到g，以此类推s和l
 
@@ -34,7 +34,7 @@ $$
 
 需要注意的是，采样的数目越多，频数越接近真实概率，那么我们应该选取多少采样数才能尽可能的偏差小呢
 
-![image-20241118101710026](./9. MonteCarlo_Approximate_inference.assets/image-20241118101710026.png)
+![image-20241118101710026](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118101710026.png)
 
 但面临产生一堆样本可能会浪费的情况：
 $$
@@ -48,7 +48,7 @@ N代表频数
 
 举个例子：
 
-![image-20241118102726350](./9. MonteCarlo_Approximate_inference.assets/image-20241118102726350.png)
+![image-20241118102726350](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118102726350.png)
 
 给定G，S的时候，D和I的后验概率其实已经发生改变，不能够按照原先的方法去使用D和I开始生成了
 
@@ -64,13 +64,13 @@ Q的定义域比P大需要，样本在Q中产生而不是P以简化采样，凡�
 
 公式：
 
-![image-20241118104951506](./9. MonteCarlo_Approximate_inference.assets/image-20241118104951506.png)
+![image-20241118104951506](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118104951506.png)
 
-![811a6acb878b85128410c5aa4403b86](./9. MonteCarlo_Approximate_inference.assets/811a6acb878b85128410c5aa4403b86.jpg)
+![811a6acb878b85128410c5aa4403b86](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/811a6acb878b85128410c5aa4403b86.jpg)
 
 如果P和Q接近的时候，近似开销最少，而如果相差很大则需要额外补充采样
 
-![image-20241118105510185](./9. MonteCarlo_Approximate_inference.assets/image-20241118105510185.png)
+![image-20241118105510185](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118105510185.png)
 
 简化操作：凡是有观测的节点，把其和父节点的关联全部删掉，得到multilated network
 
@@ -78,13 +78,13 @@ likelihood weighting是importance sampling的特例（按照上述切割规则�
 
 关于样本数：
 
-![image-20241118110148433](./9. MonteCarlo_Approximate_inference.assets/image-20241118110148433.png)
+![image-20241118110148433](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118110148433.png)
 
 上面这一套对于无向图来说是不太合适的，因为需要将无向图转化成有向图，同时对于无向图不是很好选择Q
 
 ## 5 玻尔兹曼分布与MCMC
 
-![af1fa89625f97ada6b5adb597a30a94](./9. MonteCarlo_Approximate_inference.assets/af1fa89625f97ada6b5adb597a30a94.jpg)
+![af1fa89625f97ada6b5adb597a30a94](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/af1fa89625f97ada6b5adb597a30a94.jpg)
 
 三个粒子状态可以互相转换，当前状态仅与上一时刻的状态有关（马氏性），那么当时间长了之后粒子处于各个状态的概率服从玻尔兹曼分布
 
@@ -102,11 +102,11 @@ $$
 $$
 只有当所有local CPD都是大于零的才能使得所有状态都是常返的
 
-![image-20241118115210860](./9. MonteCarlo_Approximate_inference.assets/image-20241118115210860.png)
+![image-20241118115210860](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118115210860.png)
 
 对于常返的条件是：
 
-![image-20241118115432752](./9. MonteCarlo_Approximate_inference.assets/image-20241118115432752.png)
+![image-20241118115432752](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118115432752.png)
 
 具体看怎么采样：
 
@@ -114,13 +114,13 @@ $$
 
 首先确定马尔可夫blanket
 
-![image-20241118115610670](./9. MonteCarlo_Approximate_inference.assets/image-20241118115610670.png)
+![image-20241118115610670](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118115610670.png)
 
-![image-20241118115707870](./9. MonteCarlo_Approximate_inference.assets/image-20241118115707870.png)
+![image-20241118115707870](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118115707870.png)
 
 y是x的子节点，上述概率乘积是小于等于1的，不是概率，需要对其进行归一化后才是概率
 
-![image-20241118115833408](./9. MonteCarlo_Approximate_inference.assets/image-20241118115833408.png)
+![image-20241118115833408](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-18-PGM_9_MonteCarlo_Approximate_inference/image-20241118115833408.png)
 
 ## 6 Metropolis-Hastings Algorithm
 
