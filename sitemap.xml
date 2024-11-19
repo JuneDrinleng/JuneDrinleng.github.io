@@ -1,112 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"> 
 <url>
-  <loc>https://junedrinleng.github.io/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://junedrinleng.github.io/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/about/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/about</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/archive/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/archive</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/tags/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/tags</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_9_MonteCarlo_Approximate_inference/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/PGM_9_MonteCarlo_Approximate_inference/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/blog_update/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io//tags#pgm</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/Google_console/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/blog_update/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_8_Variational_Inference/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io//tags#others</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_7_Inference_as_Optimization/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/Google_console/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_Final_Project_Requirements/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/PGM_8_Variational_Inference/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_6_Advanced_PGM/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/PGM_7_Inference_as_Optimization/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_5_Markov_Nerwork/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/PGM_Final_Project_Requirements/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/page2/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://junedrinleng.github.io/PGM_6_Advanced_PGM/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_4_Dynamic_Model/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/PGM_5_Markov_Nerwork/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_3_LocalProbabilisticMode/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/page2/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_2_Bayesian_Network/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/PGM_4_Dynamic_Model/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/PGM_1/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/PGM_3_LocalProbabilisticMode/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/pip_env_how_to_use/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/PGM_2_Bayesian_Network/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/Object_Oriented_Programming/</loc>
-  <lastmod>2024-11-18T11:46:11+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/PGM_1/</loc>
 </url>
 <url>
-  <loc>https://junedrinleng.github.io/python_pack_exe_how_to_use/</loc>
-  <lastmod>2024-11-18T11:46:12+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://junedrinleng.github.io/pip_env_how_to_use/</loc>
 </url>
-
-
+<url>
+<loc>https://junedrinleng.github.io/Object_Oriented_Programming/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io/python_pack_exe_how_to_use/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//blog_update/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//Google_console/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_9_MonteCarlo_Approximate_inference/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_8_Variational_Inference/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_7_Inference_as_Optimization/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_Final_Project_Requirements/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_6_Advanced_PGM/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_5_Markov_Nerwork/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_4_Dynamic_Model/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//tags#python</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_3_LocalProbabilisticMode/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_2_Bayesian_Network/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//PGM_1/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//pip_env_how_to_use/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//Object_Oriented_Programming/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io/"D:\Lab\Books\matlab面向对象.pdf"</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io//python_pack_exe_how_to_use/</loc>
+</url>
+<url>
+<loc>https://junedrinleng.github.io/./pip_env_how_to_use.md</loc>
+</url>
 </urlset>
