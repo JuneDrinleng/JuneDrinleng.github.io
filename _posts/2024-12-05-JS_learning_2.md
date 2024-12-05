@@ -53,7 +53,7 @@ function  HelloWorld(param,param2){
 }
 ~~~
 调用函数同理
-## 3 默认值
+## 3 默认值与返回值
 默认值和python一样，在传参的时候加入赋值就行了   
 
 在python中：
@@ -74,3 +74,36 @@ function  HelloWorld(param='hello',param2='world'){
 HelloWorld("Hello","june");
 ~~~
 __记得打分号!!!!!!!!!__
+
+返回也和python基本一致，只需要添加一个return就好啦，不过将返回值赋值的时候记得用`const`等方式声明
+~~~
+function createGreetingMessage(name) {
+  const message = `Hello, ${name}`;
+  return message;
+}
+
+const greetingMessage = createGreetingMessage('Christopher');
+~~~
+##  4 将函数作为参数传入函数
+对于 setTimeout，其会开启一个计时器，在倒计时结束时执行代码。我们需要告诉它我们希望它执行什么代码。这听起来正是函数该做到的事！
+
+如果你执行下方的代码，三秒后你就可以看到   `3 秒过去了` 这条消息：
+```
+function displayDone() {
+  console.log('3 秒过去了');
+}
+// 计时器的时间单位是毫秒
+setTimeout(displayDone, 3000);
+```
+而所谓匿名函数就是在上述定义函数的过程嵌合到传参中以简化代码复杂度：
+~~~
+setTimeout(function() {
+  console.log('3 秒过去了');
+}, 3000);
+~~~
+还可以用箭头`=>`来简化掉`function`
+~~~
+setTimeout(() => {
+  console.log('3 秒过去了');
+}, 3000);
+~~~
