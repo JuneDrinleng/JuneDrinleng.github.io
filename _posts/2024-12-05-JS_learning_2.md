@@ -36,3 +36,41 @@ displayGreeting();
 ~~~
 
 在函数命名的时候，教案建议使用驼峰命名法，描述性命名，同时特定函数干特定的事情
+## 2 传参
+和python一样，传参都是在函数的括号中加入参数就行了  
+
+在python中：
+~~~
+def hello_world(param,param2):
+    print(f"{param},{param2}!")
+    pass
+~~~
+而在JavaScript中：
+~~~
+function  HelloWorld(param,param2){
+    str_total="${param},${param2}!";
+    console.log(str_total);
+}
+~~~
+调用函数同理
+## 3 默认值
+默认值和python一样，在传参的时候加入赋值就行了   
+
+在python中：
+~~~
+def hello_world(param='hello',param2='world'):
+    print(f"{param},{param2}!")
+    pass
+~~~
+而在JavaScript中：
+~~~
+function  HelloWorld(param='hello',param2='world'){
+    str_total="${param},${param2}!";
+    console.log(str_total);
+}
+~~~
+调用的时候JavaScript和python一样：
+~~~
+HelloWorld("Hello","june");
+~~~
+__记得打分号!!!!!!!!!__
