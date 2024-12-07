@@ -47,4 +47,58 @@ HTML包括head，footer和body几个部分
 ~~~
 ## 4 HTML的body部分
 在构造了HTML的head之后，接下来就要构造body部分，页面中的元素也是通过body部分添加你想要内容，就像有`<head>`和`</head>`，`<body>`和`</body>`一样，几乎大多数标签都既有开始的标签，又有结束的标签，开始和结束之间的则是标签的内容。
-只不过有一个不需要结束标签的例外就是`<img>`,因为他已经包含了渲染该项所需要的所有信息
+只不过有一个不需要结束标签的例外就是`<img>`,因为他已经包含了渲染该项所需要的所有信息  
+
+在项目中，我们把所有要渲染的图片都放在目录的image子文件夹里，现在我们更新index.html的body部分：
+~~~
+<div id="page">
+	<div id="left-container" class="container">
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant1" src="./images/plant1.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant2" src="./images/plant2.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant3" src="./images/plant3.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant4" src="./images/plant4.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant5" src="./images/plant5.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant6" src="./images/plant6.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant7" src="./images/plant7.png" />
+		</div>
+	</div>
+	<div id="right-container" class="container">
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant8" src="./images/plant8.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant9" src="./images/plant9.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant10" src="./images/plant10.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant11" src="./images/plant11.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant12" src="./images/plant12.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant13" src="./images/plant13.png" />
+		</div>
+		<div class="plant-holder">
+			<img class="plant" alt="plant" id="plant14" src="./images/plant14.png" />
+		</div>
+	</div>
+</div>
+~~~
+上述的代码包括一个总容器——也就是id="page"的div，这个总容器里包括两个子容器，分别是左容器和右容器，id="left-container" 和 id="right-container"; 每个容器内包含7个植物图片的子容器。植物图片子容器包含img class类名，alt图片渲染不出时的替代文本，id是图片分配id，src是图片所存在的未知  
+通过上述几个部分的代码就可以构造一个基本的网页
