@@ -42,3 +42,11 @@ author: junedrinleng
 正文
 ```
 需要注意的是，图床的路径千万不能有中文，有中文之后整个笔记就无法显示了
+
+## gallary尝试
+想基于现有模板增加一个画廊的博客方式，基于gpt进行实现，做的主要有以下的几步：  
+0. 在js文件夹在创建了gallary.js用于实现点击图片放大的功能
+1. 在_layouts文件夹下新建一个gallery.html文件，用于作为布局文件
+2. 在_sass文件夹中新建一个_gallery.scss文件，用于设置画廊的样式
+3. 在_posts文件夹中新建一个gallery.md文件，用于测试画廊的效果
+4. 在styles.scss文件中引入_gallery.scss文件:  `@import "gallery";`
