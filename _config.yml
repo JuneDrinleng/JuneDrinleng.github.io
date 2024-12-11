@@ -7,7 +7,7 @@ name: "June Drinleng's blog"
 
 # Short bio or description (displayed in the header)
 description: >
-  个人技术博客，分享我的读博知识日常。
+  我在青春的边缘挣扎
 
 #
 # Flags below are optional
@@ -55,7 +55,7 @@ footer-links:
   tumblr: # https://<username>.tumblr.com
   #twitter: frommidworld
   youtube:
-  play-music: bgm/YMCA.mp3
+  play-music: bgm/enqing.flac
 
 # Text under the icons in footer
 footer-text: Copyright (c) 2024 June Drinleng
