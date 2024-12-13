@@ -34,7 +34,7 @@ toc: true
 
  例如对于以下的一个贝叶斯网络：
 
-![image-20241120160049195](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120160049195.png)
+![image-20241120160049195](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120160049195.png)
 
 根据表示部分我们可以很快的利用因子分解定理写出联合分布：
 $$
@@ -88,7 +88,7 @@ $$
 
 在给定了部分变量观测值之后，有向图中面临了不少的V-structure：
 
-![image-20241120162308817](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120162308817.png)
+![image-20241120162308817](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120162308817.png)
 
 例如上图给定了G的值之后，会导致原先独立的D和I两个变量不再独立，这会增加我们后续处理的难度
 
@@ -96,11 +96,11 @@ $$
 
 做法就是将所有有向图的→的边用无向图的-代替，同时将v-structure的父节点连起来构成三角形，之后还会进行三角化
 
-![image-20241120162614911](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120162614911.png)
+![image-20241120162614911](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120162614911.png)
 
 在进行完上述处理后再进行2.1中的变分消元过程：
 
-![image-20241120163316566](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120163316566.png)
+![image-20241120163316566](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120163316566.png)
 
 ## 4 clique tree
 
@@ -117,7 +117,7 @@ $$
 
 因此，概率图模型的研究者将上述的clique处理过程抽象出来，构建了clique tree和passing message来代表上述的VE过程：
 
-![image-20241120163802048](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120163802048.png)
+![image-20241120163802048](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120163802048.png)
 
 那么以求P(J)为例
 
@@ -131,7 +131,7 @@ $$
 
 **团树是模型的等价表示 另一种数据结构 ；在团树上进行求和乘积消息传递 “等于”变量消除**
 
-![image-20241120164753471](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120164753471.png)
+![image-20241120164753471](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120164753471.png)
 
 ### 4.2 clique tree校准
 
@@ -143,7 +143,7 @@ $$
 - 然后选择一个根节点，从各个节点向根节点传播信息，也就是上面的$\delta$，此时受到信息的clique其势函数$\psi$会更新：$\psi_{new}=\psi*\Pi(\delta)$ 即原先的势函数乘以其受到的所有信息
 - 在整个clique tree经过一轮双向信息传递之后就实现了校准，可以用势函数来表示概率了：
 
-![image-20241120170934168](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241120170934168.png)
+![image-20241120170934168](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241120170934168.png)
 
 而且由于校准后所有的势函数都已经有了，所以计算任何节点的概率都只需要利用势函数计算即可了
 
@@ -171,7 +171,7 @@ $$
 
 平均场模型的基本死了就是构造一个没有边的模型作为q去代替原先右边的p分布：
 
-![image-20241122142946482](./2024-11-20-PGM_10-inference_conclusion.assets/image-20241122142946482.png)
+![image-20241122142946482](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-20-PGM_10-inference_conclusion/image-20241122142946482.png)
 
 由于q对应的平均场模型是没有边的，所以其分布是很好写的（相当于所有节点都是独立的）
 $$
