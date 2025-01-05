@@ -23,4 +23,21 @@ toc: true
 ## 2 git的配置
     to do……
 
+## 3 copilot的配置
+    因为使用copilot的时候往往会遇到网络问题而导致无法链接，相对于折腾wsl的网络，更合适的是直接在vscode中配置copilot为ui模式：  
+
+    1. 在vscode中安装copilot插件
+    2. 在vscode的设置中输入remote.extensionKind，打开设置的json文件，添加以下的内容：
+    ```json
+    "remote.extensionKind": {
+            "GitHub.copilot-chat": [
+        "ui"
+    ],
+        "GitHub.copilot": [
+            "ui"
+        ],
+    }
+    ```
+    然后重启wsl的vscode即可
+
 
