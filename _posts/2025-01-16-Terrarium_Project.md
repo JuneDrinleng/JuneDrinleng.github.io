@@ -293,3 +293,25 @@ plants.forEach((plant) => {
 });
 ~~~
 最后在浏览器中就可以得到上述的花艺瓶了
+## 4 DOM
+DOM 是 Document Object Model（文档对象模型）的缩写，是 HTML 和 XML 文档的编程接口。它将文档（如 HTML 页面）表示为一个 树状结构，使得开发者可以通过编程语言（如 JavaScript）访问和操作文档的内容、结构和样式。
+
+可以简单理解为：DOM 是浏览器提供的一种方式，让开发者可以用代码操作网页的结构和内容。  
+
+document 是 DOM 的入口点，表示整个 HTML 文档。通过它可以访问页面内容和操作元素。
+
+常用功能：
+
+获取元素：
+document.getElementById('id')：通过 ID 获取元素。
+document.querySelector('selector')：通过 CSS 选择器获取元素。
+document.querySelectorAll('selector')：获取所有匹配的元素。
+创建元素：
+document.createElement('tagName')：创建一个新元素。
+访问属性：
+document.title：访问或修改页面标题。
+document.body：访问 <body> 元素。
+
+也就是实际上是方便使用js来操作html的元素，比如获取元素，创建元素，访问属性等等。
+## 5 闭包
+闭包是指函数和函数内部能访问到的变量的组合。在 JavaScript 中，函数是一等公民，可以作为参数传递给其他函数，也可以作为其他函数的返回值。当函数返回时，它的作用域链并不会被销毁，因此内部函数仍然可以访问外部函数的变量。这种机制就是闭包。
