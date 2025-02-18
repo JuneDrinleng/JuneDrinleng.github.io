@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anomalous Diffusion"
-date:   2025-01-04
+date:   2025-02-13
 tags: [SPT]
 comments: true
 author: junedrinleng
