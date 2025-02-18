@@ -55,7 +55,7 @@ footer-links:
   tumblr: # https://<username>.tumblr.com
   #twitter: frommidworld
   youtube:
-  play-music: bgm/enqing.flac
+  play-music: bgm/gui.mp3
 
 # Text under the icons in footer
 footer-text: Copyright (c) 2025 June Drinleng
