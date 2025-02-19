@@ -1,107 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
->
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
 
 <url>
- <loc>https://junedrinleng.github.io/</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
+  <loc>https://junedrinleng.com/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/about/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/archive/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/tags/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/mc_server_setting/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/Varmilo_notes/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/anomalous_diffusion/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/Terrarium_Project/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/wsl_instruction/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/JS_learning_5/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/JS_learning_4/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/JS_learning_3/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/page2/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/JS_learning_2/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/JS_learning_1/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_10-inference_conclusion/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_9_MonteCarlo_Approximate_inference/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/blog_update/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/Google_console/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_8_Variational_Inference/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_7_Inference_as_Optimization/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_Final_Project_Requirements/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_6_Advanced_PGM/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_5_Markov_Nerwork/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_4_Dynamic_Model/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_3_LocalProbabilisticMode/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_2_Bayesian_Network/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/PGM_1/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/pip_env_how_to_use/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/Object_Oriented_Programming/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/python_pack_exe_how_to_use/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/page3/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://junedrinleng.com/page4/</loc>
+  <lastmod>2025-02-18T08:10:41+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
-<url>
- <loc>https://junedrinleng.github.io/about</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/archive</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/tags</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/JS_learning_4</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io//tags</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/JS_learning_3</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/JS_learning_2</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/JS_learning_1</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/PGM_10-inference_conclusion</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/PGM_9_MonteCarlo_Approximate_inference</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/blog_update</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/Google_console</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://junedrinleng.github.io/page2</loc>
- <priority>0.3</priority>
- <lastmod>2024-12-06</lastmod>
- <changefreq>weekly</changefreq>
-</url>
 
 </urlset>
