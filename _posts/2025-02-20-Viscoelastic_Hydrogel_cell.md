@@ -13,7 +13,7 @@ toc: true
 
 ## 1 overview
 
-![image-20250220105451472](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/image-20250220105451472.png)
+![image-20250220105451472](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/image-20250220105451472.png)
 
 doi is here : https://doi.org/10.1002/adfm.202100848
 
@@ -33,15 +33,15 @@ ECM的粘弹性在发育，稳态和组织再生中起着至关重要的作用�
 
 ## 3 details
 
-![adfm202100848-fig-0001-m](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/adfm202100848-fig-0001-m-1740020808447-3.jpg)
+![adfm202100848-fig-0001-m](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/adfm202100848-fig-0001-m-1740020808447-3.jpg)
 
 介绍细胞相互作用的一些常见类型（细胞分化，迁徙etc），以及一些常见的作用力包括离子键，氢键，金属配体相互作用，动态共价键等等
 
-![adfm202100848-fig-0002-m](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/adfm202100848-fig-0002-m.jpg)
+![adfm202100848-fig-0002-m](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/adfm202100848-fig-0002-m.jpg)
 
 这里的$\tan\ \delta$是储能模量和损耗模量的比值，做了一个类似于各个组织器官粘弹性的分布图
 
-![adfm202100848-fig-0003-m](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/adfm202100848-fig-0003-m.jpg)
+![adfm202100848-fig-0003-m](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/adfm202100848-fig-0003-m.jpg)
 
 这里比较好的就在于这里总结了从macroscale到micro scale的一些表征方式，以及active and passive的方式
 
@@ -49,6 +49,6 @@ ECM的粘弹性在发育，稳态和组织再生中起着至关重要的作用�
 
 比如钙离子的调控交联/尿素对水凝胶网络的影响
 
-![adfm202100848-fig-0004-m](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/adfm202100848-fig-0004-m.jpg)
+![adfm202100848-fig-0004-m](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/adfm202100848-fig-0004-m.jpg)
 
-![adfm202100848-fig-0006-m](./2025-02-20-Viscoelastic_Hydrogel_cell.assets/adfm202100848-fig-0006-m.jpg)
+![adfm202100848-fig-0006-m](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-20-Viscoelastic_Hydrogel_cell/adfm202100848-fig-0006-m.jpg)
