@@ -17,11 +17,11 @@ toc: true
 
 例如，在动态光散射技术中，通过检测探针粒子散射光强的时间变化，计算其均方位移（Mean Squared Displacement, MSD）：
 
-![3b0e3fdb6bb894dbb9f03d0a477207d](./2025-02-25-Particle_based_viscoelasticity.assets/3b0e3fdb6bb894dbb9f03d0a477207d.jpg)
+![3b0e3fdb6bb894dbb9f03d0a477207d](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-Particle_based_viscoelasticity/3b0e3fdb6bb894dbb9f03d0a477207d.jpg)
 
 > B. A. Krajina *et al.*, *Science Advances*. **7**, eabe1969 (2021).
 
-![image-20250225113547131](./2025-02-25-Particle_based_viscoelasticity.assets/image-20250225113547131.png)
+![image-20250225113547131](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-Particle_based_viscoelasticity/image-20250225113547131.png)
 
 > B. A. Krajina *et al.*, *ACS Cent. Sci.* **3**, 1294–1303 (2017).
 
@@ -31,7 +31,7 @@ toc: true
 $$
 <r^2(t)>=4Dt^\alpha
 $$
-![cedeac4b3c30c76146455339c956476](./2025-02-25-Particle_based_viscoelasticity.assets/cedeac4b3c30c76146455339c956476.png)
+![cedeac4b3c30c76146455339c956476](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-Particle_based_viscoelasticity/cedeac4b3c30c76146455339c956476.png)
 
 > *Journal of Molecular Biology*. **430**, 4443–4455 (2018).
 
@@ -42,7 +42,7 @@ $$
 $$
 其中的角标r表示旋转，$\eta_r$是基于旋转扩散系数$D_r$测量的粘度，而$\eta_t$是基于平移扩散系数$D_t$测量出的粘度：
 
-![08dc1769aec2b4436e826aa4ef64025](./2025-02-25-Particle_based_viscoelasticity.assets/08dc1769aec2b4436e826aa4ef64025.png)
+![08dc1769aec2b4436e826aa4ef64025](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-Particle_based_viscoelasticity/08dc1769aec2b4436e826aa4ef64025.png)
 
 > M. Unni *et al.*, *Science Advances* (2021), doi:[10.1126/sciadv.abf8467](https://doi.org/10.1126/sciadv.abf8467).
 
