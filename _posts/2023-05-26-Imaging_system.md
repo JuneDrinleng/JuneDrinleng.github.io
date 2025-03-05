@@ -19,7 +19,7 @@ toc: true
 
 光学显微镜是由两组透镜组成的光学折射系统，其中焦距较短、靠近观察物、成实像的透镜组称为物镜，焦距较长、靠近眼瞳、成虚像的透镜组则称为目镜。位于物镜前方的观察物体由物镜作放大后成倒立的实像。光学显微镜分为正置显微镜和**[倒置显微镜](http://www.mshot.com/ProSort/dzxwj.html)**
 
- <img src="./2023-05-26-Imaging_system.assets/v2-a48b48682b57c084c4237d3402128727_1440w.webp" alt="img" style="zoom:50%;" />
+ <img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/v2-a48b48682b57c084c4237d3402128727_1440w.webp" alt="img" style="zoom:50%;" />
 
 
 
@@ -38,7 +38,7 @@ toc: true
 ### 1.2 光片
 光片显微镜与传统显微镜的不同在于激发光的照明方式。它的照明光是一张与成像面平行的薄薄的“光片”，只有焦平面的样品被照亮，而其上下的样品不受影响
 
-![img](./2023-05-26-Imaging_system.assets/v2-d1e59721f0fbdfd354dd9c0943dd3a56_1440w.jpeg)
+![img](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/v2-d1e59721f0fbdfd354dd9c0943dd3a56_1440w.jpeg)
 
 #### 1.2.1 光片的优势
 
@@ -49,13 +49,13 @@ toc: true
 
 产生光片最简单的方法是在光路中引入一个**圆柱形透镜**。通过该透镜的光，宽度维持不变，但在高度上被压缩成平面 ，然后通过照明物镜，在焦面上形成“光片”。成像物镜垂直于照明物镜放置，并聚焦在光片上获取荧光信号。
 
-![img](./2023-05-26-Imaging_system.assets/v2-b1988dea4dbeff3bf2c7e6bff02e2e35_1440w.jpeg)
+![img](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/v2-b1988dea4dbeff3bf2c7e6bff02e2e35_1440w.jpeg)
 
 使用这种方法生成的光片，其宽度和厚度由照明物镜的NA值决定。如图5所示，照明光束的实际形状是一个两头宽，中间细的“沙漏”形。ω0为光束腰厚度，也就是光片厚度，b为均匀照明宽度，也就是有效视野。
 
 NA值：光学系统的数值孔径（NA）是一个无量纲的数，用以衡量该系统能够收集的光的角度范围。
 
-![img](./2023-05-26-Imaging_system.assets/v2-e530c36ae7abe917edce78e3adcc157c_1440w.jpeg)
+![img](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/v2-e530c36ae7abe917edce78e3adcc157c_1440w.jpeg)
 
 因此，使用NA较小的照明物镜，能够实现较宽范围的均匀照明，即视野更大；但是相应的，光片的厚度也越大，导致轴向分辨率降低。而高NA物镜产生的光片视野会比较小，但轴向分辨率较好。
 
@@ -77,7 +77,7 @@ NA值：光学系统的数值孔径（NA）是一个无量纲的数，用以衡�
 
 电磁场变化频率与纳米颗粒表面自由电子固有运动频率相同时产生局域表面激元共振
 
-<img src="./2023-05-26-Imaging_system.assets/image-20230526095049905.png" alt="image-20230526095049905" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526095049905.png" alt="image-20230526095049905" style="zoom:33%;" />
 
 金纳米棒有两个等离子共振峰， 分别代表不同的轴棒: 长轴和短轴。在两个不同轴向运动的自由电子表现出不同的性质。（可以简单理解为长轴短轴的尺寸不同，共振的路程不同）
 
@@ -87,7 +87,7 @@ NA值：光学系统的数值孔径（NA）是一个无量纲的数，用以衡�
 
 微分干涉相差显微成像系统的光路结构如下图所示⬇️
 
-<img src="./2023-05-26-Imaging_system.assets/image-20230526095749600.png" alt="image-20230526095749600" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526095749600.png" alt="image-20230526095749600" style="zoom:50%;" />
 
 condenser：聚光器
 
@@ -101,15 +101,15 @@ Wollaston Prism：沃拉斯顿棱镜 可操纵[偏振光](https://en.wikipedia.o
 
 偏光成像系统有两块偏振片，一块是起偏器，一块是检偏器。
 
-<img src="./2023-05-26-Imaging_system.assets/image-20230526101810120.png" alt="image-20230526101810120" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526101810120.png" alt="image-20230526101810120" style="zoom:50%;" />
 
 传统偏振成像系统如下⬇️：
 
-<img src="./2023-05-26-Imaging_system.assets/image-20230526103351183.png" alt="image-20230526103351183" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526103351183.png" alt="image-20230526103351183" style="zoom:50%;" />
 
 当被测 物体为各向同性物质如球型纳米粒子时，无论怎样旋转样品角度，视野都为黑色， 这是由于各向同性物体的去偏振化能力较弱，无法改变起偏器形成的线性偏振光的振动方向，依然与检偏器的振动方向相互垂直的缘故。若被测物体为各向异 性的物体(如纳米金纳米棒)，其存在两个离子共振带，金纳米棒长轴与入射 偏振光的夹角决定了两个等离子共振的方向与强度的大小，一部分散射光可以通 过检偏器被收集到。
 
-<img src="./2023-05-26-Imaging_system.assets/1576979426758310-5068659-5068661.jpg" alt="不同波长的可见光所对应的不同颜色" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/1576979426758310-5068659-5068661.jpg" alt="不同波长的可见光所对应的不同颜色" style="zoom:50%;" />
 
 长轴吸收峰在650nm的纳米金棒响应效果好，因为彩色 CCD 红色通道的响应曲线的最大值在650nm左右，一般金纳米棒长轴的衍射光成红色
 
@@ -129,7 +129,7 @@ Pa 描述的是入射电场方向与偶极子的振动方向之间的相互关�
 
 由下图的分解关系可以知道：
 
-![image-20230526111144032](./2023-05-26-Imaging_system.assets/image-20230526111144032.png)
+![image-20230526111144032](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526111144032.png)
 $$
 Pa=(sin \theta*cos\varphi)^2=sin^2\theta*cos^2\varphi \\
 Ps=(sin \theta*sin\varphi)^2=sin^2\theta*sin^2\varphi
@@ -145,5 +145,5 @@ $$
 
 示意图如下⬇️
 
-<img src="./2023-05-26-Imaging_system.assets/image-20230526102220795.png" alt="image-20230526102220795" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2023-05-26-Imaging_system/image-20230526102220795.png" alt="image-20230526102220795" style="zoom:50%;" />
 
