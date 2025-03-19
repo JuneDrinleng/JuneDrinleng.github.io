@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PINN基础笔记"
-date:   2025-02-25
+date:   2025-03-12
 tags: [ML&DL]
 comments: true
 author: junedrinleng
