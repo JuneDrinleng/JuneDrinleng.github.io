@@ -2,7 +2,7 @@
 layout: post
 title: "python中的面向对象编程"
 date:   2023-12-28
-tags: [cs]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
