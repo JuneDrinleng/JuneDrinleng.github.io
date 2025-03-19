@@ -2,7 +2,7 @@
 layout: post
 title: "pip env 使用指南"
 date:   2024-01-08
-tags: [python]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true

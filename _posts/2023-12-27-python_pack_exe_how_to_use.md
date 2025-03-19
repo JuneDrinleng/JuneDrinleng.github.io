@@ -2,7 +2,7 @@
 layout: post
 title: "python打包成exe指南"
 date:   2023-12-27
-tags: [python]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
