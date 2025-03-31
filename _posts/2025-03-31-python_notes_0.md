@@ -11,6 +11,8 @@ toc: true
 该笔记主要记录Harford的[CS50](https://cs50.harvard.edu/python/2022/)课程笔记，本笔记是lecture0的笔记，其主要介绍的是python作业的入门的变量和函数
 <!-- more -->
 
+## 1 hello world
+
 ~~~python
 code hello.py
 ~~~
@@ -37,6 +39,8 @@ python hello.py
 input("what's your name?")
 print("hello world")
 ~~~
+
+## 2 input and variable
 
 但上述并不能实现对输入的人名打招呼，这是因为我们需要一些存储输入的东西的方式，这就是`variable`。 `varialbe`可以存储数值、文本等等的信息
 
@@ -72,6 +76,8 @@ print(f"hello {name}")
 ~~~
 
 `Pseudocode`是伪代码，辅助学你进行代码构思
+
+## 3 string function
 
 当然你也可以使用字符串加法`"hello,"+name`实现
 
