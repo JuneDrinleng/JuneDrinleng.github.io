@@ -141,3 +141,202 @@ name = name.strip().title()
 取决于你自己的代码风格
 
 除此之外你还可以使用`split`来分割字符串
+
+## 4 int
+
+在Python中，整数称为int。
+在数学世界中，我们熟悉 +， - ， *， /和％（取模操作）
+
+我们可以设定一些变量是某些整数：
+
+~~~python
+x = 1
+y = 2
+
+z = x + y
+
+print(z)
+~~~
+
+除此之外我们可以用input的方式来获取输入的数字，需要注意的是input得到的是字符串，我们需要用`int`函数将其转化为整数
+
+~~~python
+x = input("What's x? ")
+y = input("What's y? ")
+
+z = int(x) + int(y)
+
+print(z)
+~~~
+
+需要注意的是，一般最好是的自己的代码有一定的可读性（比如说一行流的代码就不是很建议）
+
+## 5 Float type
+
+除了字符串和整数之外，还有浮点数表示许多的小数，这便是我们需要关注的第三个数据类型
+
+~~~
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+
+print(x + y)
+~~~
+
+这样就可以将用户输入的结果转化成浮点by using `float`方式
+
+除此之外，还可以使用`round`实现四舍五入
+
+~~~
+round(number[,ndigits])
+~~~
+
+number是你要四舍五入的，逗号后面的是四舍五入的小数点后位数精度
+
+例如：
+
+~~~
+# Get the user's input
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+
+# Calculate the result and round
+z = round(x / y, 2)
+
+# Print the result
+print(z)
+~~~
+
+
+
+除此之外，如果数字位数很多，我们可以使用以下方式使得数字呈现每3位数一个逗号`2,500`一样的形式：
+
+~~~
+# Get the user's input
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+
+# Create a rounded result
+z = round(x + y)
+
+# Print the formatted result
+print(f"{z:,}")
+~~~
+
+控制小数点位数还可以使用：
+
+~~~
+# Get the user's input
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+
+# Calculate the result
+z = x / y
+
+# Print the result
+print(f"{z:.2f}")
+
+~~~
+
+中的`fstring`实现：`f"{value:.2f}" `是保留两位小数
+
+## 6 def function
+
+对于多次重复的操作，我们可以定义一个函数，从而避免重复的操作反复的复制代码：
+
+~~~python
+def hello():
+    print("hello")
+
+
+name = input("What's your name? ")
+hello()
+print(name)
+~~~
+
+这里，`def`后面的`hello`是函数名，`()`是函数的参数，这里为空，当然我们也可以设置参数：
+
+~~~python
+# Create our own function
+def hello(to):
+    print("hello,", to)
+
+
+# Output using our own function
+name = input("What's your name? ")
+hello(name)
+~~~
+
+这里就是给`hello`函数设置了一个参数`to`，所以1我们在使用的时候需要传入参数：`hello(name)`
+
+我们可以为参数设置初始值，使得即便没有参数传入我们也有一个默认值，设置初始值在`()`中通过`=`实现:
+
+~~~python
+# Create our own function
+def hello(to="world"):
+    print("hello,", to)
+
+
+# Output using our own function
+name = input("What's your name? ")
+hello(name)
+
+# Output without passing the expected arguments
+hello()
+~~~
+
+这里就是设置参数`to`的初始默认值是`"world"`，一旦你传入了`name`，那么`to`的值就不再是默认的`"world"`而是`name`中的内容
+
+定义函数就像是造工具，那么有了若干工具之后，我们需要定义工作流，一般通过定义`main`函数的方式实现：
+
+~~~python
+def main():
+
+    # Output using our own function
+    name = input("What's your name? ")
+    hello(name)
+
+    # Output without passing the expected arguments
+    hello()
+
+
+# Create our own function
+def hello(to="world"):
+    print("hello,", to)
+~~~
+
+但上述的只是定义了main函数，没有执行，所以还需要加上执行语句`main()`：
+
+~~~
+def main():
+
+    # Output using our own function
+    name = input("What's your name? ")
+    hello(name)
+
+    # Output without passing the expected arguments
+    hello()
+
+
+# Create our own function
+def hello(to="world"):
+    print("hello,", to)
+
+
+main()
+~~~
+
+有时候，我们定义函数不仅仅需要进行操作，还需要将我们输入的数据处理后输出，那么这里使用`return`的方式，将函数的结果输出返回到主程序中：
+
+~~~python
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+
+def square(n):
+    return n * n
+
+
+main()
+~~~
+
