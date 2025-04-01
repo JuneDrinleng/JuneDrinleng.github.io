@@ -43,13 +43,13 @@ public class MyPicture {
 
 类是规范，我们根据类的定义来创建对象
 
-![image-20250401162144294](./2025-04-01-java_notes_advanced_1.assets/image-20250401162144294.png)
+![image-20250401162144294](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401162144294.png)
 
 对于每一个对象来说，其具有两种东西，一种是属性，一种是服务：
 
 **对象=属性+服务**
 
-![image-20250401162341341](./2025-04-01-java_notes_advanced_1.assets/image-20250401162341341.png)
+![image-20250401162341341](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401162341341.png)
 
 对象的数据是被外部的操作紧密包围的，是由对象本身保护的，外部只能用对象进行操作，这也叫做分装
 
@@ -57,7 +57,7 @@ public class MyPicture {
 
 以自动售货机为例，从面向对象的角度来说，他有些什么东西，由哪些东西组成这个场景，这些场景里的东西能够提供什么服务：
 
-![image-20250401162559530](./2025-04-01-java_notes_advanced_1.assets/image-20250401162559530.png)
+![image-20250401162559530](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401162559530.png)
 
 那么根据上述的思想，我们可以抽象自助售货机有以下的属性变量和操作：
 
@@ -119,13 +119,13 @@ public class VendingMachine {
 
 在类的函数中，可以直接写成员变量的名字来访问成员变量，具体访问哪个对象的成员变量或者成员操作可以通过`.`来调用。这时，通过`this`这一成员函数的特殊固有的本地变量来实现
 
-![image-20250401165352800](./2025-04-01-java_notes_advanced_1.assets/image-20250401165352800.png)
+![image-20250401165352800](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401165352800.png)
 
-![image-20250401165444778](./2025-04-01-java_notes_advanced_1.assets/image-20250401165444778.png)
+![image-20250401165444778](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401165444778.png)
 
 在一个成员函数里调用另一个成员函数的时候，即便不带this也会自动调用
 
-![image-20250401165650138](./2025-04-01-java_notes_advanced_1.assets/image-20250401165650138.png)
+![image-20250401165650138](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401165650138.png)
 
 类里的成员函数也可以用到类内的这些成员变量
 
@@ -133,7 +133,7 @@ public class VendingMachine {
 
 每次创建一个新的对象的时候，一个很重要的事情是要看对象刚创建出来的时候，所有的成员变量如果没有初始化，会自动给一个初始值`0`（Boolean的false，string的none），这是和全局变量不一样的（全局变量如果不初始化是会报错的）
 
-![image-20250401170404646](./2025-04-01-java_notes_advanced_1.assets/image-20250401170404646.png)
+![image-20250401170404646](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_1/image-20250401170404646.png)
 
 构造函数是和类名一样的，创建这个类的每一个对象都会调用这个构造函数，且没有返回类型
 
