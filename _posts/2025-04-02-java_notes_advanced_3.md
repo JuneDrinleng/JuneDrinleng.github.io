@@ -68,7 +68,7 @@ private ArrayList<String> notes = new ArrayList<String>();
 
 我们通过`ArrayList`的方式创建一个`ArrayList`对象，后面的尖括号内容表示是存放什么的`ArrayList`，这里是存放`String`的，这种类型是泛型类
 
-![image-20250402162016289](./2025-04-02-java_notes_advanced_3.assets/image-20250402162016289.png)
+![image-20250402162016289](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402162016289.png)
 
 ~~~java
 容器类型<元素类型>
@@ -210,7 +210,7 @@ public class NoteBook {
 
 这是因为，每一个int变量 都存储一个数，而每一个String变量则都存储的是一个指针，指向了字符串所存储的位置。那么对于array自然也就同理了
 
-![image-20250402172332278](./2025-04-02-java_notes_advanced_3.assets/image-20250402172332278.png)
+![image-20250402172332278](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402172332278.png)
 
 所以创建`String[] a=new string[10]`创建的是一个全是空索引的array
 
@@ -262,23 +262,23 @@ public static void main(String[] args) {
 
 我们发现第二遍遍历之后，第三次循环遍历发现所有值都是0了
 
-![image-20250402174748083](./2025-04-02-java_notes_advanced_3.assets/image-20250402174748083.png)
+![image-20250402174748083](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402174748083.png)
 
 这是因为此时的for-each是会更新索引的
 
 对于容器类来说，for-each循环也是可以使用的：
 
-![image-20250402175028420](./2025-04-02-java_notes_advanced_3.assets/image-20250402175028420.png)
+![image-20250402175028420](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402175028420.png)
 
 ## 5 set集合容器
 
-![image-20250402175503995](./2025-04-02-java_notes_advanced_3.assets/image-20250402175503995.png)
+![image-20250402175503995](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402175503995.png)
 
 对于同样的`add`内容，我们发现`hashset`相较于`arraylist`而言只有两个内容，这是因为set是数学中的`set`，对于数学集合来说每个元素互不相同，所以放了两次也重复的`"first"`也就只有最后一次生效
 
 展示容器内容可以直接通过`System.out.println`实现：
 
-![image-20250402175750685](./2025-04-02-java_notes_advanced_3.assets/image-20250402175750685.png)
+![image-20250402175750685](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402175750685.png)
 
 这样就不难发现，对于`set`而言，`set`内部的元素是不排序的
 
@@ -317,7 +317,7 @@ class value{
 
 最简单的，`switch case`语句：
 
-![image-20250402180619741](./2025-04-02-java_notes_advanced_3.assets/image-20250402180619741.png)
+![image-20250402180619741](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402180619741.png)
 
 但这是硬编码，不是很优雅，且迁移到人民币上就得重新全部写，不便于维护
 
@@ -390,7 +390,7 @@ public class Coin {
 
 通过`containsKey`函数判断是否包含key，如果要print哈希表大小则可以通过keySet().size()来print哈希表的大小，也可以直接通过print实现哈希表输出：
 
-![image-20250402182225128](./image-20250402182225128.png)
+![image-20250402182225128](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-01-java_notes_advanced_3/image-20250402182225128.png)
 
 需要注意的是，哈希表里面的键都是唯一的，如果出现重复的键就会覆盖
 
