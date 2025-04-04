@@ -15,7 +15,7 @@ toc: true
 
 微流变学是一类表征材料的流变学的工具，常见的微流变的特征包括弹性和粘性，一般两者的表现呈现出如下图所示的特点：
 
-![image-20250225174219068](./2025-02-25-MICRORHEOLOGY_notes_1.assets/image-20250225174219068.png)
+![image-20250225174219068](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-MICRORHEOLOGY_notes_1/image-20250225174219068.png)
 
 可以发现，对于纯viscous fluid来说，粒子经过外界里产生位移之后，如果外界力撤去那么粒子就停留在被力拉扯后的位置了；而对于elastic solid而言，如果外界力撤销，那么粒子则会回到最初的位置。
 
@@ -59,13 +59,13 @@ $$
 
 **优势：** 小样品量，数据获取容易，灵敏，拓展到频域，原位（Local rheology），实验简单
 
-![image-20250225180117014](./2025-02-25-MICRORHEOLOGY_notes_1.assets/image-20250225180117014.png)
+![image-20250225180117014](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-MICRORHEOLOGY_notes_1/image-20250225180117014.png)
 
 微流变学适合小批量，低模量的样品，而大量流变学则更适用于高浓度和高模量的材料。
 
 ### 线性与非线性微流变
 
-![image-20250225181136123](./2025-02-25-MICRORHEOLOGY_notes_1.assets/image-20250225181136123.png)
+![image-20250225181136123](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-MICRORHEOLOGY_notes_1/image-20250225181136123.png)
 
 剪切应力与应变如上图所示，其中$A_y$是作用面积
 
@@ -81,7 +81,7 @@ $$
 $$
 线性响应的测量参见书本的1.2.2
 
-![image-20250225182314762](./2025-02-25-MICRORHEOLOGY_notes_1.assets/image-20250225182314762.png)
+![image-20250225182314762](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-02-25-MICRORHEOLOGY_notes_1/image-20250225182314762.png)
 
 ### 复数剪切模量G*
 
