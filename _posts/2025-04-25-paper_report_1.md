@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "文献日读笔记"
+title: "20250425文献日读笔记"
 date:   2025-04-25
 tags: [paper]
 comments: true
