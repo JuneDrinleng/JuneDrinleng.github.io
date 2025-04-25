@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 ## 关于我
-欢迎来到我的博客主页，我是华清带学化学系的一名博士生，现在是博士{% assign current_date = "now" | date: "%Y%m" | plus: 0 %}{% assign start_date = 202409 %}{% assign current_year = current_date | slice: 0, 4 %}  {% assign start_year = start_date | slice: 0, 4 %}      {% assign current_month = current_date | slice: 4, 2 %} {% assign start_month = start_date | slice: 4, 2 %}     {% assign year_diff = current_year | minus: start_year %}  {% assign month_diff = current_month | minus: start_month %}  {% assign total_months = year_diff | times: 12 | plus: month_diff %}{% assign year = total_months | divided_by: 12 | floor | plus: 1 %}{{ year }}年级。
+欢迎来到我的个人笔记主页，我是华清带学化学系的一名博士生，现在是博士{% assign current_date = "now" | date: "%Y%m" | plus: 0 %}{% assign start_date = 202409 %}{% assign current_year = current_date | slice: 0, 4 %}  {% assign start_year = start_date | slice: 0, 4 %}      {% assign current_month = current_date | slice: 4, 2 %} {% assign start_month = start_date | slice: 4, 2 %}     {% assign year_diff = current_year | minus: start_year %}  {% assign month_diff = current_month | minus: start_month %}  {% assign total_months = year_diff | times: 12 | plus: month_diff %}{% assign year = total_months | divided_by: 12 | floor | plus: 1 %}{{ year }}年级。
 
 ### 我的教育经历：  
 - 2020-2024年 清华大学 致理书院 化学专业 学士学位

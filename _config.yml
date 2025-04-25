@@ -3,11 +3,11 @@
 #
 
 # Name of your site (displayed in the header)
-name: "June Drinleng的个人网站"
+name: "June Drinleng的笔记网站"
 
 # Short bio or description (displayed in the header)
 description: |
-  分享读博的学习与生活日常
+  记录科研笔记资料与日常
 
 #
 # Flags below are optional
@@ -58,7 +58,7 @@ footer-links:
   play-music: bgm/gui.mp3
 
 # Text under the icons in footer
-footer-text: Copyright (c) 2025 June Drinleng
+footer-text: Copyright (c) 2023 June Drinleng
 
 
 
