@@ -91,7 +91,7 @@ str.strip()
 
 去除指定字符串：
 
-![image-20250417110713887](./2025-04-17-python_notes_1.assets/image-20250417110713887.png)
+![image-20250417110713887](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-17-python_notes_1/image-20250417110713887.png)
 
 ### 1.4 分割与替换
 
@@ -105,7 +105,7 @@ str.split(sep,maxsplit)
 
 如果sep什么都不填，默认按照空格` ` 进行分割
 
-![image-20250417111043507](./2025-04-17-python_notes_1.assets/image-20250417111043507.png)
+![image-20250417111043507](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-04-17-python_notes_1/image-20250417111043507.png)
 
 当然，假如我们知道一个字符串就是yyyy/mm/dd的形式，且我们只需要分割出年份，那么可以：
 
