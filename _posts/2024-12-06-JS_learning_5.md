@@ -2,7 +2,7 @@
 layout: post
 title: "前端学习笔记5 html语言简介"
 date:   2024-12-06
-tags: [web-dev]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true

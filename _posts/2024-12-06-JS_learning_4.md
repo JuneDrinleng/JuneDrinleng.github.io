@@ -2,7 +2,7 @@
 layout: post
 title: "前端学习笔记4 JavaScript中的数组与循环语句"
 date:   2024-12-06
-tags: [web-dev]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true

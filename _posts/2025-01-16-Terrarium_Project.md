@@ -2,7 +2,7 @@
 layout: post
 title: "web开发实战-花艺瓶项目"
 date:   2025-01-16
-tags: [web-dev]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true

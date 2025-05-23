@@ -2,7 +2,7 @@
 layout: post
 title: "前端学习笔记2 JavaScript中的函数"
 date:   2024-12-05
-tags: [web-dev]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true

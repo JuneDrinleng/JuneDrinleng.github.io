@@ -2,7 +2,7 @@
 layout: post
 title: "前端学习笔记1 JavaScript基础"
 date:   2024-12-05
-tags: [web-dev]
+tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
@@ -15,7 +15,7 @@ toc: true
 
 ## 1 变量与常量
 在过去的学习中好像并没有涉及到常量的相关知识，而在JavaScript中则既有变量又有常量的概念，在此需要特别的注意  
-  
+
 ### 1.1 变量
 变量和python等语言一样，创建和声明变量可以使用`let`或者`var`,感觉更为常见的是`var`但是在教案中更为提倡的是`let`  
 ~~~
