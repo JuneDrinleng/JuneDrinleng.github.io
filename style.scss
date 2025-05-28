@@ -744,25 +744,3 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "gitalk";
-
-code,
-pre,
-kbd,
-samp {
-  font-family: $base-font !important;
-  font-size: inherit;
-  background: none;
-  color: inherit;
-}
-
-.post {
-  font-family: $base-font !important;
-  font-weight: 400;
-}
-
-.post h1,
-.post h2,
-.post h3 {
-  font-family: $base-font;
-  font-weight: bold;
-}
