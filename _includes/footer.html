@@ -1,8 +1,4 @@
 {% include svg-icons.html %} {% if site.footer-text %}
 <p>联系方式：{{site.footer-links.email}}</p>
-<p class="footer-text">
-  Copyright (c) {{ site.footer-start-year }}{% if site.time | date: "%Y" !=
-  site.footer-start-year %}–{{ site.time | date: "%Y" }}{% endif %} {{
-  site.footer-owner }}. All rights reserved.
-</p>
+<p>{{ site.footer-text }}</p>
 {% endif %}
