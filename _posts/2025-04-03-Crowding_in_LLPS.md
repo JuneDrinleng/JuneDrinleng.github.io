@@ -5,7 +5,6 @@ date:   2025-04-03
 tags: [paper]
 comments: true
 author: junedrinleng
-toc: true
 ---
 
 该笔记主要记录液液相分离的调控机制相关内容，包括crowding的相关理论，NMR表征相分离过程以及BSA相分离过程解析，以及残基相互作用机制

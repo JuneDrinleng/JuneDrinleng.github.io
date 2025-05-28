@@ -5,7 +5,6 @@ date:   2025-04-02
 tags: [cs_basic]
 comments: true
 author: junedrinleng
-toc: true
 ---
 
 该笔记主要记录浙江大学翁恺的[java入门与进阶课程](https://www.bilibili.com/video/BV1wL411L7A3?p=3)中的进阶部分的学习笔记，主要记事本实例，泛型容器类型，arraylist操作，对象数组，集合容器和hash表等内容

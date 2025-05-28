@@ -5,7 +5,6 @@ date:   2025-04-01
 tags: [cs_basic]
 comments: true
 author: junedrinleng
-toc: true
 ---
 
 该笔记主要记录浙江大学翁恺的[java入门与进阶课程](https://www.bilibili.com/video/BV1wL411L7A3?p=3)中的进阶部分的学习笔记，主要包括用类产生对象等内容
