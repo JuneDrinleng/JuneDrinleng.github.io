@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java课程学习进阶笔记2"
+title: "Java课程学习进阶笔记 2"
 date:   2025-04-01
 tags: [cs_basic]
 comments: true
