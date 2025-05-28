@@ -1,4 +1,9 @@
 {% include svg-icons.html %} {% if site.footer-text %}
 <p>联系方式：{{site.footer-links.email}}</p>
-<p>{{ site.footer-text }}</p>
+<p id="copyright">
+  &copy; 2023 – <span id="year"></span> {{ site.footer-text }}
+</p>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 {% endif %}
