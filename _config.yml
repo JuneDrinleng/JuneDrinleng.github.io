@@ -41,7 +41,7 @@ footer-links:
   #weibo: frommidworld #请输入你的微博个性域名 https://www.weibo.com/<thispart>
   behance: # https://www.behance.net/<username>
   dribbble:
-  zhihu: 
+  zhihu:
   email: zhu-jl24@mails.tsinghua.edu.cn
   facebook:
   flickr:
@@ -56,12 +56,10 @@ footer-links:
   #twitter: frommidworld
   youtube:
   play-music: bgm/gui.mp3
+  website: https://junedrinleng.com/
 
 # Text under the icons in footer
 footer-text: Copyright (c) 2023 June Drinleng
-
-
-
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
@@ -74,7 +72,6 @@ gitalk:
   repo: junedrinleng.github.io
   owner: JuneDrinleng
 
-
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: G-XLNDGG8996
 
@@ -86,7 +83,7 @@ url: https://junedrinleng.github.io/
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-# baseurl: 
+# baseurl:
 
 #
 # !! You don't need to change any of the configuration flags below !!
@@ -106,7 +103,7 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
+    css_class: "highlight"
 
 # Set the Sass partials directory, as we're using @imports
 sass:
@@ -125,4 +122,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
