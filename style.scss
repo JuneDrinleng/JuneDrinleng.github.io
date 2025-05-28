@@ -744,3 +744,22 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "gitalk";
+
+// 强制 Chrome 等使用正确字体渲染正文内容
+body,
+.post,
+.posts > .post {
+  font-family: $base-font !important;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 代码块单独使用等宽字体
+code,
+pre,
+kbd,
+samp {
+  font-family: $code-font;
+  font-size: 0.95em;
+}
