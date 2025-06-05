@@ -2,7 +2,7 @@
 layout: post
 title: "水凝胶粘弹性相关机制"
 date:   2025-02-20
-tags: [doc]
+tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
