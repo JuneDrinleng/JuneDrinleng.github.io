@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Marangoni Effect"
-date:   2025-06-06
+date:   2025-06-09
 tags: [paper]
 comments: true
 author: junedrinleng
