@@ -16,16 +16,16 @@ toc: true
 
 > ref: X. Hao *et al.*, *Angew Chem Int Ed*, e202502479 (2025).
 
-![image-20250902171358555](./2025-09-02-paper_report.assets/image-20250902171358555.png)
+![image-20250902171358555](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902171358555.png)
 
 本文的策略即通过阴阳离子聚合物的电荷相互吸引形成类似于沉淀一样的团聚体，然后添加二氧化硅乳化剂来包裹这群团聚体，从而形成液滴，液滴如图b，c所示。其与之前所做的llps的应该实验接近，应该信号也是聚集于边界为主（也可能是因为外部这层硅氧化合物的壳的缘故）。  
 
 构造完上述的微反应器后，文献又引入了不同的分子反应环境，例如：CLAB，GOx，HRP，NADH等等，对其时空异质性进行了表征，然后展现其反应的选择性：
-![image-20250902172427618](./2025-09-02-paper_report.assets/image-20250902172427618.png)
+![image-20250902172427618](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902172427618.png)
 
 下面是酶催化反应的机理图，同时他还探究了温度对离子聚合物的影响
 
-![image-20250902172452905](./2025-09-02-paper_report.assets/image-20250902172452905.png)
+![image-20250902172452905](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902172452905.png)
 
 ## 2 生物分子凝聚体中的弹道扩散
 
@@ -33,7 +33,7 @@ toc: true
 
 整个液滴的形成是这样的，下面是$A_{20}/T_{20}$的共聚形成了外部是蓝色dna段，内部是绿色dna段的液滴。那么首先加入和蓝色dna连段结合的染料647，那么整个液滴的边界就被647染料给标记上了，之后再加入绿色的488染料，可以发现绿色呈现从圆周向圆心的径向向心扩散，直至整个液滴内部的绿色dna链段全部结合上488染料从而成绿色荧光。
 
-![image-20250902173211689](./2025-09-02-paper_report.assets/image-20250902173211689.png)
+![image-20250902173211689](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902173211689.png)
 
 这里的fickian diffusion就是布朗运动的宏观统计结果，而这里的ballistic wave 扩散则是我们所理解的：
 $$
@@ -41,8 +41,8 @@ MSD=2D t^2
 $$
 其扩散指数$\alpha=2$，宏观上其扩散的表现如下图所示
 
-![image-20250902175547637](./2025-09-02-paper_report.assets/image-20250902175547637.png)
+![image-20250902175547637](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902175547637.png)
 
 这里的invasion实际上是染料分子的侵入：
-![image-20250902175806510](./2025-09-02-paper_report.assets/image-20250902175806510.png)
+![image-20250902175806510](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-02-paper_report/image-20250902175806510.png)
 
