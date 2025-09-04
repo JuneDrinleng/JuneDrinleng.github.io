@@ -20,19 +20,19 @@ toc: true
 
 本文构造了一种类似于核壳结构的磁性纳米颗粒，其主要结构如下图所示：
 
-![image-20250904112547557](./2025-09-03-paper_report.assets/image-20250904112547557.png)
+![image-20250904112547557](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904112547557.png)
 
 这种**纳米颗粒的尺寸感觉很小**，不知道是图片的scale bar错了还是真就这么小。  
 
 内部的球体有磁响应，外部的链段用于接上dna链以实现相关反应：
 
-![image-20250904112826116](./2025-09-03-paper_report.assets/image-20250904112826116.png)
+![image-20250904112826116](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904112826116.png)
 
 通过叠氮基的1，3偶极环加成实现。当外界引入交变磁场后，内部磁性颗粒的磁响应会使得颗粒的局部温度产生变化，从而能够改变修饰链段的活性，将dna链段接到底物上：  
 
-![image-20250904112951398](./2025-09-03-paper_report.assets/image-20250904112951398.png)
+![image-20250904112951398](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904112951398.png)
 
-![image-20250904113018741](./2025-09-03-paper_report.assets/image-20250904113018741.png)
+![image-20250904113018741](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904113018741.png)
 
 实验中可以发现，通过外加磁场，使得本来内部呈现红色荧光的囊泡液滴，发生变化产生绿色的修饰后链段物，从而使得部分液滴呈现绿色
 
@@ -42,17 +42,17 @@ toc: true
 
 整篇文献主要是从蛋白的翻译表达等生物学机制的角度进行的阐释，这篇文章的体系是：
 
-![image-20250904113618619](./2025-09-03-paper_report.assets/image-20250904113618619.png)
+![image-20250904113618619](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904113618619.png)
 
 通过将蛋白KaiA-C三种的溶液扩散进入正在生长的囊泡中，从而形成了囊泡包裹的多组分蛋白液滴，其拍摄的结果则如下图所示：
 
-![image-20250904113800557](./2025-09-03-paper_report.assets/image-20250904113800557.png)
+![image-20250904113800557](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904113800557.png)
 
 可以看到的是，在4天的实验区间内，v1和v2的液滴呈现出一定的周期节律。  
 
 需要注意的是，这里荧光标记后的BSA（FITC-BSA）作为背景来测试syn-cell的膜是否有破洞和渗透的情况：
 
-![image-20250904114021134](./2025-09-03-paper_report.assets/image-20250904114021134.png)
+![image-20250904114021134](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904114021134.png)
 
 一般情况下，膜对于BSA这种其他蛋白应该是没有明显符集的，所以在B图中我们可以看到，空间上BSA几乎在视野中均匀的分布，从切面的荧光强度来看，液滴区域和液滴外的BSA的荧光强度也相差不大
 
@@ -64,7 +64,7 @@ toc: true
 
 这是一篇讲述仿生细胞间通讯的综述，我认为他在一定程度上也总结了仿生细胞的一些制作流派：
 
-![image-20250904114325446](./2025-09-03-paper_report.assets/image-20250904114325446.png)
+![image-20250904114325446](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-09-03-paper_report/image-20250904114325446.png)
 
 比如这张图中，就记录了合成细胞有高分子边界，蛋白形成的液滴边界，凝聚体形成的仿生液滴（例如9.2提到的阴阳离子聚合形成的凝聚体液滴），以及上文提到的脂质体囊泡以及早已为大家做了很多的水凝胶。   
 
