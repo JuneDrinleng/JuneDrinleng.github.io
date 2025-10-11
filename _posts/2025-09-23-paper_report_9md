@@ -1,0 +1,67 @@
+---
+layout: post
+title: "20250923文献阅读笔记"
+date:   2025-09-23
+tags: [paper]
+comments: true
+author: junedrinleng
+toc: true
+---
+
+本笔记主要记录超分辨插值帧生成，CNN的3d重建，神经网络动力学建模以及一个通过噬菌体的自组装构造而成的脂质体囊泡。
+
+<!-- more -->
+## 1 Topology and kinetic pathways of colloidosome assembly  and disassembly
+> ref: R. Adkins et al., Proceedings of the National Academy of Sciences. 122, e2427024122 (2025).
+
+这篇文章聚焦于脂质体微胶囊的自组装和解组装过程中的拓扑结构，但其如果不是基于噬菌体的自组装的话，也许可以进行尝试复现
+
+![image-20250923170524933](./2025-09-23-paper_report_9md.assets/image-20250923170524933.png)
+
+这里的A图是噬菌体的电子显微镜结构，其构成的流体膜是由这些含孔道的噬菌体自组装而成，其构成的流体膜结构如图B所示
+
+这一流体液滴的形成可以借助重力：
+
+![image-20250923170748084](./2025-09-23-paper_report_9md.assets/image-20250923170748084.png)
+
+![image-20250923170847234](./2025-09-23-paper_report_9md.assets/image-20250923170847234.png)
+
+这里的图A和C是描述的光活化的PEG被这一囊泡封锁/扩散的情况。A和B是1kDa的情况，由于PEG的分子量比较小，所以其可以从囊泡中自由扩散出来，因此B图的荧光显示器是均匀的。
+
+而C和D，是20kDa的PEG，可以看出来在荧光下其呈现出空间异质，说明这一情况下PEG无法自由扩散
+
+## 2 Deep Learning Reaction Framework (DLRN) for kinetic modeling of timeresolved data
+
+> ref: N. Alagna *et al.*, *Commun. Chem.* **8**, 153 (2025).
+
+这一片是基于模型的分析，是相结合实验数据和物理/数学模型来进行动力学建模
+
+![image-20250923172831778](./2025-09-23-paper_report_9md.assets/image-20250923172831778.png)
+
+相当于首先将光谱数据输入模型选择的网络，做一个动力学模型的匹配（准确说叫做模型预测），然后将预测的动力学模型转化为速率常数的矩阵，将这个矩阵结合光谱数据来预测tau
+
+## 3 Deep Learning-Assisted Automated Multidimensional Single Particle Tracking in Living Cells
+
+> ref: D. Song *et al.*, *Nano Lett.* **24**, 3082–3088 (2024).
+
+这是方宁老师24年的一篇deep learning辅助单颗粒三维重建的文章，技术挺old了
+
+![image-20250923173959181](./2025-09-23-paper_report_9md.assets/image-20250923173959181.png)
+
+一个双路成像系统，focused测量$\delta y$来确定z的位置，defocused的来推断金棒的旋转角度，网络用的CNN：
+
+![image-20250923174217510](./2025-09-23-paper_report_9md.assets/image-20250923174217510.png)
+
+## 4 Content-aware frame interpolation (CAFI): deep learning-based temporal super-resolution for fast bioimaging
+
+> ref: M. Priessner *et al.*, *Nat. Methods*. **21**, 322–330 (2024).
+
+![image-20250923174429178](./2025-09-23-paper_report_9md.assets/image-20250923174429178.png)
+
+![image-20250923174554704](./2025-09-23-paper_report_9md.assets/image-20250923174554704.png)
+
+本文开发了一种超分辨插帧技术CAFI，甚至支持多次插帧实现更高的分辨率
+
+这里主要学习几个参数：
+
+![image-20250923174841241](./2025-09-23-paper_report_9md.assets/image-20250923174841241.png)
