@@ -8,7 +8,7 @@ author: junedrinleng
 toc: true
 ---
 
-本笔记继续记录阅读neurips 2025 Time Series的paper，包括一个切分Time Series的Forecasting New Form 等内容。
+本笔记继续记录阅读neurips 2025 Time Series的paper，包括一个切分Time Series的Forecasting New Form 等，以及一篇关于单颗粒示踪的综述的成像部分内容。
 
 <!-- more -->
 
