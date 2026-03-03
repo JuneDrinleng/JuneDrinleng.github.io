@@ -3,6 +3,9 @@ import { Link, useParams } from 'react-router';
 import { getPostBySlug } from '../utils/posts';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -76,7 +79,8 @@ export default function BlogPost() {
         {/* Article Content */}
         <div className="prose prose-lg max-w-none">
           <ReactMarkdown 
-            remarkPlugins={[remarkGfm]}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
             components={{
               h2: ({ children }) => (
                 <h2 className="text-3xl font-bold uppercase tracking-tight mt-12 mb-6 pb-3 border-b-2 border-black">
