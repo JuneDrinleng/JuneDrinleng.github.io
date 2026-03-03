@@ -1,6 +1,8 @@
 import { ArrowLeft, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router';
 import { getAllPosts } from '../utils/posts';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function Blog() {
   const posts = getAllPosts();
@@ -58,7 +60,7 @@ export default function Blog() {
                 </div>
               </div>
               <div className="prose prose-lg mb-6 opacity-80 leading-relaxed">
-                {post.excerpt}
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.excerpt}</ReactMarkdown>
               </div>
               <Link
                 to={`/blog/${post.slug}`}
