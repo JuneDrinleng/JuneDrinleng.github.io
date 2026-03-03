@@ -28,13 +28,13 @@ toc: true
 
 例如可以假设一个类叫做atm
 
-![1](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-15-Object_Oriented_Programming/image-20231228153119085.png)
+![1](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20231228153119085.png)
 
 那么atme类里可以有很多的对象，比如atm1是招商银行南园支行的atm，而atm2是中国银行北园支行。这样使得数据的流动更加清晰
 
 **关注功能：**
 
-![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-15-Object_Oriented_Programming/20241115181847.png)
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/20241115181847.png)
 
 定义好洗衣机的功能之后，可以直接调用洗衣机的功能
 

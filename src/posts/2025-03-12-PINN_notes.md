@@ -43,26 +43,26 @@ toc: true
 
 ## 4 pytorch的实现
 
-![image-20240927102511146](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20240927102511146.png)
+![image-20240927102511146](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240927102511146.png)
 
 这里给方程组是随便写的，其中第二个方程是边界条件
 
 首先是二维变成一维：
 
-![image-20240927102835709](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20240927102835709.png)
+![image-20240927102835709](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240927102835709.png)
 
 然后需要设计梯度计算的部分
 
-![image-20240927102934822](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20240927102934822.png)
+![image-20240927102934822](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240927102934822.png)
 
 order是求几阶导
 
 接下来就是基于上述的两个方程来构建损失函数
 
- ![image-20240927103448178](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20240927103448178.png)
+ ![image-20240927103448178](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240927103448178.png)
 
-![image-20240927104444975](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20240927104444975.png)
+![image-20240927104444975](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240927104444975.png)
 
 ## 5 PINN的应用及局限性
 
-![image-20250312102627371](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2025-03-12-PINN_notes/image-20250312102627371.png)
+![image-20250312102627371](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20250312102627371.png)

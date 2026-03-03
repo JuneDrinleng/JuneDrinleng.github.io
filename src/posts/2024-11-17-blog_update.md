@@ -22,13 +22,13 @@ toc: true
 
 我最开始发现问题是我的笔记都是用obsidian进行记录的，但是所有的obsidian的文件插入的图片是wiki格式的而不是markdown格式的，以至于我的typora并不能识别，所以如果使用obsidian的话请务必取消勾选图片的Wiki格式
 
-![image-20241118003836633](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-17-blog_update/image-20241118003836633.png)
+![image-20241118003836633](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241118003836633.png)
 
 ## 配置typora
 
 这里使用的图床是picgo+github的图床组合，配置typora中的图床上传可以在文件-偏好设置里找到图片的设置：
 
-![image-20241118004233677](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-17-blog_update/image-20241118004233677.png)
+![image-20241118004233677](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241118004233677.png)
 
 设置好上传服务设定，选择上传服务中的picgo，然后定位好picgo程序的exe的位置，不放心的可以点击验证图片上传选项
 
@@ -38,7 +38,7 @@ toc: true
 
 由于我希望我的图床中图所在的文件夹与md文件名保持一致，所以需要设置一下picgo的图床上传位置：
 
-![image-20241118004446321](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-17-blog_update/image-20241118004446321.png)
+![image-20241118004446321](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241118004446321.png)
 
 例如在这我设置的图床的仓库就是我的博客所在的仓库，分支选择main就好，token则需要在setting中找到
 
@@ -52,6 +52,6 @@ toc: true
 
 我一般会在本地使用typora编辑完所有之后将需要上传的博客以及其图片所在的文件夹复制在博客repo的_post文件夹里，然后用typora打开刚刚复制的md笔记，选择格式-图片-上传所有本地图片
 
-![image-20241118004855933](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/img/2024-11-17-blog_update/image-20241118004855933.png)
+![image-20241118004855933](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241118004855933.png)
 
 最后把md文件按照博客的命名规则命名，同时删除_post文件夹中之前复制的图片即可
