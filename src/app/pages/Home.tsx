@@ -10,7 +10,7 @@ export default function Home() {
 
   const featuredProducts = [
     {
-      title: '博客',
+      title: 'Blog',
       url: '/blog',
       description: '分享技术见解、产品思考与创作心得，记录成长与探索的旅程',
       imageUrl: 'https://images.unsplash.com/photo-1542727365-19732a80dcfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYmxvZyUyMHdyaXRpbmd8ZW58MXx8fHwxNzcyNTE2ODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -53,8 +53,8 @@ export default function Home() {
       <header className="border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <Link to="/" className="block text-center mb-6">
-            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">产品导航</h1>
-            <p className="text-sm uppercase tracking-widest opacity-60">Product Navigator</p>
+            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">June's Navigator</h1>
+            <p className="text-sm uppercase tracking-widest opacity-60">Homepage Navigator</p>
           </Link>
           
           {/* Search Bar */}
@@ -63,7 +63,7 @@ export default function Home() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-40" />
               <input
                 type="text"
-                placeholder="搜索博客文章..."
+                placeholder="searching the blog/tag..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full border-2 border-black px-12 py-3 focus:outline-none focus:bg-gray-50"
@@ -106,7 +106,7 @@ export default function Home() {
                   </div>
                 ) : (
                   <div className="p-8 text-center opacity-60">
-                    <p className="uppercase tracking-wider text-sm">未找到相关文章</p>
+                    <p className="uppercase tracking-wider text-sm">Failed to find</p>
                   </div>
                 )}
               </div>
@@ -119,8 +119,8 @@ export default function Home() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold uppercase tracking-tight mb-2">特色产品</h2>
-            <p className="text-sm uppercase tracking-wider opacity-60">Featured Products</p>
+            <h2 className="text-3xl font-bold uppercase tracking-tight mb-2">Featured Products</h2>
+            <p className="text-sm uppercase tracking-wider opacity-60">Select Your Need</p>
           </div>
           
           {/* 优化后的产品卡片布局 */}
