@@ -14,6 +14,7 @@ export function slugify(text: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+// Extract H2-H4 headings for the TOC (H1 is the post title, H5-H6 are too granular)
 export function extractHeadings(markdown: string): TocItem[] {
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   const headings: TocItem[] = [];
@@ -55,6 +56,7 @@ export default function TableOfContents({ headings, contentRef }: TableOfContent
       },
       {
         root: contentRef?.current || null,
+        // Trigger when a heading enters the top 20% of the scroll container
         rootMargin: '0px 0px -80% 0px',
         threshold: 0,
       }
