@@ -27,8 +27,8 @@ const VISUALSPT_RELEASE_API =
   "https://api.github.com/repos/JuneDrinleng/visualSPT/releases/latest";
 const VISUALSPT_WIN_LATEST_EXE =
   "https://github.com/JuneDrinleng/visualSPT/releases/latest/download/visualSPT.exe";
-const VISUALSPT_MAC_LATEST_ZIP =
-  "https://github.com/JuneDrinleng/visualSPT/releases/latest/download/visualSPT-mac.zip";
+const VISUALSPT_MAC_LATEST_DMG =
+  "https://github.com/JuneDrinleng/visualSPT/releases/latest/download/visualSPT-mac.dmg";
 const LOCAL_LATEST_YML = "/visualspt-latest.yml";
 
 function parseLatestYml(content: string): Partial<DownloadInfo> {
@@ -51,7 +51,7 @@ function parseLatestYml(content: string): Partial<DownloadInfo> {
       windowsUrl = fileUrl;
       windowsSizeBytes = Number.isNaN(fileSize) ? undefined : fileSize;
     }
-    if (fileName.endsWith("-mac.zip")) {
+    if (fileName.endsWith("-mac.dmg")) {
       macUrl = fileUrl;
       macSizeBytes = Number.isNaN(fileSize) ? undefined : fileSize;
     }
@@ -82,7 +82,7 @@ export default function VisualSPT() {
   const [downloadInfo, setDownloadInfo] = useState<DownloadInfo>({
     version: "Loading...",
     windowsUrl: VISUALSPT_WIN_LATEST_EXE,
-    macUrl: VISUALSPT_MAC_LATEST_ZIP,
+    macUrl: VISUALSPT_MAC_LATEST_DMG,
   });
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
@@ -128,7 +128,7 @@ export default function VisualSPT() {
               version: parsed.version,
               windowsUrl: parsed.windowsUrl || VISUALSPT_WIN_LATEST_EXE,
               windowsSizeBytes: parsed.windowsSizeBytes,
-              macUrl: parsed.macUrl || VISUALSPT_MAC_LATEST_ZIP,
+              macUrl: parsed.macUrl || VISUALSPT_MAC_LATEST_DMG,
               macSizeBytes: parsed.macSizeBytes,
             });
             return;
@@ -161,7 +161,7 @@ export default function VisualSPT() {
         const macAsset = assets.find(
           (asset: { name?: string }) =>
             typeof asset?.name === "string" &&
-            asset.name.toLowerCase().endsWith("-mac.zip"),
+            asset.name.toLowerCase().endsWith("-mac.dmg"),
         );
 
         const fallbackInfo: DownloadInfo = {
@@ -175,7 +175,7 @@ export default function VisualSPT() {
           macUrl:
             (typeof macAsset?.browser_download_url === "string" &&
               macAsset.browser_download_url) ||
-            VISUALSPT_MAC_LATEST_ZIP,
+            VISUALSPT_MAC_LATEST_DMG,
           macSizeBytes:
             typeof macAsset?.size === "number" ? macAsset.size : undefined,
         };
@@ -489,7 +489,7 @@ export default function VisualSPT() {
               </p>
               <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">
                 v{downloadInfo.version} ·{" "}
-                {formatSize(downloadInfo.macSizeBytes)}
+                {formatSize(downloadInfo.macSizeBytes)} · DMG
               </p>
               <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
                 <Download className="w-4 h-4" />
