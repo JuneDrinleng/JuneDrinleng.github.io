@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import 'gitalk/dist/gitalk.css';
 import '../../styles/gitalk-overrides.css';
 import Gitalk from 'gitalk';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface GitalkCommentsProps {
   slug: string;
@@ -10,6 +11,7 @@ interface GitalkCommentsProps {
 
 export default function GitalkComments({ slug, title }: GitalkCommentsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { language, t } = useLanguage();
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -25,15 +27,15 @@ export default function GitalkComments({ slug, title }: GitalkCommentsProps) {
       id: slug.slice(0, 50),
       distractionFreeMode: false,
       title: title,
-      language: 'zh-CN',
+      language: language === 'zh' ? 'zh-CN' : 'en',
     });
 
     gitalk.render(containerRef.current);
-  }, [slug, title]);
+  }, [slug, title, language]);
 
   return (
-    <section className="mt-12 pt-8 border-t-2 border-black">
-      <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">评论</h2>
+    <section className="mt-12 pt-8 border-t-2 border-black dark:border-neutral-100">
+      <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">{t('评论', 'Comments')}</h2>
       <div ref={containerRef} className="gitalk-container" />
     </section>
   );
