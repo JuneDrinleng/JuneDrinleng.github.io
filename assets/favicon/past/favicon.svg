@@ -19,12 +19,20 @@
 
     <!-- 3. 主体圆 -->
     <!-- 应用遮罩，并逆时针旋转 15 度，调整姿态 -->
+       <circle 
+        cx="256" 
+        cy="256" 
+        r="240" 
+        fill="#0f172a" 
+        mask="url(#dark-side-mask)" 
+        transform="rotate(0 256 256)"
+    />
     <circle 
         cx="256" 
         cy="256" 
         r="240" 
         fill="url(#moonGradient)" 
         mask="url(#moon-mask)" 
-        transform="rotate(0 256 256)"
+        transform="rotate(20 256 256)"
     />
 </svg>
