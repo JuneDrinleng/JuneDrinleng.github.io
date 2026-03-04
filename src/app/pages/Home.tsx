@@ -123,27 +123,55 @@ export default function Home() {
             <p className="text-sm uppercase tracking-wider opacity-60">Select Your Need</p>
           </div>
           
-          {/* 优化后的产品卡片布局 */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {featuredProducts.map((product, index) => (
+          {/* 优化后的产品卡片布局：左博客，右上visualSPT，右下Poop */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* 左侧 Blog 卡片 - 占满整列高度 */}
+            <Link 
+              to={featuredProducts[0].url} 
+              className="block group"
+            >
+              <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
+                <div className="relative overflow-hidden bg-gray-100 flex-1 min-h-64">
+                  <img
+                    src={featuredProducts[0].imageUrl}
+                    alt={featuredProducts[0].title}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6 bg-white flex flex-col">
+                  <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
+                    {featuredProducts[0].title}
+                  </h3>
+                  <p className="text-sm leading-relaxed opacity-70">{featuredProducts[0].description}</p>
+                  <div className="mt-4 pt-4 border-t-2 border-black">
+                    <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
+                      了解更多 →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* 右侧两个卡片 */}
+            <div className="flex flex-col gap-6">
+              {/* 右上 visualSPT */}
               <Link 
-                key={index} 
-                to={product.url} 
-                className="block group"
+                to={featuredProducts[1].url} 
+                className="block group flex-1"
               >
                 <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
-                  <div className="relative overflow-hidden bg-gray-100 h-64">
+                  <div className="relative overflow-hidden bg-gray-100 h-48">
                     <img
-                      src={product.imageUrl}
-                      alt={product.title}
+                      src={featuredProducts[1].imageUrl}
+                      alt={featuredProducts[1].title}
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-6 bg-white flex-1 flex flex-col">
                     <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
-                      {product.title}
+                      {featuredProducts[1].title}
                     </h3>
-                    <p className="text-sm leading-relaxed opacity-70 flex-1">{product.description}</p>
+                    <p className="text-sm leading-relaxed opacity-70 flex-1">{featuredProducts[1].description}</p>
                     <div className="mt-4 pt-4 border-t-2 border-black">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                         了解更多 →
@@ -152,7 +180,34 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
-            ))}
+
+              {/* 右下 Poop */}
+              <Link 
+                to={featuredProducts[2].url} 
+                className="block group flex-1"
+              >
+                <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
+                  <div className="relative overflow-hidden bg-gray-100 h-48">
+                    <img
+                      src={featuredProducts[2].imageUrl}
+                      alt={featuredProducts[2].title}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6 bg-white flex-1 flex flex-col">
+                    <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
+                      {featuredProducts[2].title}
+                    </h3>
+                    <p className="text-sm leading-relaxed opacity-70 flex-1">{featuredProducts[2].description}</p>
+                    <div className="mt-4 pt-4 border-t-2 border-black">
+                      <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
+                        了解更多 →
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
