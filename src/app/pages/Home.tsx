@@ -1,15 +1,13 @@
 import { Search, X } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useState, useMemo } from "react";
 import { getAllPosts } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
 import BlogSchematic from "../components/BlogSchematic";
 import VisualSPTMiniSchematic from "../components/VisualSPTMiniSchematic";
-import FocusTimerSchematic from "../components/FocusTimerSchematic";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
   const { language, t } = useLanguage();
   const allPosts = getAllPosts(language);
 
@@ -31,15 +29,6 @@ export default function Home() {
         "Powerful desktop visualization tool to boost productivity and optimize data presentation"
       ),
       schematic: <VisualSPTMiniSchematic />,
-    },
-    {
-      title: "Poop",
-      url: "/focus-timer",
-      description: t(
-        "专为移动端设计的专注打卡应用，帮助你养成良好习惯，提升专注力",
-        "A mobile-first focus & habit tracker app to help you build good habits and boost concentration"
-      ),
-      schematic: <FocusTimerSchematic />,
     },
   ];
 
@@ -157,44 +146,20 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 优化后的产品卡片布局：左博客，右上visualSPT，右下Poop */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-            {/* 左侧 Blog 卡片 - 占满整列高度 */}
-            <Link to={featuredProducts[0].url} className="block group">
-              <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
-                <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-48 sm:h-64 lg:flex-1 lg:min-h-48">
-                  {featuredProducts[0].schematic}
-                </div>
-                <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex flex-col">
-                  <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
-                    {featuredProducts[0].title}
-                  </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed opacity-70">
-                    {featuredProducts[0].description}
-                  </p>
-                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black dark:border-neutral-100">
-                    <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
-                      {t("了解更多 →", "Learn More →")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* 右侧两个卡片 */}
-            <div className="flex flex-col gap-4 sm:gap-6">
-              {/* 右上 visualSPT */}
-              <Link to={featuredProducts[1].url} className="block group flex-1">
+          {/* 产品卡片布局：Blog 和 visualSPT 并排等大 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {featuredProducts.map((product) => (
+              <Link key={product.title} to={product.url} className="block group">
                 <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
-                  <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-40 sm:h-48">
-                    {featuredProducts[1].schematic}
+                  <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-48 sm:h-64">
+                    {product.schematic}
                   </div>
                   <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex-1 flex flex-col">
                     <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
-                      {featuredProducts[1].title}
+                      {product.title}
                     </h3>
                     <p className="text-xs sm:text-sm leading-relaxed opacity-70 flex-1">
-                      {featuredProducts[1].description}
+                      {product.description}
                     </p>
                     <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black dark:border-neutral-100">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
@@ -204,29 +169,7 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
-
-              {/* 右下 Poop */}
-              <Link to={featuredProducts[2].url} className="block group flex-1">
-                <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
-                  <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-40 sm:h-48">
-                    {featuredProducts[2].schematic}
-                  </div>
-                  <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex-1 flex flex-col">
-                    <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
-                      {featuredProducts[2].title}
-                    </h3>
-                    <p className="text-xs sm:text-sm leading-relaxed opacity-70 flex-1">
-                      {featuredProducts[2].description}
-                    </p>
-                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black dark:border-neutral-100">
-                      <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
-                        {t("了解更多 →", "Learn More →")}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
