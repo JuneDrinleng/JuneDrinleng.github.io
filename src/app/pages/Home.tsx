@@ -1,31 +1,35 @@
-import { Search, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router';
-import { useState, useMemo } from 'react';
-import { getAllPosts } from '../utils/posts';
+import { Search, X } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import { useState, useMemo } from "react";
+import { getAllPosts } from "../utils/posts";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const allPosts = getAllPosts();
 
   const featuredProducts = [
     {
-      title: 'Blog',
-      url: '/blog',
-      description: '分享技术见解、产品思考与创作心得，记录成长与探索的旅程',
-      imageUrl: 'https://images.unsplash.com/photo-1542727365-19732a80dcfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYmxvZyUyMHdyaXRpbmd8ZW58MXx8fHwxNzcyNTE2ODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      title: "Blog",
+      url: "/blog",
+      description: "分享技术见解、产品思考与创作心得，记录成长与探索的旅程",
+      imageUrl:
+        "https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img6d4c5c7ddb0aa6fa7442f18bef159325.png",
     },
     {
-      title: 'visualSPT',
-      url: '/visualspt',
-      description: '强大的桌面端可视化工具，提升工作效率，优化数据展示体验',
-      imageUrl: 'https://images.unsplash.com/photo-1764557222706-a8b967702853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNrdG9wJTIwc29mdHdhcmUlMjBhcHBsaWNhdGlvbnxlbnwxfHx8fDE3NzI1MTY4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      title: "visualSPT",
+      url: "/visualspt",
+      description: "强大的桌面端可视化工具，提升工作效率，优化数据展示体验",
+      imageUrl:
+        "https://images.unsplash.com/photo-1764557222706-a8b967702853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNrdG9wJTIwc29mdHdhcmUlMjBhcHBsaWNhdGlvbnxlbnwxfHx8fDE3NzI1MTY4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
-      title: 'Poop',
-      url: '/focus-timer',
-      description: '专为移动端设计的专注打卡应用，帮助你养成良好习惯，提升专注力',
-      imageUrl: 'https://images.unsplash.com/photo-1660810731526-0720827cbd38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2N1cyUyMHRpbWVyJTIwcHJvZHVjdGl2aXR5JTIwbW9iaWxlfGVufDF8fHx8MTc3MjUxNjg3Nnww&ixlib=rb-4.1.0&q=80&w=1080',
+      title: "Poop",
+      url: "/focus-timer",
+      description:
+        "专为移动端设计的专注打卡应用，帮助你养成良好习惯，提升专注力",
+      imageUrl:
+        "https://images.unsplash.com/photo-1660810731526-0720827cbd38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2N1cyUyMHRpbWVyJTIwcHJvZHVjdGl2aXR5JTIwbW9iaWxlfGVufDF8fHx8MTc3MjUxNjg3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
     },
   ];
 
@@ -34,17 +38,19 @@ export default function Home() {
     if (!searchQuery.trim()) return [];
 
     const query = searchQuery.toLowerCase();
-    return allPosts.filter(post => {
+    return allPosts.filter((post) => {
       const titleMatch = post.metadata.title.toLowerCase().includes(query);
       const excerptMatch = post.excerpt.toLowerCase().includes(query);
-      const tagsMatch = post.metadata.tags?.some(tag => tag.toLowerCase().includes(query));
-      
+      const tagsMatch = post.metadata.tags?.some((tag) =>
+        tag.toLowerCase().includes(query),
+      );
+
       return titleMatch || excerptMatch || tagsMatch;
     });
   }, [searchQuery, allPosts]);
 
   const handleClearSearch = () => {
-    setSearchQuery('');
+    setSearchQuery("");
   };
 
   return (
@@ -53,10 +59,14 @@ export default function Home() {
       <header className="border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <Link to="/" className="block text-center mb-6">
-            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">June's Navigator</h1>
-            <p className="text-sm uppercase tracking-widest opacity-60">Homepage Navigator</p>
+            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">
+              June's Navigator
+            </h1>
+            <p className="text-sm uppercase tracking-widest opacity-60">
+              Homepage Navigator
+            </p>
           </Link>
-          
+
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto relative">
             <div className="relative">
@@ -88,25 +98,35 @@ export default function Home() {
                         key={post.slug}
                         to={`/blog/${post.slug}`}
                         className="block p-4 hover:bg-gray-50 transition-colors"
-                        onClick={() => setSearchQuery('')}
+                        onClick={() => setSearchQuery("")}
                       >
-                        <h3 className="font-bold uppercase tracking-tight mb-1">{post.metadata.title}</h3>
-                        <p className="text-sm opacity-60 mb-2 line-clamp-2">{post.excerpt}</p>
-                        {post.metadata.tags && post.metadata.tags.length > 0 && (
-                          <div className="flex gap-2 flex-wrap">
-                            {post.metadata.tags.map((tag) => (
-                              <span key={tag} className="border border-black px-2 py-0.5 text-xs uppercase">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
+                        <h3 className="font-bold uppercase tracking-tight mb-1">
+                          {post.metadata.title}
+                        </h3>
+                        <p className="text-sm opacity-60 mb-2 line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                        {post.metadata.tags &&
+                          post.metadata.tags.length > 0 && (
+                            <div className="flex gap-2 flex-wrap">
+                              {post.metadata.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="border border-black px-2 py-0.5 text-xs uppercase"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                       </Link>
                     ))}
                   </div>
                 ) : (
                   <div className="p-8 text-center opacity-60">
-                    <p className="uppercase tracking-wider text-sm">Failed to find</p>
+                    <p className="uppercase tracking-wider text-sm">
+                      Failed to find
+                    </p>
                   </div>
                 )}
               </div>
@@ -119,17 +139,18 @@ export default function Home() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold uppercase tracking-tight mb-2">Featured Products</h2>
-            <p className="text-sm uppercase tracking-wider opacity-60">Select Your Need</p>
+            <h2 className="text-3xl font-bold uppercase tracking-tight mb-2">
+              Featured Products
+            </h2>
+            <p className="text-sm uppercase tracking-wider opacity-60">
+              Select Your Need
+            </p>
           </div>
-          
+
           {/* 优化后的产品卡片布局：左博客，右上visualSPT，右下Poop */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 左侧 Blog 卡片 - 占满整列高度 */}
-            <Link 
-              to={featuredProducts[0].url} 
-              className="block group"
-            >
+            <Link to={featuredProducts[0].url} className="block group">
               <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
                 <div className="relative overflow-hidden bg-gray-100 flex-1 min-h-64">
                   <img
@@ -142,7 +163,9 @@ export default function Home() {
                   <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
                     {featuredProducts[0].title}
                   </h3>
-                  <p className="text-sm leading-relaxed opacity-70">{featuredProducts[0].description}</p>
+                  <p className="text-sm leading-relaxed opacity-70">
+                    {featuredProducts[0].description}
+                  </p>
                   <div className="mt-4 pt-4 border-t-2 border-black">
                     <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                       了解更多 →
@@ -155,10 +178,7 @@ export default function Home() {
             {/* 右侧两个卡片 */}
             <div className="flex flex-col gap-6">
               {/* 右上 visualSPT */}
-              <Link 
-                to={featuredProducts[1].url} 
-                className="block group flex-1"
-              >
+              <Link to={featuredProducts[1].url} className="block group flex-1">
                 <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 h-48">
                     <img
@@ -171,7 +191,9 @@ export default function Home() {
                     <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
                       {featuredProducts[1].title}
                     </h3>
-                    <p className="text-sm leading-relaxed opacity-70 flex-1">{featuredProducts[1].description}</p>
+                    <p className="text-sm leading-relaxed opacity-70 flex-1">
+                      {featuredProducts[1].description}
+                    </p>
                     <div className="mt-4 pt-4 border-t-2 border-black">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                         了解更多 →
@@ -182,10 +204,7 @@ export default function Home() {
               </Link>
 
               {/* 右下 Poop */}
-              <Link 
-                to={featuredProducts[2].url} 
-                className="block group flex-1"
-              >
+              <Link to={featuredProducts[2].url} className="block group flex-1">
                 <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 h-48">
                     <img
@@ -198,7 +217,9 @@ export default function Home() {
                     <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
                       {featuredProducts[2].title}
                     </h3>
-                    <p className="text-sm leading-relaxed opacity-70 flex-1">{featuredProducts[2].description}</p>
+                    <p className="text-sm leading-relaxed opacity-70 flex-1">
+                      {featuredProducts[2].description}
+                    </p>
                     <div className="mt-4 pt-4 border-t-2 border-black">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                         了解更多 →
