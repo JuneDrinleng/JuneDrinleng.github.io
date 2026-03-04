@@ -134,7 +134,7 @@ export default function FocusTimer() {
       <footer className="border-t-2 border-black">
         <div className="max-w-7xl mx-auto px-6 py-8 text-center">
           <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2026 Poop - Focus & Productivity Timer
+            © 2023 All Rights Reserved
           </p>
         </div>
       </footer>

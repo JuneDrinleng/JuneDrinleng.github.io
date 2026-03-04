@@ -1,11 +1,47 @@
-import { ArrowLeft, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, Search, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router';
+import { useState, useMemo } from 'react';
 import { getAllPosts } from '../utils/posts';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+const POSTS_PER_PAGE = 10;
+
 export default function Blog() {
-  const posts = getAllPosts();
+  const allPosts = getAllPosts();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // 搜索过滤
+  const filteredPosts = useMemo(() => {
+    if (!searchQuery.trim()) return allPosts;
+
+    const query = searchQuery.toLowerCase();
+    return allPosts.filter(post => {
+      const titleMatch = post.metadata.title.toLowerCase().includes(query);
+      const excerptMatch = post.excerpt.toLowerCase().includes(query);
+      const tagsMatch = post.metadata.tags?.some(tag => tag.toLowerCase().includes(query));
+      return titleMatch || excerptMatch || tagsMatch;
+    });
+  }, [searchQuery, allPosts]);
+
+  // 分页
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedPosts = filteredPosts.slice(
+    (safePage - 1) * POSTS_PER_PAGE,
+    safePage * POSTS_PER_PAGE,
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -20,13 +56,40 @@ export default function Blog() {
             <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">博客</h1>
             <p className="text-sm uppercase tracking-widest opacity-60">Technical Writing & Thoughts</p>
           </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mt-8 relative">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-40" />
+              <input
+                type="text"
+                placeholder="搜索文章标题、内容或标签..."
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full border-2 border-black px-12 py-3 focus:outline-none focus:bg-gray-50"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => handleSearchChange('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-60 transition-opacity"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm mt-2 opacity-60">
+                找到 {filteredPosts.length} 篇相关文章
+              </p>
+            )}
+          </div>
         </div>
       </header>
 
       {/* Blog Posts List */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="space-y-8">
-          {posts.map((post) => (
+          {paginatedPosts.map((post) => (
             <article key={post.slug} className="border-2 border-black p-8 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
               <div className="mb-4">
                 <Link to={`/blog/${post.slug}`}>
@@ -71,13 +134,48 @@ export default function Blog() {
             </article>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <nav className="mt-12 flex items-center justify-center gap-2">
+            <button
+              onClick={() => handlePageChange(safePage - 1)}
+              disabled={safePage <= 1}
+              className="inline-flex items-center gap-1 border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors uppercase tracking-wider text-sm font-bold disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              上一页
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`border-2 border-black w-10 h-10 text-sm font-bold transition-colors ${
+                  page === safePage
+                    ? 'bg-black text-white'
+                    : 'hover:bg-black hover:text-white'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(safePage + 1)}
+              disabled={safePage >= totalPages}
+              className="inline-flex items-center gap-1 border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors uppercase tracking-wider text-sm font-bold disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
+            >
+              下一页
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </nav>
+        )}
       </main>
 
       {/* Footer */}
       <footer className="border-t-2 border-black mt-12">
         <div className="max-w-4xl mx-auto px-6 py-8 text-center">
           <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2026 技术博客
+            © 2023 All Rights Reserved
           </p>
         </div>
       </footer>
