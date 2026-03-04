@@ -27,7 +27,7 @@ def translate_chunk_stream(chunk):
                 {'role': 'system', 'content': SYSTEM_PROMPT},
                 {'role': 'user', 'content': chunk},
             ],
-            options={'temperature': 0.1, 'num_ctx': 8192},
+            options={'temperature': 0.1, 'num_ctx': 4096},
             stream=True,
         )
         
