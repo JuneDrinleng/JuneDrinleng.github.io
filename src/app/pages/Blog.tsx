@@ -239,7 +239,7 @@ export default function Blog() {
               }`}
             >
               <Bookmark className="w-4 h-4" />
-              {t("按标签", "By Tag")}
+              {t("按标签", "Tag")}
             </button>
             <button
               onClick={() => handleViewModeChange("year")}
@@ -250,7 +250,7 @@ export default function Blog() {
               }`}
             >
               <CalendarDays className="w-4 h-4" />
-              {t("按年份", "By Year")}
+              {t("按年份", "Year")}
             </button>
           </div>
         </div>
