@@ -1,4 +1,4 @@
-import { ArrowLeft, Download, Monitor, Zap, Shield, Globe, MonitorDown } from 'lucide-react';
+import { ArrowLeft, Download, Route, Film, BarChart3, FileInput, MonitorDown, Github } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -8,24 +8,24 @@ export default function VisualSPT() {
 
   const features = [
     {
-      icon: Monitor,
-      title: t('桌面端优化', 'Desktop Optimized'),
-      description: t('专为桌面环境设计，充分利用大屏幕优势，提供最佳视觉体验', 'Designed for desktop environments, leveraging large screens for the best visual experience'),
+      icon: Route,
+      title: t('静态轨迹绘图', 'Static Trajectory Plot'),
+      description: t('按 ID 查看和切换轨迹，支持时间着色渲染、起止标记、网格、坐标轴、色条等配置，可导出 SVG / PNG', 'View and switch trajectories by ID, time-colored rendering, start/end markers, grid, axis labels, colorbar, export to SVG / PNG'),
     },
     {
-      icon: Zap,
-      title: t('高效性能', 'High Performance'),
-      description: t('原生应用性能，流畅运行，快速响应，提升工作效率', 'Native application performance, smooth operation, fast response, boosting productivity'),
+      icon: Film,
+      title: t('轨迹 GIF 动画', 'Trajectory GIF Animation'),
+      description: t('逐帧轨迹动画，可配置帧率和尾迹长度，支持时间进度条和坐标轴提示，导出为 GIF', 'Frame-by-frame trajectory animation, configurable FPS and trail length, optional time bar and axis hints, export as GIF'),
     },
     {
-      icon: Shield,
-      title: t('安全可靠', 'Secure & Reliable'),
-      description: t('本地数据处理，保护隐私安全，离线也能正常使用', 'Local data processing, privacy protection, works offline'),
+      icon: BarChart3,
+      title: t('MSD 可视化', 'MSD Visualization'),
+      description: t('绘制 EAMSD 和逐轨迹 TAMSD 曲线，支持均值±标准差带显示和对数坐标，便于扩散分析', 'Plot EAMSD and per-trajectory TAMSD, optional mean ± std band, log-scale plotting for diffusion analysis'),
     },
     {
-      icon: Globe,
-      title: t('Windows 平台', 'Windows Platform'),
-      description: t('专为 Windows 平台优化，与系统深度集成，原生体验', 'Optimized for Windows platform, deep system integration, native experience'),
+      icon: FileInput,
+      title: t('多格式支持', 'Multi-Format Support'),
+      description: t('支持 TrackMate CSV、NPY、NPZ 等多种输入格式，自动检测常见轨迹键名，即开即用', 'Supports TrackMate CSV, NPY, NPZ input formats, auto-detects common trajectory keys, ready to use'),
     },
   ];
 
@@ -52,8 +52,8 @@ export default function VisualSPT() {
               <h1 className="text-4xl sm:text-6xl font-bold uppercase tracking-tight mb-4 sm:mb-6">visualSPT</h1>
               <p className="text-base sm:text-xl leading-relaxed mb-6 sm:mb-8 opacity-80">
                 {t(
-                  '专业的桌面端可视化工具，为数据分析和展示提供强大支持。简洁的界面设计，强大的功能实现，助力高效工作。',
-                  'A professional desktop visualization tool providing powerful support for data analysis and presentation. Clean interface design, powerful features, boosting work efficiency.'
+                  '基于 pywebview + Python 构建的单粒子追踪（SPT）数据桌面可视化工具。支持静态轨迹绘图、轨迹 GIF 动画和 MSD 曲线可视化，助力科研数据分析。',
+                  'A desktop visualization tool for Single Particle Tracking (SPT) data, built with pywebview + Python. Supports static trajectory plotting, trajectory GIF animation, and MSD curve visualization for research data analysis.'
                 )}
               </p>
               <div className="flex flex-wrap gap-3 sm:gap-4">
@@ -70,13 +70,23 @@ export default function VisualSPT() {
                 >
                   <span className="font-bold uppercase tracking-wider text-sm">{t('了解更多', 'Learn More')}</span>
                 </a>
+                <a
+                  href="https://github.com/JuneDrinleng/visualSPT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit visualSPT GitHub repository"
+                  className="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 px-6 sm:px-8 py-3 sm:py-4 border-2 border-black dark:border-neutral-100 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                  <span className="font-bold uppercase tracking-wider text-sm">GitHub</span>
+                </a>
               </div>
             </div>
             <div className="border-4 border-black dark:border-neutral-100 overflow-hidden">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1768827642561-4d06523d0324?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNrdG9wJTIwd29ya3NwYWNlJTIwY29tcHV0ZXIlMjBzY3JlZW58ZW58MXx8fHwxNzcyNTE2ODc2fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="visualSPT"
-                className="w-full h-auto grayscale"
+                src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPTdf16a8220b1fff2d0eddf417c6331c86.png"
+                alt="visualSPT - Trajectory Visualization"
+                className="w-full h-auto"
               />
             </div>
           </div>
@@ -105,6 +115,32 @@ export default function VisualSPT() {
         </div>
       </section>
 
+      {/* Product Preview Section */}
+      <section className="border-b-4 border-black dark:border-neutral-100">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('产品预览', 'Product Preview')}</h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Screenshots</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
+              <ImageWithFallback
+                src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPTdf16a8220b1fff2d0eddf417c6331c86.png"
+                alt={t('visualSPT 轨迹可视化界面', 'visualSPT Trajectory Visualization Interface')}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
+              <ImageWithFallback
+                src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPT59d896449e34543b2bfc4e3614d5caa5.png"
+                alt={t('visualSPT MSD 分析界面', 'visualSPT MSD Analysis Interface')}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Download Section */}
       <section id="download" className="border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
@@ -114,12 +150,13 @@ export default function VisualSPT() {
           </div>
           <div className="max-w-md mx-auto">
             <a
-              href="#"
+              href="https://github.com/JuneDrinleng/visualSPT/releases/download/v2.7/visualSPT.exe"
               className="block border-2 border-black dark:border-neutral-100 p-12 text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
             >
               <MonitorDown className="w-16 h-16 mx-auto mb-6" strokeWidth={1.5} />
               <h3 className="text-2xl font-bold uppercase tracking-tight mb-2">Windows</h3>
-              <p className="text-sm opacity-60 mb-6 group-hover:opacity-100">Windows 10/11</p>
+              <p className="text-sm opacity-60 mb-2 group-hover:opacity-100">Windows 10/11</p>
+              <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">v2.7 · ~48 MB</p>
               <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
                 <Download className="w-4 h-4" />
                 <span>{t('下载安装包', 'Download Installer')}</span>
