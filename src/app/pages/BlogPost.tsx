@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
+import GitalkComments from '../components/GitalkComments';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -153,6 +154,11 @@ export default function BlogPost() {
             {post.content}
           </ReactMarkdown>
         </div>
+
+        {/* Comments Section */}
+        {post.metadata.comments && slug && (
+          <GitalkComments slug={slug} title={post.metadata.title} />
+        )}
       </article>
 
       {/* Footer */}
