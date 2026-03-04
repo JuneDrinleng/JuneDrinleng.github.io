@@ -51,7 +51,7 @@ export default function Blog() {
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <div className="max-w-6xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-6">
           <Link to="/" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity mb-6 sm:mb-8">
             <ArrowLeft className="w-5 h-5" />
             <span className="uppercase tracking-wider text-sm font-medium">{t('返回导航', 'Back to Home')}</span>
@@ -91,7 +91,7 @@ export default function Blog() {
       </header>
 
       {/* Blog Posts List */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="max-w-6xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
         <div className="space-y-6 sm:space-y-8">
           {paginatedPosts.map((post) => (
             <article key={post.slug} className="border-2 border-black dark:border-neutral-100 p-4 sm:p-8 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
@@ -177,7 +177,7 @@ export default function Blog() {
 
       {/* Footer */}
       <footer className="border-t-2 border-black dark:border-neutral-100 mt-8 sm:mt-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
+        <div className="max-w-6xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
             © 2025 LUNE. All Rights Reserved
           </p>
