@@ -68,7 +68,7 @@ export default function BlogPost() {
       <div className="lg:flex lg:flex-1 lg:min-h-0">
         {/* TOC Sidebar - desktop only */}
         {isDesktop && (
-          <aside className="w-64 shrink-0 overflow-y-auto border-r-2 border-black dark:border-neutral-100">
+          <aside className="w-72 shrink-0 overflow-y-auto border-r border-black/10 dark:border-neutral-100/10 bg-gray-50/50 dark:bg-neutral-800/30">
             <TableOfContents headings={headings} contentRef={contentRef} />
           </aside>
         )}
@@ -258,9 +258,9 @@ export default function BlogPost() {
 
         {/* Comments Sidebar - desktop only */}
         {isDesktop && showComments && (
-          <aside className="w-80 shrink-0 overflow-y-auto border-l-2 border-black dark:border-neutral-100">
+          <aside className="w-96 shrink-0 overflow-y-auto border-l border-black/10 dark:border-neutral-100/10 bg-gray-50/50 dark:bg-neutral-800/30">
             <div className="p-6">
-              <GiscusComments slug={slug!} />
+              <GiscusComments slug={slug!} sidebar />
             </div>
           </aside>
         )}
