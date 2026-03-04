@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import GitalkComments from '../components/GitalkComments';
+import GiscusComments from '../components/GiscusComments';
 import TableOfContents, { extractHeadings, slugify } from '../components/TableOfContents';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
@@ -243,9 +243,7 @@ export default function BlogPost() {
             </nav>
 
             {/* Comments Section - mobile only (inline) */}
-            {!isDesktop && showComments && (
-              <GitalkComments slug={slug!} title={post.metadata.title} />
-            )}
+            {!isDesktop && showComments && <GiscusComments slug={slug!} />}
           </article>
 
           {/* Footer */}
@@ -262,7 +260,7 @@ export default function BlogPost() {
         {isDesktop && showComments && (
           <aside className="w-80 shrink-0 overflow-y-auto border-l-2 border-black dark:border-neutral-100">
             <div className="p-6">
-              <GitalkComments slug={slug!} title={post.metadata.title} />
+              <GiscusComments slug={slug!} />
             </div>
           </aside>
         )}

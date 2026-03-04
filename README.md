@@ -5,7 +5,7 @@ LUNE 个人站点源码，基于 Vite + React 构建，包含：
 - 首页导航（Blog / visualSPT / Poop）
 - 中英双语博客系统（`src/posts` 与 `src/posts-en`）
 - Markdown 渲染（GFM + 数学公式 KaTeX）
-- Gitalk 评论集成
+- Giscus 评论系统（GitHub Discussions）
 - 主题切换（浅色/深色）与语言切换（中文/English）
 - GitHub Pages 自动部署
 
@@ -18,7 +18,7 @@ LUNE 个人站点源码，基于 Vite + React 构建，包含：
 - Vite 6
 - Tailwind CSS 4
 - React Markdown + remark/rehype（GFM、Math、KaTeX）
-- Gitalk
+- Giscus
 - Python 脚本（Ollama）用于中文博客自动翻译到英文
 
 ## 项目结构
@@ -28,7 +28,7 @@ LUNE 个人站点源码，基于 Vite + React 构建，包含：
 ├─ src/
 │  ├─ app/
 │  │  ├─ pages/                # Home / Blog / BlogPost / VisualSPT / FocusTimer
-│  │  ├─ components/           # 通用组件与 Gitalk 组件
+│  │  ├─ components/           # 通用组件与评论组件
 │  │  ├─ contexts/             # ThemeContext / LanguageContext
 │  │  ├─ utils/posts.ts        # 读取并解析 markdown 博客
 │  │  └─ routes.ts             # 路由定义
@@ -65,18 +65,20 @@ npm run dev
 npm run build
 ```
 
-## 环境变量（Gitalk）
+## 环境变量（Giscus）
 
-在项目根目录创建 `.env`（不要提交真实密钥），示例：
+在项目根目录创建 `.env`（不要提交到仓库），示例：
 
 ```env
-VITE_GITALK_CLIENT_ID=your_client_id
-VITE_GITALK_CLIENT_SECRET=your_client_secret
-VITE_GITALK_REPO=JuneDrinleng.github.io
-VITE_GITALK_OWNER=JuneDrinleng
+VITE_GISCUS_REPO=JuneDrinleng/JuneDrinleng.github.io
+VITE_GISCUS_REPO_ID=R_xxx
+VITE_GISCUS_CATEGORY=Announcements
+VITE_GISCUS_CATEGORY_ID=DIC_xxx
 ```
 
-代码读取位置：`src/app/components/GitalkComments.tsx`。
+代码读取位置：`src/app/components/GiscusComments.tsx`。
+
+> 说明：Giscus 不需要 `client_secret`，更适合 GitHub Pages 这类纯前端静态站。
 
 ## 博客写作规范
 
