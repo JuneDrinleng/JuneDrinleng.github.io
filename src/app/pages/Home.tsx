@@ -17,7 +17,7 @@ export default function Home() {
       url: "/blog",
       description: t(
         "分享技术见解、产品思考与创作心得，记录成长与探索的旅程",
-        "Sharing technical insights, product thinking and creative experiences, documenting growth and exploration"
+        "Sharing technical insights, product thinking and creative experiences, documenting growth and exploration",
       ),
       schematic: <BlogSchematic />,
     },
@@ -26,7 +26,7 @@ export default function Home() {
       url: "/visualspt",
       description: t(
         "强大的桌面端可视化工具，提升工作效率，优化数据展示体验",
-        "Powerful desktop visualization tool to boost productivity and optimize data presentation"
+        "Powerful desktop visualization tool to boost productivity and optimize data presentation",
       ),
       schematic: <VisualSPTMiniSchematic />,
     },
@@ -149,7 +149,11 @@ export default function Home() {
           {/* 产品卡片布局：Blog 和 visualSPT 并排等大 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {featuredProducts.map((product) => (
-              <Link key={product.title} to={product.url} className="block group">
+              <Link
+                key={product.title}
+                to={product.url}
+                className="block group"
+              >
                 <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-48 sm:h-64">
                     {product.schematic}
@@ -178,7 +182,7 @@ export default function Home() {
       <footer className="border-t-2 border-black dark:border-neutral-100 mt-8 sm:mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
-            © 2025 LUNE. All Rights Reserved
+            © 2023 LUNE. All Rights Reserved
           </p>
         </div>
       </footer>
