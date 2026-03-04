@@ -1,6 +1,7 @@
-import { ArrowLeft, Calendar, Tag, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, User, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useParams } from 'react-router';
-import { getPostBySlug } from '../utils/posts';
+import { getPostBySlug, getAdjacentPosts } from '../utils/posts';
+import { useLanguage } from '../contexts/LanguageContext';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -10,15 +11,19 @@ import GitalkComments from '../components/GitalkComments';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getPostBySlug(slug) : undefined;
+  const { language, t } = useLanguage();
+  const post = slug ? getPostBySlug(slug, language) : undefined;
+  const { prev, next } = slug ? getAdjacentPosts(slug, language) : { prev: undefined, next: undefined };
+
+  const dateLocale = language === 'zh' ? 'zh-CN' : 'en-US';
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white text-black flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">文章未找到</h1>
-          <Link to="/blog" className="border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors">
-            返回博客列表
+          <h1 className="text-4xl font-bold mb-4">{t('文章未找到', 'Post Not Found')}</h1>
+          <Link to="/blog" className="border-2 border-black dark:border-neutral-100 px-6 py-3 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+            {t('返回博客列表', 'Back to Blog')}
           </Link>
         </div>
       </div>
@@ -26,13 +31,13 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
       {/* Header */}
-      <header className="border-b-4 border-black">
+      <header className="border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <Link to="/blog" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity">
             <ArrowLeft className="w-5 h-5" />
-            <span className="uppercase tracking-wider text-sm font-medium">返回博客</span>
+            <span className="uppercase tracking-wider text-sm font-medium">{t('返回博客', 'Back to Blog')}</span>
           </Link>
         </div>
       </header>
@@ -40,14 +45,14 @@ export default function BlogPost() {
       {/* Article */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Article Header */}
-        <header className="mb-8 sm:mb-12 pb-6 sm:pb-8 border-b-2 border-black">
+        <header className="mb-8 sm:mb-12 pb-6 sm:pb-8 border-b-2 border-black dark:border-neutral-100">
           <h1 className="text-2xl sm:text-5xl font-bold uppercase tracking-tight mb-4 sm:mb-6">{post.metadata.title}</h1>
           
           <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 opacity-60">
               <Calendar className="w-4 h-4" />
               <time dateTime={post.metadata.date}>
-                {new Date(post.metadata.date).toLocaleDateString('zh-CN', {
+                {new Date(post.metadata.date).toLocaleDateString(dateLocale, {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -67,7 +72,7 @@ export default function BlogPost() {
                 <Tag className="w-4 h-4 opacity-60" />
                 <div className="flex gap-2">
                   {post.metadata.tags.map((tag) => (
-                    <span key={tag} className="border border-black px-3 py-1 text-xs uppercase font-medium hover:bg-black hover:text-white transition-colors">
+                    <span key={tag} className="border border-black dark:border-neutral-100 px-3 py-1 text-xs uppercase font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
                       {tag}
                     </span>
                   ))}
@@ -78,13 +83,13 @@ export default function BlogPost() {
         </header>
 
         {/* Article Content */}
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg dark:prose-invert max-w-none">
           <ReactMarkdown 
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{
               h2: ({ children }) => (
-                <h2 className="text-3xl font-bold uppercase tracking-tight mt-12 mb-6 pb-3 border-b-2 border-black">
+                <h2 className="text-3xl font-bold uppercase tracking-tight mt-12 mb-6 pb-3 border-b-2 border-black dark:border-neutral-100">
                   {children}
                 </h2>
               ),
@@ -115,7 +120,7 @@ export default function BlogPost() {
               ),
               li: ({ children }) => (
                 <li className="flex items-start gap-3">
-                  <span className="inline-block w-2 h-2 bg-black mt-2.5 flex-shrink-0"></span>
+                  <span className="inline-block w-2 h-2 bg-black dark:bg-neutral-100 mt-2.5 flex-shrink-0"></span>
                   <span className="flex-1">{children}</span>
                 </li>
               ),
@@ -123,7 +128,7 @@ export default function BlogPost() {
                 const isInline = !className;
                 if (isInline) {
                   return (
-                    <code className="bg-gray-100 border border-black px-2 py-1 text-sm font-mono" {...props}>
+                    <code className="bg-gray-100 dark:bg-neutral-800 border border-black dark:border-neutral-600 px-2 py-1 text-sm font-mono" {...props}>
                       {children}
                     </code>
                   );
@@ -135,17 +140,17 @@ export default function BlogPost() {
                 );
               },
               pre: ({ children }) => (
-                <pre className="bg-gray-50 border-2 border-black p-6 overflow-x-auto mb-6 font-mono text-sm">
+                <pre className="bg-gray-50 dark:bg-neutral-800 border-2 border-black dark:border-neutral-600 p-6 overflow-x-auto mb-6 font-mono text-sm">
                   {children}
                 </pre>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-black pl-6 my-6 italic opacity-80">
+                <blockquote className="border-l-4 border-black dark:border-neutral-100 pl-6 my-6 italic opacity-80">
                   {children}
                 </blockquote>
               ),
               a: ({ href, children }) => (
-                <a href={href} className="border-b-2 border-black hover:bg-black hover:text-white transition-colors">
+                <a href={href} className="border-b-2 border-black dark:border-neutral-100 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
                   {children}
                 </a>
               ),
@@ -155,6 +160,47 @@ export default function BlogPost() {
           </ReactMarkdown>
         </div>
 
+        {/* Previous / Next Post Navigation */}
+        <nav className="mt-12 pt-8 border-t-2 border-black dark:border-neutral-100">
+          <h2 className="text-lg font-bold uppercase tracking-tight mb-6 opacity-60">
+            {t('继续阅读', 'Continue Reading')}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {prev ? (
+              <Link
+                to={`/blog/${prev.slug}`}
+                className="group border-2 border-black dark:border-neutral-100 p-4 sm:p-6 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wider opacity-60 group-hover:opacity-80">
+                  <ChevronLeft className="w-4 h-4" />
+                  <span>{t('上一篇', 'Previous')}</span>
+                </div>
+                <p className="font-bold text-sm sm:text-base line-clamp-2">
+                  {prev.metadata.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+            {next ? (
+              <Link
+                to={`/blog/${next.slug}`}
+                className="group border-2 border-black dark:border-neutral-100 p-4 sm:p-6 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-right"
+              >
+                <div className="flex items-center justify-end gap-2 mb-2 text-xs uppercase tracking-wider opacity-60 group-hover:opacity-80">
+                  <span>{t('下一篇', 'Next')}</span>
+                  <ChevronRight className="w-4 h-4" />
+                </div>
+                <p className="font-bold text-sm sm:text-base line-clamp-2">
+                  {next.metadata.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+          </div>
+        </nav>
+
         {/* Comments Section */}
         {post.metadata.comments && slug && (
           <GitalkComments slug={slug} title={post.metadata.title} />
@@ -162,7 +208,7 @@ export default function BlogPost() {
       </article>
 
       {/* Footer */}
-      <footer className="border-t-2 border-black mt-8 sm:mt-12">
+      <footer className="border-t-2 border-black dark:border-neutral-100 mt-8 sm:mt-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
             © 2025 LUNE. All Rights Reserved
