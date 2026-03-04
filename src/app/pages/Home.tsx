@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router";
 import { useState, useMemo } from "react";
 import { getAllPosts } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
+import BlogSchematic from "../components/BlogSchematic";
+import VisualSPTMiniSchematic from "../components/VisualSPTMiniSchematic";
+import FocusTimerSchematic from "../components/FocusTimerSchematic";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,8 +21,7 @@ export default function Home() {
         "分享技术见解、产品思考与创作心得，记录成长与探索的旅程",
         "Sharing technical insights, product thinking and creative experiences, documenting growth and exploration"
       ),
-      imageUrl:
-        "https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/imgb67b556e0d0d9e00f7c00e872c694d53.png",
+      schematic: <BlogSchematic />,
     },
     {
       title: "visualSPT",
@@ -28,8 +30,7 @@ export default function Home() {
         "强大的桌面端可视化工具，提升工作效率，优化数据展示体验",
         "Powerful desktop visualization tool to boost productivity and optimize data presentation"
       ),
-      imageUrl:
-        "https://images.unsplash.com/photo-1764557222706-a8b967702853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNrdG9wJTIwc29mdHdhcmUlMjBhcHBsaWNhdGlvbnxlbnwxfHx8fDE3NzI1MTY4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      schematic: <VisualSPTMiniSchematic />,
     },
     {
       title: "Poop",
@@ -38,8 +39,7 @@ export default function Home() {
         "专为移动端设计的专注打卡应用，帮助你养成良好习惯，提升专注力",
         "A mobile-first focus & habit tracker app to help you build good habits and boost concentration"
       ),
-      imageUrl:
-        "https://images.unsplash.com/photo-1660810731526-0720827cbd38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2N1cyUyMHRpbWVyJTIwcHJvZHVjdGl2aXR5JTIwbW9iaWxlfGVufDF8fHx8MTc3MjUxNjg3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      schematic: <FocusTimerSchematic />,
     },
   ];
 
@@ -162,12 +162,8 @@ export default function Home() {
             {/* 左侧 Blog 卡片 - 占满整列高度 */}
             <Link to={featuredProducts[0].url} className="block group">
               <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
-                <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 flex-1 min-h-48 sm:min-h-64">
-                  <img
-                    src={featuredProducts[0].imageUrl}
-                    alt={featuredProducts[0].title}
-                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                  />
+                <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-48 sm:h-64 lg:flex-1 lg:min-h-48">
+                  {featuredProducts[0].schematic}
                 </div>
                 <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex flex-col">
                   <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
@@ -191,11 +187,7 @@ export default function Home() {
               <Link to={featuredProducts[1].url} className="block group flex-1">
                 <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-40 sm:h-48">
-                    <img
-                      src={featuredProducts[1].imageUrl}
-                      alt={featuredProducts[1].title}
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                    />
+                    {featuredProducts[1].schematic}
                   </div>
                   <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex-1 flex flex-col">
                     <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
@@ -217,11 +209,7 @@ export default function Home() {
               <Link to={featuredProducts[2].url} className="block group flex-1">
                 <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-40 sm:h-48">
-                    <img
-                      src={featuredProducts[2].imageUrl}
-                      alt={featuredProducts[2].title}
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                    />
+                    {featuredProducts[2].schematic}
                   </div>
                   <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex-1 flex flex-col">
                     <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
