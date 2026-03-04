@@ -18,7 +18,7 @@ The note mainly introduces the basics of single particle tracing technology, inc
 
 #### 1.1.1 Overview
 
-The optical microscope is an optical refraction system composed of two groups of lenses, in which the lens group with a short focal length, close to the observation object, and imaging, is called the objective lens, and the lens group with a long focal length, close to the eye pupil, and imaging, is called the eyepiece lens.The observation object located in front of the objective is enlarged by the objective lens to form an inverted solid image.Optical microscopes are divided into upright microscopes and \* _ [inverted microscopes] (http://www.mshot.com/ProSort/dzxwj.html) _ \*
+The optical microscope is an optical refraction system composed of two groups of lenses, in which the lens group with a short focal length, close to the observation object, and imaging, is called the objective lens, and the lens group with a long focal length, close to the eye pupil, and imaging, is called the eyepiece lens.The observation object located in front of the objective is enlarged by the objective lens to form an inverted solid image.Optical microscopes are divided into upright microscopes and [inverted microscopes](http://www.mshot.com/ProSort/dzxwj.html)
 
 ![img](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/v2-a48b48682b57c084c4237d3402128727_1440w.webp)
 
@@ -26,11 +26,11 @@ Then, the real image is magnified by the eyepiece as a secondary magnification, 
 
 #### 1.1.2 Differences
 
-1. The upright microscope objective conversion plate is facing down, and the stage is below the objective; the objective of \* _ [inverted microscope] (http://www.mshot.com/ProSort/dzxwj.html) _ \* is facing up, and the stage is above the objective.
+1. The upright microscope objective conversion plate is facing down, and the stage is below the objective; the objective of [inverted microscope](http://www.mshot.com/ProSort/dzxwj.html) is facing up, and the stage is above the objective.
 
-2. Upright microscope objective suitable for viewing slices, etc.; \* _ [inverted microscope] (http://www.mshot.com/ProSort/dzxwj.html) _ \* suitable for viewing living cells in a culture dish
+2. Upright microscope objective suitable for viewing slices, etc.; [inverted microscope](http://www.mshot.com/ProSort/dzxwj.html) suitable for viewing living cells in a culture dish
 
-3. The working distance of the upright microscope objective is relatively short; \* _ [Inverted microscope] (http://www.mshot.com/ProSort/dzxwj.html) _ \* Long working distance
+3. The working distance of the upright microscope objective is relatively short; [Inverted microscope](http://www.mshot.com/ProSort/dzxwj.html) Long working distance
 
 4.The upright microscope can select the 100x objective lens, and the 10x eyepiece can achieve a high magnification of 1000x; the maximum magnification of the objective lens of the inverted microscope is only 60x, because at 100x, the objective lens is almost close to the sample, and the working distance is already less than the thickness of the bottom of the container, which means that the objective lens has already hit the bottom of the container before successful focusing, so it is impossible to focus at all.
 
@@ -42,16 +42,17 @@ Light sheet microscopes differ from traditional microscopes in the way they exci
 
 #### 1.2.1 Benefits of Optical Films
 
-1. - _\ _ Improved image and background contrast (Signal-to-Background Ratio) and axial resolution \* _: Flake lighting technology ensures that samples above and below the focal plane are not excitedHair with _ _ optical sectioning _ _ similar to confocal microscopy;\ _
-2. - _\ _ Reduced photobleaching and phototoxicity \* _: Phototoxicity can be reduced by a factor of _ _ 20-100 _ _ compared to conventional fluorescent illumination techniques, so that we can perform long-term 3D imaging of living biological samples under conditions closer to physiological conditions;\ _ 3._Compared with laser confocal and two-photon microscopy using \* * point scanning imaging * * with low QE PMT, optical sheet microscopy uses * * surface imaging * * with a high QE CCD or sCMOS camera, which greatly improves the imaging speed and the signal-to-noise ratio of the image.Confocal samples take * * minutes or even hours * * to take, and light microscopes take * * seconds to minutes * \*.Therefore, light sheet microscopes are also particularly suitable for imaging large samples._
+1. Improved image and background contrast (Signal-to-Background Ratio) and axial resolution: Flake lighting technology ensures that samples above and below the focal plane are not excitedHair with optical sectioning similar to confocal microscopy;
+2. Reduced photobleaching and phototoxicity : Phototoxicity can be reduced by a factor of 20-100 compared to conventional fluorescent illumination techniques, so that we can perform long-term 3D imaging of living biological samples under conditions closer to physiological conditions;
+3. Compared with laser confocal and two-photon microscopy using point scanning imaging with low QE PMT, optical sheet microscopy uses surface imaging with a high QE CCD or sCMOS camera, which greatly improves the imaging speed and the signal-to-noise ratio of the image.Confocal samples take minutes or even hours to take, and light microscopes take seconds to minutes .Therefore, light sheet microscopes are also particularly suitable for imaging large samples.
 
 #### 1.2.2 Implementation of Optical Films
 
-The easiest way to produce a light sheet is to introduce a \* _ cylindrical lens _ \* in the light path.Through the light of this lens, the width remains unchanged, but is compressed into a plane in height, and then through the illumination objective, a "light sheet" is formed on the focal plane.The imaging objective is placed perpendicular to the illumination objective and focused on the optical plate to obtain a fluorescence signal.
+The easiest way to produce a light sheet is to introduce a cylindrical lens in the light path.Through the light of this lens, the width remains unchanged, but is compressed into a plane in height, and then through the illumination objective, a "light sheet" is formed on the focal plane.The imaging objective is placed perpendicular to the illumination objective and focused on the optical plate to obtain a fluorescence signal.
 
 ![img](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/v2-b1988dea4dbeff3bf2c7e6bff02e2e35_1440w.jpeg)
 
-The width and thickness of the light sheet generated using this method is determined by the NA value of the illumination objective.As shown in Figure 5, the actual shape of the illumination beam is a two-end wide, thin "hourglass" shape in the middle. ω0 is the thickness of the beam waist, that is, the thickness of the light sheet, and b is the uniform illumination width, that is, the effective field of view.
+The width and thickness of the light sheet generated using this method is determined by the NA value of the illumination objective.As shown in Figure 5, the actual shape of the illumination beam is a two-end wide, thin "hourglass" shape in the middle. $ω_0$ is the thickness of the beam waist, that is, the thickness of the light sheet, and b is the uniform illumination width, that is, the effective field of view.
 
 NA value: The numerical aperture (NA) of an optical system is a dimensionless number that measures the angular range of light that the system is capable of collecting.
 
@@ -59,8 +60,9 @@ NA value: The numerical aperture (NA) of an optical system is a dimensionless nu
 
 Therefore, the use of a smaller NA illumination objective can achieve a wider range of uniform illumination, that is, a larger field of view; but correspondingly, the thickness of the light sheet is also larger, resulting in a lower axial resolution.And high NA objective lens productionThe raw light sheet will have a smaller field of view, but a better axial resolution.
 
-> - _\ _ Note that \* _, if the NA value of the imaging objective is so high that its depth of field is less than the thickness of the optical sheet, then the axial resolution of the system is mainly determined by the depth of field of the imaging objective.However, this creates a problem with ordinary fluorescent illumination, that is, some samples above and below the focal plane will be illuminated, and unnecessary phototoxicity and stray light will negatively affect the imaging effect.\ _
->   _If the NA value of the imaging objective is low and the thickness of the light sheet is smaller than its depth of field, then the axial resolution of the system is determined by the thickness of the light sheet._
+Note that, if the NA value of the imaging objective is so high that its depth of field is less than the thickness of the optical sheet, then the axial resolution of the system is mainly determined by the depth of field of the imaging objective.However, this creates a problem with ordinary fluorescent illumination, that is, some samples above and below the focal plane will be illuminated, and unnecessary phototoxicity and stray light will negatively affect the imaging effect.
+
+If the NA value of the imaging objective is low and the thickness of the light sheet is smaller than its depth of field, then the axial resolution of the system is determined by the thickness of the light sheet.\_
 
 Detailed Reference:
 
@@ -88,7 +90,7 @@ The optical path structure of the differential interferometric phase contrast mi
 
 ![image-20230526095749600](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20230526095749600.png)
 
-condenserWollaston Prism: Wollaston prism manipulates [polarized light] (<https://en.wikipedia.org/wiki/Polarization_(waves)>).It splits light into two independent linear [polarized] (https://en.wikipedia.org/wiki/Polarizer) exit beams
+condenserWollaston Prism: Wollaston prism manipulates [polarized light](<https://en.wikipedia.org/wiki/Polarization_(waves)>).It splits light into two independent linear [polarized](https://en.wikipedia.org/wiki/Polarizer) exit beams
 
 The laser source emits laser light, and polarized light in a specific polarization direction is obtained through the polarizer.
 
