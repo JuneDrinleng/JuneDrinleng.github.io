@@ -57,13 +57,13 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <header className="border-b-4 border-black">
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <Link to="/" className="block text-center mb-6">
-            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">
-              June's Navigator
+            <h1 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight mb-2">
+              LUNE
             </h1>
-            <p className="text-sm uppercase tracking-widest opacity-60">
-              Homepage Navigator
+            <p className="text-xs sm:text-sm uppercase tracking-widest opacity-60">
+              SPTer's Home
             </p>
           </Link>
 
@@ -76,7 +76,7 @@ export default function Home() {
                 placeholder="searching the blog/tag..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full border-2 border-black px-12 py-3 focus:outline-none focus:bg-gray-50"
+                className="w-full border-2 border-black px-12 py-3 text-sm sm:text-base focus:outline-none focus:bg-gray-50"
               />
               {searchQuery && (
                 <button
@@ -137,36 +137,36 @@ export default function Home() {
 
       {/* Featured Products Section */}
       <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold uppercase tracking-tight mb-2">
-              Featured Products
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight mb-2">
+              Explore
             </h2>
-            <p className="text-sm uppercase tracking-wider opacity-60">
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
               Select Your Need
             </p>
           </div>
 
           {/* 优化后的产品卡片布局：左博客，右上visualSPT，右下Poop */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {/* 左侧 Blog 卡片 - 占满整列高度 */}
             <Link to={featuredProducts[0].url} className="block group">
               <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
-                <div className="relative overflow-hidden bg-gray-100 flex-1 min-h-64">
+                <div className="relative overflow-hidden bg-gray-100 flex-1 min-h-48 sm:min-h-64">
                   <img
                     src={featuredProducts[0].imageUrl}
                     alt={featuredProducts[0].title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-6 bg-white flex flex-col">
-                  <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
+                <div className="p-4 sm:p-6 bg-white flex flex-col">
+                  <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
                     {featuredProducts[0].title}
                   </h3>
-                  <p className="text-sm leading-relaxed opacity-70">
+                  <p className="text-xs sm:text-sm leading-relaxed opacity-70">
                     {featuredProducts[0].description}
                   </p>
-                  <div className="mt-4 pt-4 border-t-2 border-black">
+                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
                     <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                       了解更多 →
                     </span>
@@ -176,25 +176,25 @@ export default function Home() {
             </Link>
 
             {/* 右侧两个卡片 */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
               {/* 右上 visualSPT */}
               <Link to={featuredProducts[1].url} className="block group flex-1">
                 <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
-                  <div className="relative overflow-hidden bg-gray-100 h-48">
+                  <div className="relative overflow-hidden bg-gray-100 h-40 sm:h-48">
                     <img
                       src={featuredProducts[1].imageUrl}
                       alt={featuredProducts[1].title}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-6 bg-white flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
+                  <div className="p-4 sm:p-6 bg-white flex-1 flex flex-col">
+                    <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
                       {featuredProducts[1].title}
                     </h3>
-                    <p className="text-sm leading-relaxed opacity-70 flex-1">
+                    <p className="text-xs sm:text-sm leading-relaxed opacity-70 flex-1">
                       {featuredProducts[1].description}
                     </p>
-                    <div className="mt-4 pt-4 border-t-2 border-black">
+                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                         了解更多 →
                       </span>
@@ -206,21 +206,21 @@ export default function Home() {
               {/* 右下 Poop */}
               <Link to={featuredProducts[2].url} className="block group flex-1">
                 <div className="border-2 border-black overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 h-full flex flex-col">
-                  <div className="relative overflow-hidden bg-gray-100 h-48">
+                  <div className="relative overflow-hidden bg-gray-100 h-40 sm:h-48">
                     <img
                       src={featuredProducts[2].imageUrl}
                       alt={featuredProducts[2].title}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-6 bg-white flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">
+                  <div className="p-4 sm:p-6 bg-white flex-1 flex flex-col">
+                    <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
                       {featuredProducts[2].title}
                     </h3>
-                    <p className="text-sm leading-relaxed opacity-70 flex-1">
+                    <p className="text-xs sm:text-sm leading-relaxed opacity-70 flex-1">
                       {featuredProducts[2].description}
                     </p>
-                    <div className="mt-4 pt-4 border-t-2 border-black">
+                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
                       <span className="text-xs uppercase tracking-wider font-bold opacity-60 group-hover:opacity-100 transition-opacity">
                         了解更多 →
                       </span>
@@ -234,10 +234,10 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t-2 border-black mt-12">
-        <div className="max-w-7xl mx-auto px-6 py-8 text-center">
-          <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2023 All Rights Reserved
+      <footer className="border-t-2 border-black mt-8 sm:mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
+          <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+            © 2025 LUNE. All Rights Reserved
           </p>
         </div>
       </footer>
