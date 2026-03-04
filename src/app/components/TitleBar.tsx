@@ -9,7 +9,7 @@ export default function TitleBar() {
 
   return (
     <nav className="bg-black text-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-10 sm:h-12">
+      <div className="px-4 sm:px-6 lg:px-10 flex items-center justify-between h-10 sm:h-12">
         {/* Left: Site title */}
         <Link
           to="/"
