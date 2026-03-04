@@ -67,7 +67,7 @@ export default function Home() {
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
           <Link to="/" className="block text-center mb-6">
             <h1 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight mb-2">
               LUNE
@@ -147,7 +147,7 @@ export default function Home() {
 
       {/* Featured Products Section */}
       <section className="bg-white dark:bg-neutral-900">
-        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
           <div className="mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight mb-2">
               {t("探索", "Explore")}
@@ -233,7 +233,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t-2 border-black dark:border-neutral-100 mt-8 sm:mt-12">
-        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
             © 2025 LUNE. All Rights Reserved
           </p>
