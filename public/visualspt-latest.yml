@@ -1,10 +1,14 @@
-version: "2.10"
+version: "2.11"
 files:
-  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.10/visualSPT.exe"
+  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.11/visualSPT.exe"
     name: "visualSPT.exe"
-    size: 50395001
-    sha256: "600f77b8821500b38b31d8ec12215f17ddfceeb51554c6ae73d668220467c562"
-releaseTag: "v2.10"
-releasePage: "https://github.com/JuneDrinleng/visualSPT/releases/tag/v2.10"
-notes: "Synced for website download card"
-createdAt: "2026-03-04T14:53:11Z"
+    size: 50394021
+    sha256: "b82b59368f3fe0f0b5e6eb2676b10001221705d369a1d03ab74ff9c269cefb70"
+  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.11/visualSPT-mac.dmg"
+    name: "visualSPT-mac.dmg"
+    size: 38735260
+    sha256: "d46f9ff845f18bf0b27571c000a90972eb4c4e67735bbfc901cbf53c81c5cf76"
+releaseTag: "v2.11"
+releasePage: "https://github.com/JuneDrinleng/visualSPT/releases/tag/v2.11"
+notes: "Auto-built from JuneDrinleng/visualSPT@dc39e163e2230ca52920a4793d6b624cf06bd77d"
+createdAt: "2026-03-04T15:20:20Z"
