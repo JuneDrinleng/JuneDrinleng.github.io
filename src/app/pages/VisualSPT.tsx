@@ -2,6 +2,7 @@ import { ArrowLeft, Download, Route, Film, BarChart3, FileInput, MonitorDown, Gi
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useLanguage } from '../contexts/LanguageContext';
+import VisualSPTSchematic from '../components/VisualSPTSchematic';
 
 export default function VisualSPT() {
   const { t } = useLanguage();
@@ -83,11 +84,7 @@ export default function VisualSPT() {
               </div>
             </div>
             <div className="border-4 border-black dark:border-neutral-100 overflow-hidden">
-              <ImageWithFallback
-                src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPTdf16a8220b1fff2d0eddf417c6331c86.png"
-                alt="visualSPT - Trajectory Visualization"
-                className="w-full h-auto"
-              />
+              <VisualSPTSchematic />
             </div>
           </div>
         </div>
