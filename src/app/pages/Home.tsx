@@ -14,7 +14,7 @@ export default function Home() {
       url: "/blog",
       description: "分享技术见解、产品思考与创作心得，记录成长与探索的旅程",
       imageUrl:
-        "https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img6d4c5c7ddb0aa6fa7442f18bef159325.png",
+        "https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/imgb67b556e0d0d9e00f7c00e872c694d53.png",
     },
     {
       title: "visualSPT",
