@@ -1,13 +1,14 @@
-import {
+﻿import {
   ArrowLeft,
   Download,
   Route,
   Film,
   BarChart3,
   FileInput,
-  MonitorDown,
   Github,
 } from "lucide-react";
+import AppleIcon from "@mui/icons-material/Apple";
+import MicrosoftIcon from "@mui/icons-material/Microsoft";
 import { Link } from "react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -16,44 +17,52 @@ import VisualSPTSchematic from "../components/VisualSPTSchematic";
 
 type DownloadInfo = {
   version: string;
-  url: string;
-  sizeBytes?: number;
+  windowsUrl: string;
+  windowsSizeBytes?: number;
+  macUrl: string;
+  macSizeBytes?: number;
 };
 
 const VISUALSPT_RELEASE_API =
   "https://api.github.com/repos/JuneDrinleng/visualSPT/releases/latest";
-const VISUALSPT_RELEASES_PAGE =
-  "https://github.com/JuneDrinleng/visualSPT/releases/latest";
+const VISUALSPT_WIN_LATEST_EXE =
+  "https://github.com/JuneDrinleng/visualSPT/releases/latest/download/visualSPT.exe";
+const VISUALSPT_MAC_LATEST_ZIP =
+  "https://github.com/JuneDrinleng/visualSPT/releases/latest/download/visualSPT-mac.zip";
+const LOCAL_LATEST_YML = "/visualspt-latest.yml";
 
 function parseLatestYml(content: string): Partial<DownloadInfo> {
   const versionMatch = content.match(/^\s*version:\s*["']?([^"'\n]+)["']?/m);
-  const sizeMatch = content.match(/^\s*size:\s*(\d+)/m);
+  const fileEntryRegex =
+    /-\s+url:\s*["']?([^"'\n]+)["']?[\s\S]*?\n\s*name:\s*["']?([^"'\n]+)["']?[\s\S]*?\n\s*size:\s*(\d+)/g;
 
-  // Prefer URL in `files` section for Windows executable.
-  const windowsFileBlock = content.match(
-    /-\s+url:\s*["']?([^"'\n]+)["']?[\s\S]*?\n\s*name:\s*["']?([^"'\n]+)["']?/m,
-  );
+  let windowsUrl = "";
+  let windowsSizeBytes: number | undefined;
+  let macUrl = "";
+  let macSizeBytes: number | undefined;
 
-  let url = "";
-  if (windowsFileBlock?.[1] && windowsFileBlock?.[2]) {
-    const blockUrl = windowsFileBlock[1].trim();
-    const blockName = windowsFileBlock[2].trim().toLowerCase();
-    if (blockName.endsWith(".exe")) {
-      url = blockUrl;
+  let match: RegExpExecArray | null = null;
+  while ((match = fileEntryRegex.exec(content)) !== null) {
+    const fileUrl = match[1]?.trim() || "";
+    const fileName = (match[2] || "").trim().toLowerCase();
+    const fileSize = Number(match[3]);
+
+    if (fileName.endsWith(".exe")) {
+      windowsUrl = fileUrl;
+      windowsSizeBytes = Number.isNaN(fileSize) ? undefined : fileSize;
     }
-  }
-
-  if (!url) {
-    const looseUrl = content.match(/^\s*url:\s*["']?([^"'\n]+)["']?/m);
-    if (looseUrl?.[1]) {
-      url = looseUrl[1].trim();
+    if (fileName.endsWith("-mac.zip")) {
+      macUrl = fileUrl;
+      macSizeBytes = Number.isNaN(fileSize) ? undefined : fileSize;
     }
   }
 
   return {
     version: versionMatch?.[1]?.trim() || "",
-    url,
-    sizeBytes: sizeMatch?.[1] ? Number(sizeMatch[1]) : undefined,
+    windowsUrl,
+    windowsSizeBytes,
+    macUrl,
+    macSizeBytes,
   };
 }
 
@@ -67,14 +76,19 @@ export default function VisualSPT() {
   const featuresRef = useRef<HTMLElement | null>(null);
   const downloadRef = useRef<HTMLElement | null>(null);
   const highlightTimerRef = useRef<number | null>(null);
-  const [activeAnchor, setActiveAnchor] = useState<"features" | "download" | null>(null);
+  const [activeAnchor, setActiveAnchor] = useState<
+    "features" | "download" | null
+  >(null);
   const [downloadInfo, setDownloadInfo] = useState<DownloadInfo>({
-    version: "2.7",
-    url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.7/visualSPT.exe",
+    version: "Loading...",
+    windowsUrl: VISUALSPT_WIN_LATEST_EXE,
+    macUrl: VISUALSPT_MAC_LATEST_ZIP,
   });
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const scrollToSection = useCallback((target: "features" | "download") => {
-    const element = target === "features" ? featuresRef.current : downloadRef.current;
+    const element =
+      target === "features" ? featuresRef.current : downloadRef.current;
     if (!element) return;
 
     element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -101,9 +115,37 @@ export default function VisualSPT() {
     let cancelled = false;
 
     const loadDownloadInfo = async () => {
+      setDownloadError(null);
+      try {
+        const localRes = await fetch(`${LOCAL_LATEST_YML}?t=${Date.now()}`, {
+          cache: "no-store",
+        });
+        if (localRes.ok) {
+          const ymlContent = await localRes.text();
+          const parsed = parseLatestYml(ymlContent);
+          if (!cancelled && parsed.version) {
+            setDownloadInfo({
+              version: parsed.version,
+              windowsUrl: parsed.windowsUrl || VISUALSPT_WIN_LATEST_EXE,
+              windowsSizeBytes: parsed.windowsSizeBytes,
+              macUrl: parsed.macUrl || VISUALSPT_MAC_LATEST_ZIP,
+              macSizeBytes: parsed.macSizeBytes,
+            });
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("[visualSPT] Failed to load local latest yml:", error);
+      }
+
       try {
         const releaseRes = await fetch(VISUALSPT_RELEASE_API);
-        if (!releaseRes.ok) return;
+        if (!releaseRes.ok) {
+          const errMsg = `Failed to load release metadata: HTTP ${releaseRes.status}`;
+          console.error("[visualSPT] " + errMsg);
+          if (!cancelled) setDownloadError(errMsg);
+          return;
+        }
         const release = await releaseRes.json();
 
         const assets = Array.isArray(release?.assets) ? release.assets : [];
@@ -116,15 +158,26 @@ export default function VisualSPT() {
             typeof asset?.name === "string" &&
             asset.name.toLowerCase().endsWith(".exe"),
         );
+        const macAsset = assets.find(
+          (asset: { name?: string }) =>
+            typeof asset?.name === "string" &&
+            asset.name.toLowerCase().endsWith("-mac.zip"),
+        );
 
         const fallbackInfo: DownloadInfo = {
-          version: normalizedVersion || "2.7",
-          url:
+          version: normalizedVersion || "Unknown",
+          windowsUrl:
             (typeof exeAsset?.browser_download_url === "string" &&
               exeAsset.browser_download_url) ||
-            VISUALSPT_RELEASES_PAGE,
-          sizeBytes:
+            VISUALSPT_WIN_LATEST_EXE,
+          windowsSizeBytes:
             typeof exeAsset?.size === "number" ? exeAsset.size : undefined,
+          macUrl:
+            (typeof macAsset?.browser_download_url === "string" &&
+              macAsset.browser_download_url) ||
+            VISUALSPT_MAC_LATEST_ZIP,
+          macSizeBytes:
+            typeof macAsset?.size === "number" ? macAsset.size : undefined,
         };
 
         const latestYmlAsset = assets.find(
@@ -145,19 +198,34 @@ export default function VisualSPT() {
             if (!cancelled) {
               setDownloadInfo({
                 version: parsed.version || fallbackInfo.version,
-                url: parsed.url || fallbackInfo.url,
-                sizeBytes: parsed.sizeBytes ?? fallbackInfo.sizeBytes,
+                windowsUrl: parsed.windowsUrl || fallbackInfo.windowsUrl,
+                windowsSizeBytes:
+                  parsed.windowsSizeBytes ?? fallbackInfo.windowsSizeBytes,
+                macUrl: parsed.macUrl || fallbackInfo.macUrl,
+                macSizeBytes: parsed.macSizeBytes ?? fallbackInfo.macSizeBytes,
               });
             }
             return;
           }
+
+          const ymlErrMsg = `Failed to load latest.yml: HTTP ${ymlRes.status}`;
+          console.error("[visualSPT] " + ymlErrMsg);
+          if (!cancelled) setDownloadError(ymlErrMsg);
         }
 
         if (!cancelled) {
           setDownloadInfo(fallbackInfo);
         }
-      } catch {
-        // Keep static fallback in case network request fails.
+      } catch (error) {
+        console.error(
+          "[visualSPT] Unexpected error while loading release info:",
+          error,
+        );
+        if (!cancelled) {
+          setDownloadError(
+            "Failed to load release info. Please check /public/visualspt-latest.yml sync.",
+          );
+        }
       }
     };
 
@@ -214,7 +282,7 @@ export default function VisualSPT() {
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="uppercase tracking-wider text-sm font-medium">
-              {t("返回导航", "Back to Home")}
+              {t("返回首页", "Back to Home")}
             </span>
           </Link>
         </div>
@@ -382,15 +450,12 @@ export default function VisualSPT() {
               Available Now
             </p>
           </div>
-          <div className="max-w-md mx-auto">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <a
-              href={downloadInfo.url}
+              href={downloadInfo.windowsUrl}
               className="block border-2 border-black dark:border-neutral-100 p-12 text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
             >
-              <MonitorDown
-                className="w-16 h-16 mx-auto mb-6"
-                strokeWidth={1.5}
-              />
+              <MicrosoftIcon className="w-40 h-40 mx-auto mb-6" />
               <h3 className="text-2xl font-bold uppercase tracking-tight mb-2">
                 Windows
               </h3>
@@ -398,7 +463,33 @@ export default function VisualSPT() {
                 Windows 10/11
               </p>
               <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">
-                v{downloadInfo.version} · {formatSize(downloadInfo.sizeBytes)}
+                v{downloadInfo.version} ·{" "}
+                {formatSize(downloadInfo.windowsSizeBytes)}
+              </p>
+              {downloadError && (
+                <p className="text-[11px] opacity-70 mb-4 normal-case tracking-normal">
+                  {downloadError}
+                </p>
+              )}
+              <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+                <Download className="w-4 h-4" />
+                <span>{t("下载安装包", "Download Installer")}</span>
+              </div>
+            </a>
+            <a
+              href={downloadInfo.macUrl}
+              className="block border-2 border-black dark:border-neutral-100 p-12 text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
+            >
+              <AppleIcon className="w-40 h-40 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold uppercase tracking-tight mb-2">
+                macOS
+              </h3>
+              <p className="text-sm opacity-60 mb-2 group-hover:opacity-100">
+                macOS 12+
+              </p>
+              <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">
+                v{downloadInfo.version} ·{" "}
+                {formatSize(downloadInfo.macSizeBytes)}
               </p>
               <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
                 <Download className="w-4 h-4" />
