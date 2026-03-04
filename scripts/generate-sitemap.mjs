@@ -1,5 +1,4 @@
-import { readdirSync } from 'fs';
-import { writeFileSync } from 'fs';
+import { readdirSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,6 +13,7 @@ const staticRoutes = ['/', '/visualspt', '/focus-timer', '/blog'];
 // Scan blog posts from src/posts/
 function getBlogPostSlugs() {
   const postsDir = resolve(ROOT, 'src/posts');
+  if (!existsSync(postsDir)) return [];
   const files = readdirSync(postsDir).filter(f => f.endsWith('.md'));
   return files.map(f => f.replace('.md', ''));
 }
@@ -50,6 +50,7 @@ ${urls
 </urlset>
 `;
 
+  if (!existsSync(DIST)) mkdirSync(DIST, { recursive: true });
   writeFileSync(resolve(DIST, 'sitemap.xml'), xml, 'utf-8');
   console.log(`✅ sitemap.xml generated with ${urls.length} URLs`);
 }
