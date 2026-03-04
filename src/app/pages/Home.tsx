@@ -161,7 +161,7 @@ export default function Home() {
       <footer className="border-t-2 border-black mt-12">
         <div className="max-w-7xl mx-auto px-6 py-8 text-center">
           <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2026 产品导航中心
+            © 2023 All Rights Reserved
           </p>
         </div>
       </footer>

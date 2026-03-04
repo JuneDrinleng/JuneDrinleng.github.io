@@ -159,7 +159,7 @@ export default function BlogPost() {
       <footer className="border-t-2 border-black mt-12">
         <div className="max-w-4xl mx-auto px-6 py-8 text-center">
           <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2026 技术博客
+            © 2023 All Rights Reserved
           </p>
         </div>
       </footer>
