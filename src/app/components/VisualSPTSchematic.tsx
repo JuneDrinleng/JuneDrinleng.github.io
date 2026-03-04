@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useTheme } from '../contexts/ThemeContext';
 import {
   Route,
   PlayCircle,
@@ -58,8 +59,8 @@ function NavButton({
       onClick={onClick}
       className={`flex items-center gap-1.5 w-full px-2 py-1.5 rounded text-[10px] font-medium transition-colors ${
         active
-          ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300'
-          : 'text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700'
+          ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200'
+          : 'text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
       }`}
     >
       <Icon className="w-3 h-3 flex-shrink-0" strokeWidth={1.8} />
@@ -71,7 +72,7 @@ function NavButton({
 function ToggleRow({ label, active = true }: { label: string; active?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-[8px] text-slate-500 dark:text-slate-400">{label}</span>
+      <span className="text-[8px] text-slate-500 dark:text-slate-300">{label}</span>
       <div
         className={`w-5 h-2.5 rounded-full relative ${
           active ? 'bg-indigo-500' : 'bg-slate-300 dark:bg-slate-600'
@@ -90,8 +91,8 @@ function ToggleRow({ label, active = true }: { label: string; active?: boolean }
 function InputRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center gap-1">
-      <span className="text-[8px] text-slate-500 dark:text-slate-400 flex-shrink-0">{label}</span>
-      <div className="flex-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded px-1 py-0.5 text-[8px] text-slate-700 dark:text-slate-300 text-right">
+      <span className="text-[8px] text-slate-500 dark:text-slate-300 flex-shrink-0">{label}</span>
+      <div className="flex-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded px-1 py-0.5 text-[8px] text-slate-700 dark:text-slate-200 text-right">
         {value}
       </div>
     </div>
@@ -101,6 +102,8 @@ function InputRow({ label, value }: { label: string; value: string }) {
 // --- Main Component ---
 
 export default function VisualSPTSchematic() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [activeTab, setActiveTab] = useState<'static' | 'animation' | 'msd'>('static');
   const [data, setData] = useState(() => generatePath());
   const [msdData, setMsdData] = useState(() => generateMSD());
@@ -124,6 +127,19 @@ export default function VisualSPTSchematic() {
   const gradientId = 'trajGrad';
 
   const tabLabel = activeTab === 'static' ? 'Static Trajectory Visualization' : activeTab === 'animation' ? 'Trajectory Animation' : 'MSD Visualization';
+  const vizColors = {
+    grid: isDark ? '#334155' : '#e2e8f0',
+    subtleGrid: isDark ? '#1e293b' : '#f1f5f9',
+    axis: isDark ? '#94a3b8' : '#94a3b8',
+    label: isDark ? '#cbd5e1' : '#64748b',
+    mutedLabel: isDark ? '#94a3b8' : '#94a3b8',
+    timeTrack: isDark ? '#334155' : '#e2e8f0',
+    legendBg: isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+    legendStroke: isDark ? '#475569' : '#e2e8f0',
+    start: isDark ? '#4ade80' : '#22c55e',
+    end: isDark ? '#fb7185' : '#ef4444',
+    highlight: isDark ? '#818cf8' : '#6366f1',
+  };
 
   // Generate animated partial path
   const animPartialPath = useMemo(() => {
@@ -158,7 +174,7 @@ export default function VisualSPTSchematic() {
         {/* Content */}
         <div className="flex" style={{ height: 320 }}>
           {/* Sidebar */}
-          <div className="w-24 flex-shrink-0 bg-slate-50 dark:bg-slate-850 border-r border-slate-200 dark:border-slate-700 p-1.5 flex flex-col gap-0.5">
+          <div className="w-24 flex-shrink-0 bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-600 p-1.5 flex flex-col gap-0.5">
             <NavButton
               active={activeTab === 'static'}
               onClick={() => setActiveTab('static')}
@@ -218,10 +234,10 @@ export default function VisualSPTSchematic() {
                           </defs>
                           {/* Grid */}
                           {[60, 120, 180, 240, 300, 360].map((gx) => (
-                            <line key={`gx${gx}`} x1={gx} y1={10} x2={gx} y2={290} stroke="#e2e8f0" strokeWidth={0.5} />
+                            <line key={`gx${gx}`} x1={gx} y1={10} x2={gx} y2={290} stroke={vizColors.grid} strokeWidth={0.5} />
                           ))}
                           {[50, 100, 150, 200, 250].map((gy) => (
-                            <line key={`gy${gy}`} x1={10} y1={gy} x2={390} y2={gy} stroke="#e2e8f0" strokeWidth={0.5} />
+                            <line key={`gy${gy}`} x1={10} y1={gy} x2={390} y2={gy} stroke={vizColors.grid} strokeWidth={0.5} />
                           ))}
                           {/* Trajectory */}
                           <motion.path
@@ -235,11 +251,25 @@ export default function VisualSPTSchematic() {
                             transition={{ duration: 1.5, ease: 'easeInOut' }}
                           />
                           {/* Start marker */}
-                          <circle cx={data.coords[0].x} cy={data.coords[0].y} r={4} fill="#22c55e" />
-                          <text x={data.coords[0].x + 6} y={data.coords[0].y - 4} fontSize={8} fill="#22c55e">Start</text>
+                          <circle
+                            cx={data.coords[0].x}
+                            cy={data.coords[0].y}
+                            r={4}
+                            fill={vizColors.start}
+                            stroke={isDark ? '#0f172a' : 'none'}
+                            strokeWidth={isDark ? 1 : 0}
+                          />
+                          <text x={data.coords[0].x + 6} y={data.coords[0].y - 4} fontSize={8} fill={vizColors.start}>Start</text>
                           {/* End marker */}
-                          <circle cx={data.coords[data.coords.length - 1].x} cy={data.coords[data.coords.length - 1].y} r={4} fill="#ef4444" />
-                          <text x={data.coords[data.coords.length - 1].x + 6} y={data.coords[data.coords.length - 1].y - 4} fontSize={8} fill="#ef4444">End</text>
+                          <circle
+                            cx={data.coords[data.coords.length - 1].x}
+                            cy={data.coords[data.coords.length - 1].y}
+                            r={4}
+                            fill={vizColors.end}
+                            stroke={isDark ? '#0f172a' : 'none'}
+                            strokeWidth={isDark ? 1 : 0}
+                          />
+                          <text x={data.coords[data.coords.length - 1].x + 6} y={data.coords[data.coords.length - 1].y - 4} fontSize={8} fill={vizColors.end}>End</text>
                           {/* Colorbar */}
                           <defs>
                             <linearGradient id="colorbar" x1="0" y1="0" x2="0" y2="1">
@@ -249,7 +279,7 @@ export default function VisualSPTSchematic() {
                             </linearGradient>
                           </defs>
                           <rect x={375} y={30} width={8} height={240} rx={2} fill="url(#colorbar)" />
-                          <text x={374} y={25} fontSize={6} fill="#94a3b8" textAnchor="end">t</text>
+                          <text x={374} y={25} fontSize={6} fill={vizColors.mutedLabel} textAnchor="end">t</text>
                         </svg>
                       </motion.div>
                     )}
@@ -266,14 +296,14 @@ export default function VisualSPTSchematic() {
                         <svg viewBox="0 0 400 300" className="w-full h-full">
                           {/* Grid */}
                           {[60, 120, 180, 240, 300, 360].map((gx) => (
-                            <line key={`gx${gx}`} x1={gx} y1={10} x2={gx} y2={290} stroke="#e2e8f0" strokeWidth={0.5} />
+                            <line key={`gx${gx}`} x1={gx} y1={10} x2={gx} y2={290} stroke={vizColors.grid} strokeWidth={0.5} />
                           ))}
                           {[50, 100, 150, 200, 250].map((gy) => (
-                            <line key={`gy${gy}`} x1={10} y1={gy} x2={390} y2={gy} stroke="#e2e8f0" strokeWidth={0.5} />
+                            <line key={`gy${gy}`} x1={10} y1={gy} x2={390} y2={gy} stroke={vizColors.grid} strokeWidth={0.5} />
                           ))}
                           {/* Animated trajectory */}
                           {animPartialPath && (
-                            <path d={animPartialPath} fill="none" stroke="#6366f1" strokeWidth={2} strokeLinecap="round" opacity={0.6} />
+                            <path d={animPartialPath} fill="none" stroke={vizColors.highlight} strokeWidth={2} strokeLinecap="round" opacity={isDark ? 0.85 : 0.6} />
                           )}
                           {/* Current point */}
                           {data.coords[animProgress] && (
@@ -281,21 +311,21 @@ export default function VisualSPTSchematic() {
                               cx={data.coords[animProgress].x}
                               cy={data.coords[animProgress].y}
                               r={5}
-                              fill="#6366f1"
+                              fill={vizColors.highlight}
                               initial={{ scale: 0.5 }}
                               animate={{ scale: 1 }}
                               transition={{ duration: 0.1 }}
                             />
                           )}
                           {/* Time bar */}
-                          <rect x={20} y={282} width={360} height={4} rx={2} fill="#e2e8f0" />
+                          <rect x={20} y={282} width={360} height={4} rx={2} fill={vizColors.timeTrack} />
                           <rect
                             x={20}
                             y={282}
                             width={360 * (animProgress / Math.max(data.coords.length - 1, 1))}
                             height={4}
                             rx={2}
-                            fill="#6366f1"
+                            fill={vizColors.highlight}
                           />
                         </svg>
                       </motion.div>
@@ -312,13 +342,13 @@ export default function VisualSPTSchematic() {
                       >
                         <svg viewBox="0 0 400 300" className="w-full h-full">
                           {/* Axes */}
-                          <line x1={30} y1={270} x2={380} y2={270} stroke="#94a3b8" strokeWidth={1} />
-                          <line x1={30} y1={270} x2={30} y2={20} stroke="#94a3b8" strokeWidth={1} />
-                          <text x={200} y={295} fontSize={8} fill="#64748b" textAnchor="middle">Time lag (τ)</text>
-                          <text x={12} y={145} fontSize={8} fill="#64748b" textAnchor="middle" transform="rotate(-90, 12, 145)">MSD (μm²)</text>
+                          <line x1={30} y1={270} x2={380} y2={270} stroke={vizColors.axis} strokeWidth={1} />
+                          <line x1={30} y1={270} x2={30} y2={20} stroke={vizColors.axis} strokeWidth={1} />
+                          <text x={200} y={295} fontSize={8} fill={vizColors.label} textAnchor="middle">Time lag (τ)</text>
+                          <text x={12} y={145} fontSize={8} fill={vizColors.label} textAnchor="middle" transform="rotate(-90, 12, 145)">MSD (μm²)</text>
                           {/* Grid */}
                           {[70, 120, 170, 220].map((gy) => (
-                            <line key={`gy${gy}`} x1={30} y1={gy} x2={380} y2={gy} stroke="#f1f5f9" strokeWidth={0.5} />
+                            <line key={`gy${gy}`} x1={30} y1={gy} x2={380} y2={gy} stroke={vizColors.subtleGrid} strokeWidth={0.5} />
                           ))}
                           {/* Std area */}
                           <motion.polyline
@@ -356,7 +386,7 @@ export default function VisualSPTSchematic() {
                               return `${px + 30},${py}`;
                             }).join(' ')}
                             fill="none"
-                            stroke="#6366f1"
+                            stroke={vizColors.highlight}
                             strokeWidth={2}
                             strokeLinecap="round"
                             initial={{ pathLength: 0 }}
@@ -364,11 +394,11 @@ export default function VisualSPTSchematic() {
                             transition={{ duration: 1.2, ease: 'easeInOut' }}
                           />
                           {/* Legend */}
-                          <rect x={290} y={30} width={80} height={40} rx={4} fill="white" fillOpacity={0.9} stroke="#e2e8f0" />
-                          <line x1={296} y1={42} x2={312} y2={42} stroke="#6366f1" strokeWidth={2} />
-                          <text x={316} y={45} fontSize={7} fill="#475569">EAMSD</text>
+                          <rect x={290} y={30} width={80} height={40} rx={4} fill={vizColors.legendBg} stroke={vizColors.legendStroke} />
+                          <line x1={296} y1={42} x2={312} y2={42} stroke={vizColors.highlight} strokeWidth={2} />
+                          <text x={316} y={45} fontSize={7} fill={vizColors.label}>EAMSD</text>
                           <line x1={296} y1={58} x2={312} y2={58} stroke="#a5b4fc" strokeWidth={1} />
-                          <text x={316} y={61} fontSize={7} fill="#475569">TAMSD</text>
+                          <text x={316} y={61} fontSize={7} fill={vizColors.label}>TAMSD</text>
                         </svg>
                       </motion.div>
                     )}
@@ -376,7 +406,7 @@ export default function VisualSPTSchematic() {
                 </div>
 
                 {/* ID Slider */}
-                <div className="flex items-center gap-2 px-3 py-1 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850">
+                <div className="flex items-center gap-2 px-3 py-1 border-t border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900">
                   <span className="text-[8px] font-semibold text-slate-500 dark:text-slate-400">ID:</span>
                   <span className="text-[9px] font-bold text-indigo-500">12</span>
                   <span className="text-[8px] text-slate-400">/ 47</span>
@@ -387,7 +417,7 @@ export default function VisualSPTSchematic() {
               </div>
 
               {/* Settings Panel */}
-              <div className="w-32 flex-shrink-0 border-l border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850 p-2 flex flex-col gap-1.5 overflow-y-auto">
+              <div className="w-32 flex-shrink-0 border-l border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 p-2 flex flex-col gap-1.5 overflow-y-auto">
                 <div className="text-[9px] font-semibold text-slate-600 dark:text-slate-300 mb-0.5">Plot Parameters</div>
 
                 {activeTab === 'msd' ? (
@@ -451,3 +481,4 @@ export default function VisualSPTSchematic() {
     </div>
   );
 }
+
