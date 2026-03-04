@@ -3,6 +3,8 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
+  useRef,
   type ReactNode,
 } from "react";
 
@@ -21,10 +23,32 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  const isFirstRender = useRef(true);
+
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem("language");
     return (saved === "zh" ? "zh" : "en") as Language;
   });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.lang = language === "zh" ? "zh-CN" : "en";
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    root.classList.add("lang-switching");
+    const timer = window.setTimeout(() => {
+      root.classList.remove("lang-switching");
+    }, 140);
+
+    return () => {
+      window.clearTimeout(timer);
+      root.classList.remove("lang-switching");
+    };
+  }, [language]);
 
   const toggleLanguage = useCallback(() => {
     setLanguage((prev) => {

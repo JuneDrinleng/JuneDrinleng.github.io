@@ -95,6 +95,7 @@ export default function Blog() {
   };
 
   const handleViewModeChange = (mode: ViewMode) => {
+    if (mode === viewMode) return;
     setViewMode(mode);
     setCurrentPage(1);
   };
@@ -260,7 +261,7 @@ export default function Blog() {
       <main className="max-w-6xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
         {/* Timeline View */}
         {viewMode === "timeline" && (
-          <>
+          <div className="blog-view-transition">
             <div className={GRID_CLASSES}>
               {paginatedPosts.map((post) => renderPostCard(post))}
             </div>
@@ -305,12 +306,12 @@ export default function Blog() {
                 </button>
               </nav>
             )}
-          </>
+          </div>
         )}
 
         {/* Tag View */}
         {viewMode === "tag" && (
-          <div className="space-y-8 sm:space-y-10">
+          <div className="blog-view-transition space-y-8 sm:space-y-10">
             {postsByTag.map(([tag, posts]) => (
               <section key={tag}>
                 <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-4 sm:mb-6 border-b-2 border-black dark:border-neutral-100 pb-2 inline-flex items-center gap-2">
@@ -330,7 +331,7 @@ export default function Blog() {
 
         {/* Year View */}
         {viewMode === "year" && (
-          <div className="space-y-8 sm:space-y-10">
+          <div className="blog-view-transition space-y-8 sm:space-y-10">
             {postsByYear.map(([year, posts]) => (
               <section key={year}>
                 <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-4 sm:mb-6 border-b-2 border-black dark:border-neutral-100 pb-2 inline-flex items-center gap-2">

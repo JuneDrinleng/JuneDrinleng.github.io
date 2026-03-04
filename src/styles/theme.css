@@ -39,6 +39,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --scrollbar-size: 12px;
+  --scrollbar-track: #f3f4f7;
+  --scrollbar-thumb: #c3cad8;
+  --scrollbar-thumb-hover: #9da8bb;
+  --scrollbar-thumb-active: #7f8ba0;
+  --button-press-overlay: rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -76,6 +82,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --scrollbar-track: #1b2230;
+  --scrollbar-thumb: #4a5a73;
+  --scrollbar-thumb-hover: #5a6e8d;
+  --scrollbar-thumb-active: #6f87ad;
+  --button-press-overlay: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
@@ -135,6 +146,227 @@
 
   html {
     font-size: var(--font-size);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  @keyframes language-content-in {
+    from {
+      opacity: 0.95;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes language-label-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes theme-icon-in {
+    from {
+      opacity: 0;
+      transform: rotate(-35deg) scale(0.72);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+
+  @keyframes button-press-feedback {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.985);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes page-switch-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes blog-view-switch-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes visualspt-reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes visualspt-section-focus-in {
+    0% {
+      transform: translateY(0);
+      box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    35% {
+      transform: translateY(-2px);
+      box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.04);
+    }
+    100% {
+      transform: translateY(0);
+      box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+
+  .animate-language-label {
+    animation: language-label-in 220ms ease-out;
+  }
+
+  .animate-theme-icon {
+    animation: theme-icon-in 240ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .page-transition {
+      animation: page-switch-in 220ms ease-out;
+    }
+
+    .blog-view-transition {
+      animation: blog-view-switch-in 200ms ease-out;
+    }
+
+    .visualspt-page .visualspt-reveal {
+      animation: visualspt-reveal-in 260ms ease-out both;
+      will-change: transform, opacity;
+    }
+
+    .visualspt-page .visualspt-delay-1 {
+      animation-delay: 70ms;
+    }
+
+    .visualspt-page .visualspt-delay-2 {
+      animation-delay: 130ms;
+    }
+
+    .visualspt-page .visualspt-delay-3 {
+      animation-delay: 190ms;
+    }
+
+    .visualspt-page .visualspt-anchor-target {
+      scroll-margin-top: 72px;
+    }
+
+    .visualspt-page .visualspt-section-focus {
+      animation: visualspt-section-focus-in 420ms ease-out;
+    }
+
+    html.theme-switching body,
+    html.theme-switching nav,
+    html.theme-switching header,
+    html.theme-switching main,
+    html.theme-switching footer,
+    html.theme-switching section,
+    html.theme-switching article,
+    html.theme-switching aside,
+    html.theme-switching div,
+    html.theme-switching a,
+    html.theme-switching button,
+    html.theme-switching input,
+    html.theme-switching textarea,
+    html.theme-switching select {
+      transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+      transition-duration: 220ms;
+      transition-timing-function: ease;
+    }
+
+    html.lang-switching body {
+      animation: language-content-in 120ms ease-out;
+    }
+
+    button:not(:disabled) {
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    button:not(:disabled):active {
+      animation: button-press-feedback 180ms ease-out;
+      box-shadow: inset 0 0 0 999px var(--button-press-overlay);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .animate-language-label,
+    .animate-theme-icon,
+    .page-transition,
+    .blog-view-transition,
+    .visualspt-page .visualspt-reveal,
+    .visualspt-page .visualspt-section-focus {
+      animation: none;
+    }
+  }
+
+  * {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 999px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border: 3px solid var(--scrollbar-track);
+    border-radius: 999px;
+    min-height: 32px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active);
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
   }
 
   h1 {
