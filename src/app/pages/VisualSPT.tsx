@@ -9,12 +9,164 @@ import {
   Github,
 } from "lucide-react";
 import { Link } from "react-router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useLanguage } from "../contexts/LanguageContext";
 import VisualSPTSchematic from "../components/VisualSPTSchematic";
 
+type DownloadInfo = {
+  version: string;
+  url: string;
+  sizeBytes?: number;
+};
+
+const VISUALSPT_RELEASE_API =
+  "https://api.github.com/repos/JuneDrinleng/visualSPT/releases/latest";
+const VISUALSPT_RELEASES_PAGE =
+  "https://github.com/JuneDrinleng/visualSPT/releases/latest";
+
+function parseLatestYml(content: string): Partial<DownloadInfo> {
+  const versionMatch = content.match(/^\s*version:\s*["']?([^"'\n]+)["']?/m);
+  const sizeMatch = content.match(/^\s*size:\s*(\d+)/m);
+
+  // Prefer URL in `files` section for Windows executable.
+  const windowsFileBlock = content.match(
+    /-\s+url:\s*["']?([^"'\n]+)["']?[\s\S]*?\n\s*name:\s*["']?([^"'\n]+)["']?/m,
+  );
+
+  let url = "";
+  if (windowsFileBlock?.[1] && windowsFileBlock?.[2]) {
+    const blockUrl = windowsFileBlock[1].trim();
+    const blockName = windowsFileBlock[2].trim().toLowerCase();
+    if (blockName.endsWith(".exe")) {
+      url = blockUrl;
+    }
+  }
+
+  if (!url) {
+    const looseUrl = content.match(/^\s*url:\s*["']?([^"'\n]+)["']?/m);
+    if (looseUrl?.[1]) {
+      url = looseUrl[1].trim();
+    }
+  }
+
+  return {
+    version: versionMatch?.[1]?.trim() || "",
+    url,
+    sizeBytes: sizeMatch?.[1] ? Number(sizeMatch[1]) : undefined,
+  };
+}
+
+function formatSize(sizeBytes?: number): string {
+  if (!sizeBytes || Number.isNaN(sizeBytes)) return "~48 MB";
+  return `~${(sizeBytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 export default function VisualSPT() {
   const { t } = useLanguage();
+  const featuresRef = useRef<HTMLElement | null>(null);
+  const downloadRef = useRef<HTMLElement | null>(null);
+  const highlightTimerRef = useRef<number | null>(null);
+  const [activeAnchor, setActiveAnchor] = useState<"features" | "download" | null>(null);
+  const [downloadInfo, setDownloadInfo] = useState<DownloadInfo>({
+    version: "2.7",
+    url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.7/visualSPT.exe",
+  });
+
+  const scrollToSection = useCallback((target: "features" | "download") => {
+    const element = target === "features" ? featuresRef.current : downloadRef.current;
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveAnchor(target);
+
+    if (highlightTimerRef.current !== null) {
+      window.clearTimeout(highlightTimerRef.current);
+    }
+    highlightTimerRef.current = window.setTimeout(() => {
+      setActiveAnchor(null);
+      highlightTimerRef.current = null;
+    }, 700);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (highlightTimerRef.current !== null) {
+        window.clearTimeout(highlightTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadDownloadInfo = async () => {
+      try {
+        const releaseRes = await fetch(VISUALSPT_RELEASE_API);
+        if (!releaseRes.ok) return;
+        const release = await releaseRes.json();
+
+        const assets = Array.isArray(release?.assets) ? release.assets : [];
+        const tagName =
+          typeof release?.tag_name === "string" ? release.tag_name : "";
+        const normalizedVersion = tagName.replace(/^v/i, "");
+
+        const exeAsset = assets.find(
+          (asset: { name?: string }) =>
+            typeof asset?.name === "string" &&
+            asset.name.toLowerCase().endsWith(".exe"),
+        );
+
+        const fallbackInfo: DownloadInfo = {
+          version: normalizedVersion || "2.7",
+          url:
+            (typeof exeAsset?.browser_download_url === "string" &&
+              exeAsset.browser_download_url) ||
+            VISUALSPT_RELEASES_PAGE,
+          sizeBytes:
+            typeof exeAsset?.size === "number" ? exeAsset.size : undefined,
+        };
+
+        const latestYmlAsset = assets.find(
+          (asset: { name?: string }) =>
+            typeof asset?.name === "string" &&
+            asset.name.toLowerCase() === "latest.yml",
+        );
+
+        if (latestYmlAsset?.url) {
+          const ymlRes = await fetch(latestYmlAsset.url, {
+            headers: { Accept: "application/octet-stream" },
+          });
+
+          if (ymlRes.ok) {
+            const ymlContent = await ymlRes.text();
+            const parsed = parseLatestYml(ymlContent);
+
+            if (!cancelled) {
+              setDownloadInfo({
+                version: parsed.version || fallbackInfo.version,
+                url: parsed.url || fallbackInfo.url,
+                sizeBytes: parsed.sizeBytes ?? fallbackInfo.sizeBytes,
+              });
+            }
+            return;
+          }
+        }
+
+        if (!cancelled) {
+          setDownloadInfo(fallbackInfo);
+        }
+      } catch {
+        // Keep static fallback in case network request fails.
+      }
+    };
+
+    void loadDownloadInfo();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const features = [
     {
@@ -52,7 +204,7 @@ export default function VisualSPT() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
+    <div className="visualspt-page min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-6">
@@ -69,10 +221,10 @@ export default function VisualSPT() {
       </header>
 
       {/* Hero Section */}
-      <section className="border-b-4 border-black dark:border-neutral-100">
+      <section className="visualspt-reveal border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div>
+            <div className="visualspt-reveal visualspt-delay-1">
               <div className="inline-block border-2 border-black dark:border-neutral-100 px-3 sm:px-4 py-1 mb-4 sm:mb-6">
                 <span className="text-xs sm:text-sm uppercase tracking-widest font-bold">
                   Desktop Application
@@ -90,6 +242,10 @@ export default function VisualSPT() {
               <div className="flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href="#download"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("download");
+                  }}
                   className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 sm:px-8 py-3 sm:py-4 hover:opacity-80 transition-opacity border-2 border-black dark:border-white"
                 >
                   <Download className="w-5 h-5" />
@@ -99,6 +255,10 @@ export default function VisualSPT() {
                 </a>
                 <a
                   href="#features"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("features");
+                  }}
                   className="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 px-6 sm:px-8 py-3 sm:py-4 border-2 border-black dark:border-neutral-100 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                 >
                   <span className="font-bold uppercase tracking-wider text-sm">
@@ -119,7 +279,7 @@ export default function VisualSPT() {
                 </a>
               </div>
             </div>
-            <div className="border-4 border-black dark:border-neutral-100 overflow-hidden">
+            <div className="visualspt-reveal visualspt-delay-2 border-4 border-black dark:border-neutral-100 overflow-hidden">
               <VisualSPTSchematic />
             </div>
           </div>
@@ -129,7 +289,10 @@ export default function VisualSPT() {
       {/* Features Section */}
       <section
         id="features"
-        className="border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800"
+        ref={featuresRef}
+        className={`visualspt-anchor-target visualspt-reveal visualspt-delay-1 border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800 ${
+          activeAnchor === "features" ? "visualspt-section-focus" : ""
+        }`}
       >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
@@ -146,7 +309,8 @@ export default function VisualSPT() {
               return (
                 <div
                   key={index}
-                  className="border-2 border-black dark:border-neutral-100 p-6 sm:p-8 bg-white dark:bg-neutral-900 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all"
+                  className="visualspt-reveal border-2 border-black dark:border-neutral-100 p-6 sm:p-8 bg-white dark:bg-neutral-900 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all"
+                  style={{ animationDelay: `${80 + index * 60}ms` }}
                 >
                   <Icon
                     className="w-10 sm:w-12 h-10 sm:h-12 mb-3 sm:mb-4"
@@ -166,7 +330,7 @@ export default function VisualSPT() {
       </section>
 
       {/* Product Preview Section */}
-      <section className="border-b-4 border-black dark:border-neutral-100">
+      <section className="visualspt-reveal visualspt-delay-2 border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">
@@ -204,7 +368,10 @@ export default function VisualSPT() {
       {/* Download Section */}
       <section
         id="download"
-        className="border-b-4 border-black dark:border-neutral-100"
+        ref={downloadRef}
+        className={`visualspt-anchor-target visualspt-reveal visualspt-delay-3 border-b-4 border-black dark:border-neutral-100 ${
+          activeAnchor === "download" ? "visualspt-section-focus" : ""
+        }`}
       >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12 text-center">
@@ -217,7 +384,7 @@ export default function VisualSPT() {
           </div>
           <div className="max-w-md mx-auto">
             <a
-              href="https://github.com/JuneDrinleng/visualSPT/releases/download/v2.7/visualSPT.exe"
+              href={downloadInfo.url}
               className="block border-2 border-black dark:border-neutral-100 p-12 text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
             >
               <MonitorDown
@@ -231,7 +398,7 @@ export default function VisualSPT() {
                 Windows 10/11
               </p>
               <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">
-                v2.7 · ~48 MB
+                v{downloadInfo.version} · {formatSize(downloadInfo.sizeBytes)}
               </p>
               <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
                 <Download className="w-4 h-4" />
