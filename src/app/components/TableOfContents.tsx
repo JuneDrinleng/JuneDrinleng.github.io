@@ -80,30 +80,30 @@ export default function TableOfContents({ headings, contentRef }: TableOfContent
 
   if (headings.length === 0) {
     return (
-      <div className="p-6 text-sm opacity-40 uppercase tracking-wider">
+      <div className="p-5 pt-6 text-sm opacity-40 uppercase tracking-wider">
         {t('暂无目录', 'No headings')}
       </div>
     );
   }
 
   return (
-    <nav className="p-6">
-      <h3 className="text-xs font-bold uppercase tracking-widest mb-4 opacity-60">
+    <nav className="p-5 pt-6">
+      <h3 className="text-xs font-bold uppercase tracking-widest mb-5 opacity-50 border-b border-black/10 dark:border-neutral-100/10 pb-3">
         {t('目录', 'Table of Contents')}
       </h3>
-      <ul className="space-y-1">
+      <ul className="space-y-0.5">
         {headings.map((heading, index) => (
           <li
             key={`${heading.id}-${index}`}
-            style={{ paddingLeft: `${(heading.level - 2) * 12}px` }}
+            style={{ paddingLeft: `${(heading.level - 2) * 14}px` }}
           >
             <a
               href={`#${heading.id}`}
               onClick={(e) => handleClick(e, heading.id)}
-              className={`block py-1.5 text-sm leading-snug transition-all border-l-2 pl-3 ${
+              className={`block py-1.5 text-[13px] leading-snug transition-all duration-200 border-l-2 pl-3 rounded-r-sm ${
                 activeId === heading.id
-                  ? 'border-black dark:border-neutral-100 opacity-100 font-medium'
-                  : 'border-transparent opacity-50 hover:opacity-80 hover:border-black/30 dark:hover:border-neutral-100/30'
+                  ? 'border-black dark:border-neutral-100 opacity-100 font-semibold bg-black/5 dark:bg-neutral-100/5'
+                  : 'border-transparent opacity-45 hover:opacity-75 hover:border-black/20 dark:hover:border-neutral-100/20 hover:bg-black/[0.02] dark:hover:bg-neutral-100/[0.02]'
               }`}
             >
               {heading.text}

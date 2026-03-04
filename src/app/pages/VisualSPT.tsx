@@ -33,7 +33,7 @@ export default function VisualSPT() {
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100">
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-6">
           <Link to="/" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity">
             <ArrowLeft className="w-5 h-5" />
             <span className="uppercase tracking-wider text-sm font-medium">{t('返回导航', 'Back to Home')}</span>
@@ -43,7 +43,7 @@ export default function VisualSPT() {
 
       {/* Hero Section */}
       <section className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
               <div className="inline-block border-2 border-black dark:border-neutral-100 px-3 sm:px-4 py-1 mb-4 sm:mb-6">
@@ -85,7 +85,7 @@ export default function VisualSPT() {
 
       {/* Features Section */}
       <section id="features" className="border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('核心特性', 'Key Features')}</h2>
             <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Key Features</p>
@@ -107,7 +107,7 @@ export default function VisualSPT() {
 
       {/* Download Section */}
       <section id="download" className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('立即下载', 'Download Now')}</h2>
             <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Available Now</p>
@@ -131,7 +131,7 @@ export default function VisualSPT() {
 
       {/* Footer */}
       <footer className="border-t-2 border-black dark:border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
+        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
             © 2025 LUNE. All Rights Reserved
           </p>

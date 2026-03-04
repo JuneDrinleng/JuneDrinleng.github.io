@@ -4,9 +4,10 @@ import { useTheme } from "../contexts/ThemeContext";
 
 interface GiscusCommentsProps {
   slug: string;
+  sidebar?: boolean;
 }
 
-export default function GiscusComments({ slug }: GiscusCommentsProps) {
+export default function GiscusComments({ slug, sidebar = false }: GiscusCommentsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { language, t } = useLanguage();
   const { theme } = useTheme();
@@ -44,8 +45,11 @@ export default function GiscusComments({ slug }: GiscusCommentsProps) {
   }, [slug, language, theme, repo, repoId, category, categoryId, isConfigured]);
 
   return (
-    <section className="mt-12 pt-8 border-t-2 border-black dark:border-neutral-100">
-      <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">{t("评论", "Comments")}</h2>
+    <section className={sidebar ? "pt-2" : "mt-12 pt-8 border-t-2 border-black dark:border-neutral-100"}>
+      <h2 className={sidebar
+        ? "text-xs font-bold uppercase tracking-widest mb-4 opacity-50 border-b border-black/10 dark:border-neutral-100/10 pb-3"
+        : "text-2xl font-bold uppercase tracking-tight mb-6"
+      }>{t("评论", "Comments")}</h2>
       {isConfigured ? (
         <div ref={containerRef} className="giscus-container" />
       ) : (
