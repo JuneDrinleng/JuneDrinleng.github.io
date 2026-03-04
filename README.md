@@ -1,98 +1,95 @@
-# JuneDrinleng.github.io
+﻿# Readme
 
-LUNE 个人站点源码，基于 Vite + React 构建，包含：
+English | [中文说明 (Chinese)](./README.zh-CN.md)
 
-- 首页导航（Blog / visualSPT / Poop）
-- 中英双语博客系统（`src/posts` 与 `src/posts-en`）
-- Markdown 渲染（GFM + 数学公式 KaTeX）
-- Giscus 评论系统（GitHub Discussions）
-- 主题切换（浅色/深色）与语言切换（中文/English）
-- GitHub Pages 自动部署
+Source code for my personal website and blog, built with Vite + React and deployed to GitHub Pages.
 
-线上地址（GitHub Pages）：
-`https://junedrinleng.github.io/`
+Live site: <https://junedrinleng.github.io/>
 
-## 技术栈
+## Features
 
-- React 18 + React Router 7
+- Multi-page personal site: Home, Blog, VisualSPT, and Focus Timer
+- Bilingual blog content (`src/posts` for Chinese, `src/posts-en` for English)
+- Markdown rendering with GFM and KaTeX math support
+- Theme and language switching
+- Giscus comments (GitHub Discussions)
+- Automatic GitHub Pages deployment via GitHub Actions
+
+## Tech Stack
+
+- React 18
+- React Router 7
 - Vite 6
 - Tailwind CSS 4
-- React Markdown + remark/rehype（GFM、Math、KaTeX）
+- React Markdown + `remark-gfm` + `remark-math` + `rehype-katex`
 - Giscus
-- Python 脚本（Ollama）用于中文博客自动翻译到英文
 
-## 项目结构
+## Project Structure
 
 ```text
 .
-├─ src/
-│  ├─ app/
-│  │  ├─ pages/                # Home / Blog / BlogPost / VisualSPT / FocusTimer
-│  │  ├─ components/           # 通用组件与评论组件
-│  │  ├─ contexts/             # ThemeContext / LanguageContext
-│  │  ├─ utils/posts.ts        # 读取并解析 markdown 博客
-│  │  └─ routes.ts             # 路由定义
-│  ├─ posts/                   # 中文博客
-│  └─ posts-en/                # 英文博客
-├─ scripts/
-│  └─ translate_posts_en.py    # 使用 Ollama 翻译 markdown
-├─ public/404.html             # GitHub Pages SPA 路由回退
-└─ .github/workflows/deploy.yml# 自动部署工作流
+|- src/
+|  |- app/
+|  |  |- pages/                # Home / Blog / BlogPost / VisualSPT / FocusTimer
+|  |  |- components/           # Shared UI and comment-related components
+|  |  |- contexts/             # ThemeContext / LanguageContext
+|  |  |- utils/posts.ts        # Markdown post loading and parsing
+|  |  \- routes.ts             # Route definitions
+|  |- posts/                   # Chinese posts
+|  \- posts-en/                # English posts
+|- scripts/
+|  |- translate_posts_en.py    # Optional Ollama-based CN -> EN translation helper
+|  \- generate-sitemap.mjs     # Generates dist/sitemap.xml
+|- public/404.html             # SPA fallback for GitHub Pages
+\- .github/workflows/deploy.yml
 ```
 
-## 本地开发
+## Local Development
 
-要求：
+Requirements:
 
-- Node.js 20（与 CI 保持一致，推荐）
-- npm 或 pnpm（二选一）
+- Node.js 20 (recommended, matches CI)
+- `pnpm` (recommended) or `npm`
 
-安装依赖：
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Start dev server:
+
+```bash
+pnpm dev
+```
+
+Build:
+
+```bash
+pnpm build
+```
+
+If you prefer npm:
 
 ```bash
 npm install
-```
-
-启动开发服务：
-
-```bash
 npm run dev
-```
-
-构建生产包：
-
-```bash
 npm run build
 ```
 
-## 环境变量（Giscus）
+## Writing Blog Posts
 
-在项目根目录创建 `.env`（不要提交到仓库），示例：
+Create posts under:
 
-```env
-VITE_GISCUS_REPO=JuneDrinleng/JuneDrinleng.github.io
-VITE_GISCUS_REPO_ID=R_xxx
-VITE_GISCUS_CATEGORY=Announcements
-VITE_GISCUS_CATEGORY_ID=DIC_xxx
-```
+- `src/posts/*.md` (Chinese)
+- `src/posts-en/*.md` (English)
 
-代码读取位置：`src/app/components/GiscusComments.tsx`。
-
-> 说明：Giscus 不需要 `client_secret`，更适合 GitHub Pages 这类纯前端静态站。
-
-## 博客写作规范
-
-中文与英文博客分别放在：
-
-- `src/posts/*.md`
-- `src/posts-en/*.md`
-
-Markdown 文件需包含 frontmatter，例如：
+Each Markdown file should include frontmatter, for example:
 
 ```yaml
 ---
 layout: post
-title: "文章标题"
+title: "Post Title"
 date: 2026-03-04
 tags: [SPT, Notes]
 comments: true
@@ -101,44 +98,44 @@ toc: true
 ---
 ```
 
-摘要通过 `<!-- more -->` 分隔：
+Use `<!-- more -->` as the summary splitter:
 
-- 分隔符之前：列表页摘要
-- 分隔符之后：正文内容
+- Content before it is used as preview/summary
+- Content after it is the full post body
 
-## 中文博客自动翻译（Ollama）
+## Optional: Translate Chinese Posts to English (Ollama)
 
-脚本位置：`scripts/translate_posts_en.py`
+Script: `scripts/translate_posts_en.py`
 
-功能：
+What it does:
 
-- 扫描 `src/posts` 下的 `.md`
-- 仅翻译 `src/posts-en` 中尚不存在的同名文件
-- 按分块流式翻译并保存
+- Scans `src/posts/*.md`
+- Only translates files that do not already exist in `src/posts-en/`
+- Translates in chunks and writes generated English Markdown files
 
-前置条件：
+Prerequisites:
 
-1. 本机运行 Ollama（默认地址 `http://localhost:11434`）
-2. 已拉取模型 `qwen3:8b`
-3. 安装 Python 依赖
+1. Ollama running locally at `http://localhost:11434`
+2. Model available: `qwen3:8b`
+3. Python deps installed:
 
 ```bash
 pip install ollama httpx tqdm
 ```
 
-运行脚本：
+Run:
 
 ```bash
 python scripts/translate_posts_en.py
 ```
 
-## 部署说明
+## Deployment
 
-项目通过 GitHub Actions 自动部署到 GitHub Pages：
+Deployment is handled by GitHub Actions in [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml):
 
-- 工作流：`.github/workflows/deploy.yml`
-- 触发条件：push 到 `main`
-- 构建命令：`pnpm install` + `pnpm build`
-- 发布目录：`dist`
+- Trigger: push to `main` (or manual dispatch)
+- Build: `pnpm install` + `pnpm build`
+- Extra step: `node scripts/generate-sitemap.mjs`
+- Publish directory: `dist`
 
-`index.html` + `public/404.html` 已处理 GitHub Pages 的 SPA 路由回退问题。
+`index.html` and `public/404.html` are configured to support SPA routing on GitHub Pages.
