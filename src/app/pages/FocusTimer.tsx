@@ -25,7 +25,7 @@ export default function FocusTimer() {
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <header className="border-b-4 border-black">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <Link to="/" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity">
             <ArrowLeft className="w-5 h-5" />
             <span className="uppercase tracking-wider text-sm font-medium">返回导航</span>
@@ -35,29 +35,29 @@ export default function FocusTimer() {
 
       {/* Hero Section */}
       <section className="border-b-4 border-black">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
-              <div className="inline-block border-2 border-black px-4 py-1 mb-6">
-                <span className="text-sm uppercase tracking-widest font-bold">Mobile Application</span>
+              <div className="inline-block border-2 border-black px-3 sm:px-4 py-1 mb-4 sm:mb-6">
+                <span className="text-xs sm:text-sm uppercase tracking-widest font-bold">Mobile Application</span>
               </div>
-              <h1 className="text-6xl font-bold uppercase tracking-tight mb-6">Poop</h1>
-              <p className="text-xl leading-relaxed mb-8 opacity-80">
+              <h1 className="text-4xl sm:text-6xl font-bold uppercase tracking-tight mb-4 sm:mb-6">Poop</h1>
+              <p className="text-base sm:text-xl leading-relaxed mb-6 sm:mb-8 opacity-80">
                 极简设计的专注打卡应用，帮助你培养专注习惯，提升时间管理能力。随时随地开启专注模式，记录每一次进步。
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href="#download"
-                  className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 hover:bg-gray-800 transition-colors border-2 border-black"
+                  className="inline-flex items-center gap-2 bg-black text-white px-6 sm:px-8 py-3 sm:py-4 hover:bg-gray-800 transition-colors border-2 border-black"
                 >
                   <Download className="w-5 h-5" />
-                  <span className="font-bold uppercase tracking-wider">下载应用</span>
+                  <span className="font-bold uppercase tracking-wider text-sm">下载应用</span>
                 </a>
                 <a
                   href="#features"
-                  className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 border-2 border-black hover:bg-gray-50 transition-colors"
+                  className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-3 sm:py-4 border-2 border-black hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-bold uppercase tracking-wider">了解更多</span>
+                  <span className="font-bold uppercase tracking-wider text-sm">了解更多</span>
                 </a>
               </div>
             </div>
@@ -74,19 +74,19 @@ export default function FocusTimer() {
 
       {/* Features Section */}
       <section id="features" className="border-b-4 border-black bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold uppercase tracking-tight mb-2">核心特性</h2>
-            <p className="text-sm uppercase tracking-wider opacity-60">Key Features</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">核心特性</h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Key Features</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="border-2 border-black p-8 bg-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
-                  <Icon className="w-12 h-12 mb-4" strokeWidth={1.5} />
-                  <h3 className="text-xl font-bold uppercase tracking-tight mb-3">{feature.title}</h3>
-                  <p className="leading-relaxed opacity-70">{feature.description}</p>
+                <div key={index} className="border-2 border-black p-6 sm:p-8 bg-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                  <Icon className="w-10 sm:w-12 h-10 sm:h-12 mb-3 sm:mb-4" strokeWidth={1.5} />
+                  <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight mb-2 sm:mb-3">{feature.title}</h3>
+                  <p className="text-sm sm:text-base leading-relaxed opacity-70">{feature.description}</p>
                 </div>
               );
             })}
@@ -96,10 +96,10 @@ export default function FocusTimer() {
 
       {/* Download Section */}
       <section id="download" className="border-b-4 border-black">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="mb-12 text-center">
-            <h2 className="text-4xl font-bold uppercase tracking-tight mb-2">立即下载</h2>
-            <p className="text-sm uppercase tracking-wider opacity-60">Available Now</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+          <div className="mb-8 sm:mb-12 text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">立即下载</h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Available Now</p>
           </div>
           <div className="max-w-md mx-auto">
             <a
@@ -120,9 +120,9 @@ export default function FocusTimer() {
 
       {/* Footer */}
       <footer className="border-t-2 border-black">
-        <div className="max-w-7xl mx-auto px-6 py-8 text-center">
-          <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2023 All Rights Reserved
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
+          <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+            © 2025 LUNE. All Rights Reserved
           </p>
         </div>
       </footer>
