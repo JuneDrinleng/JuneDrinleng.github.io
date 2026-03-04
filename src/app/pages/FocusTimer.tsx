@@ -101,19 +101,7 @@ export default function FocusTimer() {
             <h2 className="text-4xl font-bold uppercase tracking-tight mb-2">立即下载</h2>
             <p className="text-sm uppercase tracking-wider opacity-60">Available Now</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <a
-              href="#"
-              className="block border-2 border-black p-8 text-center hover:bg-black hover:text-white transition-colors group"
-            >
-              <div className="text-5xl mb-4">📱</div>
-              <h3 className="text-xl font-bold uppercase tracking-tight mb-2">iOS</h3>
-              <p className="text-sm opacity-60 mb-4 group-hover:opacity-100">App Store</p>
-              <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
-                <Download className="w-4 h-4" />
-                <span>下载</span>
-              </div>
-            </a>
+          <div className="max-w-md mx-auto">
             <a
               href="#"
               className="block border-2 border-black p-8 text-center hover:bg-black hover:text-white transition-colors group"
