@@ -17,11 +17,11 @@ export default function GitalkComments({ slug, title }: GitalkCommentsProps) {
     containerRef.current.innerHTML = '';
 
     const gitalk = new Gitalk({
-      clientID: 'Ov23liBV8LIk7mawtLQD',
-      clientSecret: 'a14fa3a0cc6e64de0801aeca055edf9e541cf56e',
-      repo: 'JuneDrinleng.github.io',
-      owner: 'JuneDrinleng',
-      admin: ['JuneDrinleng'],
+      clientID: import.meta.env.VITE_GITALK_CLIENT_ID || '',
+      clientSecret: import.meta.env.VITE_GITALK_CLIENT_SECRET || '',
+      repo: import.meta.env.VITE_GITALK_REPO || 'JuneDrinleng.github.io',
+      owner: import.meta.env.VITE_GITALK_OWNER || 'JuneDrinleng',
+      admin: [import.meta.env.VITE_GITALK_OWNER || 'JuneDrinleng'],
       id: slug.slice(0, 50),
       distractionFreeMode: false,
       title: title,
