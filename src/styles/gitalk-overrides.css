@@ -54,13 +54,13 @@
 }
 
 .gitalk-container .gt-container .gt-comment-content {
-  background: #fafafa;
+  background: transparent;
   border: 1px solid #e5e5e5;
   border-radius: 0;
 }
 
 .gitalk-container .gt-container .gt-comment-header {
-  background: #f5f5f5;
+  background: transparent;
   border-bottom: 1px solid #e5e5e5;
   border-radius: 0;
 }
@@ -92,7 +92,7 @@
 }
 
 .gitalk-container .gt-container .gt-comment-admin .gt-comment-content {
-  background: #f0f0f0;
+  background: transparent;
 }
 
 .gitalk-container .gt-container .gt-header-preview {
