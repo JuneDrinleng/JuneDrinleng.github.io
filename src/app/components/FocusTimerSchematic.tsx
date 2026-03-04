@@ -11,6 +11,13 @@ export default function FocusTimerSchematic() {
     return () => clearInterval(timer);
   }, []);
 
+  const formatTimer = (p: number) => {
+    const remaining = 25 * 60 * (100 - p) / 100;
+    const mins = Math.floor(remaining / 60);
+    const secs = String(Math.floor(remaining % 60)).padStart(2, '0');
+    return `${mins}:${secs}`;
+  };
+
   const angle = (progress / 100) * 360;
   const radians = ((angle - 90) * Math.PI) / 180;
   const cx = 130, cy = 120, r = 60;
@@ -53,7 +60,7 @@ export default function FocusTimerSchematic() {
 
           {/* Timer text */}
           <text x={cx} y={cy - 8} textAnchor="middle" fontSize="18" fontWeight="bold" fill="#1e293b" className="dark:fill-slate-200">
-            {`${Math.floor((25 * (100 - progress)) / 100)}:${String(Math.floor(((25 * 60 * (100 - progress)) / 100) % 60)).padStart(2, '0')}`}
+            {formatTimer(progress)}
           </text>
           <text x={cx} y={cy + 10} textAnchor="middle" fontSize="8" fill="#94a3b8">
             FOCUS
