@@ -14,7 +14,7 @@ client = ollama.Client(host='http://localhost:11434', timeout=httpx.Timeout(600.
 SYSTEM_PROMPT = """You are a professional academic translator. 
 Translate the Markdown text to English. Keep all formats and LaTeX formulas. 
 Use terminology: Single-Particle Tracking, LSPR, Maxwell/Kelvin, etc.
-Output ONLY the translation."""
+Output ONLY the translation.Do not translator the code blocks, math formulas, and ,all the figure and the references"""
 
 def translate_chunk_stream(chunk):
     """流式翻译并实时显示进度"""
