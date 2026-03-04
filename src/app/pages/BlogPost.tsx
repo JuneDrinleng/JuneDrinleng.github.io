@@ -29,7 +29,7 @@ export default function BlogPost() {
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <header className="border-b-4 border-black">
-        <div className="max-w-4xl mx-auto px-6 py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <Link to="/blog" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity">
             <ArrowLeft className="w-5 h-5" />
             <span className="uppercase tracking-wider text-sm font-medium">返回博客</span>
@@ -38,12 +38,12 @@ export default function BlogPost() {
       </header>
 
       {/* Article */}
-      <article className="max-w-4xl mx-auto px-6 py-12">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Article Header */}
-        <header className="mb-12 pb-8 border-b-2 border-black">
-          <h1 className="text-5xl font-bold uppercase tracking-tight mb-6">{post.metadata.title}</h1>
+        <header className="mb-8 sm:mb-12 pb-6 sm:pb-8 border-b-2 border-black">
+          <h1 className="text-2xl sm:text-5xl font-bold uppercase tracking-tight mb-4 sm:mb-6">{post.metadata.title}</h1>
           
-          <div className="flex flex-wrap items-center gap-6 text-sm">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 opacity-60">
               <Calendar className="w-4 h-4" />
               <time dateTime={post.metadata.date}>
@@ -162,10 +162,10 @@ export default function BlogPost() {
       </article>
 
       {/* Footer */}
-      <footer className="border-t-2 border-black mt-12">
-        <div className="max-w-4xl mx-auto px-6 py-8 text-center">
-          <p className="text-sm uppercase tracking-wider opacity-60">
-            © 2023 All Rights Reserved
+      <footer className="border-t-2 border-black mt-8 sm:mt-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center">
+          <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+            © 2025 LUNE. All Rights Reserved
           </p>
         </div>
       </footer>
