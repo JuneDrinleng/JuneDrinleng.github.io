@@ -18,6 +18,8 @@ export default function GiscusComments({ slug, sidebar = false }: GiscusComments
   const categoryId = import.meta.env.VITE_GISCUS_CATEGORY_ID || "";
 
   const isConfigured = Boolean(repo && repoId && category && categoryId);
+  const giscusTheme = theme === "dark" ? "dark" : "light";
+  const giscusLang = language === "zh" ? "zh-CN" : "en";
 
   useEffect(() => {
     if (!containerRef.current || !isConfigured) return;
@@ -37,12 +39,29 @@ export default function GiscusComments({ slug, sidebar = false }: GiscusComments
     script.setAttribute("data-reactions-enabled", "1");
     script.setAttribute("data-emit-metadata", "0");
     script.setAttribute("data-input-position", "top");
-    script.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
-    script.setAttribute("data-lang", language === "zh" ? "zh-CN" : "en");
+    script.setAttribute("data-theme", giscusTheme);
+    script.setAttribute("data-lang", giscusLang);
     script.setAttribute("data-loading", "lazy");
 
     containerRef.current.appendChild(script);
-  }, [slug, language, theme, repo, repoId, category, categoryId, isConfigured]);
+  }, [slug, repo, repoId, category, categoryId, isConfigured]);
+
+  useEffect(() => {
+    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
+    if (!iframe?.contentWindow) return;
+
+    iframe.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: giscusTheme,
+            lang: giscusLang,
+          },
+        },
+      },
+      "https://giscus.app",
+    );
+  }, [giscusTheme, giscusLang]);
 
   return (
     <section className={sidebar ? "pt-2" : "mt-12 pt-8 border-t-2 border-black dark:border-neutral-100"}>

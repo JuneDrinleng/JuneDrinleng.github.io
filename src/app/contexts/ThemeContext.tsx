@@ -3,8 +3,7 @@ import {
   useContext,
   useState,
   useCallback,
-  useEffect,
-  useRef,
+  useLayoutEffect,
   type ReactNode,
 } from 'react';
 
@@ -21,44 +20,55 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const isFirstRender = useRef(true);
-
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem('theme');
     if (saved === 'dark' || saved === 'light') return saved;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
     root.style.colorScheme = theme;
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else {
-      root.classList.add('theme-switching');
-    }
-
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-
-    const timer = window.setTimeout(() => {
-      root.classList.remove('theme-switching');
-    }, 320);
-
+    root.classList.toggle('dark', theme === 'dark');
     localStorage.setItem('theme', theme);
-
-    return () => {
-      window.clearTimeout(timer);
-      root.classList.remove('theme-switching');
-    };
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    const updateTheme = () => {
+      setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    };
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
+    const doc = document as Document & {
+      startViewTransition?: (callback: () => void) => unknown;
+    };
+
+    if (reduceMotion) {
+      updateTheme();
+      return;
+    }
+
+    if (!doc.startViewTransition) {
+      root.classList.add('theme-fading');
+      updateTheme();
+      window.setTimeout(() => {
+        root.classList.remove('theme-fading');
+      }, 240);
+      return;
+    }
+
+    try {
+      doc.startViewTransition(() => {
+        updateTheme();
+      });
+    } catch {
+      root.classList.add('theme-fading');
+      updateTheme();
+      window.setTimeout(() => {
+        root.classList.remove('theme-fading');
+      }, 240);
+    }
   }, []);
 
   return (
