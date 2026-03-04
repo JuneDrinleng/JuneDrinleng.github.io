@@ -44,7 +44,7 @@ export default function VisualSPT() {
 
       {/* Hero Section */}
       <section className="border-b-4 border-black dark:border-neutral-100">
-        <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
               <div className="inline-block border-2 border-black dark:border-neutral-100 px-3 sm:px-4 py-1 mb-4 sm:mb-6">
