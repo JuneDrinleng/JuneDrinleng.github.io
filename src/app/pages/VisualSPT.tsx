@@ -75,10 +75,6 @@ export default function VisualSPT() {
   const { t } = useLanguage();
   const featuresRef = useRef<HTMLElement | null>(null);
   const downloadRef = useRef<HTMLElement | null>(null);
-  const highlightTimerRef = useRef<number | null>(null);
-  const [activeAnchor, setActiveAnchor] = useState<
-    "features" | "download" | null
-  >(null);
   const [downloadInfo, setDownloadInfo] = useState<DownloadInfo>({
     version: "Loading...",
     windowsUrl: VISUALSPT_WIN_LATEST_EXE,
@@ -92,23 +88,6 @@ export default function VisualSPT() {
     if (!element) return;
 
     element.scrollIntoView({ behavior: "smooth", block: "start" });
-    setActiveAnchor(target);
-
-    if (highlightTimerRef.current !== null) {
-      window.clearTimeout(highlightTimerRef.current);
-    }
-    highlightTimerRef.current = window.setTimeout(() => {
-      setActiveAnchor(null);
-      highlightTimerRef.current = null;
-    }, 700);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (highlightTimerRef.current !== null) {
-        window.clearTimeout(highlightTimerRef.current);
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -358,9 +337,7 @@ export default function VisualSPT() {
       <section
         id="features"
         ref={featuresRef}
-        className={`visualspt-anchor-target visualspt-reveal visualspt-delay-1 border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800 ${
-          activeAnchor === "features" ? "visualspt-section-focus" : ""
-        }`}
+        className="visualspt-anchor-target visualspt-reveal visualspt-delay-1 border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800"
       >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
@@ -437,9 +414,7 @@ export default function VisualSPT() {
       <section
         id="download"
         ref={downloadRef}
-        className={`visualspt-anchor-target visualspt-reveal visualspt-delay-3 border-b-4 border-black dark:border-neutral-100 ${
-          activeAnchor === "download" ? "visualspt-section-focus" : ""
-        }`}
+        className="visualspt-anchor-target visualspt-reveal visualspt-delay-3 border-b-4 border-black dark:border-neutral-100"
       >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12 text-center">
