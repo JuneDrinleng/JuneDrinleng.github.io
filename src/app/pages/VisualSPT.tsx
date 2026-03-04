@@ -1,8 +1,17 @@
-import { ArrowLeft, Download, Route, Film, BarChart3, FileInput, MonitorDown, Github } from 'lucide-react';
-import { Link } from 'react-router';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useLanguage } from '../contexts/LanguageContext';
-import VisualSPTSchematic from '../components/VisualSPTSchematic';
+import {
+  ArrowLeft,
+  Download,
+  Route,
+  Film,
+  BarChart3,
+  FileInput,
+  MonitorDown,
+  Github,
+} from "lucide-react";
+import { Link } from "react-router";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useLanguage } from "../contexts/LanguageContext";
+import VisualSPTSchematic from "../components/VisualSPTSchematic";
 
 export default function VisualSPT() {
   const { t } = useLanguage();
@@ -10,23 +19,35 @@ export default function VisualSPT() {
   const features = [
     {
       icon: Route,
-      title: t('静态轨迹绘图', 'Static Trajectory Plot'),
-      description: t('按 ID 查看和切换轨迹，支持时间着色渲染、起止标记、网格、坐标轴、色条等配置，可导出 SVG / PNG', 'View and switch trajectories by ID, time-colored rendering, start/end markers, grid, axis labels, colorbar, export to SVG / PNG'),
+      title: t("静态轨迹绘图", "Static Trajectory Plot"),
+      description: t(
+        "按 ID 查看和切换轨迹，支持时间着色渲染、起止标记、网格、坐标轴、色条等配置，可导出 SVG / PNG",
+        "View and switch trajectories by ID, time-colored rendering, start/end markers, grid, axis labels, colorbar, export to SVG / PNG",
+      ),
     },
     {
       icon: Film,
-      title: t('轨迹 GIF 动画', 'Trajectory GIF Animation'),
-      description: t('逐帧轨迹动画，可配置帧率和尾迹长度，支持时间进度条和坐标轴提示，导出为 GIF', 'Frame-by-frame trajectory animation, configurable FPS and trail length, optional time bar and axis hints, export as GIF'),
+      title: t("轨迹 GIF 动画", "Trajectory GIF Animation"),
+      description: t(
+        "逐帧轨迹动画，可配置帧率和尾迹长度，支持时间进度条和坐标轴提示，导出为 GIF",
+        "Frame-by-frame trajectory animation, configurable FPS and trail length, optional time bar and axis hints, export as GIF",
+      ),
     },
     {
       icon: BarChart3,
-      title: t('MSD 可视化', 'MSD Visualization'),
-      description: t('绘制 EAMSD 和逐轨迹 TAMSD 曲线，支持均值±标准差带显示和对数坐标，便于扩散分析', 'Plot EAMSD and per-trajectory TAMSD, optional mean ± std band, log-scale plotting for diffusion analysis'),
+      title: t("MSD 可视化", "MSD Visualization"),
+      description: t(
+        "绘制 EAMSD 和逐轨迹 TAMSD 曲线，支持均值±标准差带显示和对数坐标，便于扩散分析",
+        "Plot EAMSD and per-trajectory TAMSD, optional mean ± std band, log-scale plotting for diffusion analysis",
+      ),
     },
     {
       icon: FileInput,
-      title: t('多格式支持', 'Multi-Format Support'),
-      description: t('支持 TrackMate CSV、NPY、NPZ 等多种输入格式，自动检测常见轨迹键名，即开即用', 'Supports TrackMate CSV, NPY, NPZ input formats, auto-detects common trajectory keys, ready to use'),
+      title: t("多格式支持", "Multi-Format Support"),
+      description: t(
+        "支持 TrackMate CSV、NPY、NPZ 等多种输入格式，自动检测常见轨迹键名，即开即用",
+        "Supports TrackMate CSV, NPY, NPZ input formats, auto-detects common trajectory keys, ready to use",
+      ),
     },
   ];
 
@@ -35,9 +56,14 @@ export default function VisualSPT() {
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-6">
-          <Link to="/" className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity"
+          >
             <ArrowLeft className="w-5 h-5" />
-            <span className="uppercase tracking-wider text-sm font-medium">{t('返回导航', 'Back to Home')}</span>
+            <span className="uppercase tracking-wider text-sm font-medium">
+              {t("返回导航", "Back to Home")}
+            </span>
           </Link>
         </div>
       </header>
@@ -48,13 +74,17 @@ export default function VisualSPT() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
               <div className="inline-block border-2 border-black dark:border-neutral-100 px-3 sm:px-4 py-1 mb-4 sm:mb-6">
-                <span className="text-xs sm:text-sm uppercase tracking-widest font-bold">Desktop Application</span>
+                <span className="text-xs sm:text-sm uppercase tracking-widest font-bold">
+                  Desktop Application
+                </span>
               </div>
-              <h1 className="text-4xl sm:text-6xl font-bold uppercase tracking-tight mb-4 sm:mb-6">visualSPT</h1>
+              <h1 className="text-4xl sm:text-6xl font-bold uppercase tracking-tight mb-4 sm:mb-6">
+                visualSPT
+              </h1>
               <p className="text-base sm:text-xl leading-relaxed mb-6 sm:mb-8 opacity-80">
                 {t(
-                  '基于 pywebview + Python 构建的单粒子追踪（SPT）数据桌面可视化工具。支持静态轨迹绘图、轨迹 GIF 动画和 MSD 曲线可视化，助力科研数据分析。',
-                  'A desktop visualization tool for Single Particle Tracking (SPT) data, built with pywebview + Python. Supports static trajectory plotting, trajectory GIF animation, and MSD curve visualization for research data analysis.'
+                  "基于 pywebview + Python 构建的单粒子追踪（SPT）数据桌面可视化工具。支持静态轨迹绘图、轨迹 GIF 动画和 MSD 曲线可视化，助力科研数据分析。",
+                  "A desktop visualization tool for Single Particle Tracking (SPT) data, built with pywebview + Python. Supports static trajectory plotting, trajectory GIF animation, and MSD curve visualization for research data analysis.",
                 )}
               </p>
               <div className="flex flex-wrap gap-3 sm:gap-4">
@@ -63,13 +93,17 @@ export default function VisualSPT() {
                   className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 sm:px-8 py-3 sm:py-4 hover:opacity-80 transition-opacity border-2 border-black dark:border-white"
                 >
                   <Download className="w-5 h-5" />
-                  <span className="font-bold uppercase tracking-wider text-sm">{t('下载应用', 'Download')}</span>
+                  <span className="font-bold uppercase tracking-wider text-sm">
+                    {t("下载应用", "Download")}
+                  </span>
                 </a>
                 <a
                   href="#features"
                   className="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 px-6 sm:px-8 py-3 sm:py-4 border-2 border-black dark:border-neutral-100 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                 >
-                  <span className="font-bold uppercase tracking-wider text-sm">{t('了解更多', 'Learn More')}</span>
+                  <span className="font-bold uppercase tracking-wider text-sm">
+                    {t("了解更多", "Learn More")}
+                  </span>
                 </a>
                 <a
                   href="https://github.com/JuneDrinleng/visualSPT"
@@ -79,7 +113,9 @@ export default function VisualSPT() {
                   className="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 px-6 sm:px-8 py-3 sm:py-4 border-2 border-black dark:border-neutral-100 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                 >
                   <Github className="w-5 h-5" />
-                  <span className="font-bold uppercase tracking-wider text-sm">GitHub</span>
+                  <span className="font-bold uppercase tracking-wider text-sm">
+                    GitHub
+                  </span>
                 </a>
               </div>
             </div>
@@ -91,20 +127,37 @@ export default function VisualSPT() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800">
+      <section
+        id="features"
+        className="border-b-4 border-black dark:border-neutral-100 bg-gray-50 dark:bg-neutral-800"
+      >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('核心特性', 'Key Features')}</h2>
-            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Key Features</p>
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">
+              {t("核心特性", "Key Features")}
+            </h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+              Key Features
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="border-2 border-black dark:border-neutral-100 p-6 sm:p-8 bg-white dark:bg-neutral-900 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
-                  <Icon className="w-10 sm:w-12 h-10 sm:h-12 mb-3 sm:mb-4" strokeWidth={1.5} />
-                  <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight mb-2 sm:mb-3">{feature.title}</h3>
-                  <p className="text-sm sm:text-base leading-relaxed opacity-70">{feature.description}</p>
+                <div
+                  key={index}
+                  className="border-2 border-black dark:border-neutral-100 p-6 sm:p-8 bg-white dark:bg-neutral-900 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all"
+                >
+                  <Icon
+                    className="w-10 sm:w-12 h-10 sm:h-12 mb-3 sm:mb-4"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm sm:text-base leading-relaxed opacity-70">
+                    {feature.description}
+                  </p>
                 </div>
               );
             })}
@@ -116,21 +169,31 @@ export default function VisualSPT() {
       <section className="border-b-4 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('产品预览', 'Product Preview')}</h2>
-            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Screenshots</p>
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">
+              {t("产品预览", "Product Preview")}
+            </h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+              Screenshots
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
               <ImageWithFallback
                 src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPTdf16a8220b1fff2d0eddf417c6331c86.png"
-                alt={t('visualSPT 轨迹可视化界面', 'visualSPT Trajectory Visualization Interface')}
+                alt={t(
+                  "visualSPT 轨迹可视化界面",
+                  "visualSPT Trajectory Visualization Interface",
+                )}
                 className="w-full h-auto"
               />
             </div>
             <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] transition-all">
               <ImageWithFallback
                 src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/visualSPT59d896449e34543b2bfc4e3614d5caa5.png"
-                alt={t('visualSPT MSD 分析界面', 'visualSPT MSD Analysis Interface')}
+                alt={t(
+                  "visualSPT MSD 分析界面",
+                  "visualSPT MSD Analysis Interface",
+                )}
                 className="w-full h-auto"
               />
             </div>
@@ -139,24 +202,40 @@ export default function VisualSPT() {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="border-b-4 border-black dark:border-neutral-100">
+      <section
+        id="download"
+        className="border-b-4 border-black dark:border-neutral-100"
+      >
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16">
           <div className="mb-8 sm:mb-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">{t('立即下载', 'Download Now')}</h2>
-            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">Available Now</p>
+            <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-2">
+              {t("立即下载", "Download Now")}
+            </h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
+              Available Now
+            </p>
           </div>
           <div className="max-w-md mx-auto">
             <a
               href="https://github.com/JuneDrinleng/visualSPT/releases/download/v2.7/visualSPT.exe"
               className="block border-2 border-black dark:border-neutral-100 p-12 text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
             >
-              <MonitorDown className="w-16 h-16 mx-auto mb-6" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold uppercase tracking-tight mb-2">Windows</h3>
-              <p className="text-sm opacity-60 mb-2 group-hover:opacity-100">Windows 10/11</p>
-              <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">v2.7 · ~48 MB</p>
+              <MonitorDown
+                className="w-16 h-16 mx-auto mb-6"
+                strokeWidth={1.5}
+              />
+              <h3 className="text-2xl font-bold uppercase tracking-tight mb-2">
+                Windows
+              </h3>
+              <p className="text-sm opacity-60 mb-2 group-hover:opacity-100">
+                Windows 10/11
+              </p>
+              <p className="text-xs opacity-40 mb-6 group-hover:opacity-80">
+                v2.7 · ~48 MB
+              </p>
               <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
                 <Download className="w-4 h-4" />
-                <span>{t('下载安装包', 'Download Installer')}</span>
+                <span>{t("下载安装包", "Download Installer")}</span>
               </div>
             </a>
           </div>
@@ -167,7 +246,7 @@ export default function VisualSPT() {
       <footer className="border-t-2 border-black dark:border-neutral-100">
         <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-center">
           <p className="text-xs sm:text-sm uppercase tracking-wider opacity-60">
-            © 2025 LUNE. All Rights Reserved
+            © 2023 LUNE. All Rights Reserved
           </p>
         </div>
       </footer>
