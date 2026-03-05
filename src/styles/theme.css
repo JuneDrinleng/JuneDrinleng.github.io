@@ -311,7 +311,9 @@
     }
 
     button:not(:disabled) {
-      transition: box-shadow 120ms ease, filter 120ms ease;
+      transition:
+        box-shadow 120ms ease,
+        filter 120ms ease;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -429,5 +431,118 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+}
+
+/* ── Site Transition Overlay ── */
+
+.site-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  pointer-events: all;
+}
+
+.site-transition-overlay.light {
+  background: #fff;
+}
+
+.site-transition-overlay.covering {
+  animation: st-cover-in 350ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.site-transition-overlay.loading,
+.site-transition-overlay.leaving {
+  opacity: 1;
+}
+
+.site-transition-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.site-transition-overlay.loading .site-transition-loader,
+.site-transition-overlay.leaving .site-transition-loader {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-transition-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.site-transition-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: st-dot-pulse 1s ease-in-out infinite;
+}
+
+.site-transition-overlay.light .site-transition-dots span {
+  background: #000;
+}
+
+.site-transition-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.site-transition-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.site-transition-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-transition-overlay.light .site-transition-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes st-cover-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes st-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-transition-overlay.covering {
+    animation: none;
+    opacity: 1;
+  }
+
+  .site-transition-dots span {
+    animation: none;
+    opacity: 0.6;
   }
 }
