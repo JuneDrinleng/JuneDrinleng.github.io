@@ -8,7 +8,7 @@ import SiteTransition from "./SiteTransition";
 export default function TitleBar() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
-  const nextLanguageLabel = language === "zh" ? "EN" : "中文";
+  const nextLanguageLabel = language === "zh" ? "中文" : "EN";
   const [transitioning, setTransitioning] = useState(false);
 
   return (
@@ -33,7 +33,10 @@ export default function TitleBar() {
               title="junedrinleng.com"
             >
               <FileUser className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">CV</span>
+
+              <span key={nextLanguageLabel} className="hidden sm:inline">
+                {language === "zh" ? "个人简历" : "About Me"}
+              </span>
             </button>
 
             {/* GitHub Link */}
