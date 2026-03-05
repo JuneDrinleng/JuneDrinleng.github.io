@@ -1,4 +1,4 @@
-﻿import { Sun, Moon, Globe, Github, ArrowRightLeft } from "lucide-react";
+﻿import { Sun, Moon, Globe, Github, FileUser } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
 import { useTheme } from "../contexts/ThemeContext";
@@ -29,10 +29,11 @@ export default function TitleBar() {
             <button
               onClick={() => setTransitioning(true)}
               className="flex items-center gap-1.5 text-xs sm:text-sm uppercase tracking-wider hover:opacity-80 transition-all duration-200"
-              aria-label="Go to junedrinleng.com"
+              aria-label="Go to CV"
               title="junedrinleng.com"
             >
-              <ArrowRightLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <FileUser className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">CV</span>
             </button>
 
             {/* GitHub Link */}
