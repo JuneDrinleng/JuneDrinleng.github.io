@@ -1,4 +1,4 @@
-﻿import { Sun, Moon, Globe } from 'lucide-react';
+﻿import { Sun, Moon, Globe, Github } from 'lucide-react';
 import { Link } from 'react-router';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -21,6 +21,17 @@ export default function TitleBar() {
 
         {/* Right: Controls */}
         <div className="flex items-center gap-3 sm:gap-4">
+          {/* GitHub Link */}
+          <a
+            href="https://github.com/JuneDrinleng"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs sm:text-sm uppercase tracking-wider hover:opacity-80 transition-all duration-200"
+            aria-label="GitHub"
+          >
+            <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </a>
+
           {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
