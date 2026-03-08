@@ -1,14 +1,16 @@
-version: "2.11"
+version: "3.3"
 files:
-  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.11/visualSPT.exe"
-    name: "visualSPT.exe"
-    size: 50394021
-    sha256: "b82b59368f3fe0f0b5e6eb2676b10001221705d369a1d03ab74ff9c269cefb70"
-  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v2.11/visualSPT-mac.dmg"
-    name: "visualSPT-mac.dmg"
-    size: 38735260
-    sha256: "d46f9ff845f18bf0b27571c000a90972eb4c4e67735bbfc901cbf53c81c5cf76"
-releaseTag: "v2.11"
-releasePage: "https://github.com/JuneDrinleng/visualSPT/releases/tag/v2.11"
-notes: "Auto-built from JuneDrinleng/visualSPT@dc39e163e2230ca52920a4793d6b624cf06bd77d"
-createdAt: "2026-03-04T15:20:20Z"
+  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v3.3/visualSPT-Setup.exe"
+    name: "visualSPT-Setup.exe"
+    size: 50042142
+    sha256: "5b30d5e6063acc6d3e6c2403c3cbba7c2b2e043576659d9734076188a5d9e34a"
+    platform: "win32"
+  - url: "https://github.com/JuneDrinleng/visualSPT/releases/download/v3.3/visualSPT.pkg"
+    name: "visualSPT.pkg"
+    size: 38179058
+    sha256: "e313a8baa94ba3f869d565a3d23e2ababfa551f539d292ff276745a83a9c26f0"
+    platform: "darwin"
+releaseTag: "v3.3"
+releasePage: "https://github.com/JuneDrinleng/visualSPT/releases/tag/v3.3"
+notes: "Auto-built from JuneDrinleng/visualSPT@e7c72909fe7876b262f260719dcaf3dfa673b71c"
+createdAt: "2026-03-08T18:32:21Z"
