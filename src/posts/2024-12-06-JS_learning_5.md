@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "前端学习笔记5 html语言简介"
-date:   2024-12-06
+date: 2024-12-06
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-06-JS_learning_5
+title_key: course_note
 ---
 
 该笔记前端知识中的html语言，包括head，body等部分的介绍，具体内容参考自[微软的web-dev项目](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/3-terrarium/1-intro-to-html/translations/README.zh-cn.md)

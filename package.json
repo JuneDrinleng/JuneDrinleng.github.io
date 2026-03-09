@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "i18n:sync": "node scripts/i18n-sync.mjs",
+    "i18n:sync:fix": "node scripts/i18n-sync.mjs --fix-frontmatter"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

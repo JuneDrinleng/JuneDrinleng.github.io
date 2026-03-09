@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250923文献阅读笔记"
-date:   2025-09-23
+date: 2025-09-23
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-23-paper_report_9
+title_key: literature_note
 ---
 
 本笔记主要记录超分辨插值帧生成，CNN的3d重建，神经网络动力学建模以及一个通过噬菌体的自组装构造而成的脂质体囊泡。
@@ -65,3 +67,4 @@ toc: true
 这里主要学习几个参数：
 
 ![image-20250923174841241](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20250923174841241.png)
+

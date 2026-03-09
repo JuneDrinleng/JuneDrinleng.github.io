@@ -1,12 +1,14 @@
 ---
 layout: post
 title: "Anomalous Diffusion"
-date:   2025-02-13
+date: 2025-02-13
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-13-anomalous_diffusion
 ---
+
 该笔记主要介绍异常扩散模型以及相关数据集
 <!-- more -->
 ## 0 背景与关键词
@@ -59,3 +61,4 @@ $$
 1. **Extract latent features of single-particle trajectories with historical experience learning**
 
 ![gr1_lrg](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/gr1_lrg-1739430087192-3.jpg)
+

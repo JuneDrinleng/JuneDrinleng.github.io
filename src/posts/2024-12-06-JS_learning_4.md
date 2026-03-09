@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "前端学习笔记4 JavaScript中的数组与循环语句"
-date:   2024-12-06
+date: 2024-12-06
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-06-JS_learning_4
+title_key: course_note
 ---
 
 该笔记主要学习JavaScript的基础知识中的数组和循环语句，其中循环语句包含for循环和while循环，参考自[微软的web-dev项目](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/4-arrays-loops/translations/README.zh-cn.md)

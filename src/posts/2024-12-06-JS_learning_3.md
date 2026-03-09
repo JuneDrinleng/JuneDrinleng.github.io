@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "前端学习笔记3 JavaScript中的判断语句"
-date:   2024-12-06
+date: 2024-12-06
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-06-JS_learning_3
+title_key: course_note
 ---
 
 该笔记主要学习JavaScript的基础知识中的判断语句，包括布尔值、比较运算和if相关的语句，以及逻辑语句，参考自[微软的web-dev项目](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/3-making-decisions/translations/README.zh-cn.md)

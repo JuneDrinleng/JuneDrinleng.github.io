@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250425 Literature Reading Notes"
-date:   2025-04-25
+date: 2025-04-25
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-04-25-paper_report_1
+source_lang: zh
+source_title: "20250425文献日读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.275Z"
+source_hash: 16b9154ed3bdb69d2684a79a6cd154d874d960f37653baa1dc20ed92fd6a9a75
 ---
 
 This note mainly organizes literature from the 4.25 section, including mainly water gel networks and neural network time series related papers

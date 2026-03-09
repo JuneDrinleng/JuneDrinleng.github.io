@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250610文献阅读笔记"
-date:   2025-06-10
+date: 2025-06-10
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-10-paper_report_3
+title_key: literature_note
 ---
 
 本笔记主要整理2025年6月10日阅读的部分文献，主要是介绍MOF修饰的仿原生细胞及其催化反应，以及一篇蛋白自组织的文献
@@ -92,3 +94,4 @@ toc: true
 现在大家的生物体系都是往组织器官方面卷了吗……看的汗流浃背了，小作坊课题组的前途在哪呢……
 
 找点能做的吧
+

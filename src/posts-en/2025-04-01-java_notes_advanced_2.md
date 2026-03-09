@@ -1,10 +1,18 @@
 ---
 layout: post
 title: "Java Course Learning Advanced Notes 2"
-date:   2025-04-01
+date: 2025-04-01
 tags: [cs_basic]
 comments: true
 author: junedrinleng
+toc: true
+post_id: 2025-04-01-java_notes_advanced_2
+source_lang: zh
+source_title: "Java课程学习进阶笔记 2"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.262Z"
+source_hash: 46865e0c4c2daa66286e389eefd429ce9190d263be8196753efcf032e6192742
 ---
 
 This note mainly records the advanced part of the [Java beginner and advanced course](https://www.bilibili.com/video/BV1wL411L7A3?p=3) by Wang Kai from Zhejiang University, focusing on object recognition, object interaction, encapsulated access attributes, open access attributes, class variables and class functions, etc.

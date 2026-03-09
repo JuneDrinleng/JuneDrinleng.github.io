@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250619文献阅读笔记"
-date:   2025-06-19
+date: 2025-06-19
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-19-paper_report_5
+title_key: literature_note
 ---
 
 本笔记主要整理2025年6月19日阅读的部分文献，主要是介绍superamolecular相关的文献

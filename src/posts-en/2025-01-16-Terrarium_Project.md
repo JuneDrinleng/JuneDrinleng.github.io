@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Web Development Practical - Terrarium Project"
-date:   2025-01-16
+date: 2025-01-16
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-01-16-Terrarium_Project
+source_lang: zh
+source_title: "web开发实战-花艺瓶项目"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.201Z"
+source_hash: d6754ccc5881b7915f05c41421c673c5a341224638f75549d12e7978797c709d
 ---
 
 This note mainly introduces how to use html+css+js to implement a terrarium project, including the layout of the web frontend and the implementation of drag-and-drop operations for objects on the webpage

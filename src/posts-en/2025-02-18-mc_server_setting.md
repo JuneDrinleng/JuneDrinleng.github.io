@@ -1,12 +1,19 @@
 ---
 layout: post
 title: "Setting up a Minecraft server on Alibaba Cloud server"
-date:   2025-02-18
+date: 2025-02-18
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-18-mc_server_setting
+source_lang: zh
+source_title: "在阿里云服务器上搭建minecraft服务器"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.209Z"
+source_hash: bab9bc8acb38493d8a0bcb32f8b32b643e832bf77074c56f5e8ea276d6c465d4
 ---
+
 This note mainly introduces how to set up a Minecraft server on an Alibaba Cloud server
 <!-- more -->
 

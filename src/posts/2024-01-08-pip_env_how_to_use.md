@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "pip env 使用指南"
-date:   2024-01-08
+date: 2024-01-08
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
-
+post_id: 2024-01-08-pip_env_how_to_use
 ---
 
 该笔记主要介绍python程序打包成exe时的虚拟环境问题，之所以不用conda是因为conda环境生成exe体积很大且会打包很多不必要的包，因此选择pip env实现
@@ -92,3 +92,4 @@ pipenv --rm
 [python项目结合pipenv创建requirements.txt实现快速安装依赖包](https://ww4k.com/python/requirements_pipenv.html)
 
 [Python Docs](https://hellogitlab.com/backend/python/)
+

@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型final project介绍"
-date:   2024-10-28
+date: 2024-10-28
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-28-PGM_Final_Project_Requirements
 ---
 
 该笔记主要讲解介绍了一下最终大作业的要求
@@ -26,3 +27,4 @@ toc: true
 用马尔可夫随机场进行病理图像分割，每个像素点就是一个观测接单，图像分割就是分割隐空间节点z的类
 理论部分：完成概率图模型的表示，写出先验概率，局部条件概率，后验概率，给出采用的推断和学习方法、给出参数推导的过程以及表达式
 编程：不能掉包，只能用基础的运算库或者图像读取的
+

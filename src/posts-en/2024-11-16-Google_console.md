@@ -1,13 +1,18 @@
 ---
 layout: post
 title: "How to Set Up Your Blog to Be Indexed by Google Search Engine"
-date:   2024-11-16
+date: 2024-11-16
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-16-Google_console
+source_lang: zh
+source_title: "如何设置博客被谷歌搜索引擎收录"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.155Z"
+source_hash: fdc8d527ae17e4e70c56398526c58d3f6bda7d7b19f93df276015fb842f19bf1
 ---
-
 
 This note mainly introduces how to set up a blog website that has been built to be indexed by Google Search Engine.
 <!-- more -->

@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "PINN基础笔记"
-date:   2025-03-12
-tags: [ML&DL]
+date: 2025-03-12
+tags: ["ML&DL"]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-03-12-PINN_notes
 ---
 
 该笔记主要介绍物理信息嵌入的神经网络（physics informed neural network），包括基本概念和简单的pytorch实现。

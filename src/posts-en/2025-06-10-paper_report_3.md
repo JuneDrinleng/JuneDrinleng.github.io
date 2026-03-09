@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250610 Literature Reading Notes"
-date:   2025-06-10
+date: 2025-06-10
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-10-paper_report_3
+source_lang: zh
+source_title: "20250610文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.295Z"
+source_hash: e0f2e2b1fda3ab49a74af68d2867b959e975f61c18f02130f60ee0abd585d57d
 ---
 
 This note primarily summarizes the literature read on June 10, 2025, focusing on MOF-modified protocells and their catalytic reactions, as well as a paper on protein self-organization

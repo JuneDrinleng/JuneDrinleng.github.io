@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Python Packaging into EXE Guide"
-date:   2023-12-27
+date: 2023-12-27
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-12-27-python_pack_exe_how_to_use
+source_lang: zh
+source_title: "python打包成exe指南"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.105Z"
+source_hash: 5a83ca17b3baceaaf6eaa3a40d320cd015e7a917ac528505c3646e595940619a
 ---
 
 This note mainly introduces the process of packaging Python programs into EXE files, and lists several common examples

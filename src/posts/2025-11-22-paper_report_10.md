@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20251122文献阅读笔记"
-date:   2025-11-22
+date: 2025-11-22
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-11-22-paper_report_10
+title_key: literature_note
 ---
 
 本笔记主要记录一篇文献是DNA的锁和钥匙超分子组织；另一篇介绍节肢蛋白的LLPS，其只要聚焦于D3域的构象（通过核磁）
@@ -47,3 +49,4 @@ toc: true
 ![image-20251122115458779](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20251122115458779.png)
 
 其他的内容都是打核磁看构象
+

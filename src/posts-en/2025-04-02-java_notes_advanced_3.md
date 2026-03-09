@@ -1,10 +1,18 @@
 ---
 layout: post
 title: "Java Advanced Learning Notes 3"
-date:   2025-04-02
+date: 2025-04-02
 tags: [cs_basic]
 comments: true
 author: junedrinleng
+toc: true
+post_id: 2025-04-02-java_notes_advanced_3
+source_lang: zh
+source_title: "Java课程学习进阶笔记 3"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.267Z"
+source_hash: e442f20bf2af0570acaf0d22c924ab43a0635aca736445c21c4ae75e234661b8
 ---
 
 This note mainly records the advanced part of the [Java beginner and advanced course](https://www.bilibili.com/video/BV1wL411L7A3?p=3) by Wang Kai from Zhejiang University, focusing on the NoteBook example, generic container types, ArrayList operations, object arrays, collection containers, and hash tables等内容

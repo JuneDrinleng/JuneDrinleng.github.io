@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "WSL使用指南"
-date:   2025-01-04
+date: 2025-01-04
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-01-04-wsl_instruction
 ---
 
 该笔记主要记录本人在使用WSL时遇到的问题以及解决方案，以及一些常用的命令。
@@ -93,4 +94,5 @@ ssh -T git@github.com
     }
     ```
     然后重启wsl的vscode即可
+
 

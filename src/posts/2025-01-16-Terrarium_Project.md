@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "web开发实战-花艺瓶项目"
-date:   2025-01-16
+date: 2025-01-16
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-01-16-Terrarium_Project
 ---
 
 该笔记主要介绍介绍如何使用html+css+js实现一个花艺瓶的项目，包括网页前端的布局以及实现对于网页中对象的拖动操作

@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20260104 Literature Review Notes"
-date:   2026-01-04
+date: 2026-01-04
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2026-01-04-paper_report_13
+source_lang: zh
+source_title: "20260104文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.329Z"
+source_hash: 2c5e5183fa4afda3b3090c83056f7dc9723c8c2bb9651050805522f37f03c683
 ---
 
 This note continues to record the machine learning algorithm portion of the review paper on Single-Particle Tracking that was not completed from the detailed reading on December 30, 2025.

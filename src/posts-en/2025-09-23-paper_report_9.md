@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250923 Literature Reading Notes"
-date:   2025-09-23
+date: 2025-09-23
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-23-paper_report_9
+source_lang: zh
+source_title: "20250923文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.314Z"
+source_hash: cf4f9c7d3c722a0d0e49d5fd54f3aea5b77cc46a68d59862e29008f2c5f90858
 ---
 
 This note mainly records the generation of super-resolution interpolated frames, 3D reconstruction using CNN, neural network dynamics modeling, and a lipid vesicle constructed through self-assembly via bacteriophages.

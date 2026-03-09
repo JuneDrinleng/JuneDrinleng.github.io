@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型6 概率图模型表示部分小结与进阶"
-date:   2024-10-21
+date: 2024-10-21
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-21-PGM_6_Advanced_PGM
 ---
 
 该笔记主要回顾了前一段时间所学习的概率图模型表示部分，同时介绍了一些更加前沿的研究
@@ -74,4 +75,5 @@ Web resources:
 - Machine intelligence (Nature 521:7553, 435)
 
 ![image-20241021120843494](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241021120843494.png)
+
 

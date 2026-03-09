@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Frontend Learning Notes 2: Functions in JavaScript"
-date:   2024-12-05
+date: 2024-12-05
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-05-JS_learning_2
+source_lang: zh
+source_title: "前端学习笔记2 JavaScript中的函数"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.180Z"
+source_hash: fcaaf84d9f524297df6974580efbe5d628457d3e90a2a7f55b6386b63a250517
 ---
 
 This note primarily focuses on the function section of JavaScript basics, including explicit functions and implicit functions, referencing [Microsoft's web-dev project](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/2-functions-methods/translations/README.zh-cn.md)

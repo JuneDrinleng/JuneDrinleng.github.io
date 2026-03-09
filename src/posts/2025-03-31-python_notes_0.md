@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "python课程学习笔记1"
-date:   2025-03-31
+date: 2025-03-31
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-03-31-python_notes_0
+title_key: course_note
 ---
 
 该笔记主要记录Harford的[CS50](https://cs50.harvard.edu/python/2022/)课程笔记，本笔记是lecture0的笔记，其主要介绍的是python作业的入门的变量和函数
@@ -339,4 +341,5 @@ def square(n):
 
 main()
 ~~~
+
 

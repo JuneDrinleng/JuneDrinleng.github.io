@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20251229 Literature Reading Notes"
-date:   2025-12-29
+date: 2025-12-29
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-12-29-paper_report_11
+source_lang: zh
+source_title: "20251229文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.323Z"
+source_hash: c2165851136b5c8927bd715e07d8297340308d7ed975a5ad938a24aa2c7d9cb7
 ---
 
 This note primarily records an intensive reading of a paper on Time Series Forecasting assisted by Multi-Modal Views (MMVs), where time series are visualized and then learned using computer vision (CV). Skimming includes: pattern recognition and classification of driving trajectories.

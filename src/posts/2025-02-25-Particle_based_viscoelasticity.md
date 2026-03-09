@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "基于颗粒的粘度检测"
-date:   2025-02-25
+date: 2025-02-25
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-25-Particle_based_viscoelasticity
 ---
 
 该笔记主要介绍基于颗粒的粘度检测，包括基于动态光散射（DLS）技术的和基于粒子图像示踪的（VPT）。本文将从理论和实际计算等部分依次详细介绍和整理。
@@ -45,6 +46,7 @@ $$
 ![08dc1769aec2b4436e826aa4ef64025](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/08dc1769aec2b4436e826aa4ef64025.png)
 
 > M. Unni *et al.*, *Science Advances* (2021), doi:[10.1126/sciadv.abf8467](https://doi.org/10.1126/sciadv.abf8467).
+
 
 
 

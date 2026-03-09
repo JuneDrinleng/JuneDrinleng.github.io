@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Quick Management and Upload of Blog Images"
-date:   2024-11-17
+date: 2024-11-17
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-17-blog_update
+source_lang: zh
+source_title: "博客图片的快速管理与上传"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.160Z"
+source_hash: 5253df83898cd1946f25951eae6ce52066bd9eaca8ad8d4a3ee2cb8ccae106c3
 ---
 
 This note mainly introduces how to manage and quickly upload images to achieve rapid blog conversion from markdown files  

@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型5 无向图：马尔可夫随机场"
-date:   2024-10-14
+date: 2024-10-14
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-14-PGM_5_Markov_Nerwork
 ---
 
 该笔记主要介绍概率图模型的无向图，其更加常见的名字是马尔可夫随机场
@@ -97,4 +98,5 @@ $$
 更常见的情况时协方差矩阵为0的地方，当且仅当x和j之间没有直接的边——也就是可以根据求解信息矩阵一下就可以画出高斯随机场的拓扑结构
 ![image-20241014120448241](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241014120448241.png)
 ![image-20241014120459828](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20241014120459828.png)
+
 

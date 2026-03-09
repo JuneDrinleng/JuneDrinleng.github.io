@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probability Graph Models 4: Hidden Markov Models"
-date:   2024-09-30
+date: 2024-09-30
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-30-PGM_4_Dynamic_Model
+source_lang: zh
+source_title: "概率图模型4 隐马模型"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.130Z"
+source_hash: 09749c4b5e42b256d99312395144ced877f34efa8bcf36d62608d585811e22f9
 ---
 
 This note mainly introduces the Hidden Markov Model (HMM) in directed graphs of probabilistic graphical models  

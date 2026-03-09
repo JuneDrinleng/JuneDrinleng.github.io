@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "概率图模型2 贝叶斯网络"
-date:   2024-09-21
+date: 2024-09-21
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-21-PGM_2_Bayesian_Network
 ---
-
 
 该笔记主要介绍概率图模型中的贝叶斯网络，包括贝叶斯网络/有向图的定义以及其因子分解定理
 <!-- more -->
@@ -126,3 +126,4 @@ Intervention干预：涉及干预实验辅助给出一些因果
 Counterfactuals反事实推断：世界的很多事情并不能做重复事件——同一个人不可能既吃药又不吃药，虽然不能这么实验但是人可以基于此推断  
 
 如果是causal edge，那么对子节点进行干预的时候其与父节点的因果关联边就得去除了  
+

@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 10: Inference Summary"
-date:   2024-11-20
+date: 2024-11-20
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-20-PGM_10-inference_conclusion
+source_lang: zh
+source_title: "概率图模型10 inference小结"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.170Z"
+source_hash: 97d7f7a3cc3e47fcbc16b20d9f506cc2e33ced0c937b02ca7605e2a07be86e3f
 ---
 
 This note mainly reviews and organizes the theoretical aspects of the inference section  

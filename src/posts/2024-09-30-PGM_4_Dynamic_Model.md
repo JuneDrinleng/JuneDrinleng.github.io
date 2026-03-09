@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型4 隐马模型"
-date:   2024-09-30
+date: 2024-09-30
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-30-PGM_4_Dynamic_Model
 ---
 
 该笔记主要介绍概率图模型有向图中的隐马尔可夫模型HMM
@@ -95,3 +96,4 @@ $$
 ![image-20240930115909839](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240930115909839.png)
 
 实际上RNN就是参照马尔可夫链来构建的，LSTM相较于RNN而言由于更有长程相关而变得更有用（RNN的马尔可夫性太强）
+

@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Viscoelastic Mechanisms Related to Hydrogels"
-date:   2025-02-20
+date: 2025-02-20
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-20-Viscoelastic_Hydrogel_cell
+source_lang: zh
+source_title: "水凝胶粘弹性相关机制"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.214Z"
+source_hash: 2b76f3981ec07b64774903aa03cea3b0d8ba9075c8c5a46a6e94bcf0c7aca2fa
 ---
 
 This note mainly introduces the article "AFM Viscoelastic Cell Microenvironment: Hydrogel-Based Strategy for Recapitulating Dynamic ECM Mechanics"

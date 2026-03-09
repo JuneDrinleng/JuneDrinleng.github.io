@@ -1,12 +1,14 @@
 ---
 layout: post
 title: "在阿里云服务器上搭建minecraft服务器"
-date:   2025-02-18
+date: 2025-02-18
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-18-mc_server_setting
 ---
+
 该笔记主要介绍如何在阿里云服务器上搭建我的世界服务器
 <!-- more -->
 

@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "博客图片的快速管理与上传"
-date:   2024-11-17
+date: 2024-11-17
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-17-blog_update
 ---
 
 该笔记主要介绍如何管理以及快速的上传图片实现md的迅速博客化

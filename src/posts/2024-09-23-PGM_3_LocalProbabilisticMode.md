@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型3 贝叶斯网络Local Probabilistic Model"
-date:   2024-09-23
+date: 2024-09-23
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-23-PGM_3_LocalProbabilisticMode
 ---
 
 该笔记主要介绍概率图模型贝叶斯网络的local CPD部分的概率表示
@@ -130,6 +131,7 @@ Three Steps for Representation：
 • Define nodes / variables  
 • Consider edges / dependences  
 • Choose local CPDs  
+
 
 
 

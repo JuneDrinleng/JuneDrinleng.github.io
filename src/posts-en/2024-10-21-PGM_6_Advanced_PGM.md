@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 6: Summary and Advancement of Probabilistic Graphical Model Representation"
-date:   2024-10-21
+date: 2024-10-21
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-21-PGM_6_Advanced_PGM
+source_lang: zh
+source_title: "概率图模型6 概率图模型表示部分小结与进阶"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.142Z"
+source_hash: eafaf8d73daa97e1db4fa97a73564a6964c9e31a3977d0bbb4c880823ff3cd7f
 ---
 
 This note mainly reviews the previously learned part of probabilistic graphical model representation, while introducing some more advanced research

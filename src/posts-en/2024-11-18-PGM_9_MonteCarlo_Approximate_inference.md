@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 9: Monte Carlo Approximation"
-date:   2024-11-18
+date: 2024-11-18
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-18-PGM_9_MonteCarlo_Approximate_inference
+source_lang: zh
+source_title: "概率图模型9 蒙特卡洛近似"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.166Z"
+source_hash: a0c80f4868e5225eb521c0691e5de1fb372fe181ec549ca968fad080526d2ffa
 ---
 
 This note mainly introduces Monte Carlo approximation, including likelihood weighting and importance sampling

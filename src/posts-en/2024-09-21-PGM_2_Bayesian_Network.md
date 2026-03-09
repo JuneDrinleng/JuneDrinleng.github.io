@@ -1,13 +1,18 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 2: Bayesian Networks"
-date:   2024-09-21
+date: 2024-09-21
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-21-PGM_2_Bayesian_Network
+source_lang: zh
+source_title: "概率图模型2 贝叶斯网络"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.122Z"
+source_hash: c6e30ab29779d9b7de70f135cbccbf028aef28a20354de9e80744d767e8392c5
 ---
-
 
 This note mainly introduces Bayesian networks in probabilistic graphical models, including the definition of Bayesian networks/directed graphs and their factorization theorem
 <!-- more -->

@@ -1,12 +1,17 @@
 ---
 layout: post
 title: "pipenv Usage Guide"
-date:   2024-01-08
+date: 2024-01-08
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
-
+post_id: 2024-01-08-pip_env_how_to_use
+source_lang: zh
+source_title: "pip env 使用指南"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.113Z"
+source_hash: b7b191cf377c20b669e6fae494e35c55b6743b189d05130d6905837aa1aed68f
 ---
 
 This note mainly introduces issues related to virtual environments when packaging Python programs into EXE files. Conda is not used because the generated EXE files are large and include many unnecessary packages. Therefore, pipenv is chosen to implement this.

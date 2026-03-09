@@ -1,12 +1,19 @@
 ---
 layout: post
 title: "Anomalous Diffusion"
-date:   2025-02-13
+date: 2025-02-13
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-13-anomalous_diffusion
+source_lang: zh
+source_title: "Anomalous Diffusion"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.205Z"
+source_hash: e7d33b1059b5f93a0d56bbc18308dccd0bf734a8615d34e0f29b34e7600b462a
 ---
+
 This note mainly introduces the anomalous diffusion model and related datasets
 <!-- more -->
 ## 0 Background and Keywords

@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Front-end Learning Notes 3: Conditional Statements in JavaScript"
-date:   2024-12-06
+date: 2024-12-06
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-06-JS_learning_3
+source_lang: zh
+source_title: "前端学习笔记3 JavaScript中的判断语句"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.184Z"
+source_hash: 5480697f962bdb4dbb83f83669633093bfef7458399d1233cbc990805f80900e
 ---
 
 This note primarily focuses on conditional statements in JavaScript basics, including boolean values, comparison operators, if-related statements, and logical statements, referencing [Microsoft's web-dev project](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/3-making-decisions/translations/README.zh-cn.md)

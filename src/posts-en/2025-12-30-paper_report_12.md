@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20251230 Literature Reading Notes"
-date:   2025-12-30
+date: 2025-12-30
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-12-30-paper_report_12
+source_lang: zh
+source_title: "20251230文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.326Z"
+source_hash: 31065ac8e4a2f46856281580706041588170a8165cd8fe09024bab80b52f94b4
 ---
 
 This note continues to record the reading of NeurIPS 2025 Time Series papers, including a forecasting new form for time series segmentation, as well as the imaging content of a review on Single-Particle Tracking.

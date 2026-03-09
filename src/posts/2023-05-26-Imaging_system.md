@@ -6,6 +6,7 @@ tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-05-26-Imaging_system
 ---
 
 该笔记主要介绍单颗粒示踪技术的基础知识，包括成像系统和示踪颗粒中的金纳米颗粒的相关性质
@@ -152,3 +153,4 @@ $$
 示意图如下⬇️
 
 ![image-20230526102220795](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20230526102220795.png)
+

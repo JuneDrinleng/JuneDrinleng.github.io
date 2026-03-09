@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型7 cluster graph与clique tree"
-date:   2024-11-04
+date: 2024-11-04
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-04-PGM_7_Inference_as_Optimization
 ---
 
 该笔记主要介绍了推断部分的graph cluster相关理论，以及使用clique tree进行准确推断  
@@ -135,6 +136,7 @@ clique tree就是原先概率图模型的等价表示，他的优势在于可以
 这一cluster graph没有理论基础，只是一个处理的算法，能算就完事  
 只需要满足Running Intersection Property即可  
 但这里是不能保证结果收敛，也不能保证收敛结果就是正确的边缘概率（在这里的belief propagation)  
+
 
 
 

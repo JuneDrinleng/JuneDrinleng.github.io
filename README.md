@@ -79,55 +79,72 @@ npm run build
 
 ## Writing Blog Posts
 
-Create posts under:
+Primary authoring flow is **Chinese as source of truth** under:
 
-- `src/posts/*.md` (Chinese)
-- `src/posts-en/*.md` (English)
+- `src/posts/*.md`
 
-Each Markdown file should include frontmatter, for example:
+English files in `src/posts-en/*.md` are generated/maintained by sync script.
+
+Recommended frontmatter (source file):
 
 ```yaml
 ---
 layout: post
-title: "Post Title"
+title: "????"
 date: 2026-03-04
-tags: [SPT, Notes]
+tags: [paper, notes]
+post_id: 2026-03-04-my-post
+title_key: literature_note
 comments: true
 author: junedrinleng
 toc: true
 ---
 ```
 
+`title_key` maps to title templates in `i18n/blog-phrases.json`.
+
 Use `<!-- more -->` as the summary splitter:
 
 - Content before it is used as preview/summary
 - Content after it is the full post body
 
-## Optional: Translate Chinese Posts to English (Ollama)
+## i18n Sync Workflow
 
-Script: `scripts/translate_posts_en.py`
+Main script: `scripts/i18n-sync.mjs`
 
 What it does:
 
-- Scans `src/posts/*.md`
-- Only translates files that do not already exist in `src/posts-en/`
-- Translates in chunks and writes generated English Markdown files
-
-Prerequisites:
-
-1. Ollama running locally at `http://localhost:11434`
-2. Model available: `qwen3:8b`
-3. Python deps installed:
-
-```bash
-pip install ollama httpx tqdm
-```
+- Reads `src/posts/*.md`
+- Applies title templates and glossary rules
+- Reuses translation memory from `i18n/tm.json`
+- Writes/updates `src/posts-en/*.md`
+- Persists source hash cache to `i18n/sync-cache.json`
 
 Run:
 
 ```bash
-python scripts/translate_posts_en.py
+npm run i18n:sync
 ```
+
+Optional frontmatter normalization (add missing `post_id/title_key`):
+
+```bash
+npm run i18n:sync:fix
+```
+
+Optional OpenAI translation for body paragraphs:
+
+```bash
+set I18N_TRANSLATOR=openai
+set OPENAI_API_KEY=your_key
+npm run i18n:sync
+```
+
+Files you can tune for consistency:
+
+- `i18n/blog-phrases.json`: title templates and tag mapping
+- `i18n/glossary.csv`: terminology mapping
+- `i18n/tm.json`: translation memory cache
 
 ## Deployment
 

@@ -1,10 +1,18 @@
 ---
 layout: post
 title: "Java Course Study Advanced Notes 1"
-date:   2025-04-01
+date: 2025-04-01
 tags: [cs_basic]
 comments: true
 author: junedrinleng
+toc: true
+post_id: 2025-04-01-java_notes_advanced_1
+source_lang: zh
+source_title: "Java课程学习进阶笔记 1"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.256Z"
+source_hash: df87bebd127c2e213f921097f41f143dbd13af3a513d06928c09b4b112f871c7
 ---
 
 This note mainly records the advanced part of the [Java beginner and advanced course](https://www.bilibili.com/video/BV1wL411L7A3?p=3) by Wang Kai from Zhejiang University, including content on creating objects using classes

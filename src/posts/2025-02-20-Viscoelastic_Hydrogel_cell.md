@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "水凝胶粘弹性相关机制"
-date:   2025-02-20
+date: 2025-02-20
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-20-Viscoelastic_Hydrogel_cell
 ---
 
 该笔记主要介绍AFM的Viscoelastic Cell Microenvironment: Hydrogel-Based Strategy for Recapitulating Dynamic ECM Mechanics这篇文章

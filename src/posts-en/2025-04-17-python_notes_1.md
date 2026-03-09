@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Python Course Learning Notes 2"
-date:   2025-04-17
+date: 2025-04-17
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-04-17-python_notes_1
+source_lang: zh
+source_title: "python课程学习笔记2"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.272Z"
+source_hash: 8996c5e1ba37a249da0ac5f2172b4a61b28b3eefcc6c3fdedc4f363be9418aac
 ---
 
 This note mainly records the lecture notes from Harford's [CS50](https://cs50.harvard.edu/python/2022/) course, focusing on the usage of `str`, lectures 3 and 4, including `try` statements, as well as `random`, `statistic` packages, etc.

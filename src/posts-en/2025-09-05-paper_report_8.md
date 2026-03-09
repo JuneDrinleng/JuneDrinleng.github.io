@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250905 Literature Review Notes"
-date:   2025-09-05
+date: 2025-09-05
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-05-paper_report_8
+source_lang: zh
+source_title: "20250905文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.311Z"
+source_hash: a895579c4a5508c2489ed790717a84e4da5b3ac74de0b0672baa5d516ad05c66
 ---
 
 This note mainly records the arxiv articles recommended by hugging face and several articles from alphaXiv today, all of which are related to self-supervised learning content.

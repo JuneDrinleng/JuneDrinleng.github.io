@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 7: Cluster Graphs and Clique Trees"
-date:   2024-11-04
+date: 2024-11-04
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-04-PGM_7_Inference_as_Optimization
+source_lang: zh
+source_title: "概率图模型7 cluster graph与clique tree"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.149Z"
+source_hash: 8ab563c85baca5efdca5280b59d908102cfaf9dafb690a3f882c6ad070425036
 ---
 
 This note mainly introduces the theoretical framework of inference-related graph clusters and the use of clique trees for accurate inference  

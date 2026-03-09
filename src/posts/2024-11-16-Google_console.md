@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "如何设置博客被谷歌搜索引擎收录"
-date:   2024-11-16
+date: 2024-11-16
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-16-Google_console
 ---
-
 
 该笔记主要介绍搭建好的博客网站如何被谷歌搜索引擎收录。
 <!-- more -->

@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 3: Bayesian Network Local Probabilistic Model"
-date:   2024-09-23
+date: 2024-09-23
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-09-23-PGM_3_LocalProbabilisticMode
+source_lang: zh
+source_title: "概率图模型3 贝叶斯网络Local Probabilistic Model"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.126Z"
+source_hash: 9d0886eaf7bf64ff09dffe903ca8df72af50f44ac469cc6d33c54e1bfadb2814
 ---
 
 This note mainly introduces the local CPD part of Bayesian networks in probabilistic graphical models  

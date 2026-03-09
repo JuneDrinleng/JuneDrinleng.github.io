@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20251229文献阅读笔记"
-date:   2025-12-29
+date: 2025-12-29
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-12-29-paper_report_11
+title_key: literature_note
 ---
 
 本笔记主要记录精读的一篇Time Series Forecast  assisted by using MMVs, 将time series进行visualize之后利用cv进行time series的学习，粗读的包括：驾驶轨迹的模式识别分类
@@ -70,3 +72,4 @@ toc: true
 ![image-20251229113611474](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20251229113611474.png)
 
 图片的右边则是对知识进行蒸馏预训练，具体而言是将轨迹进行随机的掩码丢弃，从而模拟轨迹点缺失的情况，对应的就是使用Mask Generator(借助的Mamba Block)。将掩码的轨迹放入全量训练的模型进行embedding，然后再和全量的结果进行损失，从而不断优化对缺失轨迹下的embedding准确性
+

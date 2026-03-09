@@ -1,3 +1,5 @@
-/node_modules
+﻿/node_modules
 /dist
-
+/i18n/sync-cache.json
+/src/posts-en/*.bak-*
+/src/posts-en/*.tmp-*

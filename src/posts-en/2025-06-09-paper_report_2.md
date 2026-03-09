@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Marangoni Effect"
-date:   2025-06-09
+date: 2025-06-09
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-09-paper_report_2
+source_lang: zh
+source_title: "Marangoni Effect"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.292Z"
+source_hash: e7b4ad2d2b96a8a6977a79c1cf4d4104ee37570f6edc6cfd273d42b15453387a
 ---
 
 This note primarily summarizes part of the literature read on June 9, 2025, focusing on studies related to the Marangoni Effect that occurs near electrodes under electrolysis conditions

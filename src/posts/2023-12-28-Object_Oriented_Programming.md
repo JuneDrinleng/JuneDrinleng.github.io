@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "python中的面向对象编程"
-date:   2023-12-28
+date: 2023-12-28
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-12-28-Object_Oriented_Programming
 ---
-
 
 该笔记主要学习python中的面向对象编程，主要包括类的创建、对象的创建、类的改进、定义对象的方法、面向对象的继承等内容。
 学习来源主要是[3小时快速入门Python](https://www.bilibili.com/video/BV1944y1x7SW?p=29&vd_source=86b2402290f7b7dee927bba58a141a81)，并且在学习过程中加入了一些自己的理解和总结。
@@ -251,4 +251,5 @@ class PartTimeEmployee(HumanResourcesSystem):
 1. [设计模式目录——23种设计模式](https://refactoringguru.cn/design-patterns/catalog)
 2. [3小时快速入门Python](https://www.bilibili.com/video/BV1944y1x7SW?p=29&vd_source=86b2402290f7b7dee927bba58a141a81)
 3. [matlab面向对象程序设计]("D:\Lab\Books\matlab面向对象.pdf")
+
 

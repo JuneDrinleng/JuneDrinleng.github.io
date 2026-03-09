@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20260119 Literature Reading Notes - FFssFF Topic"
-date:   2026-01-19
+date: 2026-01-19
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2026-01-19-paper_report_14
+source_lang: zh
+source_title: "20260119文献阅读笔记-FFssFF专题"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.332Z"
+source_hash: c5eaa2b58a83a205d18abc73bdb80d4386afb085441249bd2f0f9ee48a8a056b
 ---
 
 This note mainly records the literature reading notes on LLPS of FFssFF droplets

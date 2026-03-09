@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Introduction to the Final Project on Probabilistic Graphical Models"
-date:   2024-10-28
+date: 2024-10-28
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-28-PGM_Final_Project_Requirements
+source_lang: zh
+source_title: "概率图模型final project介绍"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.146Z"
+source_hash: 9f0f760fe3eea13030355fa03398a2fb0cd3d8ba51d133b71b61d458ea4b489a
 ---
 
 This note mainly explains the requirements for the final project  

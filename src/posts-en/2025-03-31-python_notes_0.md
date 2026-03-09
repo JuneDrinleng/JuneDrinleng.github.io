@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Python Course Notes 1"
-date:   2025-03-31
+date: 2025-03-31
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-03-31-python_notes_0
+source_lang: zh
+source_title: "python课程学习笔记1"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.253Z"
+source_hash: 9fa04c4b6b3399052bc2682ecac32c285ee0ed44fad2391fe25bdb82fb2ceddb
 ---
 
 This note mainly records the course notes from Harford's [CS50](https://cs50.harvard.edu/python/2022/) course, which is the lecture0 notes. It primarily introduces the basics of Python assignments, including variables and functions

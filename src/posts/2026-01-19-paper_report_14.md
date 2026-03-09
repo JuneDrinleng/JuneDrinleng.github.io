@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20260119文献阅读笔记-FFssFF专题"
-date:   2026-01-19
+date: 2026-01-19
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2026-01-19-paper_report_14
+title_key: literature_note
 ---
 
 本笔记主要记录FFssFF液滴进行LLPS的文献阅读笔记专题

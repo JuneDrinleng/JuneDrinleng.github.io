@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型8 平均场近似"
-date:   2024-11-11
+date: 2024-11-11
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-11-PGM_8_Variational_Inference
 ---
 
 该笔记介绍了变分推断以及平均场近似相关的内容  
@@ -115,6 +116,7 @@ $$
 这两项就可以用神经网络的encode和decode实现  
 实际上做的是变分推断  
 VAE就相当于是对Variation学比较复杂的q通过神经网络   
+
 
 
 

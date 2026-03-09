@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Frontend Learning Notes 5: Introduction to HTML Language"
-date:   2024-12-06
+date: 2024-12-06
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-06-JS_learning_5
+source_lang: zh
+source_title: "前端学习笔记5 html语言简介"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.192Z"
+source_hash: fa046c5e12dea722f6a3831f840f8721e5d694db189a2a0a6d909045c04763ef
 ---
 
 This note covers the HTML language in frontend knowledge, including introductions to parts such as head and body. The specific content is referenced from [Microsoft's web-dev project](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/3-terrarium/1-intro-to-html/translations/README.zh-cn.md)

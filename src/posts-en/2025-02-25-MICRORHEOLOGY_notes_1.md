@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Microrheology Notes 1"
-date:   2025-02-25
+date: 2025-02-25
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-25-MICRORHEOLOGY_notes_1
+source_lang: zh
+source_title: "微流变学笔记1"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.217Z"
+source_hash: 8fb33cdf19322a4719d7cd9d9be289e7c6c737c805ecb25ad0bee8390a25b45b
 ---
 
 This note mainly introduces *Microrheology* by Eric M. Furst (Author), Todd M. Squires (Author). This note is the notes of the introduction part of the book.

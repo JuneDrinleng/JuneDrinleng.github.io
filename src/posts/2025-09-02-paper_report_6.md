@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250902文献阅读笔记"
-date:   2025-09-02
+date: 2025-09-02
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-02-paper_report_6
+title_key: literature_note
 ---
 
 本笔记主要记录一种基于阴阳离子聚合形成的protocell液滴并用于酶催化，以及一篇报道液滴内部弹道扩散行为的文献
@@ -45,4 +47,5 @@ $$
 
 这里的invasion实际上是染料分子的侵入：
 ![image-20250902175806510](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20250902175806510.png)
+
 

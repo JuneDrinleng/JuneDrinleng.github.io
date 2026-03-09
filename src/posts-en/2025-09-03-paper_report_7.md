@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250903 Literature Reading Notes"
-date:   2025-09-03
+date: 2025-09-03
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-03-paper_report_7
+source_lang: zh
+source_title: "20250903文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.308Z"
+source_hash: 6b322643b251e07df67470112eb618f695e332ce0f977abae35fc643e738061f
 ---
 
 This note primarily records recent literature on synthetic cells, including a review on artificial cells, a study on magnetically driven DNA reactions, and an experimental simulation of circadian rhythm in giant single-layer vesicles mimicking synthetic cells.

@@ -1,10 +1,17 @@
 ---
 layout: post
 title: "Regulation Mechanisms of Liquid-Liquid Phase Separation"
-date:   2025-04-03
+date: 2025-04-03
 tags: [paper]
 comments: true
 author: junedrinleng
+toc: true
+post_id: 2025-04-03-Crowding_in_LLPS
+source_lang: zh
+source_title: "液液相分离调控机制"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.270Z"
+source_hash: 56fd315c1b96f43e46924862c59c9ffeba28b4ac7d52aa852dcb2127d9666f1a
 ---
 
 This note primarily records content related to the regulation mechanisms of liquid-liquid phase separation, including crowding-related theories, NMR characterization of phase separation processes, analysis of BSA phase separation, and residue interaction mechanisms

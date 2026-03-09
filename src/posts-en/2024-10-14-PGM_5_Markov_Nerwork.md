@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 5: Undirected Graphs - Markov Random Fields"
-date:   2024-10-14
+date: 2024-10-14
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-10-14-PGM_5_Markov_Nerwork
+source_lang: zh
+source_title: "概率图模型5 无向图：马尔可夫随机场"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.138Z"
+source_hash: 15c8b3dcd177a29cdda428b00e48482508f0c91d6b1fbfbc0fabbbc1db501100
 ---
 
 This note mainly introduces undirected graphs in probabilistic graphical models, which are more commonly known as Markov Random Fields  

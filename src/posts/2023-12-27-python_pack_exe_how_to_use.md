@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "python打包成exe指南"
-date:   2023-12-27
+date: 2023-12-27
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-12-27-python_pack_exe_how_to_use
 ---
 
 该笔记主要介绍python程序打包成exe的过程问题，并列举了几个较为常见的例子
@@ -64,3 +65,4 @@ Pyinstaller -F -c -i chengzi.ico py_word.py -n exo
 ## 5 参考
 
 [别再问我Python打包成exe了（最适合小白的终极解答）！](https://zhuanlan.zhihu.com/p/370914926)
+

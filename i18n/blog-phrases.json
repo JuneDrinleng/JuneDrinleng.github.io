@@ -1,0 +1,34 @@
+﻿{
+  "titleTemplates": {
+    "literature_note": {
+      "zh": "{date} 文献阅读笔记",
+      "en": "{date} Literature Reading Notes"
+    },
+    "course_note": {
+      "zh": "{date} 课程学习笔记",
+      "en": "{date} Course Study Notes"
+    },
+    "project_note": {
+      "zh": "{date} 项目记录",
+      "en": "{date} Project Notes"
+    }
+  },
+  "tagMap": {
+    "others": {
+      "zh": "其他",
+      "en": "misc"
+    },
+    "programming": {
+      "zh": "编程",
+      "en": "programming"
+    },
+    "paper": {
+      "zh": "论文",
+      "en": "paper"
+    },
+    "notes": {
+      "zh": "笔记",
+      "en": "notes"
+    }
+  }
+}

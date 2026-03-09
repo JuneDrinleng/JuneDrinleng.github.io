@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20260104文献阅读笔记"
-date:   2026-01-04
+date: 2026-01-04
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2026-01-04-paper_report_13
+title_key: literature_note
 ---
 
 本笔记继续记录2025年12月30日精读的关于单颗粒示踪的综述中之前尚未完成的机器学习算法部分内容。

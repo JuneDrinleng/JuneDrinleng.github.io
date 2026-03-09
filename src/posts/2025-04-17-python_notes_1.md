@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "python课程学习笔记2"
-date:   2025-04-17
+date: 2025-04-17
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-04-17-python_notes_1
+title_key: course_note
 ---
 
 该笔记主要记录Harford的[CS50](https://cs50.harvard.edu/python/2022/)课程笔记，本笔记是对`str`相关用法，lecture3和lecture4的相关课程做的整理，包括`try`语句，以及`random`，`statistic`等package
@@ -178,3 +180,4 @@ else:
 我们可以使用break来打破循环while，也可以使用pass使得无事发生继续进行
 
 ## 
+

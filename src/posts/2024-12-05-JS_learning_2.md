@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "前端学习笔记2 JavaScript中的函数"
-date:   2024-12-05
+date: 2024-12-05
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-05-JS_learning_2
+title_key: course_note
 ---
 
 该笔记主要学习JavaScript的基础知识中的函数部分，包括显函数和隐函数，参考自[微软的web-dev项目](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/2-functions-methods/translations/README.zh-cn.md)

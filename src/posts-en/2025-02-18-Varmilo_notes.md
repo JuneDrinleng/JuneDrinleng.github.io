@@ -1,12 +1,20 @@
 ---
 layout: post
 title: "Notes on Using the Amilo VBS108 Keyboard"
-date:   2025-02-18
+date: 2025-02-18
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-18-Varmilo_notes
+source_lang: zh
+source_title: "阿米洛VBS108键盘使用notes"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.212Z"
+source_hash: 3eec4b547b9f1d5e5112b2556184a924385edd667e0ac4ea4297d7fe685a9508
 ---
+
 This notes primarily introduces some common key functions of the Amilo keyboard.  
 <!-- more -->
 ## 0 Background

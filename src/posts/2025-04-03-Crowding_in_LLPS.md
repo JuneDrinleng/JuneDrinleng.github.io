@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "液液相分离调控机制"
-date:   2025-04-03
+date: 2025-04-03
 tags: [paper]
 comments: true
 author: junedrinleng
+post_id: 2025-04-03-Crowding_in_LLPS
 ---
 
 该笔记主要记录液液相分离的调控机制相关内容，包括crowding的相关理论，NMR表征相分离过程以及BSA相分离过程解析，以及残基相互作用机制
@@ -92,3 +93,4 @@ reference： Bramham J E, Golovanov A P. Temporal and spatial characterisation o
 > LLPS, sometimes referred to as condensation, manifests itself as the appearance of small dense liquid droplets suspended within a lean phase (microscopic LLPS), which often proceeds to the formation of distinct dense and lean layers in the sample once the droplets become large enough and coalesce (macroscopic LLPS). As the dense and lean phases exist in both scenarios, it is convenient to use the term “layer separation” to refer to this final stage of macroscopic LLPS. The kinetics of these processes, and the effect of different conditions or additives on these kinetics, is of particular interest[14](https://www.nature.com/articles/s41467-022-29408-z#ref-CR14),[15](https://www.nature.com/articles/s41467-022-29408-z#ref-CR15). However, these processes are difficult to study by existing techniques. Light scattering due to the presence of liquid droplets, or fluctuations in density or refractive index often results in opalescent or turbid solutions, rendering quantitative optical approaches challenging[16](https://www.nature.com/articles/s41467-022-29408-z#ref-CR16),[17](https://www.nature.com/articles/s41467-022-29408-z#ref-CR17). Fluorescence microscopy using labelled LLPS components or dyes may report on the radius of droplets, but not the concentration of the two phases[15](https://www.nature.com/articles/s41467-022-29408-z#ref-CR15),[18](https://www.nature.com/articles/s41467-022-29408-z#ref-CR18). Additionally, layer separation adds a complicating spatial component, due to non-uniform distribution of the phases throughout the sample[19](https://www.nature.com/articles/s41467-022-29408-z#ref-CR19). Therefore, the physical and geometrical constraints of biophysical techniques mean each may be limited to studying one aspect of LLPS, and further characterisation techniques are needed to reach a more holistic assessment, particularly regarding the evolution of the concentration and volumes of the two phases.LLP有时被称为凝结，表现为悬浮在瘦相（微观LLP）内的小密集液滴的外观，一旦液滴变得足够大并结合（Macroscopic LLP），通常会在样品中形成不同的密集和瘦的层。由于在两种情况下都存在致密和精益阶段，因此使用术语“图层分离”来引用宏观LLP的最后阶段很方便。这些过程的动力学以及不同条件或添加剂对这些动力学的影响特别感兴趣14,15。但是，这些过程很难通过现有技术研究。由于存在液滴或密度或折射率的波动而引起的光散射通常会导致乳白色或浑浊的溶液，从而使定量光学方法提起质疑16,17。使用标记的LLP成分或染料的荧光显微镜可以报告液滴的半径，但不能报告两个相15,18的浓度。此外，由于整个样品中这些相的分布不均匀，因此层分离增加了复杂的空间成分。因此，生物物理技术的物理和几何约束意味着每种可能仅限于研究LLP的一个方面，需要进一步的表征技术来进行更全面的评估，尤其是关于这两个阶段的浓度和体积的演变。
 
 ![Fig. 7](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/41467_2022_29408_Fig7_HTML.png)
+

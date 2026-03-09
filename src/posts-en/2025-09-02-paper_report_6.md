@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250902 Literature Review Notes"
-date:   2025-09-02
+date: 2025-09-02
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-09-02-paper_report_6
+source_lang: zh
+source_title: "20250902文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.305Z"
+source_hash: 7430eb806abef1ebfb96fcb609582ba61ccd06ad9f48d0848fd1e31d935ab9d2
 ---
 
 This note primarily records a protocell droplet formed through cation-anion polymerization for enzyme catalysis, as well as a paper reporting ballistic diffusion behavior within droplets

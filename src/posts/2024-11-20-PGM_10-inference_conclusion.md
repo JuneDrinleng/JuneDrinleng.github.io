@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "概率图模型10 inference小结"
-date:   2024-11-20
+date: 2024-11-20
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-20-PGM_10-inference_conclusion
 ---
 
 该笔记主要对inference部分的理论进行回顾和整理
@@ -185,3 +186,4 @@ $$
 L(q)=\sum_x[\prod_i q_i(x_i)][ln p(x,z)-\sum_k lnq_k(x_k)]
 $$
 这里的L就是优化函数（类似loss一样），我们要的就是不断迭代Q使得其沿着L的方向接近P
+

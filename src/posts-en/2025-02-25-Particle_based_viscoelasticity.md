@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Viscosity Detection Based on Particles"
-date:   2025-02-25
+date: 2025-02-25
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-25-Particle_based_viscoelasticity
+source_lang: zh
+source_title: "基于颗粒的粘度检测"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.219Z"
+source_hash: 5c97f5aff1ea91de19a1e78d966202b64a603deb1dd6f96219fa4ed8f24557c8
 ---
 
 This note primarily introduces viscosity detection based on particles, including techniques based on dynamic light scattering (DLS) and particle image velocimetry (VPT). This article will systematically detail and organize the theoretical and computational aspects in sequence.

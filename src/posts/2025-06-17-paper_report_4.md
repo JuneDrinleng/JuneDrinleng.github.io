@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250617文献阅读笔记"
-date:   2025-06-17
+date: 2025-06-17
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-17-paper_report_4
+title_key: literature_note
 ---
 
 本笔记主要整理2025年6月17日阅读的部分文献，主要是介绍protocell相关文献
@@ -61,3 +63,4 @@ toc: true
 ![image-20250617121800249](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20250617121800249.png)
 
 我感觉还真可以这样，以DOPC之类的物质作为反应器膜，内部发生自组装/先后自组装
+

@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "WSL User Guide"
-date:   2025-01-04
+date: 2025-01-04
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-01-04-wsl_instruction
+source_lang: zh
+source_title: "WSL使用指南"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.198Z"
+source_hash: 376d64585f7cccb6c5077d67e9fd8fdfa1603a0a669ab3c360b5b3ed09156529
 ---
 
 This note mainly records the issues encountered and their solutions during my use of WSL, as well as some commonly used commands.

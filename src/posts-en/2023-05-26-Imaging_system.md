@@ -6,6 +6,12 @@ tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-05-26-Imaging_system
+source_lang: zh
+source_title: "单颗粒示踪成像基础知识"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:30.189Z"
+source_hash: b50035d0196e4912f0535c0f79cf7367278ea168d4b48a2d3e8047f947c104b5
 ---
 
 This note mainly introduces the fundamentals of single-particle tracking technology, including the properties of gold nanoparticles in imaging systems and tracer particles

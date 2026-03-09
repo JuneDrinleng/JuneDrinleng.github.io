@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250606 Literature Reading Notes"
-date:   2025-06-06
+date: 2025-06-06
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-06-paper_report_1
+source_lang: zh
+source_title: "20250606文献日读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.290Z"
+source_hash: 42a06a0f6fa4848820721f8efa15b0bf1b5d041181b62c1a4a61535f359cdb29
 ---
 
 This note mainly summarizes part of the literature read on June 6, 2025, including a review on sodium-sulfur batteries and their mechanisms, a study on spectral response of velocity fields using coordination complexes + cross-linked networks, and cellulose scaffold-based hydrogels

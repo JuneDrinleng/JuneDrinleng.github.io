@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "微流变学笔记1"
-date:   2025-02-25
+date: 2025-02-25
 tags: [SPT]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-25-MICRORHEOLOGY_notes_1
 ---
 
 该笔记主要介绍Microrheology by Eric M. Furst (Author), Todd M. Squires (Author)一书，本note是该书introduction部分的笔记
@@ -124,4 +125,5 @@ $$
 - 颗粒尺寸和形状具有均匀性
 - 探针要具有稳定性，避免化学降解；同时还需要均匀的分散于介质中反映局部的微流变特性（分散性）
 - 表面化学的惰性（避免探针颗粒引入后改变待测介质的原始性质）
+
 

@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "Frontend Learning Notes 1: JavaScript Basics"
-date:   2024-12-05
+date: 2024-12-05
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-12-05-JS_learning_1
+source_lang: zh
+source_title: "前端学习笔记1 JavaScript基础"
+title_key: course_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.173Z"
+source_hash: a0bacd44bc34c86606f87b14942b959e910f68de7f9408b67b11b723a40c1db7
 ---
 
 This note primarily focuses on JavaScript fundamentals, referencing [Microsoft's web-dev project](https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/2-js-basics/1-data-types/translations/README.zh-cn.md)

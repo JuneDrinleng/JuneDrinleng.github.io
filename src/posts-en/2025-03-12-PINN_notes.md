@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "PINN Basics Notes"
-date:   2025-03-12
-tags: [ML&DL]
+date: 2025-03-12
+tags: ["ML&DL"]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-03-12-PINN_notes
+source_lang: zh
+source_title: "PINN基础笔记"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.222Z"
+source_hash: 57a4ebc3b5241d968e51cb5f6111ed87bd07e214fdbcdf5cae0e87742cdbe905
 ---
 
 This note mainly introduces physics-informed neural networks (physics informed neural network), including basic concepts and a simple PyTorch implementation.

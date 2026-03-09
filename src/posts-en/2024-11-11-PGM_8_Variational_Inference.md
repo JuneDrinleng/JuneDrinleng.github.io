@@ -1,11 +1,17 @@
 ---
 layout: post
 title: "Probabilistic Graphical Models 8: Mean Field Approximation"
-date:   2024-11-11
+date: 2024-11-11
 tags: [pgm]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2024-11-11-PGM_8_Variational_Inference
+source_lang: zh
+source_title: "概率图模型8 平均场近似"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.151Z"
+source_hash: 61bcd1d00b59946117960f37c72f90d354e7b9713a3b89b4c1aedfdfd057f685
 ---
 
 This note introduces variational inference and related content on mean field approximation  

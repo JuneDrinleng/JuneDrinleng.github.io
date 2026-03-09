@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20251122 Literature Reading Notes"
-date:   2025-11-22
+date: 2025-11-22
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-11-22-paper_report_10
+source_lang: zh
+source_title: "20251122文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.318Z"
+source_hash: e7b7b73de655b059167b6a71f6b24deaef4d28018916e59fe97d90074ce2855e
 ---
 
 This note mainly records a paper on DNA's lock and key supramolecular organization; another paper introduces the LLPS of arthropod resilin, focusing on the conformation of the D3 domain (via NMR).

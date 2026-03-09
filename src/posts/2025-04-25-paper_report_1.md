@@ -1,11 +1,13 @@
 ---
 layout: post
 title: "20250425文献日读笔记"
-date:   2025-04-25
+date: 2025-04-25
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-04-25-paper_report_1
+title_key: literature_note
 ---
 
 本笔记主要整理4.25部分的文献，包括主要包括水凝胶网络以及神经网络时间序列相关论文
@@ -62,3 +64,4 @@ confocal下捕获无序多态的运动，计算自相关（ zero-mode waveguides
 ![a1fdaaf670c163df91cac5d6340dea5](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/a1fdaaf670c163df91cac5d6340dea5.png)
 
 > M. F. Nüesch *et al.*, *J. Am. Chem. Soc.* **144**, 52–56 (2022).
+

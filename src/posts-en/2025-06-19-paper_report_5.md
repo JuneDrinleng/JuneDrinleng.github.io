@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250619 Literature Reading Notes"
-date:   2025-06-19
+date: 2025-06-19
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-19-paper_report_5
+source_lang: zh
+source_title: "20250619文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.302Z"
+source_hash: fba7a5d4ec32373f604c4a2aa817f3f0436222b6e8e3fde67ccf4f64338c8e08
 ---
 
 This note primarily summarizes part of the literature read on June 19, 2025, focusing on superamolecular-related studies

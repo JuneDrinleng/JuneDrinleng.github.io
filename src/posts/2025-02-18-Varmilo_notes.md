@@ -1,12 +1,15 @@
 ---
 layout: post
 title: "阿米洛VBS108键盘使用notes"
-date:   2025-02-18
+date: 2025-02-18
 tags: [others]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-02-18-Varmilo_notes
+title_key: course_note
 ---
+
 该笔记主要介绍varmilo keyboard 的一些常见的键位使用
 <!-- more -->
 ## 0 背景
@@ -63,3 +66,4 @@ toc: true
 ## 5 附录
 
 官网说明书地址：[阿米洛VBS108说明书](https://wds-service-1258344699.file.myqcloud.com/20/18065/pdf/17332758789244eac810e6ad3cdfd282becde094ff070.pdf)
+

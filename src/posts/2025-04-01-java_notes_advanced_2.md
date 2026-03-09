@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Java课程学习进阶笔记 2"
-date:   2025-04-01
+date: 2025-04-01
 tags: [cs_basic]
 comments: true
 author: junedrinleng
+post_id: 2025-04-01-java_notes_advanced_2
+title_key: course_note
 ---
 
 该笔记主要记录浙江大学翁恺的[java入门与进阶课程](https://www.bilibili.com/video/BV1wL411L7A3?p=3)中的进阶部分的学习笔记，主要对象的识别、对象的交互、封闭的访问属性、开发的访问属性、类变量和类函数等内容
@@ -188,3 +190,4 @@ static的初始化和对象的创建没有关系
 可以理解成以下过程：
 
 创建类—>初始化类变量和类函数—>根据类创建对象—>对象内成员变量初始化
+

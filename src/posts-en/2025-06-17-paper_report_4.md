@@ -1,11 +1,18 @@
 ---
 layout: post
 title: "20250617 Literature Reading Notes"
-date:   2025-06-17
+date: 2025-06-17
 tags: [paper]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2025-06-17-paper_report_4
+source_lang: zh
+source_title: "20250617文献阅读笔记"
+title_key: literature_note
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.299Z"
+source_hash: bd4b214151aff00de136a50f57d926e036e219fef7de224da66d12ff5bc9a837
 ---
 
 This note mainly summarizes part of the literature read on June 17, 2025, focusing on protocell-related studies.

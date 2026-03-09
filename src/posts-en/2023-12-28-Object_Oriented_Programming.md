@@ -1,13 +1,18 @@
 ---
 layout: post
 title: "Object-Oriented Programming in Python"
-date:   2023-12-28
+date: 2023-12-28
 tags: [cs_basic]
 comments: true
 author: junedrinleng
 toc: true
+post_id: 2023-12-28-Object_Oriented_Programming
+source_lang: zh
+source_title: "python中的面向对象编程"
+generated_by: scripts/i18n-sync.mjs
+generated_at: "2026-03-09T04:22:43.110Z"
+source_hash: 1c21d26f743639f4a844b311b8e3f5e7496a7bfec03bec9997086313e14d62eb
 ---
-
 
 This note primarily focuses on learning object-oriented programming (OOP) in Python, including class creation, object creation, class improvements, defining object methods, and OOP inheritance. The learning material mainly comes from [3-hour Python Quick Start](https://www.bilibili.com/video/BV1944y1x7SW?p=29&vd_source=86b2402290f7b7dee927bba58a141a81), with some personal insights and summaries added during the learning process.
 
