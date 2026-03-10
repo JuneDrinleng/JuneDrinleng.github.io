@@ -236,7 +236,8 @@ export default function BlogPost() {
                   img: ({ src, alt }) => (
                     <img
                       src={src}
-                      alt={alt}
+                      alt={alt || ""}
+                      loading="lazy"
                       className="border-2 border-black dark:border-neutral-600 my-8 max-w-full"
                     />
                   ),
