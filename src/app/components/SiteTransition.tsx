@@ -26,6 +26,19 @@ export default function SiteTransition({
     if (timerRef.current) clearTimeout(timerRef.current);
   }, []);
 
+  // Reset overlay when page is restored from bfcache (browser Back button)
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        cleanup();
+        setPhase("idle");
+        onCancel?.();
+      }
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, [cleanup, onCancel]);
+
   useEffect(() => {
     if (!active) {
       setPhase("idle");
