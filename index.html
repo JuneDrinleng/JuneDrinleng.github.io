@@ -17,18 +17,62 @@
       </script>
       <script>
         // Apply theme before app hydration to avoid visual flicker.
+        // Also handle cross-site arrival: show overlay when ?theme=X is present.
         (function () {
           try {
-            var saved = localStorage.getItem('theme');
-            var theme =
-              saved === 'dark' || saved === 'light'
-                ? saved
-                : window.matchMedia('(prefers-color-scheme: dark)').matches
+            var params = new URLSearchParams(window.location.search);
+            var urlTheme = params.get('theme');
+            var fromTransition = urlTheme === 'dark' || urlTheme === 'light';
+            var theme;
+            if (fromTransition) {
+              theme = urlTheme;
+              localStorage.setItem('theme', theme);
+              // Clean up URL so the param doesn't linger in the address bar
+              history.replaceState(null, '', window.location.pathname);
+            } else {
+              var saved = localStorage.getItem('theme');
+              theme =
+                saved === 'dark' || saved === 'light'
+                  ? saved
+                  : window.matchMedia('(prefers-color-scheme: dark)').matches
                   ? 'dark'
                   : 'light';
+            }
             var root = document.documentElement;
             root.classList.toggle('dark', theme === 'dark');
             root.style.colorScheme = theme;
+
+            if (!fromTransition) return;
+
+            // Show arrival overlay so content fades in rather than flashing
+            var bg = theme === 'dark' ? '#000' : '#fff';
+            var dotColor = theme === 'dark' ? '#fff' : '#000';
+            var labelColor = theme === 'dark' ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)';
+            var overlay = document.createElement('div');
+            overlay.id = 'site-arrival-overlay';
+            overlay.setAttribute(
+              'style',
+              'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;' +
+                'justify-content:center;background:' + bg + ';pointer-events:all;' +
+                'transition:opacity 280ms ease;'
+            );
+            overlay.innerHTML =
+              '<div style="display:flex;flex-direction:column;align-items:center;gap:16px">' +
+              '<div style="display:flex;gap:8px">' +
+              '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' + dotColor + '"></span>' +
+              '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' + dotColor + '"></span>' +
+              '<span class="st-dot" style="width:8px;height:8px;border-radius:50%;background:' + dotColor + '"></span>' +
+              '</div>' +
+              '<p style="color:' + labelColor + ';font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin:0">Redirecting\u2026</p>' +
+              '</div>' +
+              '<style>' +
+              '.st-dot{animation:st-dp 1s ease-in-out infinite}' +
+              '.st-dot:nth-child(2){animation-delay:.15s}' +
+              '.st-dot:nth-child(3){animation-delay:.3s}' +
+              '@keyframes st-dp{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}' +
+              '</style>';
+            document.body.appendChild(overlay);
+            window.__siteArrivalOverlay = true;
           } catch (_err) {}
         })();
       </script>
