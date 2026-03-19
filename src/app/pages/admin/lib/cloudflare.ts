@@ -39,18 +39,14 @@ export async function fetchAnalytics(days = 30): Promise<AnalyticsSummary> {
   const daily: DailyStat[] = (zone.daily ?? []).map((d: any) => ({
     date: d.dimensions.date,
     requests: d.count,
-    uniques: d.uniq.uniques,
+    uniques: d.count,
     pageViews: d.count,
   }));
 
-  const countryMap: Record<string, number> = {};
-  for (const row of zone.countries ?? []) {
-    const country = row.dimensions?.clientCountryName;
-    if (country) countryMap[country] = (countryMap[country] ?? 0) + row.count;
-  }
-  const countries: CountryStat[] = Object.entries(countryMap)
-    .map(([country, requests]) => ({ country, requests }))
-    .sort((a, b) => b.requests - a.requests);
+  const countries: CountryStat[] = (zone.countries ?? [])
+    .filter((row: any) => row.dimensions?.clientCountryName)
+    .map((row: any) => ({ country: row.dimensions.clientCountryName, requests: row.count }))
+    .sort((a: CountryStat, b: CountryStat) => b.requests - a.requests);
 
   const totalRequests = daily.reduce((s, d) => s + d.requests, 0);
   const totalUniques = daily.reduce((s, d) => s + d.uniques, 0);
