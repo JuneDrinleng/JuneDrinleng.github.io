@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { setToken } from './lib/auth';
 
 const OAUTH_BASE = 'https://junedrinlengblog.zhuzilan520.workers.dev';
+const TRUSTED_ORIGIN = 'https://junedrinlengblog.zhuzilan520.workers.dev';
 
 export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
+      if (e.origin !== TRUSTED_ORIGIN) return;
       if (typeof e.data !== 'string') return;
 
       // Handshake: Worker sends "authorizing:github", we must reply to unblock it
@@ -51,7 +53,7 @@ export default function AdminLogin() {
   function handleLogin() {
     setLoading(true);
     setError('');
-    const url = `${OAUTH_BASE}/auth?provider=github&scope=repo&site_id=${location.hostname}`;
+    const url = `${OAUTH_BASE}/auth?provider=github&scope=public_repo&site_id=${location.hostname}`;
     const popup = window.open(url, 'github-oauth', 'width=600,height=700,left=400,top=200');
     if (!popup) {
       setError('弹窗被阻止，请允许此页面打开弹窗后重试。');
