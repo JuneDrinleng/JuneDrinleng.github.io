@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: JuneDrinleng/JuneDrinleng.github.io
+  branch: main
+  base_url: https://junedrinlengblog.zhuzilan520.workers.dev
+
+media_folder: assets/img
+public_folder: https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img
+
+collections:
+  - name: posts-zh
+    label: 中文博文
+    folder: src/posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: 标题, name: title, widget: string }
+      - { label: 日期, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: 标签, name: tags, widget: list, default: [] }
+      - { label: 评论, name: comments, widget: boolean, default: true }
+      - { label: Author, name: author, widget: hidden, default: junedrinleng }
+      - { label: 目录, name: toc, widget: boolean, default: true }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: posts-en
+    label: English Posts
+    folder: src/posts-en
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Tags, name: tags, widget: list, default: [] }
+      - { label: Comments, name: comments, widget: boolean, default: true }
+      - { label: Author, name: author, widget: hidden, default: junedrinleng }
+      - { label: TOC, name: toc, widget: boolean, default: true }
+      - { label: Body, name: body, widget: markdown }
