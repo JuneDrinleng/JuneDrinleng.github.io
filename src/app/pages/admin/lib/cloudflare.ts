@@ -40,7 +40,7 @@ export async function fetchAnalytics(days = 30): Promise<AnalyticsSummary> {
     date: d.dimensions.date,
     requests: d.count,
     uniques: d.uniq.uniques,
-    pageViews: d.sum.pageViews,
+    pageViews: d.count,
   }));
 
   const countryMap: Record<string, number> = {};
