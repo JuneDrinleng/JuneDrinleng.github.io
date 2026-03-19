@@ -29,8 +29,7 @@ const NAV_MAIN = [
   { label: '新建文章', to: '/dashboard/posts/new', icon: Plus            },
 ];
 const NAV_EXT = [
-  { label: '查看博客', href: '/'       },
-  { label: 'Decap CMS', href: '/admin/' },
+  { label: '查看博客', href: '/' },
 ];
 
 function useCrumbs() {

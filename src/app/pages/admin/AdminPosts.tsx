@@ -43,7 +43,7 @@ export default function AdminPosts() {
       return (
         p.metadata.title?.toLowerCase().includes(q) ||
         p.slug.includes(q) ||
-        (p.metadata.tags ?? []).some(t => t.toLowerCase().includes(q))
+        ( Array.isArray(p.metadata.tags) ? p.metadata.tags : []).some(t => t.toLowerCase().includes(q))
       );
     });
 
@@ -141,7 +141,7 @@ export default function AdminPosts() {
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
-                    {(post.metadata.tags ?? []).map(tag => (
+                    {(Array.isArray(post.metadata.tags) ? post.metadata.tags : []).map(tag => (
                       <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
                     ))}
                   </div>

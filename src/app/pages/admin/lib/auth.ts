@@ -26,11 +26,11 @@ export function buildPostContent(fields: {
   tags: string[];
   comments: boolean;
   toc: boolean;
+  excerpt: string;
   body: string;
 }): string {
   const tagList = fields.tags.length ? `[${fields.tags.join(', ')}]` : '[]';
-  return [
-    '---',
+  const parts = ['---',
     'layout: post',
     `title: "${fields.title.replace(/"/g, '\\"')}"`,
     `date: ${fields.date}`,
@@ -40,6 +40,11 @@ export function buildPostContent(fields: {
     `toc: ${fields.toc}`,
     '---',
     '',
-    fields.body,
-  ].join('\n');
+  ];
+  if (fields.excerpt.trim()) {
+    parts.push(fields.excerpt.trim(), '', '<!-- more -->', '', fields.body.trim());
+  } else {
+    parts.push(fields.body.trim());
+  }
+  return parts.join('\n');
 }
