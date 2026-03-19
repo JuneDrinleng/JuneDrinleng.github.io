@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { PenLine, AlertCircle, Loader2, Github } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
@@ -12,15 +12,24 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const popupRef = useRef<Window | null>(null);
 
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
-      // netlify-cms-oauth-provider message format:
-      // "authorization:github:success:{"token":"...","provider":"github"}"
       if (typeof e.data !== 'string') return;
+
+      // Handshake: Worker sends "authorizing:github", we must reply to unblock it
+      if (e.data === 'authorizing:github') {
+        (e.source as Window)?.postMessage(e.data, e.origin);
+        return;
+      }
+
+      // Token message: "authorization:github:success:{"token":"...","provider":"github"}"
       const match = e.data.match(/^authorization:github:(success|error):(.+)$/);
       if (!match) return;
       const [, status, payload] = match;
+      popupRef.current?.close();
+      popupRef.current = null;
       if (status === 'success') {
         try {
           const { token } = JSON.parse(payload);
@@ -49,10 +58,12 @@ export default function AdminLogin() {
       setLoading(false);
       return;
     }
-    // 检测弹窗在未完成授权时被关闭
+    popupRef.current = popup;
+    // 检测弹窗在未完成授权时被手动关闭
     const checkClosed = setInterval(() => {
       if (popup.closed) {
         clearInterval(checkClosed);
+        popupRef.current = null;
         setLoading(false);
       }
     }, 500);

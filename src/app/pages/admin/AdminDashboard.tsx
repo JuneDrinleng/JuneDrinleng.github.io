@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     ...en.map(p => ({ ...p, lang: 'en' as const })),
   ].sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime());
 
-  const allTags = [...new Set(all.flatMap(p => p.metadata.tags ?? []))];
+  const allTags = [...new Set(all.flatMap(p => Array.isArray(p.metadata.tags) ? p.metadata.tags : []))];
   const recent = all.slice(0, 6);
 
   const stats = [
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
                   <Badge variant={post.lang === 'zh' ? 'default' : 'secondary'} className="text-xs">
                     {post.lang === 'zh' ? '中文' : 'EN'}
                   </Badge>
-                  {(post.metadata.tags ?? []).slice(0, 1).map(tag => (
+                  {(Array.isArray(post.metadata.tags) ? post.metadata.tags : []).slice(0, 1).map(tag => (
                     <Badge key={tag} variant="outline" className="text-xs hidden md:flex">{tag}</Badge>
                   ))}
                   <Button

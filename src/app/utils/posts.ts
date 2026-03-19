@@ -28,26 +28,36 @@ function parseFrontmatter(content: string): { data: any; content: string } {
   const data: any = {};
 
   // 解析 YAML frontmatter
+  let lastKey: string | null = null;
   frontmatter.split('\n').forEach(line => {
+    // 处理多行数组项（- value）
+    if (/^\s+-\s/.test(line) && lastKey) {
+      const item = line.trim().slice(2).trim().replace(/^["']|["']$/g, '');
+      if (!Array.isArray(data[lastKey])) {
+        data[lastKey] = [];
+      }
+      data[lastKey].push(item);
+      return;
+    }
+
     const colonIndex = line.indexOf(':');
     if (colonIndex === -1) return;
 
-    const key = line.slice(0, colonIndex).trim();
-    let value = line.slice(colonIndex + 1).trim();
+    lastKey = line.slice(0, colonIndex).trim();
+    let value: any = line.slice(colonIndex + 1).trim();
 
-    // 处理数组（如 tags）
+    // 处理内联数组（如 tags: [tag1, tag2]）
     if (value.startsWith('[') && value.endsWith(']')) {
-      value = value.slice(1, -1).split(',').map(v => v.trim().replace(/^["']|["']$/g, ''));
+      value = value.slice(1, -1).split(',').map((v: string) => v.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
     } else if (value === 'true') {
       value = true;
     } else if (value === 'false') {
       value = false;
     } else {
-      // 移除引号
       value = value.replace(/^["']|["']$/g, '');
     }
 
-    data[key] = value;
+    data[lastKey] = value;
   });
 
   return { data, content: markdown };

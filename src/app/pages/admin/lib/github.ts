@@ -66,6 +66,25 @@ export async function githubPutFile(
   }
 }
 
+/** Upload a binary file (image) using raw base64 string (no data: prefix) */
+export async function githubUploadImage(
+  token: string,
+  filename: string,
+  base64: string,
+): Promise<string> {
+  const path = `assets/img/${filename}`;
+  const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { ...headers(token), 'Content-Type': 'application/json' } as HeadersInit,
+    body: JSON.stringify({ message: `Upload image: ${filename}`, content: base64, branch: BRANCH }),
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error((err as { message?: string }).message ?? '图片上传失败');
+  }
+  return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}`;
+}
+
 export async function githubDeleteFile(
   token: string,
   path: string,
