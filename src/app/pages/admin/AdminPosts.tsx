@@ -105,13 +105,14 @@ export default function AdminPosts() {
 
       {/* Table */}
       <div className="rounded-lg border bg-card overflow-hidden">
-        <Table>
+        <Table className="table-fixed">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[45%]">标题</TableHead>
-              <TableHead className="w-28">日期</TableHead>
-              <TableHead className="w-20">语言</TableHead>
-              <TableHead>标签</TableHead>
+              <TableHead className="w-[40%]">标题</TableHead>
+              <TableHead className="w-24">日期</TableHead>
+              <TableHead className="w-12">语言</TableHead>
+              <TableHead className="w-[28%]">标签</TableHead>
+              <TableHead className="w-14" />
               <TableHead className="w-10" />
             </TableRow>
           </TableHeader>
@@ -125,10 +126,10 @@ export default function AdminPosts() {
             )}
             {filtered.map(post => (
               <TableRow key={`${post.lang}-${post.slug}`} className="group">
-                <TableCell>
-                  <div>
-                    <p className="font-medium text-sm">{post.metadata.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5 font-mono">{post.slug}</p>
+                <TableCell className="min-w-0 max-w-0">
+                  <div className="min-w-0">
+                    <p className="font-medium text-sm truncate">{post.metadata.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 font-mono truncate">{post.slug}</p>
                   </div>
                 </TableCell>
                 <TableCell className="text-sm text-muted-foreground tabular-nums">
@@ -139,12 +140,20 @@ export default function AdminPosts() {
                     {post.lang === 'zh' ? '中文' : 'EN'}
                   </Badge>
                 </TableCell>
-                <TableCell>
+                <TableCell className="min-w-0">
                   <div className="flex flex-wrap gap-1">
                     {(Array.isArray(post.metadata.tags) ? post.metadata.tags : []).map(tag => (
                       <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
                     ))}
                   </div>
+                </TableCell>
+                <TableCell>
+                  <Button variant="ghost" size="sm" className="h-7 px-2 text-xs" asChild>
+                    <Link to={`/dashboard/posts/${post.lang}/${post.slug}/edit`}>
+                      <Pencil className="h-3 w-3 mr-1" />
+                      编辑
+                    </Link>
+                  </Button>
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
@@ -155,12 +164,6 @@ export default function AdminPosts() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-40">
-                      <DropdownMenuItem asChild>
-                        <Link to={`/dashboard/posts/${post.lang}/${post.slug}/edit`}>
-                          <Pencil className="h-4 w-4 mr-2" />
-                          编辑
-                        </Link>
-                      </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <a href={`/blog/${post.slug}`} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4 mr-2" />
