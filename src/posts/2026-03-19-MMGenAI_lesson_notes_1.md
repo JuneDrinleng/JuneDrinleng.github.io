@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "多模态生成式人工智能笔记1"
-date:   2026-03-19
-tags: [多模态生成式人工智能]
+date: 2026-03-19
+tags: [Multimodal Generative AI]
 comments: true
 author: junedrinleng
 toc: true
