@@ -206,7 +206,7 @@ export default function BlogPost() {
                     </li>
                   ),
                   code: ({ className, children, ...props }) => {
-                    const isInline = !className;
+                    const isInline = !className && !String(children).includes('\n');
                     if (isInline) {
                       return (
                         <code
