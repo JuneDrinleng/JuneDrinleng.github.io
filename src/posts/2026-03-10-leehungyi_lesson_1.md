@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "李宏毅机器学习2026春笔记1"
-date:   2026-02-10
+date:   2026-03-10
 tags: [李宏毅机器学习]
 comments: true
 author: junedrinleng
