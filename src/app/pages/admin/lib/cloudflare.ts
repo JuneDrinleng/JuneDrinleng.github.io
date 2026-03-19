@@ -45,9 +45,8 @@ export async function fetchAnalytics(days = 30): Promise<AnalyticsSummary> {
 
   const countryMap: Record<string, number> = {};
   for (const row of zone.countries ?? []) {
-    for (const c of row.sum.countryMap ?? []) {
-      countryMap[c.clientCountryName] = (countryMap[c.clientCountryName] ?? 0) + c.requests;
-    }
+    const country = row.dimensions?.clientCountryName;
+    if (country) countryMap[country] = (countryMap[country] ?? 0) + row.sum.requests;
   }
   const countries: CountryStat[] = Object.entries(countryMap)
     .map(([country, requests]) => ({ country, requests }))
