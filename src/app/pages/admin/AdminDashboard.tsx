@@ -5,6 +5,7 @@ import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
 import { Separator } from '@/app/components/ui/separator';
 import { getAllPosts } from '@/app/utils/posts';
+import AdminAnalytics from './AdminAnalytics';
 
 export default function AdminDashboard() {
   const zh = getAllPosts('zh');
@@ -119,6 +120,12 @@ export default function AdminDashboard() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Analytics */}
+      <div>
+        <h2 className="text-base font-semibold tracking-tight mb-3">访问统计</h2>
+        <AdminAnalytics />
+      </div>
     </div>
   );
 }
