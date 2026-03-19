@@ -73,7 +73,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen lg:min-h-0 lg:h-[calc(100vh-3rem)] bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 lg:flex lg:flex-col">
+    <div className="min-h-screen lg:min-h-0 lg:h-[calc(100vh-3rem)] lg:overflow-hidden bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 lg:flex lg:flex-col">
       {/* Header */}
       <header className="border-b-4 border-black dark:border-neutral-100 shrink-0">
         <div className="max-w-4xl lg:max-w-none mx-auto px-4 sm:px-6 py-4 sm:py-6">
@@ -99,7 +99,7 @@ export default function BlogPost() {
         )}
 
         {/* Main content - scrollable on desktop */}
-        <main ref={contentRef} className="flex-1 lg:overflow-y-auto">
+        <main ref={contentRef} className="flex-1 min-h-0 lg:overflow-y-auto">
           <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
             {/* Article Header */}
             <header className="mb-8 sm:mb-12 pb-6 sm:pb-8 border-b-2 border-black dark:border-neutral-100">
