@@ -7,7 +7,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Link, useParams } from "react-router";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { getPostBySlug, getAdjacentPosts } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
 import ReactMarkdown from "react-markdown";
@@ -44,6 +44,26 @@ export default function BlogPost() {
     : { prev: undefined, next: undefined };
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // On desktop, lock body/html scroll so only the three columns scroll independently.
+  // Without this, overflow from flex children propagates to the window scrollHeight,
+  // causing body scroll and triggering BackToTop.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const lock = (matches: boolean) => {
+      const val = matches ? "hidden" : "";
+      document.documentElement.style.overflow = val;
+      document.body.style.overflow = val;
+    };
+    lock(mq.matches);
+    const handler = (e: MediaQueryListEvent) => lock(e.matches);
+    mq.addEventListener("change", handler);
+    return () => {
+      mq.removeEventListener("change", handler);
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   const dateLocale = language === "zh" ? "zh-CN" : "en-US";
 
