@@ -6,7 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useRef, useMemo, useEffect } from "react";
 import { getPostBySlug, getAdjacentPosts } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -38,12 +38,17 @@ function getChildrenText(children: React.ReactNode): string {
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { language, t } = useLanguage();
+  const navigate = useNavigate();
   const post = slug ? getPostBySlug(slug, language) : undefined;
   const { prev, next } = slug
     ? getAdjacentPosts(slug, language)
     : { prev: undefined, next: undefined };
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (post && post.metadata.draft) navigate('/', { replace: true });
+  }, [post]);
 
   // On desktop, lock body/html scroll so only the three columns scroll independently.
   // Without this, overflow from flex children propagates to the window scrollHeight,

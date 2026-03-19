@@ -29,6 +29,7 @@ export function buildPostContent(fields: {
   tags: string[];
   comments: boolean;
   toc: boolean;
+  draft?: boolean;
   excerpt: string;
   body: string;
 }): string {
@@ -44,6 +45,7 @@ export function buildPostContent(fields: {
     '---',
     '',
   ];
+  if (fields.draft) parts.splice(parts.length - 2, 0, 'draft: true');
   if (fields.excerpt.trim()) {
     parts.push(fields.excerpt.trim(), '', '<!-- more -->', '', fields.body.trim());
   } else {
