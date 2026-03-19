@@ -1,35 +1,61 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { PenLine, AlertCircle, Loader2 } from 'lucide-react';
+import { PenLine, AlertCircle, Loader2, Github } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
-import { Label } from '@/app/components/ui/label';
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
-import { githubGetUser } from './lib/github';
 import { setToken } from './lib/auth';
 
+const OAUTH_BASE = 'https://junedrinlengblog.zhuzilan520.workers.dev';
+
 export default function AdminLogin() {
-  const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const token = value.trim();
-    if (!token) return;
+  useEffect(() => {
+    function handleMessage(e: MessageEvent) {
+      // netlify-cms-oauth-provider message format:
+      // "authorization:github:success:{"token":"...","provider":"github"}"
+      if (typeof e.data !== 'string') return;
+      const match = e.data.match(/^authorization:github:(success|error):(.+)$/);
+      if (!match) return;
+      const [, status, payload] = match;
+      if (status === 'success') {
+        try {
+          const { token } = JSON.parse(payload);
+          setToken(token);
+          navigate('/dashboard');
+        } catch {
+          setError('解析授权响应失败，请重试。');
+          setLoading(false);
+        }
+      } else {
+        setError('GitHub 授权失败，请重试。');
+        setLoading(false);
+      }
+    }
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [navigate]);
+
+  function handleLogin() {
     setLoading(true);
     setError('');
-    try {
-      await githubGetUser(token);
-      setToken(token);
-      navigate('/dashboard');
-    } catch {
-      setError('Token 无效，请检查权限后重试。');
-    } finally {
+    const url = `${OAUTH_BASE}/auth?provider=github&scope=repo`;
+    const popup = window.open(url, 'github-oauth', 'width=600,height=700,left=400,top=200');
+    if (!popup) {
+      setError('弹窗被阻止，请允许此页面打开弹窗后重试。');
       setLoading(false);
+      return;
     }
+    // 检测弹窗在未完成授权时被关闭
+    const checkClosed = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(checkClosed);
+        setLoading(false);
+      }
+    }, 500);
   }
 
   return (
@@ -48,58 +74,33 @@ export default function AdminLogin() {
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-base">登录</CardTitle>
             <CardDescription className="text-sm">
-              输入 GitHub Personal Access Token 以继续
+              通过 GitHub 授权访问博客管理后台
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-4">
               {error && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-              <div className="space-y-2">
-                <Label htmlFor="token">Personal Access Token</Label>
-                <Input
-                  id="token"
-                  type="password"
-                  placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                  value={value}
-                  onChange={e => setValue(e.target.value)}
-                  autoComplete="off"
-                  required
-                />
-                <p className="text-xs text-muted-foreground">
-                  需要勾选{' '}
-                  <code className="bg-muted px-1 py-0.5 rounded text-xs">repo</code>{' '}
-                  权限范围
-                </p>
-              </div>
-              <Button type="submit" className="w-full" disabled={loading || !value.trim()}>
+              <Button className="w-full" onClick={handleLogin} disabled={loading}>
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    验证中…
+                    等待授权…
                   </>
                 ) : (
-                  '进入管理后台'
+                  <>
+                    <Github className="w-4 h-4 mr-2" />
+                    使用 GitHub 登录
+                  </>
                 )}
               </Button>
-            </form>
+            </div>
           </CardContent>
         </Card>
-
-        <p className="text-center text-xs text-muted-foreground">
-          <a
-            href="https://github.com/settings/tokens/new?scopes=repo&description=LUNE+Admin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 hover:text-foreground transition-colors"
-          >
-            在 GitHub 创建 Token →
-          </a>
-        </p>
       </div>
     </div>
   );
