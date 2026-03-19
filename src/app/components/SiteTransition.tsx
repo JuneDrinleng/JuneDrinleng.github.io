@@ -26,6 +26,19 @@ export default function SiteTransition({
     if (timerRef.current) clearTimeout(timerRef.current);
   }, []);
 
+  // Reset overlay when page is restored from bfcache (browser Back button)
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        cleanup();
+        setPhase("idle");
+        onCancel?.();
+      }
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, [cleanup, onCancel]);
+
   useEffect(() => {
     if (!active) {
       setPhase("idle");
@@ -33,21 +46,21 @@ export default function SiteTransition({
       return;
     }
 
-    // Phase 1: overlay covers the screen
+    // Phase 1: overlay wipes in from top (animation: 380ms)
     setPhase("covering");
 
-    // Phase 2: show loading indicator after overlay is in place
+    // Phase 2: show loading indicator once overlay is fully in place
     timerRef.current = setTimeout(() => {
       setPhase("loading");
 
-      // Phase 3: navigate away after a brief loading animation
+      // Phase 3: navigate away after a brief loading pulse
       timerRef.current = setTimeout(() => {
         setPhase("leaving");
         // Pass current theme to the target site via URL parameter
         const separator = targetUrl.includes("?") ? "&" : "?";
         window.location.href = `${targetUrl}${separator}theme=${theme}`;
-      }, 600);
-    }, 350);
+      }, 380);
+    }, 400);
 
     return cleanup;
   }, [active, targetUrl, cleanup]);

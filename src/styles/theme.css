@@ -452,7 +452,7 @@
 }
 
 .site-transition-overlay.covering {
-  animation: st-cover-in 350ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: st-cover-in 380ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .site-transition-overlay.loading,
@@ -516,9 +516,11 @@
 
 @keyframes st-cover-in {
   from {
+    clip-path: inset(0 0 100% 0);
     opacity: 0;
   }
   to {
+    clip-path: inset(0 0 0% 0);
     opacity: 1;
   }
 }
@@ -538,6 +540,7 @@
 @media (prefers-reduced-motion: reduce) {
   .site-transition-overlay.covering {
     animation: none;
+    clip-path: none;
     opacity: 1;
   }
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "20250905 Literature Review Notes"
+title: "20250905 Literature Reading Notes"
 date:   2025-09-05
 tags: [paper]
 comments: true
