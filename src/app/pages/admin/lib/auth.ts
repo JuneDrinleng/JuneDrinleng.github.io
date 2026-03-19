@@ -1,8 +1,11 @@
-const KEY = 'lune_gh_token';
+// Token is kept in memory only — never written to localStorage/sessionStorage,
+// so it cannot be stolen by XSS. The trade-off is that the user must re-login
+// after a page refresh.
+let _token: string | null = null;
 
-export const getToken = (): string | null => localStorage.getItem(KEY);
-export const setToken = (t: string): void => { localStorage.setItem(KEY, t); };
-export const clearToken = (): void => { localStorage.removeItem(KEY); };
+export const getToken = (): string | null => _token;
+export const setToken = (t: string): void => { _token = t; };
+export const clearToken = (): void => { _token = null; };
 
 /** Derive file path from lang + slug */
 export function postFilePath(lang: 'zh' | 'en', slug: string): string {

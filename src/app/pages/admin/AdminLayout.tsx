@@ -47,6 +47,7 @@ export default function AdminLayout() {
   const location = useLocation();
   const crumbs = useCrumbs();
   const [user, setUser] = useState<GitHubUser | null>(null);
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
     const token = getToken();
@@ -59,6 +60,7 @@ export default function AdminLayout() {
           return;
         }
         setUser(u);
+        setChecking(false);
       })
       .catch(() => { clearToken(); navigate('/dashboard/login'); });
   }, []);
@@ -208,7 +210,7 @@ export default function AdminLayout() {
         </header>
 
         <div className="flex-1 overflow-auto">
-          <Outlet />
+          {checking ? null : <Outlet />}
         </div>
       </SidebarInset>
     </SidebarProvider>
