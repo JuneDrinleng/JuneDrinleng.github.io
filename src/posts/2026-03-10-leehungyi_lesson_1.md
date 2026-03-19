@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "李宏毅机器学习2026春笔记1"
-date:   2026-03-10
-tags: [李宏毅机器学习]
+date: 2026-03-10
+tags: [Hung-yi Lee Machine Learning]
 comments: true
 author: junedrinleng
 toc: true
