@@ -42,7 +42,7 @@ export default function AdminLogin() {
   function handleLogin() {
     setLoading(true);
     setError('');
-    const url = `${OAUTH_BASE}/auth?provider=github&scope=repo`;
+    const url = `${OAUTH_BASE}/auth?provider=github&scope=repo&site_id=${location.hostname}`;
     const popup = window.open(url, 'github-oauth', 'width=600,height=700,left=400,top=200');
     if (!popup) {
       setError('弹窗被阻止，请允许此页面打开弹窗后重试。');
