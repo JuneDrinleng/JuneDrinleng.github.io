@@ -6,6 +6,7 @@ export interface PostMetadata {
   comments: boolean;
   author: string;
   toc: boolean;
+  draft?: boolean;
 }
 
 export interface Post {

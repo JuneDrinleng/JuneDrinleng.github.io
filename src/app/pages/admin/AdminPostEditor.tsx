@@ -43,6 +43,7 @@ interface FormState {
   tagInput: string;
   comments: boolean;
   toc: boolean;
+  draft: boolean;
   excerpt: string;
   body: string;
 }
@@ -68,7 +69,7 @@ export default function AdminPostEditor() {
 
   const [form, setForm] = useState<FormState>({
     title: '', slug: '', date: TODAY, lang: (paramLang as Lang) ?? 'zh',
-    tags: [], tagInput: '', comments: true, toc: true, excerpt: '', body: '',
+    tags: [], tagInput: '', comments: true, toc: true, draft: false, excerpt: '', body: '',
   });
   const [fileSha, setFileSha] = useState<string | undefined>();
   const [loadingPost, setLoadingPost] = useState(isEdit);
@@ -103,6 +104,7 @@ export default function AdminPostEditor() {
         tags,
         comments: cached.metadata.comments ?? true,
         toc: cached.metadata.toc ?? true,
+        draft: cached.metadata.draft ?? false,
         excerpt: cached.excerpt,
         body: cached.content,
       }));
@@ -134,6 +136,7 @@ export default function AdminPostEditor() {
           date: parsed.date ?? f.date,
           comments: parsed.comments !== 'false',
           toc: parsed.toc !== 'false',
+          draft: parsed.draft === 'true',
           tags,
           excerpt,
           body,
@@ -280,6 +283,7 @@ export default function AdminPostEditor() {
         tags: form.tags,
         comments: form.comments,
         toc: form.toc,
+        draft: form.draft,
         excerpt: form.excerpt,
         body: form.body,
       });
@@ -482,6 +486,14 @@ export default function AdminPostEditor() {
                   className="scale-90"
                 />
               </div>
+              <div className="flex items-center justify-between">
+                <Label className="text-xs font-normal">保存为草稿</Label>
+                <Switch
+                  checked={form.draft}
+                  onCheckedChange={v => set('draft', v)}
+                  className="scale-90"
+                />
+              </div>
               <Separator />
               <Button
                 onClick={handleSave}
@@ -492,7 +504,9 @@ export default function AdminPostEditor() {
                 {saving ? (
                   <><Loader2 className="w-3.5 h-3.5 mr-2 animate-spin" />提交中…</>
                 ) : (
-                  isEdit ? '保存更改' : '提交到 GitHub'
+                  isEdit
+                    ? (form.draft ? '保存草稿' : '保存更改')
+                    : (form.draft ? '保存草稿' : '提交到 GitHub')
                 )}
               </Button>
             </CardContent>

@@ -25,7 +25,7 @@ type ViewMode = "timeline" | "tag" | "year";
 
 export default function Blog() {
   const { language, t } = useLanguage();
-  const allPosts = getAllPosts(language);
+  const allPosts = getAllPosts(language).filter(p => !p.metadata.draft);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<ViewMode>("timeline");
