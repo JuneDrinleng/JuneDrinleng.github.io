@@ -53,7 +53,14 @@ export default function AdminLayout() {
     const token = getToken();
     if (!token) { navigate('/dashboard/login'); return; }
     githubGetUser(token)
-      .then(setUser)
+      .then(u => {
+        if (u.login !== 'JuneDrinleng') {
+          clearToken();
+          navigate('/dashboard/login');
+          return;
+        }
+        setUser(u);
+      })
       .catch(() => { clearToken(); navigate('/dashboard/login'); });
   }, []);
 
