@@ -77,9 +77,6 @@ jobs:
 
       - name: Build
         run: pnpm build
-        env:
-          VITE_CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
-          VITE_CF_TOKEN: ${{ secrets.CF_TOKEN }}
 
       - name: Generate sitemap
         run: node scripts/generate-sitemap.mjs
