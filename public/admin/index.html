@@ -1,11 +1,316 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager</title>
+    <title>LUNE · Content Manager</title>
+    <style>
+      /* ===== Loading Screen ===== */
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.25; }
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #000;
+        font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+      }
+
+      #admin-loading {
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        z-index: 99999;
+        transition: opacity 0.4s ease;
+      }
+
+      #admin-loading .brand-name {
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: #000;
+        border: 4px solid #000;
+        padding: 0.5rem 1.75rem;
+        line-height: 1;
+      }
+
+      #admin-loading .divider {
+        width: 56px;
+        height: 4px;
+        background: #000;
+      }
+
+      #admin-loading .sub {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: #777;
+        animation: blink 1.8s ease-in-out infinite;
+      }
+
+      /* ===== Decap CMS Overrides ===== */
+
+      /* Remove all rounded corners */
+      #nc-root *, #nc-root *::before, #nc-root *::after {
+        border-radius: 0 !important;
+        font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+      }
+
+      /* Top header bar — black, like the site's TitleBar */
+      #nc-root header {
+        background: #000 !important;
+        border-bottom: 4px solid #000 !important;
+        min-height: 3rem !important;
+      }
+
+      /* All text/icons inside header → white */
+      #nc-root header *,
+      #nc-root header a,
+      #nc-root header button,
+      #nc-root header span,
+      #nc-root header svg {
+        color: #fff !important;
+        fill: currentColor !important;
+        stroke: currentColor !important;
+      }
+
+      #nc-root header button:hover,
+      #nc-root header a:hover {
+        opacity: 0.7 !important;
+        background: transparent !important;
+      }
+
+      /* Sidebar — light gray with bold left border */
+      #nc-root aside {
+        background: #f5f5f5 !important;
+        border-right: 2px solid #000 !important;
+      }
+
+      #nc-root aside a,
+      #nc-root aside button {
+        color: #000 !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-size: 0.72rem !important;
+      }
+
+      /* Sidebar active item */
+      #nc-root aside a[class*="active"],
+      #nc-root aside [aria-selected="true"],
+      #nc-root aside [class*="isActive"],
+      #nc-root aside [aria-current] {
+        background: #000 !important;
+        color: #fff !important;
+      }
+
+      /* Labels */
+      #nc-root label {
+        color: #000 !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-size: 0.7rem !important;
+      }
+
+      /* Input / Textarea / Select */
+      #nc-root input[type="text"],
+      #nc-root input[type="email"],
+      #nc-root input[type="password"],
+      #nc-root input[type="search"],
+      #nc-root input[type="date"],
+      #nc-root input[type="datetime-local"],
+      #nc-root textarea,
+      #nc-root select {
+        border: 2px solid #000 !important;
+        background: #fff !important;
+        color: #000 !important;
+        outline: none !important;
+      }
+
+      #nc-root input:focus,
+      #nc-root textarea:focus,
+      #nc-root select:focus {
+        border-color: #000 !important;
+        box-shadow: 2px 2px 0 #000 !important;
+      }
+
+      /* Buttons — square, uppercase */
+      #nc-root button {
+        border-radius: 0 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-size: 0.72rem !important;
+        font-weight: 700 !important;
+      }
+
+      /* Primary buttons — black fill */
+      #nc-root button[class*="primary"],
+      #nc-root [class*="SaveButton"],
+      #nc-root [class*="PublishButton"] {
+        background: #000 !important;
+        color: #fff !important;
+        border: 2px solid #000 !important;
+      }
+
+      #nc-root button[class*="primary"]:hover,
+      #nc-root [class*="SaveButton"]:hover,
+      #nc-root [class*="PublishButton"]:hover {
+        background: #333 !important;
+      }
+
+      /* Cards in collection list */
+      #nc-root [class*="card"],
+      #nc-root [class*="Card"],
+      #nc-root [class*="ListItem"],
+      #nc-root [class*="EntryCard"] {
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+      }
+
+      #nc-root [class*="card"]:hover,
+      #nc-root [class*="Card"]:hover,
+      #nc-root [class*="EntryCard"]:hover {
+        box-shadow: 4px 4px 0 #000 !important;
+        transform: translate(-2px, -2px) !important;
+        transition: all 0.15s ease !important;
+      }
+
+      /* Markdown editor toolbar */
+      #nc-root [class*="Toolbar"],
+      #nc-root [class*="toolbar"] {
+        border-bottom: 2px solid #000 !important;
+        background: #f5f5f5 !important;
+      }
+
+      /* Active toolbar button */
+      #nc-root [class*="Toolbar"] button[class*="active"],
+      #nc-root [class*="toolbar"] button[class*="active"] {
+        background: #000 !important;
+        color: #fff !important;
+      }
+
+      /* Scrollbar — thin, black */
+      #nc-root ::-webkit-scrollbar       { width: 5px; height: 5px; }
+      #nc-root ::-webkit-scrollbar-track { background: #f0f0f0; }
+      #nc-root ::-webkit-scrollbar-thumb { background: #000; }
+    </style>
   </head>
   <body>
+    <!-- Branded loading screen -->
+    <div id="admin-loading">
+      <div class="brand-name">LUNE</div>
+      <div class="divider"></div>
+      <div class="sub">Loading Content Manager</div>
+    </div>
+
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Register preview pane styles (matches blog post rendering)
+      try {
+        CMS.registerPreviewStyle(`
+          body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #000;
+            background: #fff;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+          }
+          h2 {
+            font-size: 1.75rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.4rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+          }
+          h3 {
+            font-size: 1.35rem;
+            margin-top: 2rem;
+          }
+          p { line-height: 1.8; margin-bottom: 1.25rem; opacity: 0.9; }
+          pre {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f5f5f5;
+            border: 2px solid #000;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+          }
+          code {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f5f5f5;
+            border: 1px solid #000;
+            padding: 0.15em 0.4em;
+            font-size: 0.875em;
+          }
+          pre code { background: none; border: none; padding: 0; }
+          blockquote {
+            border-left: 4px solid #000;
+            margin-left: 0;
+            padding-left: 1.25rem;
+            font-style: italic;
+            opacity: 0.75;
+          }
+          img {
+            max-width: 100%;
+            border: 2px solid #000;
+            display: block;
+            margin: 1.5rem auto;
+          }
+          a {
+            color: #000;
+            border-bottom: 2px solid #000;
+            text-decoration: none;
+          }
+          a:hover { background: #000; color: #fff; }
+          hr { border: none; border-top: 2px solid #000; margin: 2rem 0; }
+          table { border-collapse: collapse; width: 100%; }
+          th, td { border: 2px solid #000; padding: 0.5rem 0.75rem; text-align: left; }
+          th { background: #000; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
+        `, { raw: true })
+      } catch(e) { /* preview styles optional */ }
+
+      // Hide loading screen once CMS header mounts
+      ;(function () {
+        var loading = document.getElementById('admin-loading')
+        var check = setInterval(function () {
+          var root = document.getElementById('nc-root')
+          if (root && root.querySelector('header')) {
+            clearInterval(check)
+            setTimeout(function () {
+              loading.style.opacity = '0'
+              setTimeout(function () { loading.remove() }, 400)
+            }, 400)
+          }
+        }, 150)
+        // Fallback: remove loading after 8s regardless
+        setTimeout(function () {
+          clearInterval(check)
+          if (loading && loading.parentNode) {
+            loading.style.opacity = '0'
+            setTimeout(function () { loading.remove() }, 400)
+          }
+        }, 8000)
+      })()
+    </script>
   </body>
 </html>
