@@ -38,7 +38,7 @@ export async function fetchAnalytics(days = 30): Promise<AnalyticsSummary> {
   const zone = json.data.viewer.zones[0];
   const daily: DailyStat[] = (zone.daily ?? []).map((d: any) => ({
     date: d.dimensions.date,
-    requests: d.sum.requests,
+    requests: d.count,
     uniques: d.uniq.uniques,
     pageViews: d.sum.pageViews,
   }));
@@ -46,7 +46,7 @@ export async function fetchAnalytics(days = 30): Promise<AnalyticsSummary> {
   const countryMap: Record<string, number> = {};
   for (const row of zone.countries ?? []) {
     const country = row.dimensions?.clientCountryName;
-    if (country) countryMap[country] = (countryMap[country] ?? 0) + row.sum.requests;
+    if (country) countryMap[country] = (countryMap[country] ?? 0) + row.count;
   }
   const countries: CountryStat[] = Object.entries(countryMap)
     .map(([country, requests]) => ({ country, requests }))
