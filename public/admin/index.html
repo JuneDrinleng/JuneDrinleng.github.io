@@ -5,312 +5,322 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LUNE · Content Manager</title>
     <style>
-      /* ===== Loading Screen ===== */
+      /* ── Loading screen only ── */
       @keyframes blink {
         0%, 100% { opacity: 1; }
-        50%       { opacity: 0.25; }
+        50%       { opacity: 0.2; }
       }
-
       *, *::before, *::after { box-sizing: border-box; }
-
       html, body {
-        margin: 0;
-        padding: 0;
-        background: #fff;
-        color: #000;
+        margin: 0; padding: 0;
+        background: #fff; color: #000;
         font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
       }
-
       #admin-loading {
-        position: fixed;
-        inset: 0;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1.25rem;
-        z-index: 99999;
+        position: fixed; inset: 0; background: #fff;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 1.25rem; z-index: 99999;
         transition: opacity 0.4s ease;
       }
-
-      #admin-loading .brand-name {
-        font-size: 2rem;
-        font-weight: 900;
-        letter-spacing: 0.5em;
-        text-transform: uppercase;
-        color: #000;
-        border: 4px solid #000;
-        padding: 0.5rem 1.75rem;
-        line-height: 1;
+      #admin-loading .brand {
+        font-size: 2rem; font-weight: 900;
+        letter-spacing: 0.5em; text-transform: uppercase;
+        color: #000; border: 4px solid #000;
+        padding: 0.5rem 1.75rem; line-height: 1;
       }
-
-      #admin-loading .divider {
-        width: 56px;
-        height: 4px;
-        background: #000;
-      }
-
+      #admin-loading .bar { width: 56px; height: 4px; background: #000; }
       #admin-loading .sub {
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.35em;
-        text-transform: uppercase;
-        color: #777;
-        animation: blink 1.8s ease-in-out infinite;
+        font-size: 0.65rem; font-weight: 600;
+        letter-spacing: 0.35em; text-transform: uppercase;
+        color: #888; animation: blink 1.8s ease-in-out infinite;
       }
-
-      /* ===== Decap CMS Overrides ===== */
-
-      /* Remove all rounded corners */
-      #nc-root *, #nc-root *::before, #nc-root *::after {
-        border-radius: 0 !important;
-        font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
-      }
-
-      /* Top header bar — black, like the site's TitleBar */
-      #nc-root header {
-        background: #000 !important;
-        border-bottom: 4px solid #000 !important;
-        min-height: 3rem !important;
-      }
-
-      /* All text/icons inside header → white */
-      #nc-root header *,
-      #nc-root header a,
-      #nc-root header button,
-      #nc-root header span,
-      #nc-root header svg {
-        color: #fff !important;
-        fill: currentColor !important;
-        stroke: currentColor !important;
-      }
-
-      #nc-root header button:hover,
-      #nc-root header a:hover {
-        opacity: 0.7 !important;
-        background: transparent !important;
-      }
-
-      /* Sidebar — light gray with bold left border */
-      #nc-root aside {
-        background: #f5f5f5 !important;
-        border-right: 2px solid #000 !important;
-      }
-
-      #nc-root aside a,
-      #nc-root aside button {
-        color: #000 !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.08em !important;
-        font-size: 0.72rem !important;
-      }
-
-      /* Sidebar active item */
-      #nc-root aside a[class*="active"],
-      #nc-root aside [aria-selected="true"],
-      #nc-root aside [class*="isActive"],
-      #nc-root aside [aria-current] {
-        background: #000 !important;
-        color: #fff !important;
-      }
-
-      /* Labels */
-      #nc-root label {
-        color: #000 !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.08em !important;
-        font-size: 0.7rem !important;
-      }
-
-      /* Input / Textarea / Select */
-      #nc-root input[type="text"],
-      #nc-root input[type="email"],
-      #nc-root input[type="password"],
-      #nc-root input[type="search"],
-      #nc-root input[type="date"],
-      #nc-root input[type="datetime-local"],
-      #nc-root textarea,
-      #nc-root select {
-        border: 2px solid #000 !important;
-        background: #fff !important;
-        color: #000 !important;
-        outline: none !important;
-      }
-
-      #nc-root input:focus,
-      #nc-root textarea:focus,
-      #nc-root select:focus {
-        border-color: #000 !important;
-        box-shadow: 2px 2px 0 #000 !important;
-      }
-
-      /* Buttons — square, uppercase */
-      #nc-root button {
-        border-radius: 0 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.08em !important;
-        font-size: 0.72rem !important;
-        font-weight: 700 !important;
-      }
-
-      /* Primary buttons — black fill */
-      #nc-root button[class*="primary"],
-      #nc-root [class*="SaveButton"],
-      #nc-root [class*="PublishButton"] {
-        background: #000 !important;
-        color: #fff !important;
-        border: 2px solid #000 !important;
-      }
-
-      #nc-root button[class*="primary"]:hover,
-      #nc-root [class*="SaveButton"]:hover,
-      #nc-root [class*="PublishButton"]:hover {
-        background: #333 !important;
-      }
-
-      /* Cards in collection list */
-      #nc-root [class*="card"],
-      #nc-root [class*="Card"],
-      #nc-root [class*="ListItem"],
-      #nc-root [class*="EntryCard"] {
-        border: 2px solid #000 !important;
-        box-shadow: none !important;
-      }
-
-      #nc-root [class*="card"]:hover,
-      #nc-root [class*="Card"]:hover,
-      #nc-root [class*="EntryCard"]:hover {
-        box-shadow: 4px 4px 0 #000 !important;
-        transform: translate(-2px, -2px) !important;
-        transition: all 0.15s ease !important;
-      }
-
-      /* Markdown editor toolbar */
-      #nc-root [class*="Toolbar"],
-      #nc-root [class*="toolbar"] {
-        border-bottom: 2px solid #000 !important;
-        background: #f5f5f5 !important;
-      }
-
-      /* Active toolbar button */
-      #nc-root [class*="Toolbar"] button[class*="active"],
-      #nc-root [class*="toolbar"] button[class*="active"] {
-        background: #000 !important;
-        color: #fff !important;
-      }
-
-      /* Scrollbar — thin, black */
-      #nc-root ::-webkit-scrollbar       { width: 5px; height: 5px; }
-      #nc-root ::-webkit-scrollbar-track { background: #f0f0f0; }
-      #nc-root ::-webkit-scrollbar-thumb { background: #000; }
     </style>
   </head>
   <body>
-    <!-- Branded loading screen -->
+
     <div id="admin-loading">
-      <div class="brand-name">LUNE</div>
-      <div class="divider"></div>
+      <div class="brand">LUNE</div>
+      <div class="bar"></div>
       <div class="sub">Loading Content Manager</div>
     </div>
 
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
-      // Register preview pane styles (matches blog post rendering)
-      try {
-        CMS.registerPreviewStyle(`
-          body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem;
-            color: #000;
-            background: #fff;
-          }
-          h1, h2, h3, h4, h5, h6 {
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-          }
-          h2 {
-            font-size: 1.75rem;
-            border-bottom: 2px solid #000;
-            padding-bottom: 0.4rem;
-            margin-top: 3rem;
-            margin-bottom: 1rem;
-          }
-          h3 {
-            font-size: 1.35rem;
-            margin-top: 2rem;
-          }
-          p { line-height: 1.8; margin-bottom: 1.25rem; opacity: 0.9; }
-          pre {
-            font-family: 'Courier New', Courier, monospace;
-            background: #f5f5f5;
-            border: 2px solid #000;
-            padding: 1.25rem;
-            overflow-x: auto;
-            font-size: 0.875rem;
-          }
-          code {
-            font-family: 'Courier New', Courier, monospace;
-            background: #f5f5f5;
-            border: 1px solid #000;
-            padding: 0.15em 0.4em;
-            font-size: 0.875em;
-          }
-          pre code { background: none; border: none; padding: 0; }
-          blockquote {
-            border-left: 4px solid #000;
-            margin-left: 0;
-            padding-left: 1.25rem;
-            font-style: italic;
-            opacity: 0.75;
-          }
-          img {
-            max-width: 100%;
-            border: 2px solid #000;
-            display: block;
-            margin: 1.5rem auto;
-          }
-          a {
-            color: #000;
-            border-bottom: 2px solid #000;
-            text-decoration: none;
-          }
-          a:hover { background: #000; color: #fff; }
-          hr { border: none; border-top: 2px solid #000; margin: 2rem 0; }
-          table { border-collapse: collapse; width: 100%; }
-          th, td { border: 2px solid #000; padding: 0.5rem 0.75rem; text-align: left; }
-          th { background: #000; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
-        `, { raw: true })
-      } catch(e) { /* preview styles optional */ }
+    (function () {
+      'use strict';
 
-      // Hide loading screen once CMS header mounts
-      ;(function () {
-        var loading = document.getElementById('admin-loading')
-        var check = setInterval(function () {
-          var root = document.getElementById('nc-root')
-          if (root && root.querySelector('header')) {
-            clearInterval(check)
-            setTimeout(function () {
-              loading.style.opacity = '0'
-              setTimeout(function () { loading.remove() }, 400)
-            }, 400)
+      /* ══════════════════════════════════════════
+         1. Preview pane — KaTeX CSS (via CMS API)
+         ══════════════════════════════════════════ */
+      try {
+        CMS.registerPreviewStyle(
+          'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'
+        );
+      } catch (_) {}
+
+      /* ══════════════════════════════════════════
+         2. Preview pane — blog-matching styles
+         ══════════════════════════════════════════ */
+      try {
+        CMS.registerPreviewStyle([
+          'body{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;',
+          'max-width:720px;margin:0 auto;padding:2rem;color:#000;background:#fff;line-height:1.75;}',
+          '*,*::before,*::after{border-radius:0!important;box-sizing:border-box;}',
+          'h1,h2,h3,h4,h5,h6{font-weight:900;text-transform:uppercase;letter-spacing:.04em;}',
+          'h2{font-size:1.75rem;border-bottom:2px solid #000;padding-bottom:.4rem;margin-top:3rem;margin-bottom:1rem;}',
+          'h3{font-size:1.35rem;margin-top:2rem;}',
+          'p{margin-bottom:1.25rem;opacity:.9;}',
+          'pre{font-family:"Courier New",Courier,monospace;background:#f5f5f5;border:2px solid #000;padding:1.25rem;overflow-x:auto;font-size:.875rem;}',
+          'code{font-family:"Courier New",Courier,monospace;background:#f5f5f5;border:1px solid #000;padding:.15em .4em;font-size:.875em;}',
+          'pre code{background:none;border:none;padding:0;}',
+          'blockquote{border-left:4px solid #000;margin-left:0;padding-left:1.25rem;font-style:italic;opacity:.75;}',
+          'img{max-width:100%;border:2px solid #000;display:block;margin:1.5rem auto;}',
+          'a{color:#000;border-bottom:2px solid #000;text-decoration:none;}',
+          'a:hover{background:#000;color:#fff;}',
+          'hr{border:none;border-top:2px solid #000;margin:2rem 0;}',
+          'table{border-collapse:collapse;width:100%;}',
+          'th,td{border:2px solid #000;padding:.5rem .75rem;}',
+          'th{background:#000;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.75rem;}',
+          /* KaTeX display math centering */
+          '.katex-display{overflow-x:auto;overflow-y:hidden;padding:.5rem 0;}',
+        ].join(''), { raw: true });
+      } catch (_) {}
+
+      /* ══════════════════════════════════════════
+         3. Admin shell CSS — injected AFTER CMS
+            so it sits last in the cascade and wins
+         ══════════════════════════════════════════ */
+      var ADMIN_CSS = [
+        /* No rounded corners anywhere */
+        '#nc-root *,#nc-root *::before,#nc-root *::after{',
+        '  border-radius:0!important;',
+        '  font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif!important;',
+        '}',
+
+        /* ── Header bar → solid black, like TitleBar ── */
+        '#nc-root header{',
+        '  background:#000!important;',
+        '  border-bottom:4px solid #000!important;',
+        '  box-shadow:none!important;',
+        '}',
+        '#nc-root header *{color:#fff!important;fill:#fff!important;stroke:#fff!important;}',
+        '#nc-root header a:hover,#nc-root header button:hover{',
+        '  opacity:.7!important;background:rgba(255,255,255,.08)!important;',
+        '}',
+
+        /* ── Sidebar / collection nav ── */
+        '#nc-root aside,',
+        '#nc-root [class*="Sidebar"],',
+        '#nc-root [class*="CollectionList"],',
+        '#nc-root [role="navigation"]{',
+        '  background:#f5f5f5!important;',
+        '  border-right:2px solid #000!important;',
+        '}',
+        '#nc-root aside a,#nc-root [role="navigation"] a,',
+        '#nc-root aside button,#nc-root [role="navigation"] button{',
+        '  color:#000!important;font-weight:700!important;',
+        '  text-transform:uppercase!important;letter-spacing:.08em!important;',
+        '  font-size:.72rem!important;',
+        '}',
+        '#nc-root aside [class*="active"],#nc-root [role="navigation"] [class*="active"],',
+        '#nc-root aside [aria-current],#nc-root [role="navigation"] [aria-current]{',
+        '  background:#000!important;color:#fff!important;',
+        '}',
+
+        /* ── Labels ── */
+        '#nc-root label{',
+        '  color:#000!important;font-weight:700!important;',
+        '  text-transform:uppercase!important;letter-spacing:.08em!important;',
+        '  font-size:.7rem!important;',
+        '}',
+
+        /* ── Inputs ── */
+        '#nc-root input,#nc-root textarea,#nc-root select{',
+        '  border:2px solid #000!important;background:#fff!important;',
+        '  color:#000!important;outline:none!important;',
+        '}',
+        '#nc-root input:focus,#nc-root textarea:focus,#nc-root select:focus{',
+        '  box-shadow:2px 2px 0 #000!important;',
+        '}',
+
+        /* ── Buttons ── */
+        '#nc-root button{',
+        '  border-radius:0!important;text-transform:uppercase!important;',
+        '  letter-spacing:.08em!important;font-size:.72rem!important;font-weight:700!important;',
+        '}',
+        '#nc-root button[class*="primary"],',
+        '#nc-root [class*="SaveButton"],',
+        '#nc-root [class*="PublishButton"]{',
+        '  background:#000!important;color:#fff!important;border:2px solid #000!important;',
+        '}',
+        '#nc-root button[class*="primary"]:hover,',
+        '#nc-root [class*="SaveButton"]:hover,',
+        '#nc-root [class*="PublishButton"]:hover{',
+        '  background:#222!important;',
+        '}',
+
+        /* ── Entry cards ── */
+        '#nc-root [class*="EntryCard"],#nc-root [class*="card"],#nc-root [class*="ListItem"]{',
+        '  border:2px solid #000!important;box-shadow:none!important;',
+        '}',
+        '#nc-root [class*="EntryCard"]:hover,#nc-root [class*="card"]:hover{',
+        '  box-shadow:4px 4px 0 #000!important;',
+        '  transition:box-shadow .12s ease!important;',
+        '}',
+
+        /* ── Markdown editor toolbar ── */
+        '#nc-root [class*="Toolbar"],[class*="toolbar"]{',
+        '  border-bottom:2px solid #000!important;background:#f5f5f5!important;',
+        '}',
+
+        /* ── Scrollbars ── */
+        '#nc-root ::-webkit-scrollbar{width:5px;height:5px;}',
+        '#nc-root ::-webkit-scrollbar-track{background:#f0f0f0;}',
+        '#nc-root ::-webkit-scrollbar-thumb{background:#000;}',
+      ].join('\n');
+
+      function injectAdminStyles() {
+        if (document.getElementById('lune-admin-styles')) return;
+        var s = document.createElement('style');
+        s.id = 'lune-admin-styles';
+        s.textContent = ADMIN_CSS;
+        document.head.appendChild(s);
+      }
+
+      /* ══════════════════════════════════════════
+         4. KaTeX injection into preview iframe
+            Uses MutationObserver to handle the
+            iframe appearing after initial render,
+            then sets up auto-render + live re-render
+         ══════════════════════════════════════════ */
+      var injectedIframes = new WeakSet();
+
+      var KATEX_RENDER_OPTS = {
+        delimiters: [
+          { left: '$$', right: '$$', display: true  },
+          { left: '$',  right: '$',  display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true  }
+        ],
+        throwOnError: false
+      };
+
+      function setupLiveMath(iframe) {
+        var win = iframe.contentWindow;
+        var doc = iframe.contentDocument;
+        if (!win || !win.renderMathInElement) return;
+
+        function render() {
+          try { win.renderMathInElement(doc.body, KATEX_RENDER_OPTS); } catch (_) {}
+        }
+        render();
+
+        var timer;
+        var obs = new win.MutationObserver(function () {
+          clearTimeout(timer);
+          timer = setTimeout(render, 350);
+        });
+        obs.observe(doc.body, { childList: true, subtree: true, characterData: true });
+      }
+
+      function injectKatexIntoIframe(iframe) {
+        if (injectedIframes.has(iframe)) return;
+        var doc = iframe.contentDocument;
+        if (!doc || !doc.head) return;
+
+        try {
+          injectedIframes.add(iframe);
+
+          // Step 1 — KaTeX CSS (may already exist via registerPreviewStyle, harmless to add)
+          if (!doc.querySelector('#k-css')) {
+            var link = doc.createElement('link');
+            link.id = 'k-css'; link.rel = 'stylesheet';
+            link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+            doc.head.appendChild(link);
           }
-        }, 150)
-        // Fallback: remove loading after 8s regardless
+
+          // Step 2 — KaTeX core JS
+          if (!doc.querySelector('#k-core')) {
+            var core = doc.createElement('script');
+            core.id = 'k-core';
+            core.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
+            core.onload = function () {
+              // Step 3 — auto-render extension
+              if (doc.querySelector('#k-auto')) { setupLiveMath(iframe); return; }
+              var auto = doc.createElement('script');
+              auto.id = 'k-auto';
+              auto.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js';
+              auto.onload = function () { setupLiveMath(iframe); };
+              doc.head.appendChild(auto);
+            };
+            doc.head.appendChild(core);
+          }
+        } catch (_) {}
+      }
+
+      function tryInject(iframe) {
+        if (!iframe) return;
+        if (injectedIframes.has(iframe)) return;
+        var doc = iframe.contentDocument;
+        if (doc && doc.readyState !== 'loading' && doc.head) {
+          injectKatexIntoIframe(iframe);
+        } else {
+          iframe.addEventListener('load', function () {
+            injectKatexIntoIframe(iframe);
+          }, { once: true });
+        }
+      }
+
+      function watchForIframes() {
+        // Check iframes that already exist
+        document.querySelectorAll('#nc-root iframe').forEach(tryInject);
+
+        // Watch for new iframes
+        var obs = new MutationObserver(function (mutations) {
+          mutations.forEach(function (m) {
+            m.addedNodes.forEach(function (node) {
+              if (node.nodeName === 'IFRAME') { tryInject(node); }
+              if (node.querySelectorAll) {
+                node.querySelectorAll('iframe').forEach(tryInject);
+              }
+            });
+          });
+        });
+        obs.observe(document.body, { childList: true, subtree: true });
+      }
+
+      /* ══════════════════════════════════════════
+         5. Boot — wait for CMS header, then apply
+         ══════════════════════════════════════════ */
+      var loading = document.getElementById('admin-loading');
+
+      function boot() {
+        injectAdminStyles();
+        watchForIframes();
+        loading.style.opacity = '0';
         setTimeout(function () {
-          clearInterval(check)
-          if (loading && loading.parentNode) {
-            loading.style.opacity = '0'
-            setTimeout(function () { loading.remove() }, 400)
-          }
-        }, 8000)
-      })()
+          if (loading.parentNode) loading.remove();
+        }, 400);
+      }
+
+      var check = setInterval(function () {
+        var root = document.getElementById('nc-root');
+        if (root && root.querySelector('header')) {
+          clearInterval(check);
+          setTimeout(boot, 200); // small delay — let styled-components finish injecting
+        }
+      }, 150);
+
+      // Hard fallback
+      setTimeout(function () {
+        clearInterval(check);
+        boot();
+      }, 9000);
+
+    })();
     </script>
+
   </body>
 </html>
