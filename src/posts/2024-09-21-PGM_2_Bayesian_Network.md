@@ -91,38 +91,49 @@ P可以根据图里的关系进行因子分解
 C是父节点，给定C时X和Y是独立的子节点  
 $$P(CXY)→P(X|Y)＝sum_C  \ P(CX|Y)→ 
 P(CX|Y)=P(XY|C)P(C)/sum_C \ P(XY|C)P(C)$$  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240921110156752.png)  
 
-
 非独立性结构：  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240921111251210.png)
 
 Case4（V-structure）是有向图复杂性的来源，只有当结果Z知道的时候原因X和Y才是有关系的，当结果不知道时原因X和Y是独立的  
 因此对于贝叶斯网络来说，最好的结构就是树状结构，一个父节点若干子节点  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/20241117231506.png)  
 
 最不好的结构则是：  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/20241117231535.png)  
 
 因此前向算法是从原因推结果比较方便，而后向算法是从后面推前面就没那么容易    
+
 只要V结构没变，独立性就没有变化  
+
 最小IMAP就是给出一个图，图里的每条边都不能删了就是minimal Imap  
 
 例题： for P(ABCD)其中A和D独立，在AD条件下B与C独立  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/20241117231607.png)  
 
 这是按照ABCD的顺序👆  
+
 那如果按照ADBC的顺序呢：  
+
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/20241117231640.png)  
 
 说明顺序不一样会影响结构，这说明根据概率来学图模型是不是那么容易的  
+
 总体来说V-structure越少越好  
 
 ## 5 further thinking——因果推断  
 ![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20240921115340662.png)  
 
 association关联：不涉及V结构时箭头并不代表因果而只是代表独立性  
+
 Intervention干预：涉及干预实验辅助给出一些因果  
+
 Counterfactuals反事实推断：世界的很多事情并不能做重复事件——同一个人不可能既吃药又不吃药，虽然不能这么实验但是人可以基于此推断  
 
 如果是causal edge，那么对子节点进行干预的时候其与父节点的因果关联边就得去除了  
