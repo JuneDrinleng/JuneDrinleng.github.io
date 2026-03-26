@@ -2,7 +2,7 @@
 layout: post
 title: "多模态生成式人工智能笔记2"
 date: 2026-03-26
-tags: []
+tags: [Multimodal Generative AI]
 comments: true
 author: junedrinleng
 toc: true
