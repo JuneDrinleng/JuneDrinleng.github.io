@@ -8,7 +8,7 @@ author: junedrinleng
 toc: true
 ---
 
-本笔记记录李宏毅机器学习2026年春的第一节课程的内容，包括Context Engineering ，AI Agent之间的互动，以及AI对于学术研究助力的探索等相关内容
+本笔记记录李宏毅机器学习2026年春的第2节课程的内容，包括Context Engineering ，AI Agent之间的互动，以及AI对于学术研究助力的探索等相关内容
 
 <!-- more -->
 
