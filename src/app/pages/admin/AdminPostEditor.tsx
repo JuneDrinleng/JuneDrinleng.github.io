@@ -23,6 +23,10 @@ import { Separator } from '@/app/components/ui/separator';
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { Tabs, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
 import {
+  AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription,
+  AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
+} from '@/app/components/ui/alert-dialog';
+import {
   Card, CardContent, CardHeader, CardTitle, CardDescription,
 } from '@/app/components/ui/card';
 import {
@@ -75,6 +79,7 @@ export default function AdminPostEditor() {
   const [loadingPost, setLoadingPost] = useState(isEdit);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'error' | 'success'; msg: string } | null>(null);
+  const [tagGuideDialogOpen, setTagGuideDialogOpen] = useState(false);
   const [excerptTab, setExcerptTab] = useState<'write' | 'preview'>('write');
   const [bodyTab, setBodyTab] = useState<'write' | 'preview'>('write');
 
@@ -86,6 +91,8 @@ export default function AdminPostEditor() {
 
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const tagInputRef = useRef<HTMLInputElement>(null);
+  const tagSectionRef = useRef<HTMLDivElement>(null);
 
   // Edit mode: load existing post
   useEffect(() => {
@@ -152,7 +159,10 @@ export default function AdminPostEditor() {
 
   function addTag() {
     const t = form.tagInput.trim().replace(/,$/, '');
-    if (t && !form.tags.includes(t)) set('tags', [...form.tags, t]);
+    if (t && !form.tags.includes(t)) {
+      set('tags', [...form.tags, t]);
+      setTagValidationTouched(false);
+    }
     set('tagInput', '');
   }
 
@@ -173,6 +183,14 @@ export default function AdminPostEditor() {
     : [];
 
   const [tagDropdownOpen, setTagDropdownOpen] = useState(false);
+  const [tagValidationTouched, setTagValidationTouched] = useState(false);
+  const pendingTag = form.tagInput.trim().replace(/,$/, '');
+  const effectiveTags = [...new Set(
+    [...form.tags, pendingTag]
+      .map(t => t.trim())
+      .filter(Boolean),
+  )];
+  const missingRequiredTag = effectiveTags.length === 0;
 
   const targetPath = isEdit
     ? postFilePath(paramLang as Lang, paramSlug!)
@@ -273,14 +291,26 @@ export default function AdminPostEditor() {
       setStatus({ type: 'error', msg: '标题和正文不能为空' });
       return;
     }
+    if (missingRequiredTag) {
+      setTagValidationTouched(true);
+      setTagDropdownOpen(true);
+      setTagGuideDialogOpen(true);
+      tagSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      requestAnimationFrame(() => tagInputRef.current?.focus());
+      return;
+    }
+    setTagValidationTouched(false);
     setSaving(true);
     setStatus(null);
     try {
       const token = getToken()!;
+      if (form.tagInput.trim() || effectiveTags.length !== form.tags.length) {
+        setForm(f => ({ ...f, tags: effectiveTags, tagInput: '' }));
+      }
       const content = buildPostContent({
         title: form.title,
         date: form.date,
-        tags: form.tags,
+        tags: effectiveTags,
         comments: form.comments,
         toc: form.toc,
         draft: form.draft,
@@ -572,7 +602,7 @@ export default function AdminPostEditor() {
           </Card>
 
           {/* Tags */}
-          <Card>
+          <Card ref={tagSectionRef}>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">标签</CardTitle>
               <CardDescription className="text-xs">按 Enter 或逗号添加</CardDescription>
@@ -580,6 +610,7 @@ export default function AdminPostEditor() {
             <CardContent className="space-y-3">
               <div className="relative">
                 <Input
+                  ref={tagInputRef}
                   value={form.tagInput}
                   onChange={e => {
                     set('tagInput', e.target.value);
@@ -592,6 +623,7 @@ export default function AdminPostEditor() {
                         // Enter with suggestions: pick first suggestion
                         set('tags', [...form.tags, tagSuggestions[0]]);
                         set('tagInput', '');
+                        setTagValidationTouched(false);
                       } else {
                         addTag();
                       }
@@ -616,6 +648,7 @@ export default function AdminPostEditor() {
                           e.preventDefault(); // prevent blur before click
                           set('tags', [...form.tags, tag]);
                           set('tagInput', '');
+                          setTagValidationTouched(false);
                           setTagDropdownOpen(false);
                         }}
                       >
@@ -641,10 +674,35 @@ export default function AdminPostEditor() {
                   ))}
                 </div>
               )}
+              {tagValidationTouched && missingRequiredTag && (
+                <p className="text-xs text-destructive">请先添加至少一个标签，再提交文章。</p>
+              )}
             </CardContent>
           </Card>
         </div>
       </div>
+
+      <AlertDialog open={tagGuideDialogOpen} onOpenChange={setTagGuideDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>提交前请先补全标签</AlertDialogTitle>
+            <AlertDialogDescription>
+              当前文章还没有标签。请先添加至少一个标签，再提交文章，这样后台列表和筛选都能正常工作。
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              onClick={() => {
+                setTagDropdownOpen(true);
+                tagSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                requestAnimationFrame(() => tagInputRef.current?.focus());
+              }}
+            >
+              去添加标签
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
