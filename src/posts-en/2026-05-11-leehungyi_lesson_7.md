@@ -23,7 +23,7 @@ In the past, the "I" in these three steps referred to humans. AI self-growth beg
 
 Traditional machine learning optimizes function parameters $\theta$ according to loss:
 
-![image-20260511173957612](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511173957612.png)
+![image-20260511173957612](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511173957612.png)
 
 Previously, we got gold labels via human annotation in supervised learning. Can AI do this by itself?
 
@@ -33,55 +33,55 @@ One idea is: besides using the current training AI to produce $y$, also use it t
 
 So maybe we can use self-corrected outputs to fine-tune the model, so future identical inputs can produce more accurate answers.
 
-![image-20260511174529619](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174529619.png)
+![image-20260511174529619](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174529619.png)
 
 ## 2 From Supervised Learning to Reinforcement Learning
 
 The discussion above is based on supervised learning. But many methods (such as RL) do not require humans to provide standard answers directly. That does not mean no human involvement — human intervention moves to the reward function.
 
-![image-20260511174753610](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174753610.png)
+![image-20260511174753610](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174753610.png)
 
 The problem of RL is reward sparsity, which makes learning difficult. To simplify training, reward shaping is needed: to guide AI toward final reward, we add intermediate prior rewards along the process.
 
-![image-20260511174955930](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174955930.png)
+![image-20260511174955930](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174955930.png)
 
 Currently humans can define the reward function, while AI can help define proxy reward functions used in reward shaping:
 
-![image-20260511175113780](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511175113780.png)
+![image-20260511175113780](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511175113780.png)
 
 The issue is that not everything in the world can be easily simplified into reward functions. Another idea is to let a new AI create rewards, but humans are still needed to judge whether those generated reward functions are good.
 
-![image-20260511175914231](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511175914231.png)
+![image-20260511175914231](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511175914231.png)
 
 This is the idea of RLHF. Of course, RLAIF also aims to remove human evaluation.
 
-![image-20260511180232026](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511180232026.png)
+![image-20260511180232026](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511180232026.png)
 
 There are many RLAIF-related approaches, such as verbalize-based, ensemble-based, and certainty-based methods.
 
 There are also approaches such as Test-Time Training that allow AI to define loss by itself. But this works mainly for small-range adjustment (small datasets); when scale grows, performance degrades:
 
-![image-20260511181143303](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181143303.png)
+![image-20260511181143303](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181143303.png)
 
 ## 3 How to Minimize Entropy
 
-![image-20260511181527179](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181527179.png)
+![image-20260511181527179](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181527179.png)
 
 Traditional entropy computation needs to traverse all $y$, but LLM outputs are open-ended and effectively infinite, so traversal is intractable. A mainstream approach at that time was not to minimize sequence entropy directly, but to minimize entropy of each token-level output distribution:
 
-![image-20260511181651269](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181651269.png)
+![image-20260511181651269](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181651269.png)
 
 First minimize this distribution, then sample $y_1$, generate the next distribution, minimize again, then sample $y_2$.
 
 But when we analyze this process, the historical gradient direction is not truly the direction that should be updated; see the following derivation:
 
-![image-20260511182043355](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511182043355.png)
+![image-20260511182043355](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511182043355.png)
 
 ## 4 From Human-in-the-Loop to No Human
 
 In the loop above, humans are still needed to search data and then enable subsequent self-learning without human participation. But in 2025, related research already explored full pipelines of proposing questions, solving them, and evaluating them:
 
-![image-20260511182607214](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511182607214.png)
+![image-20260511182607214](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511182607214.png)
 
 A key point is careful design of the relationship between $l$ and $l'$: if the proposer gives too-easy tasks, the model cannot improve; if tasks are too hard, nobody can solve them and training fails.
 

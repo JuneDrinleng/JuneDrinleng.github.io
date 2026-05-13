@@ -23,7 +23,7 @@ toc: true
 
 传统机器学习的本质是根据loss来优化函数的参数θ：
 
-![image-20260511173957612](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511173957612.png)
+![image-20260511173957612](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511173957612.png)
 
 过去我们获得标准答案，对于有监督来说就是通过人类的标注的方式来获得。那么这里能否用AI来实现呢？
 
@@ -33,55 +33,55 @@ toc: true
 
 那么问题就在于我们也许可以通过模型自我修正后的输出来用于fine-tuning模型，以便后续相同的输入的时候可以输出更准确的答案
 
-![image-20260511174529619](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174529619.png)
+![image-20260511174529619](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174529619.png)
 
 ## 2 从有监督学习到强化学习
 
 刚刚的讨论都是基于supervised learning，但实际上还有许多方案（比如RL）是无需人工给出标准答案。然而这不代表其无需人类介入，只不过此时人类介入在奖励函数这
 
-![image-20260511174753610](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174753610.png)
+![image-20260511174753610](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174753610.png)
 
 RL的问题就是reward很spare，这就导致AI很难以学习。为了简化训练，在训练过程中需要reward shaping——也就是为了引导ai到达最终的reward，我们可以设置一些先验的流程reward
 
-![image-20260511174955930](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511174955930.png)
+![image-20260511174955930](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511174955930.png)
 
 现在目前可以是人类定义reward function，但让ai辅助定义reward shape的时候的proxy reward function：
 
-![image-20260511175113780](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511175113780.png)
+![image-20260511175113780](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511175113780.png)
 
 问题在于，这个世界上不是所有事情都很容易可以简化为reward function，一个想法是用一个新的ai来创建reward，但如何评价这个ai写出的reward function是否好还是需要人类
 
-![image-20260511175914231](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511175914231.png)
+![image-20260511175914231](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511175914231.png)
 
 这就是RLHF的思路，当然也有RLAIF的想法希望去掉人类的评价
 
-![image-20260511180232026](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511180232026.png)
+![image-20260511180232026](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511180232026.png)
 
 实现RLALF的方案很大，比如verbalize-based，ensemble-based，certainty-based等方案
 
 还有诸如Test-Time training 的方案实现自己订loss，但是这种自己ai订loss的方案只有在小范围调整（小范围的数据集）的时候才是有效的，当范围变大效果就会劣化：
 
-![image-20260511181143303](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181143303.png)
+![image-20260511181143303](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181143303.png)
 
 ## 3 如何minimize entropy
 
-![image-20260511181527179](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181527179.png)
+![image-20260511181527179](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181527179.png)
 
 传统的算entropy的方案需要便利所有y，但是LLM的输出是无穷无尽的，这是难以遍历的。当时的主流做法不是minimize sequence的entropy，而是minimize每个token输出时候的概率分布的entropy：
 
-![image-20260511181651269](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511181651269.png)
+![image-20260511181651269](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511181651269.png)
 
 先minimize这个概率分布，然后采样出y1，然后进而产生下一个概率分布，然后继续minimize这个分布后再采样出y2
 
 但我们梳理的时候得到的过去的gradient的方向并不是真正该update的方向，参考以下梳理：
 
-![image-20260511182043355](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511182043355.png)
+![image-20260511182043355](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511182043355.png)
 
 ## 4 从需要人类介入到No Human
 
-刚刚的loop中，还需要人类来搜素数据，然后实现后续的无需人类的自我学习过程，但2025年的时候也有相关的研究来实现出题-解题-评价：
+刚刚的loop中，还需要人类来搜索数据，然后实现后续的无需人类的自我学习过程，但2025年的时候也有相关的研究来实现出题-解题-评价：
 
-![image-20260511182607214](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260511182607214.png)
+![image-20260511182607214](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260511182607214.png)
 
 需要注意的是这里的l和l`的关系需要谨慎的注意和设计，因为如果proposer出题简单那就模型无法提升，如果出题太难那么无人能解决也就起不到训练的方案
 

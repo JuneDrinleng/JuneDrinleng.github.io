@@ -17,7 +17,7 @@ This note records the content of lecture 5 of Hung-yi Lee's Machine Learning Spr
 
 When an AI Agent looks clumsy, we can add more instructions so the agent can better understand what the task should actually achieve.
 
-![image-20260420201715047](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420201715047.png)
+![image-20260420201715047](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420201715047.png)
 
 An AI Agent is made of a large language model plus other components. Those additional components are the harness, including OpenClaw, Codex, Claude Code, and so on.
 
@@ -29,15 +29,15 @@ Prompt → Context → Harness: each stage has a different core value.
 
 Prompt Engineering: in the past, LLM capability was weaker; asking the same question in different ways could produce very different results, so prompt methods were used to optimize outputs.
 
-![image-20260420202338360](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420202338360.png)
+![image-20260420202338360](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420202338360.png)
 
 Context Engineering: later people found that sometimes LLMs failed simply because they lacked necessary information. So context was introduced to provide extra references during answering.
 
-![image-20260420202512447](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420202512447.png)
+![image-20260420202512447](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420202512447.png)
 
 Harness Engineering: today, model execution is no longer a single-turn Q&A; it is an interactive multi-turn process, and Harness Engineering is built for completing such tasks well.
 
-![image-20260420202654058](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420202654058.png)
+![image-20260420202654058](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420202654058.png)
 
 Its essence is that humans use methods to steer models: **use human language to control cognitive framing, use tools to control capability boundaries, and use workflow to control model behavior**.
 
@@ -49,11 +49,11 @@ These frameworks often include documents like AGENTS.md. Just as human laws are 
 
 For example, OpenClaw prioritizes AGENTS.md, while Cowork and Claude Code prioritize CLAUDE.md.
 
-![image-20260420203310064](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420203310064.png)
+![image-20260420203310064](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420203310064.png)
 
 Since 2026, many people have systematically studied how these markdown files influence AI Agent behavior. Some studies found AGENTS.md can improve runtime speed (average impact is limited, but edge cases can be noticeably faster). Another study found that AGENTS.md written by humans does not always help, and AGENTS.md written by LLMs can be even worse:
 
-![image-20260420203617078](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420203617078.png)
+![image-20260420203617078](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420203617078.png)
 
 >  https://arxiv.org/abs/2602.11988
 
@@ -65,19 +65,19 @@ For example, OpenClaw has built-in browser-operation tools, so it can run an acc
 
 Different tools heavily affect model capability. But tools designed for humans (for example, search engines showing only 10 results per page) may perform worse for models than providing no tool at all:
 
-![image-20260420204436114](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420204436114.png)
+![image-20260420204436114](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420204436114.png)
 
 So in the future, many services may shift from human-oriented to agent-oriented. For agents, CLI is often preferred over GUI.
 
 ## 5 Controlling Agent Behavior with Standard Workflow
 
-![image-20260420204906033](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420204906033.png)
+![image-20260420204906033](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420204906033.png)
 
 Like humans, AI does not always produce a fully correct result in one shot, because generation is an autoregressive process. Introducing an evaluator allows the agent to continuously improve.
 
 In this work, the evaluator is not applied only after the generator finishes. Instead, they agree on a collaboration framework from the beginning.
 
-![image-20260420205316294](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420205316294.png)
+![image-20260420205316294](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420205316294.png)
 
 Ralph Loop lets the language model iterate repeatedly instead of finishing in a single generation. But this can quickly hit context-window limits, so one practical method is to summarize feedback at each round before feeding it back.
 
@@ -93,7 +93,7 @@ These models may not be temporary tools; they may become lifelong companions. To
 
 Another key requirement is that an AI Agent should continuously improve with its owner through interaction and feedback.
 
-![image-20260420212114708](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260420212114708.png)
+![image-20260420212114708](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260420212114708.png)
 
 Most current AI Agent feedback is still vague. How to convert such feedback into effective optimization remains an open challenge.
 
