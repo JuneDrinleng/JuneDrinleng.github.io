@@ -19,15 +19,15 @@ This note records lecture 6 of Hung-yi Lee's Machine Learning Spring 2026 course
 
 A common and basic idea is to train an error detector using the probability distribution of inputs/outputs, then use an error corrector guided by that detector to fix outputs sampled from the distribution:
 
-![image-20260508175410799](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508175410799.png)
+![image-20260508175410799](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508175410799.png)
 
 For example, in 2023, some work first had large models generate both correct outputs and many wrong outputs, then used these for training an error detector. The resulting detector could identify correctness and also showed some generalization ability.
 
-![image-20260508175423525](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508175423525.png)
+![image-20260508175423525](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508175423525.png)
 
 In 2024, work such as TruthX introduced a correction idea: suppose we have a set of correct answers and a set of wrong answers, subtract the average of wrong answers from the average of correct answers to get a correct-vs-wrong direction; add this interpolation to an error vector, and the model may produce the correct answer.
 
-![image-20260508175805176](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508175805176.png)
+![image-20260508175805176](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508175805176.png)
 
 Both approaches require extra data so the model first learns what is right vs wrong before error detection/correction can work.
 
@@ -39,7 +39,7 @@ First, ask the model a normal question and let it predict the next token; this a
 
 Now subtract the wrong-answer vector (green) from the maybe-right/maybe-wrong vector (blue), multiply by coefficient $\alpha$ to get a vector away from the wrong answer (yellow), and add this distance vector back to the original blue vector to produce a corrected output vector.
 
-![image-20260508181004570](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508181004570.png)
+![image-20260508181004570](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508181004570.png)
 
 This operation is performed at each next-token step. Its advantage is no parameter update is needed, so it can be applied directly at inference. The downside is extra inference cost: originally one inference pass, now at least one additional pass.
 
@@ -51,11 +51,11 @@ In 2023, Decoding by Contrasting Layers (DoLa) was used for reasoning (now packa
 
 Before DoLa, introduce the idea of Logit Lens: use the LM head on each layer output to decode intermediate representations and inspect internal progress.
 
-![image-20260508181953990](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508181953990.png)
+![image-20260508181953990](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508181953990.png)
 
 Inspired by this, DoLa proposes using Logit Lens to create contrastive "wrong" outputs. Its prior assumption is: use early-layer outputs as wrong outputs and contrast them with final-layer outputs to obtain the final DoLa output.
 
-![image-20260508182430315](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508182430315.png)
+![image-20260508182430315](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508182430315.png)
 
 Then the question is: how to find the best layer whose output corresponds to wrong content? See the original paper: https://arxiv.org/abs/2309.03883
 
@@ -63,13 +63,13 @@ DoLa needs no extra small model and can reduce compute demand.
 
 There is also multimodal LayerCD (https://arxiv.org/abs/2509.25177):
 
-![image-20260508182650946](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508182650946.png)
+![image-20260508182650946](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508182650946.png)
 
 ### 1.4 Instruction Contrastive Decoding (ICD)
 
 Directly provide the model with a "degrading-intelligence" prompt.
 
-![image-20260508182909304](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508182909304.png)
+![image-20260508182909304](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508182909304.png)
 
 Ref: https://arxiv.org/abs/2311.00233, https://arxiv.org/abs/2403.18715
 
@@ -77,7 +77,7 @@ Ref: https://arxiv.org/abs/2311.00233, https://arxiv.org/abs/2403.18715
 
 You can intentionally withhold reference material to let the model produce a wrong answer, then provide the material to get another answer, and use the difference for correction. CAD is often used in visual contexts.
 
-![image-20260508183157563](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508183157563.png)
+![image-20260508183157563](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508183157563.png)
 
 Because multimodal models carry language priors (strong first impressions), turning an image into noise is equivalent to hiding it from the model, yielding a prior-biased answer that can act as a wrong reference.
 
@@ -89,13 +89,13 @@ All contrastive decoding methods above introduce extra inference overhead, so re
 
 One idea is to disable contrastive decoding by default and only enable it in certain cases, for example when the output distribution is very flat.
 
-![image-20260508184038221](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508184038221.png)
+![image-20260508184038221](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508184038221.png)
 
 But the above still decodes the same input sequence again to get wrong answers, so this intuitive approach does not actually save compute.
 
 A smarter idea is to leverage KV cache. To maximize KV cache reuse, perturbing prompts should be placed at the end; experiments suggest output error is the most suitable target.
 
-![image-20260508184422942](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508184422942.png)
+![image-20260508184422942](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508184422942.png)
 
 ## 2 Achieving AI Self-Correction by Modifying the Harness
 
@@ -105,11 +105,11 @@ The framework is Generation → Verification.
 
 After the model generates an answer, add a reflection instruction so it starts self-reflection and self-correction:
 
-![image-20260508185618651](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508185618651.png)
+![image-20260508185618651](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508185618651.png)
 
 The prior assumptions are: (1) criticizing is easier than creating (you may not write a great novel, but can still judge a novel), and (2) generation is step-by-step next-token prediction and cannot revise already-produced errors, while verification gives a chance to regenerate corrected answers.
 
-![image-20260508190615629](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508190615629.png)
+![image-20260508190615629](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508190615629.png)
 
 A paper (https://arxiv.org/pdf/2510.16062) reports that self-reflection feedback is not always good (unstable), while external reflection signals (e.g., program execution results in code tasks) can be better.
 
@@ -117,17 +117,17 @@ At the same time, wording in the inserted reflection prompt matters (some models
 
 Different models' stubbornness:
 
-![image-20260508192634470](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508192634470.png)
+![image-20260508192634470](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508192634470.png)
 
 Different effects of reflection prompts across models:
 
-![image-20260508192648201](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508192648201.png)
+![image-20260508192648201](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508192648201.png)
 
 ### 2.2 Is Verification Worth the Cost?
 
 Compared with spending compute on reflection, maybe directly generating more samples is better? In other words, under fixed compute, is reflection really cost-effective for accuracy?
 
-![image-20260508193001399](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508193001399.png)
+![image-20260508193001399](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508193001399.png)
 
 Left figure: after sampling a certain number of times, adding some rounds of reflection brings some accuracy gain.
 
@@ -137,7 +137,7 @@ So, verification becomes cost-effective only after heavy sampling has already pu
 
 ## 3 Direct Parameter Modification via Reasoning
 
-![image-20260508193514248](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508193514248.png)
+![image-20260508193514248](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508193514248.png)
 
 Compared with workflow-based methods, reasoning models can learn when to revise and when not to revise, potentially saving compute.
 
@@ -147,21 +147,21 @@ How can this reasoning path be realized? An intuitive idea is to simply make mod
 
 First, teach self-error detection:
 
-![image-20260508193919627](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508193919627.png)
+![image-20260508193919627](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508193919627.png)
 
 Then teach error correction:
 
-![image-20260508193941274](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508193941274.png)
+![image-20260508193941274](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508193941274.png)
 
 But there is a problem: direct training for self-correction can overfit to seen error patterns; unseen errors may remain uncorrected.
 
-![image-20260508194147704](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508194147704.png)
+![image-20260508194147704](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508194147704.png)
 
 This motivates Reinforcement Learning (RL).
 
 ### 3.2 Reinforcement Learning
 
-![image-20260508194315926](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508194315926.png)
+![image-20260508194315926](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508194315926.png)
 
 Often seen in math and coding tasks: after RL tuning, models naturally begin to produce a reasoning process.
 
@@ -169,12 +169,12 @@ Then why not get it right in one step from the start? Humans also do not get eve
 
 At the same time, one-shot-correct training data usually requires much more data than multi-step approaches. Reasoning needs less training data and often has better generalization.
 
-![image-20260508195235065](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508195235065.png)
+![image-20260508195235065](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508195235065.png)
 
-![image-20260508195242837](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508195242837.png)
+![image-20260508195242837](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508195242837.png)
 
 One view is that RL increases the probability of selecting correct paths among existing paths.
 
 Another view is that RL can truly develop new solution paths:
 
-![image-20260508195759971](https://cdn.jsdelivr.net/gh/JuneDrinleng/JuneDrinleng.github.io@main/assets/img/image-20260508195759971.png)
+![image-20260508195759971](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260508195759971.png)
