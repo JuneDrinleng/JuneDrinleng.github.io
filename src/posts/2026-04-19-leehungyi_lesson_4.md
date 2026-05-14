@@ -88,11 +88,11 @@ $$
 =(𝒙_𝑩+𝒑_𝒎 )^𝑇 𝑊_𝑞^𝑇 𝑊_𝑘 (𝒙_𝑨+𝒑_𝒏 )\\
 =𝒙_𝑩^𝑇 𝑊_𝑞^𝑇 𝑊_𝑘 𝒙_𝑨++𝒙_B^𝑇 𝑊_𝑞^𝑇 𝑊_𝑘 𝒑_𝒏+𝒑_𝒎^𝑇 𝑊_𝑞^𝑇 𝑊_𝑘 𝒙_𝑨++𝒑_𝒎^𝑇 𝑊_𝑞^𝑇 𝑊_𝑘 𝒑_𝒏
 
-
+
 $$
 其中，第一项之和内容有关，没有p相关的内容；而第二、三项则是既有内容x又有位置p，是内容和位置交互影响项；第4项只和位置有关系，而且由于Sinusoidal Positional Embedding有$p_{k+r}=M_r p_k$的关系，所以可以把这个带入第四项得到：
 $$
-\text{the 4th part}=(𝒑_𝒏)^𝑇 𝑀_{𝑚−𝑛} 𝑊_𝑞^𝑇 𝑊_𝑘 𝒑_𝒏
+\text{the 4th part}=(𝒑_𝒏)^𝑇 𝑀_{𝑚−𝑛} 𝑊_𝑞^𝑇 𝑊_𝑘 𝒑_𝒏
 $$
 可以看到，这就能够体现相对位置，虽然影响很简洁
 
@@ -104,7 +104,7 @@ $$
 
 直接在没有相对位置的基础上算出attention的a之后再减去一个相对位置的bias：
 
-<img src="https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260419215554343.png" alt="image-20260419215554343" style="zoom:33%;" />
+![](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260419215554343.png)
 
 当时这个方法，虽然只在512的sequence长度上训练的话，其在2048等长度的效果也不差，外推能力很不错
 
