@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "李宏毅机器学习专题笔记——GPT"
+title: "李宏毅机器学习2021春笔记——GPT"
 date: 2026-06-21
 tags: [Hung-yi Lee Machine Learning]
 comments: true

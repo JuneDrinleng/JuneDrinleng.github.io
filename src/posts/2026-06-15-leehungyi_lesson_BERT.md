@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "李宏毅机器学习专题笔记——BERT"
+title: "李宏毅机器学习2021春笔记——BERT"
 date: 2026-06-15
 tags: [Hung-yi Lee Machine Learning]
 comments: true
