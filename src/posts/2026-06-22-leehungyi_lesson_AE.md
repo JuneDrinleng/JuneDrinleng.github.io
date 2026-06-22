@@ -25,7 +25,7 @@ toc: true
 
 对于encoder来说，就是把图片压缩成一个向量；而这个向量输入会作为decoder的输入，然后decoder根据这个向量产生一个图片；训练的目标就是encoder的输入和decoder的输出越像越好（也可以称之为重建reconstruction）
 
-![image-20260622200233905](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622200233905.png)
+![image-20260622200233905](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622200233905.png)
 
 一个常见的可以在下游任务的方法就是把高维input给降维到code vector空间，可以称之为dimension reduction（有很多技术比如PCA，t-SNE等非dl based的降维方法）
 
@@ -33,14 +33,14 @@ toc: true
 
 以图片为例，图片的变化是有限的，这就使得即便是3x3的图片，可能他的变化方案只有几个，那么就可以只用2dim来描述
 
-![image-20260622200931445](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622200931445.png)
+![image-20260622200931445](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622200931445.png)
 
 化繁为简，把复杂的问题简单化，这个auto encoder的想法并不复杂，比如hinton（机器学习之父）在2006年就已经使用了auto encoder这个思想了
 
 除此之外还有一个常见的变形叫做de-noising auto encoder，他输入的是原图+噪音的结果，然后decoder要试图还原加噪音前的原图：
 这样auto-encoder相当于不仅仅要重建，还需要降噪
 
-![image-20260622201440411](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622201440411.png)
+![image-20260622201440411](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622201440411.png)
 
 （这个技术是一个2008年就出现的技术）
 
@@ -52,7 +52,7 @@ toc: true
 
 因此，我们希望feature disentangle来实现解析出这个隐空间code内的内容和包含信息的对应关系，这个事情是可行的（限于篇幅，老师没有细说）
 
-![image-20260622203227657](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622203227657.png)
+![image-20260622203227657](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622203227657.png)
 
 一个应用就是柯南变声领结👆
 
@@ -60,15 +60,15 @@ toc: true
 
 现在的code里都是假设code内的元素是真实数字，但我们也许可以将其转化为binary或者one-hot的，来实现目标检测/图片分类之类的下游任务呢？
 
-![image-20260622203412720](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622203412720.png)
+![image-20260622203412720](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622203412720.png)
 
 最知名的实现上述idea的方案是VQVAE:
 
-![image-20260622203538047](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622203538047.png)
+![image-20260622203538047](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622203538047.png)
 
 还有更加激进的方案是，比如说可以把text作为representation的话，那么就可以实现输入一篇文章，得到一个word sequence作为summary
 
-![image-20260622203942467](./assets/2026-06-22-leehungyi_lesson_AE.assets/image-20260622203942467.png)
+![image-20260622203942467](https://raw.githubusercontent.com/JuneDrinleng/JuneDrinleng.github.io/main/assets/img/image-20260622203942467.png)
 
 然而这样train起来之后，word sequence是人看不懂的，他们会发明自己的暗号，为了使得其可读的话还需要discriminator来看看是不是人写的，这就是cycle gan的想法了
 
