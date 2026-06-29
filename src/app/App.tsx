@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 declare global {
   interface Window {
@@ -33,7 +34,9 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </LanguageProvider>
     </ThemeProvider>
   );

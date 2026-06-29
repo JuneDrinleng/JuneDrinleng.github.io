@@ -7,9 +7,10 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router";
-import { useRef, useMemo, useEffect } from "react";
-import { getPostBySlug, getAdjacentPosts } from "../utils/posts";
+import { useRef, useMemo, useEffect, useState } from "react";
+import { getPostBySlug, getAdjacentPosts, type Post } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useAuth } from "../contexts/AuthContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -38,13 +39,40 @@ function getChildrenText(children: React.ReactNode): string {
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { language, t } = useLanguage();
+  const { token } = useAuth();
   const navigate = useNavigate();
-  const post = slug ? getPostBySlug(slug, language) : undefined;
-  const { prev, next } = slug
-    ? getAdjacentPosts(slug, language)
-    : { prev: undefined, next: undefined };
+  const [post, setPost] = useState<Post | undefined>(undefined);
+  const [prev, setPrev] = useState<Post | undefined>(undefined);
+  const [next, setNext] = useState<Post | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // 鉴权用户从 Worker API 拉取文章与相邻文章
+  useEffect(() => {
+    if (!slug || !token) return;
+    let cancelled = false;
+    setLoading(true);
+    Promise.all([
+      getPostBySlug(slug, language, token),
+      getAdjacentPosts(slug, language, token),
+    ])
+      .then(([p, adj]) => {
+        if (cancelled) return;
+        setPost(p);
+        setPrev(adj.prev);
+        setNext(adj.next);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setPost(undefined);
+        setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, language, token]);
 
   useEffect(() => {
     if (post && post.metadata.draft) navigate('/', { replace: true });
@@ -78,6 +106,16 @@ export default function BlogPost() {
   }, [post]);
 
   const showComments = !!(post?.metadata.comments && slug);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-neutral-100 flex items-center justify-center">
+        <p className="uppercase tracking-wider text-sm opacity-60">
+          {t("加载中…", "Loading…")}
+        </p>
+      </div>
+    );
+  }
 
   if (!post) {
     return (

@@ -6,3 +6,10 @@ CLAUDE.md
 /src/posts/assets
 AGENTS.md
 /src/assets
+
+# Blog markdown now lives in a private repo and is served via the authenticated
+# Worker API. Ignore any local copies synced back into these dirs so they are
+# never re-committed to this public repo.
+/src/posts/*.md
+/src/posts-en/*.md
+/.private-posts/
