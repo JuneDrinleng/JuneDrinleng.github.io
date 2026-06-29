@@ -11,9 +11,10 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { Link } from "react-router";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { getAllPosts, Post } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useAuth } from "../contexts/AuthContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -25,11 +26,36 @@ type ViewMode = "timeline" | "tag" | "year";
 
 export default function Blog() {
   const { language, t } = useLanguage();
-  const allPosts = getAllPosts(language).filter(p => !p.metadata.draft);
+  const { token } = useAuth();
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<ViewMode>("timeline");
   const defaultTag = t("未分类", "Uncategorized");
+
+  // 鉴权用户从 Worker API 拉取文章；正文不在公开 bundle 中。
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    setLoading(true);
+    setError(false);
+    getAllPosts(language, token)
+      .then((posts) => {
+        if (cancelled) return;
+        setAllPosts(posts.filter((p) => !p.metadata.draft));
+        setLoading(false);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setError(true);
+        setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [language, token]);
 
   // 搜索过滤
   const filteredPosts = useMemo(() => {
@@ -259,8 +285,18 @@ export default function Blog() {
 
       {/* Blog Posts List */}
       <main className="max-w-6xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
+        {loading && (
+          <p className="text-center uppercase tracking-wider text-sm opacity-60 py-12">
+            {t("加载中…", "Loading…")}
+          </p>
+        )}
+        {!loading && error && (
+          <p className="text-center uppercase tracking-wider text-sm opacity-60 py-12">
+            {t("加载失败，请稍后重试。", "Failed to load. Please try again later.")}
+          </p>
+        )}
         {/* Timeline View */}
-        {viewMode === "timeline" && (
+        {!loading && !error && viewMode === "timeline" && (
           <div className="blog-view-transition">
             <div className={GRID_CLASSES}>
               {paginatedPosts.map((post) => renderPostCard(post))}
@@ -310,7 +346,7 @@ export default function Blog() {
         )}
 
         {/* Tag View */}
-        {viewMode === "tag" && (
+        {!loading && !error && viewMode === "tag" && (
           <div className="blog-view-transition space-y-8 sm:space-y-10">
             {postsByTag.map(([tag, posts]) => (
               <section key={tag}>
@@ -330,7 +366,7 @@ export default function Blog() {
         )}
 
         {/* Year View */}
-        {viewMode === "year" && (
+        {!loading && !error && viewMode === "year" && (
           <div className="blog-view-transition space-y-8 sm:space-y-10">
             {postsByYear.map(([year, posts]) => (
               <section key={year}>
