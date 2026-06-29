@@ -66,7 +66,7 @@ wrangler secret put PRIVATE_REPO_TOKEN     # 第 2 步的 fine-grained PAT
 PRIVATE_REPO        = "JuneDrinleng/notes"
 PRIVATE_REPO_BRANCH = "main"
 ALLOWED_OWNER       = "JuneDrinleng"
-ALLOWED_ORIGINS     = "https://junedrinleng.github.io,http://localhost:5173"
+ALLOWED_ORIGINS     = "https://lune.ltd,http://localhost:5173"
 ```
 
 > `PRIVATE_REPO_TOKEN` 只存在于 Worker，永不下发到浏览器。
@@ -103,7 +103,7 @@ git commit -m "chore: move blog markdown to private repo"
 - [ ] **PRIVATE_REPO_TOKEN** 能读私有仓库（fine-grained Contents:Read 或经典 `repo`；`public_repo` 不够）。
 - [ ] **PRIVATE_REPO_BRANCH** 与 notes 默认分支一致（默认按 `main`；若是 `master` 等需显式设置）。
 - [ ] **ALLOWED_OWNER** 为精确大小写 `JuneDrinleng`（比较区分大小写）。
-- [ ] **ALLOWED_ORIGINS** 含站点精确源 `https://junedrinleng.github.io`（本地开发可加 `http://localhost:5173`；不要带结尾斜杠）。
+- [ ] **ALLOWED_ORIGINS** 含站点精确源 `https://lune.ltd`（本地开发可加 `http://localhost:5173`；不要带结尾斜杠）。
 - [ ] `/api/posts` 路由确实部署在前端请求的 Worker URL 上（默认 `https://junedrinlengblog.zhuzilan520.workers.dev`，否则设 `VITE_BLOG_API`）。
 - [ ] notes 仓库目录精确为 `posts/` 和 `posts-en/`（大小写敏感）。
 
