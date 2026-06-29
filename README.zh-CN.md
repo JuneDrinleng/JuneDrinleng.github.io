@@ -4,7 +4,7 @@
 
 这是我的个人网站与博客项目源码，基于 Vite + React 构建，并部署在 GitHub Pages。
 
-在线地址：<https://junedrinleng.github.io/>
+在线地址：<https://lune.ltd/>
 
 ## 项目功能
 

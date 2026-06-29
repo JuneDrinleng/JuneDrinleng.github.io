@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const DIST = resolve(ROOT, 'dist');
-const SITE_URL = 'https://junedrinleng.github.io';
+const SITE_URL = 'https://lune.ltd';
 
 // Public static routes from src/app/routes.ts. /blog is gated behind auth, so
 // it and individual posts are intentionally excluded from the sitemap.
