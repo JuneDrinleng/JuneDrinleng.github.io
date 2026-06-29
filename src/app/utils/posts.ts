@@ -1,3 +1,5 @@
+import { fetchAllPostsRaw, fetchPostMarkdown } from "./blogApi";
+
 export interface PostMetadata {
   layout: string;
   title: string;
@@ -64,59 +66,65 @@ function parseFrontmatter(content: string): { data: any; content: string } {
   return { data, content: markdown };
 }
 
-function parsePostFiles(postFiles: Record<string, unknown>, prefix: string): Post[] {
-  const posts: Post[] = [];
+// 把一篇原始 markdown（slug + 内容）解析为 Post
+function parsePost(slug: string, raw: string): Post {
+  const { data, content: markdownContent } = parseFrontmatter(raw);
 
-  for (const [path, content] of Object.entries(postFiles)) {
-    const slug = path.replace(prefix, '').replace('.md', '');
-    const { data, content: markdownContent } = parseFrontmatter(content as string);
-    
-    // 提取摘要（<!-- more --> 之前的内容）
-    const parts = markdownContent.split('<!-- more -->');
-    const excerpt = parts[0].trim();
-    const fullContent = parts.length > 1 ? parts[1].trim() : markdownContent;
+  // 提取摘要（<!-- more --> 之前的内容）
+  const parts = markdownContent.split('<!-- more -->');
+  const excerpt = parts[0].trim();
+  const fullContent = parts.length > 1 ? parts[1].trim() : markdownContent;
 
-    posts.push({
-      slug,
-      metadata: data as PostMetadata,
-      excerpt,
-      content: fullContent,
-    });
-  }
-
-  // 按日期排序（最新的在前）
-  return posts.sort((a, b) => 
-    new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-  );
+  return {
+    slug,
+    metadata: data as PostMetadata,
+    excerpt,
+    content: fullContent,
+  };
 }
 
-// 导入所有 markdown 文件
-const postFiles = import.meta.glob('/src/posts/*.md', { as: 'raw', eager: true });
-const postFilesEn = import.meta.glob('/src/posts-en/*.md', { as: 'raw', eager: true });
+// 鉴权用户拉取的文章在会话内缓存，避免重复请求 Worker。
+const cache: Record<'zh' | 'en', Post[] | null> = { zh: null, en: null };
 
-let cachedZhPosts: Post[] | null = null;
-let cachedEnPosts: Post[] | null = null;
-
-export function getAllPosts(lang: 'zh' | 'en' = 'zh'): Post[] {
-  if (lang === 'en') {
-    if (!cachedEnPosts) {
-      cachedEnPosts = parsePostFiles(postFilesEn, '/src/posts-en/');
-    }
-    return cachedEnPosts;
-  }
-  if (!cachedZhPosts) {
-    cachedZhPosts = parsePostFiles(postFiles, '/src/posts/');
-  }
-  return cachedZhPosts;
+// 退出登录时清空缓存
+export function clearPostsCache(): void {
+  cache.zh = null;
+  cache.en = null;
 }
 
-export function getPostBySlug(slug: string, lang: 'zh' | 'en' = 'zh'): Post | undefined {
-  const allPosts = getAllPosts(lang);
-  return allPosts.find(post => post.slug === slug);
+export async function getAllPosts(lang: 'zh' | 'en', token: string): Promise<Post[]> {
+  if (cache[lang]) return cache[lang]!;
+
+  const rawPosts = await fetchAllPostsRaw(lang, token);
+  const posts = rawPosts
+    .map(({ slug, markdown }) => parsePost(slug, markdown))
+    // 按日期排序（最新的在前）
+    .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime());
+
+  cache[lang] = posts;
+  return posts;
 }
 
-export function getAdjacentPosts(slug: string, lang: 'zh' | 'en' = 'zh'): { prev: Post | undefined; next: Post | undefined } {
-  const allPosts = getAllPosts(lang);
+export async function getPostBySlug(
+  slug: string,
+  lang: 'zh' | 'en',
+  token: string,
+): Promise<Post | undefined> {
+  // 列表已加载时直接命中缓存，省去一次请求
+  const cached = cache[lang]?.find(p => p.slug === slug);
+  if (cached) return cached;
+
+  const raw = await fetchPostMarkdown(slug, lang, token);
+  if (!raw) return undefined;
+  return parsePost(raw.slug, raw.markdown);
+}
+
+export async function getAdjacentPosts(
+  slug: string,
+  lang: 'zh' | 'en',
+  token: string,
+): Promise<{ prev: Post | undefined; next: Post | undefined }> {
+  const allPosts = (await getAllPosts(lang, token)).filter(p => !p.metadata.draft);
   const index = allPosts.findIndex(post => post.slug === slug);
   if (index === -1) return { prev: undefined, next: undefined };
   return {
