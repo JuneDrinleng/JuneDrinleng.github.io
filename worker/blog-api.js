@@ -31,7 +31,7 @@
  *   PRIVATE_REPO_BRANCH e.g. "main"  (optional, defaults to "main")
  *   ALLOWED_OWNER       e.g. "JuneDrinleng"  (exact canonical login casing)
  *   ALLOWED_ORIGINS     comma-separated, e.g.
- *                       "https://junedrinleng.github.io,http://localhost:5173"
+ *                       "https://lune.ltd,http://localhost:5173"
  *
  * Repo layout expected in the private repo:
  *   posts/*.md       (zh)

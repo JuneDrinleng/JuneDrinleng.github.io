@@ -4,7 +4,7 @@ English | [中文说明 (Chinese)](./README.zh-CN.md)
 
 Source code for my personal website and blog, built with Vite + React and deployed to GitHub Pages.
 
-Live site: <https://junedrinleng.github.io/>
+Live site: <https://lune.ltd/>
 
 ## Features
 
