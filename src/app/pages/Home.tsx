@@ -1,4 +1,4 @@
-import { Search, X } from "lucide-react";
+import { Search, X, Lock } from "lucide-react";
 import { Link } from "react-router";
 import { useState, useMemo, useEffect } from "react";
 import { getAllPosts, type Post } from "../utils/posts";
@@ -40,6 +40,7 @@ export default function Home() {
       "Sharing technical insights, product thinking and creative experiences, documenting growth and exploration",
     ),
     schematic: <BlogSchematic />,
+    gated: true,
   };
   const visualSptProduct = {
     title: "visualSPT",
@@ -49,9 +50,10 @@ export default function Home() {
       "Powerful desktop visualization tool to boost productivity and optimize data presentation",
     ),
     schematic: <VisualSPTMiniSchematic />,
+    gated: false,
   };
-  // 未鉴权时不展示 Blog 入口
-  const featuredProducts = isOwner ? [blogProduct, visualSptProduct] : [visualSptProduct];
+  // Blog 入口始终展示；未鉴权点进去会看到「该部分尚未公开」
+  const featuredProducts = [blogProduct, visualSptProduct];
 
   // 搜索逻辑
   const searchResults = useMemo(() => {
@@ -169,12 +171,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 产品卡片布局：鉴权时 Blog 和 visualSPT 并排；否则只展示 visualSPT */}
-          <div
-            className={`grid grid-cols-1 gap-4 sm:gap-6 ${
-              isOwner ? "md:grid-cols-2" : "max-w-md mx-auto"
-            }`}
-          >
+          {/* 产品卡片布局：Blog 和 visualSPT 始终并排等大 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {featuredProducts.map((product) => (
               <Link
                 key={product.title}
@@ -184,6 +182,13 @@ export default function Home() {
                 <div className="border-2 border-black dark:border-neutral-100 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] transition-all duration-200 h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 dark:bg-neutral-800 h-48 sm:h-64">
                     {product.schematic}
+                    {/* 未鉴权时，受保护入口标注「未公开」 */}
+                    {product.gated && !isOwner && (
+                      <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-black text-white dark:bg-white dark:text-black px-2.5 py-1 text-xs font-bold uppercase tracking-wider">
+                        <Lock className="w-3.5 h-3.5" />
+                        {t("未公开", "Not public")}
+                      </span>
+                    )}
                   </div>
                   <div className="p-4 sm:p-6 bg-white dark:bg-neutral-900 flex-1 flex flex-col">
                     <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-2 sm:mb-3">
