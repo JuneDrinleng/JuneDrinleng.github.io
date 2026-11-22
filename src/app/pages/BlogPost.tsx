@@ -275,13 +275,13 @@ export default function BlogPost() {
     >
       {/* Subheader + 2px Reading Progress Bar */}
       <header
-        className="border-b-2 shrink-0 relative sticky top-12 lg:static z-30"
+        className="border-b-2 shrink-0 sticky top-12 lg:static z-30"
         style={{
           borderColor: "var(--kb-border)",
           backgroundColor: "var(--kb-bg)",
         }}
       >
-        <div className="px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between gap-3">
+        <div className="px-4 sm:px-6 lg:px-10 h-12 flex items-center justify-between gap-3">
           <Link
             to="/"
             className="inline-flex items-center gap-2 font-mono-kb text-xs uppercase tracking-wider hover:opacity-65 transition-opacity"

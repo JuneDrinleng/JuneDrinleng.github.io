@@ -55,7 +55,7 @@ LUNE follows the **International Typographic Style (Swiss Editorial)** adapted f
 ## 3. Page & Layout Architecture
 
 ### 3.1 Global Top Bar (`TitleBar`)
-- Sticky `48px` monochrome black bar (`bg-[#0a0a0a] text-white`).
+- Full-width sticky `48px` monochrome black bar (`bg-[#0a0a0a] text-white`, horizontal padding `px-4 sm:px-6 lg:px-10`, aligning flush with the full-width Reader subheader and Login Gate coordinate rails).
 - **Left**: `LUNE` wordmark + bordered `KB` monospace badge.
 - **Right**:
   - Authenticated state: green status dot + `@JuneDrinleng` + `Logout` button (desktop; mobile logout sits in the footer).

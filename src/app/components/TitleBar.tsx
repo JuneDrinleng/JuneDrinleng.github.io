@@ -19,8 +19,8 @@ export default function TitleBar({ sweepKey = 0 }: TitleBarProps) {
 
   return (
     <>
-      <nav className="bg-[#0a0a0a] text-white sticky top-0 z-50 border-b border-white/15 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between h-12 gap-3">
+      <nav className="bg-[#0a0a0a] text-white sticky top-0 z-50 border-b border-white/15">
+        <div className="px-4 sm:px-6 lg:px-10 flex items-center justify-between h-12 gap-3">
           {/* Left: Brand wordmark + KB badge */}
           <Link
             to="/"

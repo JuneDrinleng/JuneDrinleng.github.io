@@ -61,7 +61,7 @@ export default function LoginGate() {
       >
         {/* Top architectural coordinate rail */}
         <div
-          className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-10 pt-5 flex items-center justify-between font-mono-kb text-xs"
+          className="w-full px-4 sm:px-6 lg:px-10 pt-5 flex items-center justify-between font-mono-kb text-xs"
           style={{ color: "var(--kb-ink-faint)" }}
         >
           <span>DOMAIN // LUNE.LTD</span>
@@ -188,7 +188,7 @@ export default function LoginGate() {
 
         {/* Bottom coordinate rail */}
         <footer
-          className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono-kb"
+          className="w-full px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono-kb"
           style={{ color: "var(--kb-ink-faint)" }}
         >
           <span>© 2023–{year} LUNE</span>
