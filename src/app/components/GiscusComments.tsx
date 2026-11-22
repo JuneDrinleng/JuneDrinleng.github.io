@@ -64,18 +64,29 @@ export default function GiscusComments({ slug, sidebar = false }: GiscusComments
   }, [giscusTheme, giscusLang]);
 
   return (
-    <section className={sidebar ? "pt-2" : "mt-12 pt-8 border-t-2 border-black dark:border-neutral-100"}>
-      <h2 className={sidebar
-        ? "text-xs font-bold uppercase tracking-widest mb-4 opacity-50 border-b border-black/10 dark:border-neutral-100/10 pb-3"
-        : "text-2xl font-bold uppercase tracking-tight mb-6"
-      }>{t("评论", "Comments")}</h2>
+    <section
+      className={sidebar ? "pt-1" : "mt-12 pt-8 border-t-2"}
+      style={sidebar ? undefined : { borderColor: "var(--kb-border)" }}
+    >
+      <h2
+        className="font-mono-kb text-xs font-bold uppercase tracking-widest mb-4 pb-3 border-b"
+        style={{
+          borderColor: "var(--kb-border-soft)",
+          color: "var(--kb-ink-muted)",
+        }}
+      >
+        {t("GitHub 讨论区", "GitHub Discussions")}
+      </h2>
       {isConfigured ? (
         <div ref={containerRef} className="giscus-container" />
       ) : (
-        <p className="text-sm opacity-70">
+        <p
+          className="text-xs leading-relaxed font-mono-kb"
+          style={{ color: "var(--kb-ink-muted)" }}
+        >
           {t(
             "Giscus 未配置，请在 .env 中设置 VITE_GISCUS_REPO / VITE_GISCUS_REPO_ID / VITE_GISCUS_CATEGORY / VITE_GISCUS_CATEGORY_ID。",
-            "Giscus is not configured. Please set VITE_GISCUS_REPO / VITE_GISCUS_REPO_ID / VITE_GISCUS_CATEGORY / VITE_GISCUS_CATEGORY_ID in .env."
+            "Giscus is not configured. Please set VITE_GISCUS_REPO / VITE_GISCUS_REPO_ID / VITE_GISCUS_CATEGORY / VITE_GISCUS_CATEGORY_ID in .env.",
           )}
         </p>
       )}

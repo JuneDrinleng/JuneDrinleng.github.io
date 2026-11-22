@@ -16,12 +16,15 @@ const TRUSTED_ORIGIN = "https://junedrinlengblog.zhuzilan520.workers.dev";
 const OWNER = "JuneDrinleng";
 
 type AuthStatus = "checking" | "anonymous" | "authenticated";
+export type AuthErrorCode = "non_owner" | "popup_blocked" | "oauth_failed" | null;
 
 interface AuthContextType {
   status: AuthStatus;
   user: GitHubUser | null;
   isOwner: boolean;
   token: string | null;
+  authError: AuthErrorCode;
+  clearAuthError: () => void;
   /** Opens the GitHub OAuth popup. Resolves true once an owner token is set. */
   login: () => Promise<boolean>;
   loggingIn: boolean;
@@ -35,6 +38,8 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   isOwner: false,
   token: null,
+  authError: null,
+  clearAuthError: () => {},
   login: async () => false,
   loggingIn: false,
   logout: () => {},
@@ -45,9 +50,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<AuthStatus>("checking");
   const [user, setUser] = useState<GitHubUser | null>(null);
   const [loggingIn, setLoggingIn] = useState(false);
+  const [authError, setAuthError] = useState<AuthErrorCode>(null);
   const popupRef = useRef<Window | null>(null);
 
-  const refreshAuth = useCallback(async () => {
+  const clearAuthError = useCallback(() => setAuthError(null), []);
+
+  const refreshAuth = useCallback(async (fromLogin = false) => {
     const token = getToken();
     if (!token) {
       setUser(null);
@@ -58,35 +66,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const u = await githubGetUser(token);
       if (u.login === OWNER) {
         setUser(u);
+        setAuthError(null);
         setStatus("authenticated");
       } else {
         clearToken();
         setUser(null);
+        if (fromLogin) setAuthError("non_owner");
         setStatus("anonymous");
       }
     } catch {
       clearToken();
       setUser(null);
+      if (fromLogin) setAuthError("oauth_failed");
       setStatus("anonymous");
     }
   }, []);
 
-  // Validate any token already in memory on mount. (Token is memory-only, so
-  // after a refresh this is usually anonymous until the user logs in again.)
+  // Validate any token already in memory on mount.
   useEffect(() => {
-    void refreshAuth();
+    void refreshAuth(false);
   }, [refreshAuth]);
 
   const logout = useCallback(() => {
     clearToken();
     clearPostsCache();
     setUser(null);
+    setAuthError(null);
     setStatus("anonymous");
   }, []);
 
   const login = useCallback((): Promise<boolean> => {
     return new Promise((resolve) => {
       setLoggingIn(true);
+      setAuthError(null);
 
       const cleanup = () => {
         window.removeEventListener("message", handleMessage);
@@ -112,16 +124,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         cleanup();
 
         if (result !== "success") {
+          setAuthError("oauth_failed");
           resolve(false);
           return;
         }
         try {
           const { token } = JSON.parse(payload);
           setToken(token);
-          await refreshAuth();
-          // refreshAuth flips status; report success only if owner verified.
+          await refreshAuth(true);
           resolve(getToken() !== null);
         } catch {
+          setAuthError("oauth_failed");
           resolve(false);
         }
       }
@@ -132,6 +145,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const popup = window.open(url, "github-oauth", "width=600,height=700,left=400,top=200");
       if (!popup) {
         cleanup();
+        setAuthError("popup_blocked");
         resolve(false);
         return;
       }
@@ -154,10 +168,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         isOwner: status === "authenticated",
         token: status === "authenticated" ? getToken() : null,
+        authError,
+        clearAuthError,
         login,
         loggingIn,
         logout,
-        refreshAuth,
+        refreshAuth: () => refreshAuth(false),
       }}
     >
       {children}

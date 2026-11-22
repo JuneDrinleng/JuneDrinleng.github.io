@@ -7,9 +7,9 @@ const ROOT = resolve(__dirname, '..');
 const DIST = resolve(ROOT, 'dist');
 const SITE_URL = 'https://lune.ltd';
 
-// Public static routes from src/app/routes.ts. /blog is gated behind auth, so
-// it and individual posts are intentionally excluded from the sitemap.
-const staticRoutes = ['/', '/visualspt', '/focus-timer'];
+// Only the public gate root is listed; all knowledge base entries are private
+// and fetched from an authenticated Worker proxy.
+const staticRoutes = ['/'];
 
 function generateSitemap() {
   const today = new Date().toISOString().split('T')[0];
@@ -17,7 +17,7 @@ function generateSitemap() {
   const urls = staticRoutes.map(route => ({
     loc: `${SITE_URL}${route}`,
     changefreq: 'weekly',
-    priority: route === '/' ? '1.0' : '0.8',
+    priority: '1.0',
   }));
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -37,7 +37,7 @@ ${urls
 
   if (!existsSync(DIST)) mkdirSync(DIST, { recursive: true });
   writeFileSync(resolve(DIST, 'sitemap.xml'), xml, 'utf-8');
-  console.log(`✅ sitemap.xml generated with ${urls.length} URLs`);
+  console.log(`✅ sitemap.xml generated with ${urls.length} URL(s)`);
 }
 
 generateSitemap();
