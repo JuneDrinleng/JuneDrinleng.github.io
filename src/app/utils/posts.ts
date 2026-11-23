@@ -9,6 +9,7 @@ export interface PostMetadata {
   author: string;
   toc: boolean;
   draft?: boolean;
+  related?: string[];
 }
 
 export interface Post {
@@ -106,6 +107,7 @@ function parsePost(slug: string, raw: string): Post {
     author: String(data.author || ""),
     toc: data.toc !== false,
     draft: Boolean(data.draft),
+    related: Array.isArray(data.related) ? data.related.map(String) : undefined,
   };
 
   return {

@@ -21,11 +21,12 @@ import { getAllPosts, type Post } from "../utils/posts";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useAuth } from "../contexts/AuthContext";
 import YearPicker from "../components/YearPicker";
+import KnowledgeGraph from "../components/KnowledgeGraph";
 import Footer from "../components/Footer";
 
 const POSTS_PER_PAGE = 12;
 
-type ViewMode = "index" | "year" | "tag";
+type ViewMode = "index" | "year" | "tag" | "graph";
 type Density = "editorial" | "compact";
 type SortOrder = "desc" | "asc";
 
@@ -172,10 +173,9 @@ export default function Blog() {
     return `${String(years[0]).slice(-2)}–${String(years[years.length - 1]).slice(-2)}`;
   }, [yearCounts]);
 
-  // Combined filtering & sorting
-  const filteredPosts = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    const list = allPosts.filter((post) => {
+  // Year & Tag filtered pool (used by Graph view so search highlights live without rebuilding layout)
+  const yearTagFilteredPosts = useMemo(() => {
+    return allPosts.filter((post) => {
       if (selectedTag) {
         const postTags =
           post.metadata.tags && post.metadata.tags.length > 0
@@ -186,6 +186,14 @@ export default function Blog() {
       if (selectedYear !== null) {
         if (getPostYear(post.metadata.date) !== selectedYear) return false;
       }
+      return true;
+    });
+  }, [allPosts, selectedTag, selectedYear, defaultTag]);
+
+  // Combined filtering & sorting
+  const filteredPosts = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    const list = yearTagFilteredPosts.filter((post) => {
       if (!q) return true;
       const titleMatch = post.metadata.title.toLowerCase().includes(q);
       const excerptMatch = post.excerpt.toLowerCase().includes(q);
@@ -195,7 +203,7 @@ export default function Blog() {
       return titleMatch || excerptMatch || tagsMatch;
     });
     return sortOrder === "desc" ? list : [...list].reverse();
-  }, [allPosts, selectedTag, selectedYear, searchQuery, sortOrder, defaultTag]);
+  }, [yearTagFilteredPosts, searchQuery, sortOrder]);
 
   const hasActiveFilters = Boolean(
     searchQuery.trim() || selectedTag !== null || selectedYear !== null,
@@ -565,7 +573,7 @@ export default function Blog() {
                   {t("视图模式", "VIEW MODE")}
                 </div>
                 <div
-                  className="grid grid-cols-3 lg:grid-cols-1 border-2"
+                  className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-1 border-2"
                   style={{ borderColor: "var(--kb-border)" }}
                 >
                   {(
@@ -573,19 +581,24 @@ export default function Blog() {
                       ["index", "01", t("目录索引", "Index")],
                       ["year", "02", t("年份归档", "Archive")],
                       ["tag", "03", t("主题分类", "Topics")],
+                      ["graph", "04", t("知识图谱", "Graph")],
                     ] as const
                   ).map(([mode, num, label], idx) => {
                     const active = viewMode === mode;
+                    const borderCls =
+                      idx === 0
+                        ? ""
+                        : idx === 1
+                          ? "border-l-2 lg:border-l-0 lg:border-t-2"
+                          : idx === 2
+                            ? "border-t-2 sm:border-t-0 sm:border-l-2 lg:border-l-0 lg:border-t-2"
+                            : "border-t-2 border-l-2 sm:border-t-0 lg:border-l-0 lg:border-t-2";
                     return (
                       <button
                         key={mode}
                         type="button"
                         onClick={() => handleViewModeChange(mode)}
-                        className={`px-3 py-2 flex items-center justify-between font-mono-kb text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
-                          idx > 0
-                            ? "border-l-2 lg:border-l-0 lg:border-t-2"
-                            : ""
-                        }`}
+                        className={`px-3 py-2 flex items-center justify-between font-mono-kb text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${borderCls}`}
                         style={{
                           borderColor: "var(--kb-border)",
                           backgroundColor: active
@@ -684,10 +697,17 @@ export default function Blog() {
                       setSearchQuery(e.target.value);
                       setCurrentPage(1);
                     }}
-                    placeholder={t(
-                      "检索标题、摘要或标签…",
-                      "Search title, excerpt, or tag…",
-                    )}
+                    placeholder={
+                      viewMode === "graph"
+                        ? t(
+                            "在图谱中高亮检索笔记或标签…",
+                            "Highlight notes or tags in graph…",
+                          )
+                        : t(
+                            "检索标题、摘要或标签…",
+                            "Search title, excerpt, or tag…",
+                          )
+                    }
                     className="w-full border-2 pl-10 pr-10 py-2.5 text-sm focus:outline-none"
                     style={{
                       borderColor: "var(--kb-border)",
@@ -717,67 +737,69 @@ export default function Blog() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <button
-                    type="button"
-                    onClick={handleToggleSort}
-                    className="h-full px-3 py-2 border-2 inline-flex items-center gap-1.5 font-mono-kb text-xs font-bold uppercase cursor-pointer hover:opacity-75 transition-opacity"
-                    style={{ borderColor: "var(--kb-border)" }}
-                    title={t("切换排序方向", "Toggle sort order")}
-                  >
-                    <ArrowUpDown className="w-3.5 h-3.5" />
-                    <span>
-                      {sortOrder === "desc"
-                        ? t("最新", "NEWEST")
-                        : t("最早", "OLDEST")}
-                    </span>
-                  </button>
+                {viewMode !== "graph" && (
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleToggleSort}
+                      className="h-full px-3 py-2 border-2 inline-flex items-center gap-1.5 font-mono-kb text-xs font-bold uppercase cursor-pointer hover:opacity-75 transition-opacity"
+                      style={{ borderColor: "var(--kb-border)" }}
+                      title={t("切换排序方向", "Toggle sort order")}
+                    >
+                      <ArrowUpDown className="w-3.5 h-3.5" />
+                      <span>
+                        {sortOrder === "desc"
+                          ? t("最新", "NEWEST")
+                          : t("最早", "OLDEST")}
+                      </span>
+                    </button>
 
-                  <div
-                    className="inline-flex border-2 h-full"
-                    style={{ borderColor: "var(--kb-border)" }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => handleDensityChange("editorial")}
-                      className="px-2.5 py-2 inline-flex items-center cursor-pointer transition-colors"
-                      style={{
-                        backgroundColor:
-                          density === "editorial"
-                            ? "var(--kb-inv-bg)"
-                            : "transparent",
-                        color:
-                          density === "editorial"
-                            ? "var(--kb-inv-ink)"
-                            : "var(--kb-ink)",
-                      }}
-                      title={t("标准视图（含摘要）", "Editorial view")}
-                      aria-label={t("标准视图", "Editorial view")}
+                    <div
+                      className="inline-flex border-2 h-full"
+                      style={{ borderColor: "var(--kb-border)" }}
                     >
-                      <Rows2 className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleDensityChange("compact")}
-                      className="px-2.5 py-2 border-l-2 inline-flex items-center cursor-pointer transition-colors"
-                      style={{
-                        borderColor: "var(--kb-border)",
-                        backgroundColor:
-                          density === "compact"
-                            ? "var(--kb-inv-bg)"
-                            : "transparent",
-                        color:
-                          density === "compact"
-                            ? "var(--kb-inv-ink)"
-                            : "var(--kb-ink)",
-                      }}
-                      title={t("紧凑索引（快速扫读）", "Compact index")}
-                      aria-label={t("紧凑索引", "Compact index")}
-                    >
-                      <AlignJustify className="w-3.5 h-3.5" />
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDensityChange("editorial")}
+                        className="px-2.5 py-2 inline-flex items-center cursor-pointer transition-colors"
+                        style={{
+                          backgroundColor:
+                            density === "editorial"
+                              ? "var(--kb-inv-bg)"
+                              : "transparent",
+                          color:
+                            density === "editorial"
+                              ? "var(--kb-inv-ink)"
+                              : "var(--kb-ink)",
+                        }}
+                        title={t("标准视图（含摘要）", "Editorial view")}
+                        aria-label={t("标准视图", "Editorial view")}
+                      >
+                        <Rows2 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDensityChange("compact")}
+                        className="px-2.5 py-2 border-l-2 inline-flex items-center cursor-pointer transition-colors"
+                        style={{
+                          borderColor: "var(--kb-border)",
+                          backgroundColor:
+                            density === "compact"
+                              ? "var(--kb-inv-bg)"
+                              : "transparent",
+                          color:
+                            density === "compact"
+                              ? "var(--kb-inv-ink)"
+                              : "var(--kb-ink)",
+                        }}
+                        title={t("紧凑索引（快速扫读）", "Compact index")}
+                        aria-label={t("紧凑索引", "Compact index")}
+                      >
+                        <AlignJustify className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Active Filter Chips Bar */}
@@ -905,7 +927,11 @@ export default function Blog() {
             )}
 
             {/* Empty State */}
-            {!loading && !error && filteredPosts.length === 0 && (
+            {!loading &&
+              !error &&
+              (viewMode === "graph"
+                ? yearTagFilteredPosts.length === 0
+                : filteredPosts.length === 0) && (
               <div
                 className="py-16 px-6 text-center border-2 border-dashed anim-stream-switch"
                 style={{ borderColor: "var(--kb-border-mid)" }}
@@ -1216,6 +1242,19 @@ export default function Blog() {
                     </section>
                   ))}
                 </div>
+              )}
+
+            {/* 04. Knowledge Graph View */}
+            {!loading &&
+              !error &&
+              yearTagFilteredPosts.length > 0 &&
+              viewMode === "graph" && (
+                <KnowledgeGraph
+                  posts={yearTagFilteredPosts}
+                  searchQuery={searchQuery}
+                  defaultTagLabel={defaultTag}
+                  onSelectTagFilter={handleToggleTag}
+                />
               )}
           </main>
         </div>
