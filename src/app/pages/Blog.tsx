@@ -70,7 +70,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const [viewMode, setViewMode] = useState<ViewMode>("index");
+  const [viewMode, setViewMode] = useState<ViewMode>("graph");
   const [density, setDensity] = useState<Density>("editorial");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [selectedTag, setSelectedTag] = useState<string | null>(
@@ -578,10 +578,10 @@ export default function Blog() {
                 >
                   {(
                     [
-                      ["index", "01", t("目录索引", "Index")],
-                      ["year", "02", t("年份归档", "Archive")],
-                      ["tag", "03", t("主题分类", "Topics")],
-                      ["graph", "04", t("知识图谱", "Graph")],
+                      ["graph", "01", t("知识图谱", "Graph")],
+                      ["index", "02", t("目录索引", "Index")],
+                      ["year", "03", t("年份归档", "Archive")],
+                      ["tag", "04", t("主题分类", "Topics")],
                     ] as const
                   ).map(([mode, num, label], idx) => {
                     const active = viewMode === mode;

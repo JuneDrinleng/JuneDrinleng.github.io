@@ -384,13 +384,13 @@ export default function KnowledgeGraph({
     nodeMapRef.current = new Map(nextNodes.map((n) => [n.id, n]));
     edgesRef.current = extracted.edges;
 
-    const warmSteps = prevPos.size === 0 ? 120 : 50;
+    const warmSteps = prevPos.size === 0 ? 180 : 70;
     let a = 1.0;
     for (let s = 0; s < warmSteps; s++) {
       runPhysicsStep(a);
       a *= 0.975;
     }
-    alphaRef.current = 0.2;
+    alphaRef.current = 0.03;
     fitToView();
   }, [extracted, runPhysicsStep, fitToView]);
 
@@ -418,7 +418,14 @@ export default function KnowledgeGraph({
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const ro = new ResizeObserver(resize);
+    let hasInitialFit = false;
+    const ro = new ResizeObserver(() => {
+      resize();
+      if (!hasInitialFit && wrap.getBoundingClientRect().width > 10) {
+        hasInitialFit = true;
+        fitToView();
+      }
+    });
     ro.observe(wrap);
     resize();
 
@@ -695,6 +702,7 @@ export default function KnowledgeGraph({
             ? `${isPrimary ? "600" : "500"} 10.5px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace`
             : `${isPrimary ? "600" : "400"} ${isPrimary ? "11.5px" : "10.5px"} "Inter", "Noto Sans SC", system-ui, sans-serif`;
 
+        const isTagHub = n.kind === "tag";
         const tw = ctx.measureText(text).width;
         const gap = isSelected ? 9 : 6;
         const candidates = [sc.y + sc.r + gap, sc.y - sc.r - labelH - gap];
@@ -713,11 +721,13 @@ export default function KnowledgeGraph({
             rectCand.x2 <= W - 6 &&
             rectCand.y1 >= 6 &&
             rectCand.y2 <= H - 6;
-          if (!inside && !isPrimary) continue;
+          if (!inside && !isPrimary && !isTagHub) continue;
 
           const hitsLabel = placedRects.some((r) => rectsOverlap(rectCand, r));
+          // Tag hub landmarks should never be hidden just because a surrounding note dot is nearby
           const hitsOtherNode =
             !isPrimary &&
+            !isTagHub &&
             nodeGlyphBoxes.some(
               (g) => g.id !== n.id && rectsOverlap(rectCand, g.rect),
             );
@@ -729,7 +739,8 @@ export default function KnowledgeGraph({
           }
         }
 
-        if (chosenY === null && isHovered) {
+        // Hovered node or #Tag hub landmark always gets a label if both slots were tight
+        if (chosenY === null && (isHovered || isTagHub)) {
           chosenY = candidates[0];
           placedRects.push({
             x1: sc.x - tw / 2 - padX,
@@ -773,7 +784,7 @@ export default function KnowledgeGraph({
       window.cancelAnimationFrame(rafId);
       ro.disconnect();
     };
-  }, [runPhysicsStep]);
+  }, [runPhysicsStep, fitToView]);
 
   const hitTest = useCallback((sx: number, sy: number): SimNode | null => {
     const wrap = wrapRef.current;

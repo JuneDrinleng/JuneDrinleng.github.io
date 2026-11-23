@@ -76,7 +76,7 @@ LUNE follows the **International Typographic Style (Swiss Editorial)** adapted f
 - **Compact Masthead (`border-b-4`)**: Left title + live authenticated label; right `3`-cell telemetry grid (`NOTES` / `SPAN` / `TOPICS`).
 - **Asymmetric 2-Column Grid (`lg:grid-cols-[248px_1fr]`)**:
   - **Left Column (`<aside class="lg:border-r lg:pr-8">`)**: Stretches full height of the grid row so the vertical divider runs continuously from masthead to footer without breaking. Inner sticky wrapper (`lg:sticky lg:top-12`) contains:
-    1. **View Mode Stack**: `01 Index` / `02 Archive (By Year)` / `03 Topics (By Tag)` / `04 Graph (Interactive Knowledge Graph)`.
+    1. **View Mode Stack**: `01 Graph (Interactive Knowledge Graph, default)` / `02 Index` / `03 Archive (By Year)` / `04 Topics (By Tag)`.
     2. **Scalable Year Picker (`YearPicker`)**: Fixed-height stepper (`‹ [ Calendar + Year/All + Count ▼ ] ›`) that opens a `3×3` year matrix popover with entry counts, relative activity density micro-bars, multi-page decade/range navigation for arbitrary year spans, and `Esc` / outside-click dismissal.
     3. **Vertical Topics Directory**: Full-width hairline rows with `#Tag` on the left and zero-padded count on the right.
   - **Right Main Stream (`<main>`)**:
@@ -84,7 +84,7 @@ LUNE follows the **International Typographic Style (Swiss Editorial)** adapted f
     2. **Featured Latest Card (`LATEST · NO. 01`)**: Highlighted `2px` bordered entry on clean Page 1 of Index view (Editorial + Newest + unfiltered).
     3. **Numbered Catalog Rows**: Left coordinate (`02 / 2026.09.04` + reading time), center title/excerpt/clickable tags, right hover arrow, and `3px` left accent border reveal on hover.
     4. **Swiss Square Pagination** (`PREV` / `01` `02` ... / `NEXT`) and structural **Skeleton Loading** rows.
-    5. **Interactive Knowledge Graph (`04 Graph`, `KnowledgeGraph`)**: Monochrome Swiss force-directed Canvas graph built client-side from `[[wikilinks]]`, internal markdown links, frontmatter `related`, and `#Tag` hubs. Uses pure consistent geometry (circular note nodes with concentric selection rings, diamond `#Tag` hubs), restrained hover/zoom-adaptive borderless labels with screen-space AABB collision culling, Global / Local 1-hop toggle, fullscreen expansion (`Esc` to exit), and a right-hand inspector panel for overview hubs, outgoing links, backlinks, and shared topics.
+    5. **Interactive Knowledge Graph (`01 Graph`, `KnowledgeGraph`)**: Monochrome Swiss force-directed Canvas graph built client-side from `[[wikilinks]]`, internal markdown links, frontmatter `related`, and `#Tag` hubs. Uses pure consistent geometry (circular note nodes with concentric selection rings, diamond `#Tag` hubs), restrained hover/zoom-adaptive borderless labels with screen-space AABB collision culling, Global / Local 1-hop toggle, fullscreen expansion (`Esc` to exit), and a right-hand inspector panel for overview hubs, outgoing links, backlinks, and shared topics.
 
 ### 3.4 Article Reader (`/blog/:slug`, authenticated)
 - **Subheader + 2px Reading Progress Bar**: Back to Index link, date & estimated reading time, desktop `Discussions` sidebar toggle button, and live scroll progress bar.
