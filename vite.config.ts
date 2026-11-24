@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import fs from 'node:fs'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
@@ -10,6 +11,21 @@ export default defineConfig({
     // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+    {
+      name: 'notes-graph-dev-proxy',
+      configureServer(server) {
+        server.middlewares.use('/__dev_notes_graph.json', (_req, res) => {
+          const localGraphPath = path.resolve(__dirname, '../notes/graph/graph.json')
+          if (!fs.existsSync(localGraphPath)) {
+            res.statusCode = 404
+            res.end(JSON.stringify({ error: 'not_found' }))
+            return
+          }
+          res.setHeader('Content-Type', 'application/json; charset=utf-8')
+          res.end(fs.readFileSync(localGraphPath, 'utf-8'))
+        })
+      },
+    },
   ],
   resolve: {
     alias: {

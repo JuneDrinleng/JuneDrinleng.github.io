@@ -17,7 +17,8 @@ import {
   useRef,
   type CSSProperties,
 } from "react";
-import { getAllPosts, type Post } from "../utils/posts";
+import { getAllPosts, getExternalGraph, type Post } from "../utils/posts";
+import type { ExternalGraphData } from "../utils/blogApi";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useAuth } from "../contexts/AuthContext";
 import YearPicker from "../components/YearPicker";
@@ -67,6 +68,7 @@ export default function Blog() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [externalGraph, setExternalGraph] = useState<ExternalGraphData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -99,16 +101,17 @@ export default function Blog() {
     setSelectedYear(urlYear);
   }, [searchParams]);
 
-  // Fetch posts for authenticated owner
+  // Fetch posts and optional external graph overlay for authenticated owner
   const loadPosts = useCallback(() => {
     if (!token) return;
     let cancelled = false;
     setLoading(true);
     setError(false);
-    getAllPosts(language, token)
-      .then((posts) => {
+    Promise.all([getAllPosts(language, token), getExternalGraph(token)])
+      .then(([posts, graphData]) => {
         if (cancelled) return;
         setAllPosts(posts.filter((p) => !p.metadata.draft));
+        setExternalGraph(graphData);
         setLoading(false);
         setStreamKey((k) => k + 1);
       })
@@ -1253,6 +1256,7 @@ export default function Blog() {
                   posts={yearTagFilteredPosts}
                   searchQuery={searchQuery}
                   defaultTagLabel={defaultTag}
+                  externalGraph={externalGraph}
                   onSelectTagFilter={handleToggleTag}
                 />
               )}

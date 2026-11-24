@@ -10,6 +10,36 @@ export interface RawPost {
   markdown: string;
 }
 
+/** Optional per-node overlay metadata from `notes/graph/graph.json`. */
+export interface ExternalGraphNode {
+  title?: string;
+  date?: string;
+  tags?: string[];
+  extraTags?: string[];
+  links?: string[];
+  series?: string;
+  seriesLabel?: string;
+  order?: number;
+}
+
+/** Explicit note-to-note edge defined in `notes/graph/graph.json`. */
+export interface ExternalGraphEdge {
+  source: string;
+  target: string;
+  relation?: "series" | "prerequisite" | "concept" | "method" | "application" | string;
+  label?: string;
+  weight?: number;
+}
+
+/** External graph structure stored in `notes/graph/graph.json`. */
+export interface ExternalGraphData {
+  version?: number;
+  generatedAt?: string;
+  sourceDir?: string;
+  nodes?: Record<string, ExternalGraphNode>;
+  edges?: ExternalGraphEdge[];
+}
+
 /**
  * Fetch every post's raw markdown for a language in one request.
  * The viewer is already authenticated, so shipping bodies to their browser is
@@ -37,4 +67,35 @@ export async function fetchPostMarkdown(
   if (r.status === 401 || r.status === 403) throw new Error("unauthorized");
   if (!r.ok) throw new Error(`Blog API error: ${r.status}`);
   return r.json() as Promise<RawPost>;
+}
+
+/**
+ * Fetch the optional external graph overlay from `notes/graph/graph.json`.
+ * Never throws on 404 or network issues: returns `null` so the caller can
+ * fall back cleanly to the foundational frontmatter `#Tag` graph.
+ */
+export async function fetchExternalGraph(token: string): Promise<ExternalGraphData | null> {
+  try {
+    const r = await fetch(`${API_BASE}/api/graph`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (r.ok) {
+      return (await r.json()) as ExternalGraphData;
+    }
+  } catch {
+    // Ignore and try dev fallback if in local dev mode
+  }
+
+  if (import.meta.env.DEV) {
+    try {
+      const devRes = await fetch("/__dev_notes_graph.json");
+      if (devRes.ok) {
+        return (await devRes.json()) as ExternalGraphData;
+      }
+    } catch {
+      // Ignore
+    }
+  }
+
+  return null;
 }

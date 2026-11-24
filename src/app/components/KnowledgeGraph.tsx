@@ -13,9 +13,11 @@ import {
   Minus,
   Plus,
 } from "lucide-react";
+import type { ExternalGraphData } from "../utils/blogApi";
 import type { Post } from "../utils/posts";
 import {
   buildKnowledgeGraph,
+  getPostGraphTags,
   type GraphEdgeData,
   type GraphNodeData,
 } from "../utils/graph";
@@ -26,6 +28,7 @@ interface KnowledgeGraphProps {
   posts: Post[];
   searchQuery?: string;
   defaultTagLabel: string;
+  externalGraph?: ExternalGraphData | null;
   onSelectTagFilter?: (tag: string) => void;
 }
 
@@ -112,6 +115,7 @@ export default function KnowledgeGraph({
   posts,
   searchQuery = "",
   defaultTagLabel,
+  externalGraph,
   onSelectTagFilter,
 }: KnowledgeGraphProps) {
   const { t } = useLanguage();
@@ -132,18 +136,14 @@ export default function KnowledgeGraph({
       if (!prev) return null;
       if (prev.startsWith("tag:")) {
         const tagName = prev.slice(4);
-        const exists = posts.some((p) => {
-          const tgs =
-            p.metadata.tags && p.metadata.tags.length > 0
-              ? p.metadata.tags
-              : [defaultTagLabel];
-          return tgs.includes(tagName);
-        });
+        const exists = posts.some((p) =>
+          getPostGraphTags(p, defaultTagLabel, externalGraph).includes(tagName),
+        );
         return exists ? prev : null;
       }
       return posts.some((p) => p.slug === prev) ? prev : null;
     });
-  }, [posts, defaultTagLabel]);
+  }, [posts, defaultTagLabel, externalGraph]);
 
   // Escape key exits fullscreen
   useEffect(() => {
@@ -171,6 +171,7 @@ export default function KnowledgeGraph({
         scope,
         focusId: effectiveFocusId,
         defaultTagLabel,
+        externalGraph,
       }),
     [
       posts,
@@ -179,6 +180,7 @@ export default function KnowledgeGraph({
       scope,
       effectiveFocusId,
       defaultTagLabel,
+      externalGraph,
     ],
   );
 
@@ -914,37 +916,27 @@ export default function KnowledgeGraph({
   const relatedByTags = useMemo(() => {
     if (!selectedNode?.post) return [];
     const cur = selectedNode.post;
-    const curTags =
-      cur.metadata.tags && cur.metadata.tags.length > 0
-        ? cur.metadata.tags
-        : [defaultTagLabel];
+    const curTags = getPostGraphTags(cur, defaultTagLabel, externalGraph);
     return posts
       .filter((p) => p.slug !== cur.slug)
       .map((p) => {
-        const pTags =
-          p.metadata.tags && p.metadata.tags.length > 0
-            ? p.metadata.tags
-            : [defaultTagLabel];
+        const pTags = getPostGraphTags(p, defaultTagLabel, externalGraph);
         const shared = pTags.filter((tg) => curTags.includes(tg));
         return { post: p, shared };
       })
       .filter((item) => item.shared.length > 0)
       .sort((a, b) => b.shared.length - a.shared.length)
       .slice(0, 6);
-  }, [selectedNode, posts, defaultTagLabel]);
+  }, [selectedNode, posts, defaultTagLabel, externalGraph]);
 
   const taggedPostsForSelectedTag = useMemo(() => {
     if (!selectedNode || selectedNode.kind !== "tag" || !selectedNode.tagName)
       return [];
     const targetTag = selectedNode.tagName;
-    return posts.filter((p) => {
-      const tgs =
-        p.metadata.tags && p.metadata.tags.length > 0
-          ? p.metadata.tags
-          : [defaultTagLabel];
-      return tgs.includes(targetTag);
-    });
-  }, [selectedNode, posts, defaultTagLabel]);
+    return posts.filter((p) =>
+      getPostGraphTags(p, defaultTagLabel, externalGraph).includes(targetTag),
+    );
+  }, [selectedNode, posts, defaultTagLabel, externalGraph]);
 
   const jumpToNode = (id: string) => {
     if (id.startsWith("tag:") && !showTagHubs) {
@@ -1324,6 +1316,11 @@ export default function KnowledgeGraph({
               const outgoing = extracted.outgoingMap.get(post.slug) ?? [];
               const backlinks = extracted.backlinksMap.get(post.slug) ?? [];
               const plainExcerpt = stripExcerpt(post.excerpt);
+              const postGraphTags = getPostGraphTags(
+                post,
+                defaultTagLabel,
+                externalGraph,
+              );
 
               return (
                 <div className="space-y-3">
@@ -1353,9 +1350,9 @@ export default function KnowledgeGraph({
                     </p>
                   )}
 
-                  {post.metadata.tags.length > 0 && (
+                  {postGraphTags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5">
-                      {post.metadata.tags.map((tg) => (
+                      {postGraphTags.map((tg) => (
                         <button
                           key={tg}
                           type="button"

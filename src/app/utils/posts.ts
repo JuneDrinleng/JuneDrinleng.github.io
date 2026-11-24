@@ -1,4 +1,9 @@
-import { fetchAllPostsRaw, fetchPostMarkdown } from "./blogApi";
+import {
+  fetchAllPostsRaw,
+  fetchExternalGraph,
+  fetchPostMarkdown,
+  type ExternalGraphData,
+} from "./blogApi";
 
 export interface PostMetadata {
   layout: string;
@@ -121,10 +126,19 @@ function parsePost(slug: string, raw: string): Post {
 
 // 鉴权用户拉取的文章在会话内缓存，避免重复请求 Worker。
 const cache: Record<"zh" | "en", Post[] | null> = { zh: null, en: null };
+let graphCache: ExternalGraphData | null | undefined = undefined;
 
 export function clearPostsCache(): void {
   cache.zh = null;
   cache.en = null;
+  graphCache = undefined;
+}
+
+export async function getExternalGraph(token: string): Promise<ExternalGraphData | null> {
+  if (graphCache !== undefined) return graphCache;
+  const data = await fetchExternalGraph(token);
+  graphCache = data;
+  return data;
 }
 
 export async function getAllPosts(lang: "zh" | "en", token: string): Promise<Post[]> {

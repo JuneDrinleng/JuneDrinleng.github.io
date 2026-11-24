@@ -10,10 +10,12 @@
 Private repo: JuneDrinleng/notes
   posts/*.md       中文
   posts-en/*.md    英文
+  graph/graph.json 知识图谱增强结构（可选）
 
 Cloudflare Worker（合并进现有 junedrinlengblog.zhuzilan520.workers.dev）
   GET /api/posts?lang=zh|en        → [{ slug, markdown }, ...]
   GET /api/posts/:slug?lang=zh|en  → { slug, markdown }
+  GET /api/graph                   → graph/graph.json 图谱结构 JSON
   - 校验调用者 OAuth token 是否为 ALLOWED_OWNER
   - 用 PRIVATE_REPO_TOKEN（Worker secret）读取 private repo
 

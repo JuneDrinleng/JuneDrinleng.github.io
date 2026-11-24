@@ -1,3 +1,4 @@
+import type { ExternalGraphData } from "./blogApi";
 import type { Post } from "./posts";
 
 export type GraphNodeKind = "note" | "tag";
@@ -17,6 +18,8 @@ export interface GraphEdgeData {
   target: string;
   kind: GraphEdgeKind;
   weight: number;
+  relation?: string;
+  label?: string;
   sharedTags?: string[];
 }
 
@@ -35,6 +38,15 @@ export interface BuildGraphOptions {
   scope: "global" | "local";
   focusId: string | null;
   defaultTagLabel: string;
+  externalGraph?: ExternalGraphData | null;
+}
+
+export interface ExplicitLink {
+  source: string;
+  target: string;
+  relation?: string;
+  label?: string;
+  weight: number;
 }
 
 function stripCodeBlocks(markdown: string): string {
@@ -54,12 +66,40 @@ function normalizeLookupKey(raw: string): string {
 }
 
 /**
+ * Resolve all graph tags for a post:
+ * - Always includes foundational frontmatter `post.metadata.tags` (or `[defaultTagLabel]`)
+ * - Layers any `extraTags` defined for `post.slug` in `notes/graph/graph.json`
+ */
+export function getPostGraphTags(
+  post: Post,
+  defaultTagLabel: string,
+  externalGraph?: ExternalGraphData | null,
+): string[] {
+  const baseTags =
+    post.metadata.tags && post.metadata.tags.length > 0
+      ? post.metadata.tags
+      : [defaultTagLabel];
+  const extraTags = externalGraph?.nodes?.[post.slug]?.extraTags;
+  if (!extraTags || extraTags.length === 0) return baseTags;
+
+  const set = new Set<string>(baseTags);
+  for (const tg of extraTags) {
+    if (tg) set.add(tg);
+  }
+  return Array.from(set);
+}
+
+/**
  * Extract explicit directional note-to-note links from:
  * 1. Obsidian-style wikilinks: [[slug]], [[slug|alias]], [[Title]], [[slug#heading]]
  * 2. Internal Markdown links: [text](/blog/slug), [text](./slug.md)
  * 3. Optional frontmatter `related: [slug-a, slug-b]`
+ * 4. External graph overlay (`notes/graph/graph.json` -> `edges` and `nodes[slug].links`)
  */
-export function extractExplicitLinks(posts: Post[]): Array<[string, string]> {
+export function extractExplicitLinks(
+  posts: Post[],
+  externalGraph?: ExternalGraphData | null,
+): ExplicitLink[] {
   const bySlug = new Map<string, string>();
   const byTitle = new Map<string, string>();
 
@@ -78,15 +118,22 @@ export function extractExplicitLinks(posts: Post[]): Array<[string, string]> {
     return null;
   };
 
-  const pairs: Array<[string, string]> = [];
+  const links: ExplicitLink[] = [];
   const seen = new Set<string>();
 
-  const addPair = (sourceSlug: string, targetSlug: string | null) => {
+  const addLink = (
+    sourceSlug: string,
+    targetSlug: string | null,
+    relation?: string,
+    label?: string,
+    weight = 2,
+  ) => {
     if (!targetSlug || targetSlug === sourceSlug) return;
     const key = `${sourceSlug}→${targetSlug}`;
-    if (seen.has(key)) return;
+    const reverseKey = `${targetSlug}→${sourceSlug}`;
+    if (seen.has(key) || seen.has(reverseKey)) return;
     seen.add(key);
-    pairs.push([sourceSlug, targetSlug]);
+    links.push({ source: sourceSlug, target: targetSlug, relation, label, weight });
   };
 
   const wikilinkRe = /\[\[([^\]]+)\]\]/g;
@@ -95,7 +142,7 @@ export function extractExplicitLinks(posts: Post[]): Array<[string, string]> {
   posts.forEach((post) => {
     if (post.metadata.related) {
       post.metadata.related.forEach((rel) => {
-        addPair(post.slug, resolveTarget(rel));
+        addLink(post.slug, resolveTarget(rel), "related");
       });
     }
 
@@ -104,18 +151,43 @@ export function extractExplicitLinks(posts: Post[]): Array<[string, string]> {
     let match: RegExpExecArray | null;
     wikilinkRe.lastIndex = 0;
     while ((match = wikilinkRe.exec(body)) !== null) {
-      addPair(post.slug, resolveTarget(match[1]));
+      addLink(post.slug, resolveTarget(match[1]), "wikilink");
     }
 
     mdLinkRe.lastIndex = 0;
     while ((match = mdLinkRe.exec(body)) !== null) {
       const href = match[1].trim();
       if (/^(https?:|mailto:|tel:|#)/i.test(href)) continue;
-      addPair(post.slug, resolveTarget(href));
+      addLink(post.slug, resolveTarget(href), "markdown");
     }
   });
 
-  return pairs;
+  // Layer external graph structure (`notes/graph/graph.json`) on top of inline links
+  if (externalGraph) {
+    if (Array.isArray(externalGraph.edges)) {
+      for (const edge of externalGraph.edges) {
+        if (!edge || !edge.source || !edge.target) continue;
+        const src = resolveTarget(edge.source);
+        const tgt = resolveTarget(edge.target);
+        if (src && tgt) {
+          addLink(src, tgt, edge.relation, edge.label, edge.weight ?? 2);
+        }
+      }
+    }
+
+    if (externalGraph.nodes) {
+      for (const [rawSrc, nodeMeta] of Object.entries(externalGraph.nodes)) {
+        if (!nodeMeta || !Array.isArray(nodeMeta.links)) continue;
+        const src = resolveTarget(rawSrc);
+        if (!src) continue;
+        for (const rawTgt of nodeMeta.links) {
+          addLink(src, resolveTarget(rawTgt), "concept", undefined, 2);
+        }
+      }
+    }
+  }
+
+  return links;
 }
 
 export function buildKnowledgeGraph({
@@ -125,17 +197,22 @@ export function buildKnowledgeGraph({
   scope,
   focusId,
   defaultTagLabel,
+  externalGraph,
 }: BuildGraphOptions): ExtractedGraph {
   const postBySlug = new Map(posts.map((p) => [p.slug, p]));
-  const explicitPairs = extractExplicitLinks(posts);
+  const explicitLinks = extractExplicitLinks(posts, externalGraph);
 
   const outgoingMap = new Map<string, Post[]>();
   const backlinksMap = new Map<string, Post[]>();
+  const nodesWithExplicitLinks = new Set<string>();
 
-  explicitPairs.forEach(([source, target]) => {
+  explicitLinks.forEach(({ source, target }) => {
     const srcPost = postBySlug.get(source);
     const tgtPost = postBySlug.get(target);
     if (!srcPost || !tgtPost) return;
+
+    nodesWithExplicitLinks.add(source);
+    nodesWithExplicitLinks.add(target);
 
     if (!outgoingMap.has(source)) outgoingMap.set(source, []);
     outgoingMap.get(source)!.push(tgtPost);
@@ -145,9 +222,7 @@ export function buildKnowledgeGraph({
   });
 
   const getPostTags = (post: Post): string[] =>
-    post.metadata.tags && post.metadata.tags.length > 0
-      ? post.metadata.tags
-      : [defaultTagLabel];
+    getPostGraphTags(post, defaultTagLabel, externalGraph);
 
   const allTagsSet = new Set<string>();
   posts.forEach((p) => getPostTags(p).forEach((tg) => allTagsSet.add(tg)));
@@ -166,7 +241,7 @@ export function buildKnowledgeGraph({
     } else {
       const focusPost = postBySlug.get(focusId);
       if (showWikilinks) {
-        explicitPairs.forEach(([s, t]) => {
+        explicitLinks.forEach(({ source: s, target: t }) => {
           if (s === focusId) allowedIds!.add(t);
           if (t === focusId) allowedIds!.add(s);
         });
@@ -233,11 +308,18 @@ export function buildKnowledgeGraph({
   const edges: GraphEdgeData[] = [];
 
   if (showWikilinks) {
-    explicitPairs.forEach(([s, t]) => {
+    explicitLinks.forEach(({ source: s, target: t, relation, label, weight }) => {
       const a = nodeMap.get(s);
       const b = nodeMap.get(t);
       if (!a || !b) return;
-      edges.push({ source: s, target: t, kind: "wikilink", weight: 2 });
+      edges.push({
+        source: s,
+        target: t,
+        kind: "wikilink",
+        weight,
+        relation,
+        label,
+      });
       a.degree += 1;
       b.degree += 1;
     });
@@ -257,13 +339,19 @@ export function buildKnowledgeGraph({
     });
   } else {
     const visibleNotes = posts.filter((p) => nodeMap.has(p.slug));
-    const minShared =
-      showWikilinks && explicitPairs.length >= visibleNotes.length / 2 ? 2 : 1;
+    const denseExplicitGraph =
+      showWikilinks && explicitLinks.length >= visibleNotes.length / 2;
     for (let i = 0; i < visibleNotes.length; i++) {
       const a = visibleNotes[i];
       const aTags = getPostTags(a);
+      const aHasExplicit = nodesWithExplicitLinks.has(a.slug);
       for (let j = i + 1; j < visibleNotes.length; j++) {
         const b = visibleNotes[j];
+        const bHasExplicit = nodesWithExplicitLinks.has(b.slug);
+        // Any new post not yet present in `notes/graph/graph.json` still connects
+        // via a single shared base tag even when #Tag hubs are hidden.
+        const minShared =
+          denseExplicitGraph && aHasExplicit && bHasExplicit ? 2 : 1;
         const shared = aTags.filter((tg) => getPostTags(b).includes(tg));
         if (shared.length >= minShared) {
           edges.push({
@@ -285,6 +373,6 @@ export function buildKnowledgeGraph({
     edges,
     outgoingMap,
     backlinksMap,
-    explicitLinkCount: explicitPairs.length,
+    explicitLinkCount: explicitLinks.length,
   };
 }

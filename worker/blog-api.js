@@ -36,6 +36,7 @@
  * Repo layout expected in the private repo:
  *   posts/*.md       (zh)
  *   posts-en/*.md    (en)
+ *   graph/graph.json (optional external knowledge graph structure overlay)
  */
 
 const GITHUB_API = "https://api.github.com";
@@ -155,7 +156,7 @@ export default {
 
     // NOTE: keep your existing /auth OAuth route handling here; this sample
     // only shows the blog API routes.
-    if (!url.pathname.startsWith("/api/posts")) {
+    if (!url.pathname.startsWith("/api/posts") && url.pathname !== "/api/graph") {
       return new Response("Not found", { status: 404 });
     }
 
@@ -168,6 +169,17 @@ export default {
 
     if (!(await verifyOwner(request, env))) {
       return json({ error: "forbidden" }, 403, request, env);
+    }
+
+    // GET /api/graph (or /api/posts/__graph__) → optional external graph structure from graph/graph.json
+    if (url.pathname === "/api/graph" || url.pathname === "/api/posts/__graph__") {
+      try {
+        const rawGraph = await getMarkdown(env, "graph", "graph.json");
+        if (rawGraph == null) return json({ error: "not_found" }, 404, request, env);
+        return json(JSON.parse(rawGraph), 200, request, env);
+      } catch {
+        return json({ error: "upstream_error" }, 502, request, env);
+      }
     }
 
     const lang = url.searchParams.get("lang") === "en" ? "en" : "zh";
