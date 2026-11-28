@@ -11,18 +11,21 @@ Private repo: JuneDrinleng/notes
   posts/*.md       中文
   posts-en/*.md    英文
   graph/graph.json 知识图谱增强结构（可选）
+  wiki/*.md        Wiki 术语 / 技术 / 方案词条（可选，跳过 README.md 与 _*）
 
 Cloudflare Worker（合并进现有 junedrinlengblog.zhuzilan520.workers.dev）
   GET /api/posts?lang=zh|en        → [{ slug, markdown }, ...]
   GET /api/posts/:slug?lang=zh|en  → { slug, markdown }
   GET /api/graph                   → graph/graph.json 图谱结构 JSON
+  GET /api/wiki                    → [{ slug, markdown }, ...]（wiki/*.md）
+  GET /api/wiki/:slug              → { slug, markdown }
   - 校验调用者 OAuth token 是否为 ALLOWED_OWNER
   - 用 PRIVATE_REPO_TOKEN（Worker secret）读取 private repo
 
 公开 GitHub Pages（JuneDrinleng/JuneDrinleng.github.io）
   - 构建产物中没有任何 .md 正文
-  - Blog 页面通过 Worker API 异步获取
-  - Giscus 评论保持不变
+  - Blog 与 Wiki 页面均通过 Worker API 异步获取
+  - Giscus 评论保持不变（仅用于 Blog）
 ```
 
 ## 部署步骤
@@ -52,8 +55,9 @@ posts-en/     ← 原 src/posts-en/*.md
 
 ### 3. 合并路由到现有 Worker
 
-把 `blog-api.js` 中 `/api/posts` 的处理逻辑合并进现有 OAuth Worker
+把 `blog-api.js` 中 `/api/posts`、`/api/graph` 和 `/api/wiki` 的处理逻辑合并进现有 OAuth Worker
 （保留它原有的 `/auth` 路由）。本文件已注明应在何处保留 `/auth`。
+若线上的 Worker 此前已部署，新增 Wiki 功能后需要**重新部署 Worker**以包含 `/api/wiki` 路由。
 
 ### 4. 配置 Worker secrets / vars
 
@@ -106,8 +110,8 @@ git commit -m "chore: move blog markdown to private repo"
 - [ ] **PRIVATE_REPO_BRANCH** 与 notes 默认分支一致（默认按 `main`；若是 `master` 等需显式设置）。
 - [ ] **ALLOWED_OWNER** 为精确大小写 `JuneDrinleng`（比较区分大小写）。
 - [ ] **ALLOWED_ORIGINS** 含站点精确源 `https://lune.ltd`（本地开发可加 `http://localhost:5173`；不要带结尾斜杠）。
-- [ ] `/api/posts` 路由确实部署在前端请求的 Worker URL 上（默认 `https://junedrinlengblog.zhuzilan520.workers.dev`，否则设 `VITE_BLOG_API`）。
-- [ ] notes 仓库目录精确为 `posts/` 和 `posts-en/`（大小写敏感）。
+- [ ] `/api/posts`、`/api/graph` 与 `/api/wiki` 路由确实部署在前端请求的 Worker URL 上（默认 `https://junedrinlengblog.zhuzilan520.workers.dev`，否则设 `VITE_BLOG_API`）。
+- [ ] notes 仓库目录精确为 `posts/`、`posts-en/` 与 `wiki/`（大小写敏感；`wiki/` 内 `README.md` 与 `_` 开头文件会被自动忽略）。
 
 > 列表端点用单次 GraphQL 批量读取整个目录（约 2 个子请求），已规避 Cloudflare 免费版
 > 50 子请求上限，文章数量增长也不受影响。

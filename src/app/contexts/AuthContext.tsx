@@ -10,6 +10,7 @@ import {
 import { getToken, setToken, clearToken } from "../lib/auth";
 import { githubGetUser, type GitHubUser } from "../lib/github";
 import { clearPostsCache } from "../utils/posts";
+import { clearWikiCache } from "../utils/wiki";
 
 const OAUTH_BASE = "https://junedrinlengblog.zhuzilan520.workers.dev";
 const TRUSTED_ORIGIN = "https://junedrinlengblog.zhuzilan520.workers.dev";
@@ -90,6 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(() => {
     clearToken();
     clearPostsCache();
+    clearWikiCache();
     setUser(null);
     setAuthError(null);
     setStatus("anonymous");

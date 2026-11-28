@@ -46,7 +46,7 @@ export function estimateReadingTime(markdown: string): number {
 }
 
 // 简单的 frontmatter 解析器（浏览器兼容）
-function parseFrontmatter(content: string): { data: Record<string, unknown>; content: string } {
+export function parseFrontmatter(content: string): { data: Record<string, unknown>; content: string } {
   const normalized = content.replace(/\r\n/g, "\n");
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = normalized.match(frontmatterRegex);

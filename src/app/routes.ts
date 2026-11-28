@@ -2,6 +2,8 @@ import { createBrowserRouter, redirect } from "react-router";
 import Layout from "./Layout";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Wiki from "./pages/Wiki";
+import WikiEntry from "./pages/WikiEntry";
 import RequireBlogAuth from "./components/RequireBlogAuth";
 
 export const router = createBrowserRouter(
@@ -23,6 +25,14 @@ export const router = createBrowserRouter(
             {
               path: "/blog/:slug",
               Component: BlogPost,
+            },
+            {
+              path: "/wiki",
+              Component: Wiki,
+            },
+            {
+              path: "/wiki/:slug",
+              Component: WikiEntry,
             },
             {
               path: "*",

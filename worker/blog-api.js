@@ -37,6 +37,7 @@
  *   posts/*.md       (zh)
  *   posts-en/*.md    (en)
  *   graph/graph.json (optional external knowledge graph structure overlay)
+ *   wiki/*.md        (optional Wiki terms, techniques & solutions)
  */
 
 const GITHUB_API = "https://api.github.com";
@@ -156,7 +157,12 @@ export default {
 
     // NOTE: keep your existing /auth OAuth route handling here; this sample
     // only shows the blog API routes.
-    if (!url.pathname.startsWith("/api/posts") && url.pathname !== "/api/graph") {
+    if (
+      !url.pathname.startsWith("/api/posts") &&
+      url.pathname !== "/api/graph" &&
+      url.pathname !== "/api/wiki" &&
+      !url.pathname.startsWith("/api/wiki/")
+    ) {
       return new Response("Not found", { status: 404 });
     }
 
@@ -177,6 +183,40 @@ export default {
         const rawGraph = await getMarkdown(env, "graph", "graph.json");
         if (rawGraph == null) return json({ error: "not_found" }, 404, request, env);
         return json(JSON.parse(rawGraph), 200, request, env);
+      } catch {
+        return json({ error: "upstream_error" }, 502, request, env);
+      }
+    }
+
+    // GET /api/wiki/:slug → one wiki entry's raw markdown
+    const wikiSlugMatch = url.pathname.match(/^\/api\/wiki\/(.+)$/);
+    if (wikiSlugMatch) {
+      const slug = decodeURIComponent(wikiSlugMatch[1]);
+      if (
+        slug.includes("/") ||
+        slug.includes("\\") ||
+        slug.includes("..") ||
+        slug.startsWith("_")
+      ) {
+        return json({ error: "invalid_slug" }, 400, request, env);
+      }
+      try {
+        const markdown = await getMarkdown(env, "wiki", `${slug}.md`);
+        if (markdown == null) return json({ error: "not_found" }, 404, request, env);
+        return json({ slug, markdown }, 200, request, env);
+      } catch {
+        return json({ error: "upstream_error" }, 502, request, env);
+      }
+    }
+
+    // GET /api/wiki → all wiki entries' raw markdown (single GraphQL call)
+    if (url.pathname === "/api/wiki") {
+      try {
+        const entries = await listAllPosts(env, "wiki");
+        const filtered = entries.filter(
+          (e) => e.slug !== "README" && !e.slug.startsWith("_"),
+        );
+        return json(filtered, 200, request, env);
       } catch {
         return json({ error: "upstream_error" }, 502, request, env);
       }

@@ -99,3 +99,79 @@ export async function fetchExternalGraph(token: string): Promise<ExternalGraphDa
 
   return null;
 }
+
+/**
+ * Fetch all wiki entries' raw markdown from the authenticated Worker.
+ * In local dev, falls back to `/__dev_notes_wiki.json` if the Worker endpoint
+ * is unavailable.
+ */
+export async function fetchAllWikiRaw(token: string): Promise<RawPost[]> {
+  let lastError: unknown;
+  try {
+    const r = await fetch(`${API_BASE}/api/wiki`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (r.status === 401 || r.status === 403) throw new Error("unauthorized");
+    if (r.ok) {
+      return (await r.json()) as RawPost[];
+    }
+    lastError = new Error(`Wiki API error: ${r.status}`);
+  } catch (err) {
+    if (err instanceof Error && err.message === "unauthorized") throw err;
+    lastError = err;
+  }
+
+  if (import.meta.env.DEV) {
+    const devRes = await fetch("/__dev_notes_wiki.json");
+    if (devRes.ok) {
+      return (await devRes.json()) as RawPost[];
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Wiki API error");
+}
+
+/**
+ * Fetch one wiki entry's raw markdown. Returns null when not found.
+ * In local dev, falls back to `/__dev_notes_wiki.json` if the Worker endpoint
+ * is unavailable.
+ */
+export async function fetchWikiMarkdown(
+  slug: string,
+  token: string,
+): Promise<RawPost | null> {
+  let lastError: unknown;
+  let status404 = false;
+  try {
+    const r = await fetch(`${API_BASE}/api/wiki/${encodeURIComponent(slug)}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (r.status === 401 || r.status === 403) throw new Error("unauthorized");
+    if (r.ok) {
+      return (await r.json()) as RawPost;
+    }
+    if (r.status === 404) {
+      status404 = true;
+    } else {
+      lastError = new Error(`Wiki API error: ${r.status}`);
+    }
+  } catch (err) {
+    if (err instanceof Error && err.message === "unauthorized") throw err;
+    lastError = err;
+  }
+
+  if (import.meta.env.DEV) {
+    try {
+      const devRes = await fetch("/__dev_notes_wiki.json");
+      if (devRes.ok) {
+        const list = (await devRes.json()) as RawPost[];
+        return list.find((item) => item.slug === slug) ?? null;
+      }
+    } catch {
+      // Ignore and fall through
+    }
+  }
+
+  if (status404) return null;
+  throw lastError instanceof Error ? lastError : new Error("Wiki API error");
+}

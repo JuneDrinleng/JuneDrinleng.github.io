@@ -41,14 +41,17 @@ export default function Layout() {
     }
 
     if (prevPath !== location.pathname) {
-      const goingToPost = location.pathname.startsWith("/blog/");
-      const leavingPost = prevPath.startsWith("/blog/");
+      const pathDepth = (p: string) => p.split("/").filter(Boolean).length;
+      const nextDepth = pathDepth(location.pathname);
+      const prevDepth = pathDepth(prevPath);
       setAnimClass(
-        goingToPost
+        nextDepth > prevDepth
           ? "anim-route-forward"
-          : leavingPost
+          : nextDepth < prevDepth
             ? "anim-route-back"
-            : "anim-route-unlock",
+            : nextDepth > 0
+              ? "anim-route-forward"
+              : "anim-route-unlock",
       );
       setAnimKey((k) => k + 1);
       setSweepKey((k) => k + 1);

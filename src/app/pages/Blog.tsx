@@ -4,6 +4,7 @@ import {
   ArrowUpDown,
   ArrowUpRight,
   AlignJustify,
+  BookMarked,
   Rows2,
   Search,
   X,
@@ -519,41 +520,52 @@ export default function Blog() {
             </h1>
           </div>
 
-          {/* 3-Cell Swiss Telemetry Strip */}
-          <div
-            className="hidden md:grid grid-cols-3 border-2 font-mono-kb text-xs"
-            style={{ borderColor: "var(--kb-border)" }}
-          >
+          <div className="flex items-end gap-3">
+            {/* 3-Cell Swiss Telemetry Strip */}
             <div
-              className="px-4 py-2.5 border-r"
-              style={{ borderColor: "var(--kb-border-soft)" }}
+              className="hidden md:grid grid-cols-3 border-2 font-mono-kb text-xs"
+              style={{ borderColor: "var(--kb-border)" }}
             >
-              <div className="text-xs opacity-55 mb-0.5">
-                {t("条目", "NOTES")}
+              <div
+                className="px-4 py-2.5 border-r"
+                style={{ borderColor: "var(--kb-border-soft)" }}
+              >
+                <div className="text-xs opacity-55 mb-0.5">
+                  {t("条目", "NOTES")}
+                </div>
+                <div className="text-base font-bold tabular-nums">
+                  {loading ? "—" : String(allPosts.length).padStart(2, "0")}
+                </div>
               </div>
-              <div className="text-base font-bold tabular-nums">
-                {loading ? "—" : String(allPosts.length).padStart(2, "0")}
+              <div
+                className="px-4 py-2.5 border-r"
+                style={{ borderColor: "var(--kb-border-soft)" }}
+              >
+                <div className="text-xs opacity-55 mb-0.5">
+                  {t("跨度", "SPAN")}
+                </div>
+                <div className="text-base font-bold tabular-nums">
+                  {loading ? "—" : yearSpanLabel}
+                </div>
+              </div>
+              <div className="px-4 py-2.5">
+                <div className="text-xs opacity-55 mb-0.5">
+                  {t("主题", "TOPICS")}
+                </div>
+                <div className="text-base font-bold tabular-nums">
+                  {loading ? "—" : String(allTags.length).padStart(2, "0")}
+                </div>
               </div>
             </div>
-            <div
-              className="px-4 py-2.5 border-r"
-              style={{ borderColor: "var(--kb-border-soft)" }}
+
+            <Link
+              to="/wiki"
+              className="kb-btn-outline px-4 py-2.5 inline-flex items-center gap-2 font-mono-kb text-xs font-bold uppercase tracking-wider shrink-0"
             >
-              <div className="text-xs opacity-55 mb-0.5">
-                {t("跨度", "SPAN")}
-              </div>
-              <div className="text-base font-bold tabular-nums">
-                {loading ? "—" : yearSpanLabel}
-              </div>
-            </div>
-            <div className="px-4 py-2.5">
-              <div className="text-xs opacity-55 mb-0.5">
-                {t("主题", "TOPICS")}
-              </div>
-              <div className="text-base font-bold tabular-nums">
-                {loading ? "—" : String(allTags.length).padStart(2, "0")}
-              </div>
-            </div>
+              <BookMarked className="w-4 h-4" />
+              <span>{t("Wiki 百科", "Wiki")}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </header>
