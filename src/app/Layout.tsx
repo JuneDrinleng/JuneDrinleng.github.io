@@ -12,6 +12,8 @@ type RouteAnim =
 
 export default function Layout() {
   const location = useLocation();
+  const isWikiRoute =
+    location.pathname === "/wiki" || location.pathname.startsWith("/wiki/");
   const { status, isOwner } = useAuth();
   const prevPathRef = useRef(location.pathname);
   const prevOwnerRef = useRef<boolean | null>(null);
@@ -58,6 +60,10 @@ export default function Layout() {
       prevPathRef.current = location.pathname;
     }
   }, [location.pathname, isOwner, status]);
+
+  if (isWikiRoute) {
+    return <Outlet />;
+  }
 
   return (
     <>

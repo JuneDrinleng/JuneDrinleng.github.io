@@ -1,0 +1,585 @@
+/* ── Scoped Grokipedia v0.3 Styles for /wiki and /wiki/:slug ── */
+
+.gp-scope[data-gp-theme="light"] {
+  --surface-base: #fafafa;
+  --surface-l1: #ffffff;
+  --surface-l2: #f5f5f5;
+  --surface-l3: #ededed;
+  --surface-elevated: #ffffff;
+  --border-l1: rgba(10, 10, 10, 0.07);
+  --border-l2: rgba(10, 10, 10, 0.11);
+  --border-l3: rgba(10, 10, 10, 0.16);
+  --fg-primary: #0a0a0a;
+  --fg-secondary: #666666;
+  --fg-tertiary: #8a8a8a;
+  --fg-reading: #1a1a1a;
+  --link: #2f6ec9;
+  --link-soft: rgba(47, 110, 201, 0.30);
+  --ins-bg: rgba(10, 10, 10, 0.075);
+  --header-frosted: rgba(250, 250, 250, 0.86);
+  --elev-raised: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --elev-composer: 0 2px 6px rgba(0, 0, 0, 0.03), 0 8px 12px rgba(0, 0, 0, 0.03);
+  --elev-menu: 0 2px 6px rgba(0, 0, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.08);
+  --elev-focus: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.04);
+  --plank-grad: linear-gradient(180deg, #eaeaea 0%, #dcdcdc 100%);
+  --plank-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --book-shadow: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 50%, transparent 74%);
+  --cta-ripple: rgba(10, 10, 10, 0.045);
+  --watermark-op: 0.045;
+  color-scheme: light;
+}
+
+.gp-scope[data-gp-theme="dark"] {
+  --surface-base: #121212;
+  --surface-l1: #181818;
+  --surface-l2: #212121;
+  --surface-l3: #2b2b2b;
+  --surface-elevated: #1f1f1f;
+  --border-l1: rgba(255, 255, 255, 0.07);
+  --border-l2: rgba(255, 255, 255, 0.11);
+  --border-l3: rgba(255, 255, 255, 0.16);
+  --fg-primary: #f5f5f5;
+  --fg-secondary: #a3a3a3;
+  --fg-tertiary: #808080;
+  --fg-reading: #e6e6e6;
+  --link: #9cc2f2;
+  --link-soft: rgba(156, 194, 242, 0.35);
+  --ins-bg: rgba(255, 255, 255, 0.09);
+  --header-frosted: rgba(18, 18, 18, 0.86);
+  --elev-raised: 0 2px 8px rgba(0, 0, 0, 0.30);
+  --elev-composer: 0 2px 6px rgba(0, 0, 0, 0.20), 0 8px 12px rgba(0, 0, 0, 0.18);
+  --elev-menu: 0 2px 6px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.40);
+  --elev-focus: 0 0 0 1px rgba(255, 255, 255, 0.09), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --plank-grad: linear-gradient(180deg, #272727 0%, #1c1c1c 100%);
+  --plank-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+  --book-shadow: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.20) 50%, transparent 74%);
+  --cta-ripple: rgba(255, 255, 255, 0.04);
+  --watermark-op: 0.06;
+  color-scheme: dark;
+}
+
+.gp-scope {
+  background-color: var(--surface-base);
+  color: var(--fg-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  text-rendering: optimizeLegibility;
+  min-height: 100svh;
+  position: relative;
+  overflow-x: clip;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.gp-serif {
+  font-family: Iowan Old Style, "Palatino Linotype", "Book Antiqua", Georgia, "Noto Serif SC", serif;
+}
+
+.gp-tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* 4-point Starfield Twinkle */
+.gp-star {
+  position: absolute;
+  background-color: var(--fg-primary);
+  clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  animation: gpTwinkle var(--dur, 4.4s) ease-in-out infinite;
+  animation-delay: var(--del, 0s);
+}
+
+@keyframes gpTwinkle {
+  0%, 100% { opacity: 0.10; transform: scale(0.82); }
+  50% { opacity: 0.42; transform: scale(1.15); }
+}
+
+@keyframes gpPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.gp-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: var(--fg-primary);
+  animation: gpPulse 2.2s ease-in-out infinite;
+}
+
+/* Aspect-ratio adaptive Hero & 3D Hero Book scale */
+.gp-hero {
+  min-height: 0;
+}
+@media (min-width: 1024px) {
+  .gp-hero {
+    min-height: calc(100svh - 250px);
+    padding-top: 4rem;
+  }
+}
+@media (min-width: 1024px) and (max-height: 700px) {
+  .gp-hero {
+    min-height: calc(100svh - 220px);
+    padding-top: 3.5rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+.gp-book-scale-wrap {
+  transform-origin: center center;
+}
+@media (min-width: 1280px) and (min-height: 720px) {
+  .gp-book-scale-wrap {
+    transform: scale(1.08);
+  }
+}
+@media (min-width: 1024px) and (max-height: 680px) {
+  .gp-book-scale-wrap {
+    transform: scale(0.92);
+  }
+}
+
+.gp-scope .gp-no-scrollbar,
+.gp-scope .katex-display {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.gp-scope .gp-no-scrollbar::-webkit-scrollbar,
+.gp-scope .katex-display::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.gp-scope .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* Composer Omnibox */
+.gp-composer {
+  height: 56px;
+  border-radius: 28px;
+  background-color: var(--surface-l1);
+  border: 1px solid var(--border-l1);
+  box-shadow: var(--elev-composer);
+  transition: border-color 180ms cubic-bezier(.2, 0, 0, 1), box-shadow 180ms cubic-bezier(.2, 0, 0, 1);
+}
+.gp-composer:focus-within {
+  border-color: var(--border-l2);
+  box-shadow: var(--elev-focus);
+}
+
+/* Dropdown Menu */
+.gp-menu {
+  border-radius: 20px;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-l1);
+  box-shadow: var(--elev-menu);
+}
+
+/* Header Frosted Bar */
+.gp-header {
+  height: 56px;
+  transition: background-color 200ms cubic-bezier(.2, 0, 0, 1), border-color 200ms cubic-bezier(.2, 0, 0, 1), backdrop-filter 200ms cubic-bezier(.2, 0, 0, 1);
+}
+.gp-header.frosted {
+  background-color: var(--header-frosted);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--border-l1);
+}
+
+/* 3D Hero Hardcover Book (6-face preserve-3d, spring ODE driven) */
+.gp-book-stage {
+  perspective: 1200px;
+}
+.gp-book-3d {
+  width: 214px;
+  height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  will-change: transform;
+}
+.gp-book-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px 6px 6px 3px;
+  transform: translateZ(19px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: inset 12px 0 18px -10px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.gp-book-groove {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11px;
+  width: 2px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.45), rgba(255, 255, 255, 0.14));
+  pointer-events: none;
+}
+.gp-book-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 38px;
+  height: 320px;
+  margin-left: -19px;
+  transform: rotateY(-90deg) translateZ(107px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 24%, rgba(0, 0, 0, 0.06) 76%, rgba(0, 0, 0, 0.24) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+.gp-book-pages {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 36px;
+  height: 312px;
+  margin-left: -18px;
+  transform: rotateY(90deg) translateZ(104px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: repeating-linear-gradient(90deg, #f3f0e6 0px, #f3f0e6 2px, #e3dfd3 2px, #e3dfd3 3px);
+  box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.12), inset 0 -6px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 0 2px 2px 0;
+}
+.gp-book-pages-top {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 206px;
+  height: 36px;
+  margin-top: -18px;
+  transform: rotateX(90deg) translateZ(157px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: repeating-linear-gradient(0deg, #f3f0e6 0px, #f3f0e6 2px, #e3dfd3 2px, #e3dfd3 3px);
+}
+.gp-book-pages-bottom {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 206px;
+  height: 36px;
+  margin-top: -18px;
+  transform: rotateX(-90deg) translateZ(157px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: repeating-linear-gradient(0deg, #ece8dc 0px, #ece8dc 2px, #dcd7ca 2px, #dcd7ca 3px);
+}
+.gp-book-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg) translateZ(19px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 6px 3px 3px 6px;
+  overflow: hidden;
+  box-shadow: inset -12px 0 18px -10px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+.gp-book-shadow {
+  width: 244px;
+  height: 38px;
+  background: var(--book-shadow);
+  transform: translateY(10px) translateX(-6px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Featured Copy Rise Transition & Auto-Progress Line */
+@keyframes gpFeaturedRise {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.gp-featured-swap > * {
+  animation: gpFeaturedRise 420ms cubic-bezier(.22, 1, .36, 1) both;
+}
+.gp-featured-swap > :nth-child(2) {
+  animation-delay: 40ms;
+}
+.gp-featured-swap > :nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.gp-feat-shift {
+  transition: color 200ms cubic-bezier(.2, 0, 0, 1), transform 420ms cubic-bezier(.22, 1, .36, 1);
+}
+.gp-feat-arrow {
+  transition: opacity 200ms cubic-bezier(.2, 0, 0, 1), transform 420ms cubic-bezier(.22, 1, .36, 1);
+}
+
+@keyframes gpFillBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.gp-progress-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1.5px;
+  background-color: var(--fg-primary);
+  transform-origin: left center;
+  animation: gpFillBar 7000ms linear forwards;
+}
+#featured-pane:hover .gp-progress-bar {
+  animation-play-state: paused;
+}
+
+/* Standing 3D Bookshelf (1:1 Grokipedia #most-read) */
+.gp-scope .gp-shelf-scroll {
+  --fade-left: 0px;
+  --fade-right: 28px;
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent 100%);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+}
+.gp-scope .gp-shelf-scroll::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.gp-shelf-stage {
+  position: relative;
+  padding-bottom: 16px;
+}
+.gp-shelf-plank {
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  bottom: 10px;
+  height: 6px;
+  background: var(--plank-grad);
+  box-shadow: var(--plank-shadow);
+  border-top: 1px solid var(--border-l2);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.gp-shelf-slot {
+  position: relative;
+  flex: 0 0 auto;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+}
+.gp-shelf-floor-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 224px;
+  height: 22px;
+  margin-left: -112px;
+  background: var(--book-shadow);
+  pointer-events: none;
+  opacity: 0;
+}
+.gp-shelf-book3d {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 196px;
+  margin-left: -98px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.gp-shelf-face-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 38px;
+  height: 100%;
+  margin-left: -19px;
+  transform: rotateY(-90deg) translateZ(98px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 3px 3px 1px 1px;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 24%, rgba(0, 0, 0, 0.05) 76%, rgba(0, 0, 0, 0.22) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 1px 3px rgba(0, 0, 0, 0.20);
+}
+.gp-shelf-spine-title-clip {
+  position: absolute;
+  top: 15px;
+  bottom: 34px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.gp-shelf-spine-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  white-space: nowrap;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  transform-origin: 0 0;
+  transform: rotate(90deg) translateY(-50%);
+}
+.gp-shelf-spine-mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1;
+  opacity: 0.82;
+  pointer-events: none;
+}
+.gp-shelf-face-front {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(19px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 2px 5px 5px 2px;
+  overflow: hidden;
+  box-shadow: inset 11px 0 18px -10px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+.gp-shelf-face-front-hinge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 2px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(255, 255, 255, 0.12));
+  pointer-events: none;
+}
+.gp-shelf-face-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg) translateZ(19px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 5px 2px 2px 5px;
+  filter: brightness(0.84);
+}
+.gp-shelf-face-top {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  width: 190px;
+  height: 34px;
+  margin-top: -17px;
+  background: repeating-linear-gradient(0deg, #f4f0e6 0px, #f4f0e6 2px, #e4dfd2 2px, #e4dfd2 3px);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+.gp-shelf-face-pages {
+  position: absolute;
+  left: 50%;
+  top: 3px;
+  width: 34px;
+  height: calc(100% - 6px);
+  margin-left: -17px;
+  transform: rotateY(90deg) translateZ(95px);
+  background: repeating-linear-gradient(90deg, #f4f0e6 0px, #f4f0e6 2px, #e2ddd0 2px, #e2ddd0 3px);
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.12), inset 0 -5px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+}
+
+/* Concentric Ripple CTA Band */
+.gp-cta-ambient {
+  background-image: repeating-radial-gradient(circle at 50% 60%, var(--cta-ripple) 0px, var(--cta-ripple) 1px, transparent 1px, transparent 42px);
+  mask-image: radial-gradient(ellipse 68% 72% at 50% 56%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 68% 72% at 50% 56%, #000 0%, transparent 78%);
+}
+
+/* Cards & Hover */
+.gp-card {
+  background-color: var(--surface-l1);
+  border: 1px solid var(--border-l1);
+  border-radius: 18px;
+  transition: border-color 180ms cubic-bezier(.2, 0, 0, 1), box-shadow 180ms cubic-bezier(.2, 0, 0, 1);
+}
+.gp-card:hover {
+  border-color: var(--border-l2);
+  box-shadow: var(--elev-raised);
+}
+
+/* Inline Link & Citation Popover */
+.gp-wikilink-wrap {
+  position: relative;
+  display: inline;
+}
+.gp-wikilink {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.gp-wikilink:hover {
+  text-decoration-color: var(--link);
+}
+.gp-popover {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  width: 310px;
+  max-width: calc(100vw - 32px);
+  z-index: 45;
+  padding: 14px;
+  border-radius: 20px;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-l1);
+  box-shadow: var(--elev-menu);
+  text-align: left;
+}
+.gp-popover-flip {
+  left: auto !important;
+  right: 0 !important;
+}
+.gp-wikilink-wrap:hover .gp-popover,
+.gp-ref-wrap:hover .gp-popover {
+  display: block;
+}
+.gp-ref-wrap {
+  position: relative;
+  display: inline-block;
+}
+.gp-ref-mark {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-tertiary);
+  padding: 1px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  vertical-align: super;
+  line-height: 1;
+}
+.gp-ref-mark:hover {
+  background-color: var(--border-l1);
+  color: var(--fg-primary);
+}
+
+@keyframes gpFlashRef {
+  0% { background-color: var(--surface-l2); }
+  100% { background-color: transparent; }
+}
+.gp-ref-flash {
+  animation: gpFlashRef 1.4s ease-out;
+}

@@ -4,7 +4,6 @@ import {
   ArrowUpDown,
   ArrowUpRight,
   AlignJustify,
-  BookMarked,
   Rows2,
   Search,
   X,
@@ -520,14 +519,14 @@ export default function Blog() {
             </h1>
           </div>
 
-          <div className="flex items-end gap-3">
+          <div className="flex items-stretch gap-3">
             {/* 3-Cell Swiss Telemetry Strip */}
             <div
               className="hidden md:grid grid-cols-3 border-2 font-mono-kb text-xs"
               style={{ borderColor: "var(--kb-border)" }}
             >
               <div
-                className="px-4 py-2.5 border-r"
+                className="px-4 py-2.5 border-r flex flex-col justify-center"
                 style={{ borderColor: "var(--kb-border-soft)" }}
               >
                 <div className="text-xs opacity-55 mb-0.5">
@@ -538,7 +537,7 @@ export default function Blog() {
                 </div>
               </div>
               <div
-                className="px-4 py-2.5 border-r"
+                className="px-4 py-2.5 border-r flex flex-col justify-center"
                 style={{ borderColor: "var(--kb-border-soft)" }}
               >
                 <div className="text-xs opacity-55 mb-0.5">
@@ -548,7 +547,7 @@ export default function Blog() {
                   {loading ? "—" : yearSpanLabel}
                 </div>
               </div>
-              <div className="px-4 py-2.5">
+              <div className="px-4 py-2.5 flex flex-col justify-center">
                 <div className="text-xs opacity-55 mb-0.5">
                   {t("主题", "TOPICS")}
                 </div>
@@ -560,11 +559,15 @@ export default function Blog() {
 
             <Link
               to="/wiki"
-              className="kb-btn-outline px-4 py-2.5 inline-flex items-center gap-2 font-mono-kb text-xs font-bold uppercase tracking-wider shrink-0"
+              className="kb-btn-outline px-4 py-2.5 flex flex-col justify-center font-mono-kb text-xs shrink-0"
             >
-              <BookMarked className="w-4 h-4" />
-              <span>{t("Wiki 百科", "Wiki")}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <div className="text-xs opacity-55 mb-0.5 uppercase tracking-wider">
+                {t("百科 // WIKI", "ENCYCLOPEDIA")}
+              </div>
+              <div className="text-base font-bold inline-flex items-center gap-1.5 whitespace-nowrap">
+                <span>{t("进入 Wiki", "Open Wiki")}</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" />
+              </div>
             </Link>
           </div>
         </div>
